@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CLAY</title>
+  <icon>http://clay-nuyoah.github.io/icon.png</icon>
+  
+  <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://clay-nuyoah.github.io/"/>
+  <updated>2021-01-05T08:27:58.500Z</updated>
+  <id>http://clay-nuyoah.github.io/</id>
+  
+  <author>
+    <name>MGL</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>article title</title>
+    <link href="http://clay-nuyoah.github.io/2021/01/05/article-title/"/>
+    <id>http://clay-nuyoah.github.io/2021/01/05/article-title/</id>
+    <published>2021-01-05T08:27:58.000Z</published>
+    <updated>2021-01-05T08:27:58.500Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>My New Post</title>
+    <link href="http://clay-nuyoah.github.io/2021/01/05/My-New-Post/"/>
+    <id>http://clay-nuyoah.github.io/2021/01/05/My-New-Post/</id>
+    <published>2021-01-05T08:13:16.000Z</published>
+    <updated>2021-01-05T08:13:16.742Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://clay-nuyoah.github.io/2021/01/05/hello-world/"/>
+    <id>http://clay-nuyoah.github.io/2021/01/05/hello-world/</id>
+    <published>2021-01-05T07:19:57.019Z</published>
+    <updated>2021-01-05T07:19:57.019Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>动态规划求解判断子序列问题</title>
+    <link href="http://clay-nuyoah.github.io/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/"/>
+    <id>http://clay-nuyoah.github.io/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</id>
+    <published>2020-11-24T14:06:54.000Z</published>
+    <updated>2021-01-05T09:23:31.627Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一、&lt;br&gt;①&lt;br&gt;        &lt;strong&gt;s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true&lt;br&gt;          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] =</summary>
+        
+      
+    
+    
+    
+    
+    <category term="dp" scheme="http://clay-nuyoah.github.io/tags/dp/"/>
+    
+    <category term="动态规划" scheme="http://clay-nuyoah.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="算法" scheme="http://clay-nuyoah.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="字符串" scheme="http://clay-nuyoah.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+</feed>

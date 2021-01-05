@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/01/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>My New Post</title>
+    <url>/2021/01/05/My-New-Post/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>article title</title>
+    <url>/2021/01/05/article-title/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong><br>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://pic.leetcode-cn.com/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
+
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+</search>

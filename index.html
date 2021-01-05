@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     CLAY
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">CLAY</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+        <img
+          src="/images/ayer.svg"
+          class="cover-logo"
+          alt="CLAY"
+        />
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  <ul class="ads">
+    
+        <li>
+            <a target="_blank" rel="noopener" href="https://curl.qcloud.com/ezctH6FU">
+                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ad_1.jpg" width="300" alt="腾讯云限时秒杀">
+            </a>
+        </li>
+    
+        <li>
+            <a target="_blank" rel="noopener" href="https://curl.qcloud.com/kvO7hb43">
+                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ad_2.jpg" width="300" alt="云服务器全球购低至2折">
+            </a>
+        </li>
+    
+</ul>
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/"
+    >动态规划求解判断子序列问题
+  <i class="article-topping">置顶</i>
+</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/" class="article-date">
+  <time datetime="2020-11-24T14:06:54.000Z" itemprop="datePublished">2020-11-24</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong><br>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://pic.leetcode-cn.com/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
+
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-article-title"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/05/article-title/"
+    >article title</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/05/article-title/" class="article-date">
+  <time datetime="2021-01-05T08:27:58.000Z" itemprop="datePublished">2021-01-05</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-My-New-Post"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/05/My-New-Post/"
+    >My New Post</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/05/My-New-Post/" class="article-date">
+  <time datetime="2021-01-05T08:13:16.000Z" itemprop="datePublished">2021-01-05</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-hello-world"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/05/hello-world/"
+    >Hello World</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/05/hello-world/" class="article-date">
+  <time datetime="2021-01-05T07:19:57.019Z" itemprop="datePublished">2021-01-05</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
