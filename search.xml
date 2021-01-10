@@ -980,4 +980,62 @@ public class TspDp &#123;
         <tag>leetcode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>duo-shu-yuan-su-leetcode</title>
+    <url>/2021/01/10/duo-shu-yuan-su-leetcode/</url>
+    <content><![CDATA[<p>leetcode 题库 剑指 Offer 39 数组中出现次数超过一半的数字</p>
+<p>使用 摩尔投票法 解决众数问题</p>
+<a id="more"></a>
+
+<h1 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h1><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p>示例 1:</p>
+<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]</p>
+<p>输出: 2</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof">https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="二、诸侯争霸游戏："><a href="#二、诸侯争霸游戏：" class="headerlink" title="二、诸侯争霸游戏："></a>二、诸侯争霸游戏：</h1><p><strong>游戏规则设定：</strong></p>
+<pre><code>1、m 个国家进行诸侯争霸；
+
+2、每个国家的士兵人数为 a1,a2……，am,总士兵人数为 a1 + a2 + a3 …… + am 记为 C；
+
+3、其中存在一个国家 ai 的士兵数量超过总士兵人数的一半，即 ai &gt; C/2；
+
+4、若相同国家的士兵相遇，则不会发生任何争斗，若两个不同国家的士兵相遇则同归于尽；
+
+5、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
+
+6、最后的胜利者属于最后生存下来的国家；
+
+则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
+<h1 id="三、i-国家胜利的原因"><a href="#三、i-国家胜利的原因" class="headerlink" title="三、i 国家胜利的原因"></a>三、i 国家胜利的原因</h1><p>争斗过程中可能出现以下情况：</p>
+<p><strong>一、除了第 i 国家之外的国家相互争斗</strong></p>
+<p>在这种情况下第 i 国家的兵力没有受到任何影响，所以第 i 个国家会获得最终的胜利</p>
+<p><strong>二、其他的国家攻打第 i 个国家</strong></p>
+<p>第 i 个国家，和攻打过都会损失一个士兵，所以第 i 过的士兵数量还是超过总数的一半，</p>
+<p>依然是第 i 个国家获得胜利，最差的情况是除了第 i 个国家，剩余的 m - 1 个国家联合起来，</p>
+<p>一起攻打第 i 个国家，由于第 i 个国家的数量是大于总士兵人数的一半，</p>
+<p>所以还是第 i 个国家获得胜利。</p>
+<p><strong>三、m 个国家进行混战</strong></p>
+<p>在这种情况下，是情况一和情况二组合，所以依然是第 i 个国家获得胜利</p>
+<h1 id="四、代码如下："><a href="#四、代码如下：" class="headerlink" title="四、代码如下："></a>四、代码如下：</h1><pre><code>class Solution &#123;
+    public int majorityElement(int[] nums) &#123;
+        int mode = 0;
+        int count = 0;
+        for (int num : nums) &#123;
+            if (count == 0) &#123;
+                mode = num;
+            &#125;
+            if (mode == num) &#123;
+                count++;
+            &#125; else &#123;
+                count--;
+            &#125;
+        &#125;
+        return mode;
+    &#125;
+&#125;</code></pre>
+]]></content>
+  </entry>
 </search>
