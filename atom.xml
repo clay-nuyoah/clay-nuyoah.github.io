@@ -68,7 +68,7 @@
     <link href="http://clay-nuyoah.github.io/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/"/>
     <id>http://clay-nuyoah.github.io/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</id>
     <published>2020-11-24T14:06:54.000Z</published>
-    <updated>2021-01-10T08:25:33.103Z</updated>
+    <updated>2021-01-10T08:32:20.835Z</updated>
     
     
     <summary type="html">&lt;p&gt;一、&lt;br&gt;①&lt;br&gt;        &lt;strong&gt;s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true&lt;br&gt;          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false&lt;/strong&gt;&lt;/p&gt;</summary>
