@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">665</span>
+            <span class="post-count">675</span>
         </span>
     </span>
 
@@ -128,11 +128,13 @@ ga('send', 'pageview');
 
 3、其中存在一个国家 ai 的士兵数量超过总士兵人数的一半，即 ai &gt; C/2；
 
-4、若相同国家的士兵相遇，则不会发生任何争斗，若两个不同国家的士兵相遇则同归于尽；
+4、m 个国家随机的往战场上面投放士兵，并且每个国家每次只能投放一个士兵；
 
-5、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
+5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，同归于尽；
 
-6、最后的胜利者属于最后生存下来的国家；
+6、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
+
+7、最后的胜利者属于最后生存下来的国家；
 
 则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
 <h1 id="三、i-国家胜利的原因"><a href="#三、i-国家胜利的原因" class="headerlink" title="三、i 国家胜利的原因"></a>三、i 国家胜利的原因</h1><p>争斗过程中可能出现以下情况：</p>
@@ -144,7 +146,7 @@ ga('send', 'pageview');
 <p>一起攻打第 i 个国家，由于第 i 个国家的数量是大于总士兵人数的一半，</p>
 <p>所以还是第 i 个国家获得胜利。</p>
 <p><strong>三、m 个国家进行混战</strong></p>
-<p>在这种情况下，是情况一和情况二组合，所以依然是第 i 个国家获得胜利</p>
+<p>m 个国家随机的往战场上投放士兵，</p>
 <h1 id="四、代码如下："><a href="#四、代码如下：" class="headerlink" title="四、代码如下："></a>四、代码如下：</h1><pre><code>class Solution &#123;
     public int majorityElement(int[] nums) &#123;
         int mode = 0;
