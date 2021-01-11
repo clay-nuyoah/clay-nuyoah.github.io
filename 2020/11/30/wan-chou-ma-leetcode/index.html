@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">531</span>
+            <span class="post-count">534</span>
         </span>
     </span>
 
@@ -112,8 +112,7 @@ ga('send', 'pageview');
   <p>leetcode 题库 1217 玩筹码</p>
 <a id="more"></a>
 
-<p><strong>题目描述：</strong></p>
-<p>数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。</p>
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。</p>
 <p>你可以对 任何筹码 执行下面两种操作之一（不限操作次数，0 次也可以）：</p>
 <p>将第 i 个筹码向左或者右移动 2 个单位，代价为 0。</p>
 <p>将第 i 个筹码向左或者右移动 1 个单位，代价为 1。</p>
@@ -129,7 +128,7 @@ ga('send', 'pageview');
 <p>解释：第四和第五个筹码移动到位置二的代价都是 1，所以最小总代价为 2。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position">https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position</a></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>我们任意挑选两个相邻的位置，两个位置必然会有一个偶数位置(记为 a)，</p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p>我们任意挑选两个相邻的位置，两个位置必然会有一个偶数位置(记为 a)，</p>
 <p>一个奇数位置(记为b),由于移动偶数个位置的代价为 0，</p>
 <p>所以把所有在偶数位置的筹码移动到 a 点的代价和为 0</p>
 <p>(每一个筹码都可以通过移动偶数个单位移动到 a 点),</p>
@@ -137,7 +136,7 @@ ga('send', 'pageview');
 <p>这时所有的筹码都集中到了 a b 两点，</p>
 <p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
 <p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>class Solution &#123;
+<h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><pre><code>class Solution &#123;
     public int minCostToMoveChips(int[] positions) &#123;
             int eventCount = 0;
             int addCount = 0;
