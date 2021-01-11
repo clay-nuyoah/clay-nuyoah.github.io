@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">675</span>
+            <span class="post-count">619</span>
         </span>
     </span>
 
@@ -121,48 +121,38 @@ ga('send', 'pageview');
 <p>来源：力扣（LeetCode）</p>
 <p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof">https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof</a></p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>可以换做下面的方式来理解本体：</p>
 <h1 id="二、诸侯争霸游戏："><a href="#二、诸侯争霸游戏：" class="headerlink" title="二、诸侯争霸游戏："></a>二、诸侯争霸游戏：</h1><p><strong>游戏规则设定：</strong></p>
 <pre><code>1、m 个国家进行诸侯争霸；
 
 2、每个国家的士兵人数为 a1,a2……，am,总士兵人数为 a1 + a2 + a3 …… + am 记为 C；
 
-3、其中存在一个国家 ai 的士兵数量超过总士兵人数的一半，即 ai &gt; C/2；
+3、其中存在一个国家 i 的士兵人数超过总士兵人数的一半，即 ai &gt; C/2；
 
 4、m 个国家随机的往战场上面投放士兵，并且每个国家每次只能投放一个士兵；
 
-5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，同归于尽；
+5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，两个士兵同归于尽；
 
 6、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
 
-7、最后的胜利者属于最后生存下来的国家；
+7、最后的胜利者属于最后能够生存下来的国家；
 
 则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
-<h1 id="三、i-国家胜利的原因"><a href="#三、i-国家胜利的原因" class="headerlink" title="三、i 国家胜利的原因"></a>三、i 国家胜利的原因</h1><p>争斗过程中可能出现以下情况：</p>
-<p><strong>一、除了第 i 国家之外的国家相互争斗</strong></p>
-<p>在这种情况下第 i 国家的兵力没有受到任何影响，所以第 i 个国家会获得最终的胜利</p>
-<p><strong>二、其他的国家攻打第 i 个国家</strong></p>
-<p>第 i 个国家，和攻打过都会损失一个士兵，所以第 i 过的士兵数量还是超过总数的一半，</p>
-<p>依然是第 i 个国家获得胜利，最差的情况是除了第 i 个国家，剩余的 m - 1 个国家联合起来，</p>
-<p>一起攻打第 i 个国家，由于第 i 个国家的数量是大于总士兵人数的一半，</p>
-<p>所以还是第 i 个国家获得胜利。</p>
-<p><strong>三、m 个国家进行混战</strong></p>
-<p>m 个国家随机的往战场上投放士兵，</p>
-<h1 id="四、代码如下："><a href="#四、代码如下：" class="headerlink" title="四、代码如下："></a>四、代码如下：</h1><pre><code>class Solution &#123;
-    public int majorityElement(int[] nums) &#123;
-        int mode = 0;
-        int count = 0;
-        for (int num : nums) &#123;
-            if (count == 0) &#123;
-                mode = num;
-            &#125;
-            if (mode == num) &#123;
-                count++;
-            &#125; else &#123;
-                count--;
-            &#125;
+<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><pre><code>public int majorityElement(int[] nums) &#123;
+    int mode = 0;//士兵数量暂时领先的国家
+    int count = 0;//士兵数量暂时领先的数量
+    for (int num : nums) &#123;      //每个国家都随机的往战场中投放士兵
+        if (count == 0) &#123;       //若战场中不存在士兵
+            mode = num;         //投放士兵的国家就变成了  士兵数量暂时领先的国家
         &#125;
-        return mode;
+        if (mode == num) &#123;      //如果投放的士兵和战场中的士兵来自相同的国家
+            count++;            //士兵数量就会 + 1
+        &#125; else &#123;                //如果投放的士兵和战场中的士兵来自不同的国家
+            count--;            //两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵
+        &#125;
     &#125;
+    //最后可以生存下来的国家
+    return mode;
 &#125;</code></pre>
  
       <!-- reward -->

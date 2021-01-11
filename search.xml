@@ -1,101 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
-    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
+    <title>多数元素 leetcode</title>
+    <url>/2021/01/10/duo-shu-yuan-su-leetcode/</url>
+    <content><![CDATA[<p>leetcode 题库 剑指 Offer 39 数组中出现次数超过一半的数字</p>
+<p>使用 摩尔投票法 解决众数问题</p>
 <a id="more"></a>
-<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
-<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
-<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说，最后两个字符相等
-    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
-    由于 s 和 t 的最后两个字符相等
-    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
-<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说,最后两个字符相等
-    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
-    即使 s 和 t 的最后两个字符相等
-    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
-<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
-<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
-    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
-<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
-    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
-<p>三、</p>
-<hr>
-<p>综上所述：</p>
-<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
-            当 s 的长度为 i - 1,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
-    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
-            当 s 的长度为 i,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
-<hr>
-<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
-<p>第一步：</p>
-<p>初始化：</p>
-<pre><code>            将第一行和第一列的数据进行初始化
-            第一行表示 t 为空串时，必为 s 的子序列
-            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
-<p>第二步：</p>
-<p>由左到右，由上到下为 dp 数组赋值</p>
-<pre><code>            第二行数据：
-            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+<h1 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h1><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p>示例 1:</p>
+<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]</p>
+<p>输出: 2</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof">https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>可以换做下面的方式来理解本体：</p>
+<h1 id="二、诸侯争霸游戏："><a href="#二、诸侯争霸游戏：" class="headerlink" title="二、诸侯争霸游戏："></a>二、诸侯争霸游戏：</h1><p><strong>游戏规则设定：</strong></p>
+<pre><code>1、m 个国家进行诸侯争霸；
 
-            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+2、每个国家的士兵人数为 a1,a2……，am,总士兵人数为 a1 + a2 + a3 …… + am 记为 C；
 
-            dp[1][4],dp[1][5],dp[1][6] 同理
+3、其中存在一个国家 i 的士兵人数超过总士兵人数的一半，即 ai &gt; C/2；
 
-            第三行数据：
-            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+4、m 个国家随机的往战场上面投放士兵，并且每个国家每次只能投放一个士兵；
 
-            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，两个士兵同归于尽；
 
-            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
-            dp[2][4],dp[2][5],dp[2][6] 同理
+6、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
 
-            第四行也可以用一样的方法进行求解</code></pre>
-<p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+7、最后的胜利者属于最后能够生存下来的国家；
+
+则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
+<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><pre><code>public int majorityElement(int[] nums) &#123;
+    int mode = 0;//士兵数量暂时领先的国家
+    int count = 0;//士兵数量暂时领先的数量
+    for (int num : nums) &#123;      //每个国家都随机的往战场中投放士兵
+        if (count == 0) &#123;       //若战场中不存在士兵
+            mode = num;         //投放士兵的国家就变成了  士兵数量暂时领先的国家
+        &#125;
+        if (mode == num) &#123;      //如果投放的士兵和战场中的士兵来自相同的国家
+            count++;            //士兵数量就会 + 1
+        &#125; else &#123;                //如果投放的士兵和战场中的士兵来自不同的国家
+            count--;            //两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵
+        &#125;
+    &#125;
+    //最后可以生存下来的国家
+    return mode;
+&#125;</code></pre>
+]]></content>
       <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
         <tag>算法</tag>
-        <tag>字符串</tag>
+        <tag>leetcode</tag>
+        <tag>摩尔投票法</tag>
+        <tag>众数</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>玩筹码 leetcode</title>
+    <url>/2020/11/30/wan-chou-ma-leetcode/</url>
+    <content><![CDATA[<p>leetcode 题库 1217 玩筹码</p>
+<a id="more"></a>
+
+<p><strong>题目描述：</strong></p>
+<p>数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。</p>
+<p>你可以对 任何筹码 执行下面两种操作之一（不限操作次数，0 次也可以）：</p>
+<p>将第 i 个筹码向左或者右移动 2 个单位，代价为 0。</p>
+<p>将第 i 个筹码向左或者右移动 1 个单位，代价为 1。</p>
+<p>最开始的时候，同一位置上也可能放着两个或者更多的筹码。</p>
+<p>返回将所有筹码移动到同一位置（任意位置）上所需要的最小代价。</p>
+<p>示例 1：</p>
+<p>输入：chips = [1,2,3]</p>
+<p>输出：1</p>
+<p>解释：第二个筹码移动到位置三的代价是 1，第一个筹码移动到位置三的代价是 0，总代价为 1。</p>
+<p>示例 2：</p>
+<p>输入：chips = [2,2,2,3,3]</p>
+<p>输出：2</p>
+<p>解释：第四和第五个筹码移动到位置二的代价都是 1，所以最小总代价为 2。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position">https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position</a></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>我们任意挑选两个相邻的位置，两个位置必然会有一个偶数位置(记为 a)，</p>
+<p>一个奇数位置(记为b),由于移动偶数个位置的代价为 0，</p>
+<p>所以把所有在偶数位置的筹码移动到 a 点的代价和为 0</p>
+<p>(每一个筹码都可以通过移动偶数个单位移动到 a 点),</p>
+<p>同样把所有在奇数位置的筹码移动到 b 点的代价和也为 0,</p>
+<p>这时所有的筹码都集中到了 a b 两点，</p>
+<p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
+<p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>class Solution &#123;
+    public int minCostToMoveChips(int[] positions) &#123;
+            int eventCount = 0;
+            int addCount = 0;
+            for (int position : positions) &#123;
+                if (position % 2 == 0) &#123;
+                    eventCount++;
+                &#125; else &#123;
+                    addCount++;
+                &#125;
+            &#125;
+            return Math.min(eventCount, addCount);
+        &#125;
+&#125;</code></pre>
+]]></content>
   </entry>
   <entry>
     <title>TSP旅行推销员问题</title>
@@ -895,51 +901,101 @@ public class TspDp &#123;
       </tags>
   </entry>
   <entry>
-    <title>玩筹码 leetcode</title>
-    <url>/2020/11/30/wan-chou-ma-leetcode/</url>
-    <content><![CDATA[<p>leetcode 题库 1217 玩筹码</p>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
 <a id="more"></a>
+<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
+<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-<p><strong>题目描述：</strong></p>
-<p>数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。</p>
-<p>你可以对 任何筹码 执行下面两种操作之一（不限操作次数，0 次也可以）：</p>
-<p>将第 i 个筹码向左或者右移动 2 个单位，代价为 0。</p>
-<p>将第 i 个筹码向左或者右移动 1 个单位，代价为 1。</p>
-<p>最开始的时候，同一位置上也可能放着两个或者更多的筹码。</p>
-<p>返回将所有筹码移动到同一位置（任意位置）上所需要的最小代价。</p>
-<p>示例 1：</p>
-<p>输入：chips = [1,2,3]</p>
-<p>输出：1</p>
-<p>解释：第二个筹码移动到位置三的代价是 1，第一个筹码移动到位置三的代价是 0，总代价为 1。</p>
-<p>示例 2：</p>
-<p>输入：chips = [2,2,2,3,3]</p>
-<p>输出：2</p>
-<p>解释：第四和第五个筹码移动到位置二的代价都是 1，所以最小总代价为 2。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position">https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position</a></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>我们任意挑选两个相邻的位置，两个位置必然会有一个偶数位置(记为 a)，</p>
-<p>一个奇数位置(记为b),由于移动偶数个位置的代价为 0，</p>
-<p>所以把所有在偶数位置的筹码移动到 a 点的代价和为 0</p>
-<p>(每一个筹码都可以通过移动偶数个单位移动到 a 点),</p>
-<p>同样把所有在奇数位置的筹码移动到 b 点的代价和也为 0,</p>
-<p>这时所有的筹码都集中到了 a b 两点，</p>
-<p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
-<p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>class Solution &#123;
-    public int minCostToMoveChips(int[] positions) &#123;
-            int eventCount = 0;
-            int addCount = 0;
-            for (int position : positions) &#123;
-                if (position % 2 == 0) &#123;
-                    eventCount++;
-                &#125; else &#123;
-                    addCount++;
-                &#125;
-            &#125;
-            return Math.min(eventCount, addCount);
-        &#125;
-&#125;</code></pre>
-]]></content>
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+      </tags>
   </entry>
   <entry>
     <title>连续子数组的最大和</title>
@@ -978,72 +1034,6 @@ public class TspDp &#123;
         <tag>算法</tag>
         <tag>数组</tag>
         <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多数元素 leetcode</title>
-    <url>/2021/01/10/duo-shu-yuan-su-leetcode/</url>
-    <content><![CDATA[<p>leetcode 题库 剑指 Offer 39 数组中出现次数超过一半的数字</p>
-<p>使用 摩尔投票法 解决众数问题</p>
-<a id="more"></a>
-
-<h1 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h1><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p>示例 1:</p>
-<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]</p>
-<p>输出: 2</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof">https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="二、诸侯争霸游戏："><a href="#二、诸侯争霸游戏：" class="headerlink" title="二、诸侯争霸游戏："></a>二、诸侯争霸游戏：</h1><p><strong>游戏规则设定：</strong></p>
-<pre><code>1、m 个国家进行诸侯争霸；
-
-2、每个国家的士兵人数为 a1,a2……，am,总士兵人数为 a1 + a2 + a3 …… + am 记为 C；
-
-3、其中存在一个国家 ai 的士兵数量超过总士兵人数的一半，即 ai &gt; C/2；
-
-4、m 个国家随机的往战场上面投放士兵，并且每个国家每次只能投放一个士兵；
-
-5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，同归于尽；
-
-6、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
-
-7、最后的胜利者属于最后生存下来的国家；
-
-则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
-<h1 id="三、i-国家胜利的原因"><a href="#三、i-国家胜利的原因" class="headerlink" title="三、i 国家胜利的原因"></a>三、i 国家胜利的原因</h1><p>争斗过程中可能出现以下情况：</p>
-<p><strong>一、除了第 i 国家之外的国家相互争斗</strong></p>
-<p>在这种情况下第 i 国家的兵力没有受到任何影响，所以第 i 个国家会获得最终的胜利</p>
-<p><strong>二、其他的国家攻打第 i 个国家</strong></p>
-<p>第 i 个国家，和攻打过都会损失一个士兵，所以第 i 过的士兵数量还是超过总数的一半，</p>
-<p>依然是第 i 个国家获得胜利，最差的情况是除了第 i 个国家，剩余的 m - 1 个国家联合起来，</p>
-<p>一起攻打第 i 个国家，由于第 i 个国家的数量是大于总士兵人数的一半，</p>
-<p>所以还是第 i 个国家获得胜利。</p>
-<p><strong>三、m 个国家进行混战</strong></p>
-<p>m 个国家随机的往战场上投放士兵，</p>
-<h1 id="四、代码如下："><a href="#四、代码如下：" class="headerlink" title="四、代码如下："></a>四、代码如下：</h1><pre><code>class Solution &#123;
-    public int majorityElement(int[] nums) &#123;
-        int mode = 0;
-        int count = 0;
-        for (int num : nums) &#123;
-            if (count == 0) &#123;
-                mode = num;
-            &#125;
-            if (mode == num) &#123;
-                count++;
-            &#125; else &#123;
-                count--;
-            &#125;
-        &#125;
-        return mode;
-    &#125;
-&#125;</code></pre>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>leetcode</tag>
-        <tag>摩尔投票法</tag>
-        <tag>众数</tag>
       </tags>
   </entry>
 </search>
