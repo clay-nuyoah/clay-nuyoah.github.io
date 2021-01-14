@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">43 分钟</span>
+            <span class="post-count">44 分钟</span>
         </span>
     </span>
 </div>
@@ -756,146 +756,8 @@ dp[3][6] = ∞ 已经证明</code></pre>
 2 处判断一个点是都存在点集中，并且拆出来的这个点能够由 i 点可达
 3 处进行点的拆分
 4 处当拆分出多个点的时候，取其最小值</code></pre>
-<h1 id="八、代码"><a href="#八、代码" class="headerlink" title="八、代码"></a>八、代码</h1><p>代码地址:<a target="_blank" rel="noopener" href="https://github.com/clay-nuyoah/TSP" title="TSP代码地址">https://github.com/clay-nuyoah/TSP</a>    </p>
-<pre><code>package tsp;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * TSP 算法旅行推销员问题
- * 给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。
- */
-public class TspDp &#123;
-        public static void main(String[] args) &#123;
-            int[][] nums = &#123;&#123;Integer.MAX_VALUE, 3, 6, 7&#125;,
-                    &#123;5, Integer.MAX_VALUE, 2, 3&#125;,
-                    &#123;6, 4, Integer.MAX_VALUE, 2&#125;,
-                    &#123;3, 7, 5, Integer.MAX_VALUE&#125;
-            &#125;;
-            TspDp tspDp = new TspDp();
-            int minCost = tspDp.getMinCost(nums, nums.length);
-            System.out.println(minCost);
-        &#125;
-
-    /**
-     * 获取最小花费
-     *
-     * @param nums 节点之间的花费
-     * @param n    节点个数
-     * @return
-     */
-    public int getMinCost(int[][] nums, int n) &#123;
-        int row = n;
-        int col = (int) Math.pow(2, n - 1);
-        int[][] dp = new int[row][col];
-        List&lt;List&lt;Integer&gt;&gt; countLists = getCountLists(row, col);
-
-        init(dp, nums, row);
-
-            //遍历数组中的每一个数
-        for (int j = 1; j &lt; row; j++) &#123; //循环遍历 数量 数组
-            List&lt;Integer&gt; countList = countLists.get(j);
-                //用来确定横坐标
-            for (int k = 0; k &lt; countList.size(); k++) &#123;
-                //纵坐标       
-                for (int i = 0; i &lt; row; i++) &#123;           
-                    Integer num = countList.get(k);
-                    int currentMinCost = getCurrentMinCost(i, num, row, col, nums, dp);
-                    dp[i][num] = currentMinCost;
-
-                &#125;
-            &#125;
-        &#125;
-        for (int i = 0; i &lt; row; i++) &#123;
-            for (int j = 0; j &lt; col; j++) &#123;
-                System.out.print(dp[i][j] + &quot;\t&quot;);
-            &#125;
-            System.out.println();
-        &#125;
-        return dp[0][col - 1];
-    &#125;
-
-    /**
-     * 获取一个 list
-     * list[0] 表示 从 0 ~ col 中二进制 拥有 0 个 1 的数字组成的集合
-     * list[1] 表示 从 0 ~ col 中二进制 拥有 1 个 1 的数字组成的集合
-     *
-     * @param row
-     * @param col
-     * @return
-     */
-    private List&lt;List&lt;Integer&gt;&gt; getCountLists(int row, int col) &#123;
-        List&lt;List&lt;Integer&gt;&gt; countLists = new ArrayList&lt;&gt;();
-        for (int i = 0; i &lt; row; i++) &#123;
-            countLists.add(new ArrayList&lt;&gt;());
-        &#125;
-
-        for (int i = 0; i &lt; col; i++) &#123;
-            int count = bitCount(i);
-            countLists.get(count).add(i);
-        &#125;
-
-        return countLists;
-    &#125;
-
-    /**
-     * 获取一个整数 二进制 1 的个数
-     *
-     * @param n
-     * @return
-     */
-    private int bitCount(int n) &#123;
-        int c;
-        for (c = 0; n != 0; ++c) &#123;
-            n &amp;= (n - 1); // 清除最低位的1
-        &#125;
-        return c;
-    &#125;
-
-    /**
-     * 获取当前条件下的最小花费
-     *
-     * @param i
-     * @param num
-     * @param row
-     */
-    private int getCurrentMinCost(int i, int num, int row, 
-            int col, int[][] nums, int[][] dp) &#123;
-        int pow = (int) Math.pow(2, i - 1);
-
-        if (num != col - 1 &amp;&amp; (i == 0 || (pow &amp; num) == pow)) &#123;
-            return Integer.MAX_VALUE;
-        &#125;
-
-        int min = Integer.MAX_VALUE;
-        for (int j = 1; j &lt; row; j++) &#123;
-            int pow1 = (int) Math.pow(2, j - 1);
-            if ((pow1 &amp; num) == pow1 &amp;&amp; nums[i][j] != Integer.MAX_VALUE) &#123;
-                int y = num - pow1;
-                int cost = nums[i][j] + dp[j][y];
-                if (cost &lt; min) &#123;
-                    min = cost;
-                &#125;
-            &#125;
-        &#125;
-        return min;
-    &#125;
-
-    /**
-     * 初始化 dp
-     *
-     * @param dp
-     * @param nums
-     * @param row
-     */
-    private void init(int[][] dp, int[][] nums, int row) &#123;
-        for (int i = 0; i &lt; row; i++) &#123;
-            dp[i][0] = nums[i][0];
-        &#125;
-    &#125;
-&#125;</code></pre>
- 
+<h1 id="八、代码"><a href="#八、代码" class="headerlink" title="八、代码"></a>八、代码</h1><p>代码地址:<a target="_blank" rel="noopener" href="https://github.com/clay-nuyoah/TSP" title="TSP代码地址">https://github.com/clay-nuyoah/TSP</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">package tsp;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * TSP 算法旅行推销员问题</span><br><span class="line"> * 给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class TspDp &#123;</span><br><span class="line">	    public static void main(String[] args) &#123;</span><br><span class="line">	        int[][] nums &#x3D; &#123;&#123;Integer.MAX_VALUE, 3, 6, 7&#125;,</span><br><span class="line">	                &#123;5, Integer.MAX_VALUE, 2, 3&#125;,</span><br><span class="line">	                &#123;6, 4, Integer.MAX_VALUE, 2&#125;,</span><br><span class="line">	                &#123;3, 7, 5, Integer.MAX_VALUE&#125;</span><br><span class="line">	        &#125;;</span><br><span class="line">	        TspDp tspDp &#x3D; new TspDp();</span><br><span class="line">	        int minCost &#x3D; tspDp.getMinCost(nums, nums.length);</span><br><span class="line">	        System.out.println(minCost);</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取最小花费</span><br><span class="line">     *</span><br><span class="line">     * @param nums 节点之间的花费</span><br><span class="line">     * @param n    节点个数</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public int getMinCost(int[][] nums, int n) &#123;</span><br><span class="line">        int row &#x3D; n;</span><br><span class="line">        int col &#x3D; (int) Math.pow(2, n - 1);</span><br><span class="line">        int[][] dp &#x3D; new int[row][col];</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; countLists &#x3D; getCountLists(row, col);</span><br><span class="line"></span><br><span class="line">        init(dp, nums, row);</span><br><span class="line"></span><br><span class="line">			&#x2F;&#x2F;遍历数组中的每一个数</span><br><span class="line">        for (int j &#x3D; 1; j &lt; row; j++) &#123; &#x2F;&#x2F;循环遍历 数量 数组</span><br><span class="line">            List&lt;Integer&gt; countList &#x3D; countLists.get(j);</span><br><span class="line">				&#x2F;&#x2F;用来确定横坐标</span><br><span class="line">            for (int k &#x3D; 0; k &lt; countList.size(); k++) &#123;</span><br><span class="line">				&#x2F;&#x2F;纵坐标       </span><br><span class="line">                for (int i &#x3D; 0; i &lt; row; i++) &#123;           </span><br><span class="line">                    Integer num &#x3D; countList.get(k);</span><br><span class="line">                    int currentMinCost &#x3D; getCurrentMinCost(i, num, row, col, nums, dp);</span><br><span class="line">                    dp[i][num] &#x3D; currentMinCost;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 0; j &lt; col; j++) &#123;</span><br><span class="line">                System.out.print(dp[i][j] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][col - 1];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取一个 list</span><br><span class="line">     * list[0] 表示 从 0 ~ col 中二进制 拥有 0 个 1 的数字组成的集合</span><br><span class="line">     * list[1] 表示 从 0 ~ col 中二进制 拥有 1 个 1 的数字组成的集合</span><br><span class="line">     *</span><br><span class="line">     * @param row</span><br><span class="line">     * @param col</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private List&lt;List&lt;Integer&gt;&gt; getCountLists(int row, int col) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; countLists &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            countLists.add(new ArrayList&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; col; i++) &#123;</span><br><span class="line">            int count &#x3D; bitCount(i);</span><br><span class="line">            countLists.get(count).add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return countLists;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取一个整数 二进制 1 的个数</span><br><span class="line">     *</span><br><span class="line">     * @param n</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int bitCount(int n) &#123;</span><br><span class="line">        int c;</span><br><span class="line">        for (c &#x3D; 0; n !&#x3D; 0; ++c) &#123;</span><br><span class="line">            n &amp;&#x3D; (n - 1); &#x2F;&#x2F; 清除最低位的1</span><br><span class="line">        &#125;</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取当前条件下的最小花费</span><br><span class="line">     *</span><br><span class="line">     * @param i</span><br><span class="line">     * @param num</span><br><span class="line">     * @param row</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int getCurrentMinCost(int i, int num, int row, </span><br><span class="line">			int col, int[][] nums, int[][] dp) &#123;</span><br><span class="line">        int pow &#x3D; (int) Math.pow(2, i - 1);</span><br><span class="line"></span><br><span class="line">        if (num !&#x3D; col - 1 &amp;&amp; (i &#x3D;&#x3D; 0 || (pow &amp; num) &#x3D;&#x3D; pow)) &#123;</span><br><span class="line">            return Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int min &#x3D; Integer.MAX_VALUE;</span><br><span class="line">        for (int j &#x3D; 1; j &lt; row; j++) &#123;</span><br><span class="line">            int pow1 &#x3D; (int) Math.pow(2, j - 1);</span><br><span class="line">            if ((pow1 &amp; num) &#x3D;&#x3D; pow1 &amp;&amp; nums[i][j] !&#x3D; Integer.MAX_VALUE) &#123;</span><br><span class="line">                int y &#x3D; num - pow1;</span><br><span class="line">                int cost &#x3D; nums[i][j] + dp[j][y];</span><br><span class="line">                if (cost &lt; min) &#123;</span><br><span class="line">                    min &#x3D; cost;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 初始化 dp</span><br><span class="line">     *</span><br><span class="line">     * @param dp</span><br><span class="line">     * @param nums</span><br><span class="line">     * @param row</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void init(int[][] dp, int[][] nums, int row) &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            dp[i][0] &#x3D; nums[i][0];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
       <div id="reword-out">

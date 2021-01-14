@@ -89,7 +89,9 @@
 
             第四行也可以用一样的方法进行求解</code></pre>
 <p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <tags>
         <tag>dp</tag>
         <tag>动态规划</tag>
@@ -747,146 +749,8 @@ dp[3][6] = ∞ 已经证明</code></pre>
 2 处判断一个点是都存在点集中，并且拆出来的这个点能够由 i 点可达
 3 处进行点的拆分
 4 处当拆分出多个点的时候，取其最小值</code></pre>
-<h1 id="八、代码"><a href="#八、代码" class="headerlink" title="八、代码"></a>八、代码</h1><p>代码地址:<a href="https://github.com/clay-nuyoah/TSP" title="TSP代码地址">https://github.com/clay-nuyoah/TSP</a>    </p>
-<pre><code>package tsp;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * TSP 算法旅行推销员问题
- * 给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。
- */
-public class TspDp &#123;
-        public static void main(String[] args) &#123;
-            int[][] nums = &#123;&#123;Integer.MAX_VALUE, 3, 6, 7&#125;,
-                    &#123;5, Integer.MAX_VALUE, 2, 3&#125;,
-                    &#123;6, 4, Integer.MAX_VALUE, 2&#125;,
-                    &#123;3, 7, 5, Integer.MAX_VALUE&#125;
-            &#125;;
-            TspDp tspDp = new TspDp();
-            int minCost = tspDp.getMinCost(nums, nums.length);
-            System.out.println(minCost);
-        &#125;
-
-    /**
-     * 获取最小花费
-     *
-     * @param nums 节点之间的花费
-     * @param n    节点个数
-     * @return
-     */
-    public int getMinCost(int[][] nums, int n) &#123;
-        int row = n;
-        int col = (int) Math.pow(2, n - 1);
-        int[][] dp = new int[row][col];
-        List&lt;List&lt;Integer&gt;&gt; countLists = getCountLists(row, col);
-
-        init(dp, nums, row);
-
-            //遍历数组中的每一个数
-        for (int j = 1; j &lt; row; j++) &#123; //循环遍历 数量 数组
-            List&lt;Integer&gt; countList = countLists.get(j);
-                //用来确定横坐标
-            for (int k = 0; k &lt; countList.size(); k++) &#123;
-                //纵坐标       
-                for (int i = 0; i &lt; row; i++) &#123;           
-                    Integer num = countList.get(k);
-                    int currentMinCost = getCurrentMinCost(i, num, row, col, nums, dp);
-                    dp[i][num] = currentMinCost;
-
-                &#125;
-            &#125;
-        &#125;
-        for (int i = 0; i &lt; row; i++) &#123;
-            for (int j = 0; j &lt; col; j++) &#123;
-                System.out.print(dp[i][j] + &quot;\t&quot;);
-            &#125;
-            System.out.println();
-        &#125;
-        return dp[0][col - 1];
-    &#125;
-
-    /**
-     * 获取一个 list
-     * list[0] 表示 从 0 ~ col 中二进制 拥有 0 个 1 的数字组成的集合
-     * list[1] 表示 从 0 ~ col 中二进制 拥有 1 个 1 的数字组成的集合
-     *
-     * @param row
-     * @param col
-     * @return
-     */
-    private List&lt;List&lt;Integer&gt;&gt; getCountLists(int row, int col) &#123;
-        List&lt;List&lt;Integer&gt;&gt; countLists = new ArrayList&lt;&gt;();
-        for (int i = 0; i &lt; row; i++) &#123;
-            countLists.add(new ArrayList&lt;&gt;());
-        &#125;
-
-        for (int i = 0; i &lt; col; i++) &#123;
-            int count = bitCount(i);
-            countLists.get(count).add(i);
-        &#125;
-
-        return countLists;
-    &#125;
-
-    /**
-     * 获取一个整数 二进制 1 的个数
-     *
-     * @param n
-     * @return
-     */
-    private int bitCount(int n) &#123;
-        int c;
-        for (c = 0; n != 0; ++c) &#123;
-            n &amp;= (n - 1); // 清除最低位的1
-        &#125;
-        return c;
-    &#125;
-
-    /**
-     * 获取当前条件下的最小花费
-     *
-     * @param i
-     * @param num
-     * @param row
-     */
-    private int getCurrentMinCost(int i, int num, int row, 
-            int col, int[][] nums, int[][] dp) &#123;
-        int pow = (int) Math.pow(2, i - 1);
-
-        if (num != col - 1 &amp;&amp; (i == 0 || (pow &amp; num) == pow)) &#123;
-            return Integer.MAX_VALUE;
-        &#125;
-
-        int min = Integer.MAX_VALUE;
-        for (int j = 1; j &lt; row; j++) &#123;
-            int pow1 = (int) Math.pow(2, j - 1);
-            if ((pow1 &amp; num) == pow1 &amp;&amp; nums[i][j] != Integer.MAX_VALUE) &#123;
-                int y = num - pow1;
-                int cost = nums[i][j] + dp[j][y];
-                if (cost &lt; min) &#123;
-                    min = cost;
-                &#125;
-            &#125;
-        &#125;
-        return min;
-    &#125;
-
-    /**
-     * 初始化 dp
-     *
-     * @param dp
-     * @param nums
-     * @param row
-     */
-    private void init(int[][] dp, int[][] nums, int row) &#123;
-        for (int i = 0; i &lt; row; i++) &#123;
-            dp[i][0] = nums[i][0];
-        &#125;
-    &#125;
-&#125;</code></pre>
-]]></content>
+<h1 id="八、代码"><a href="#八、代码" class="headerlink" title="八、代码"></a>八、代码</h1><p>代码地址:<a href="https://github.com/clay-nuyoah/TSP" title="TSP代码地址">https://github.com/clay-nuyoah/TSP</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package tsp;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * TSP 算法旅行推销员问题</span><br><span class="line"> * 给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class TspDp &#123;</span><br><span class="line">	    public static void main(String[] args) &#123;</span><br><span class="line">	        int[][] nums &#x3D; &#123;&#123;Integer.MAX_VALUE, 3, 6, 7&#125;,</span><br><span class="line">	                &#123;5, Integer.MAX_VALUE, 2, 3&#125;,</span><br><span class="line">	                &#123;6, 4, Integer.MAX_VALUE, 2&#125;,</span><br><span class="line">	                &#123;3, 7, 5, Integer.MAX_VALUE&#125;</span><br><span class="line">	        &#125;;</span><br><span class="line">	        TspDp tspDp &#x3D; new TspDp();</span><br><span class="line">	        int minCost &#x3D; tspDp.getMinCost(nums, nums.length);</span><br><span class="line">	        System.out.println(minCost);</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取最小花费</span><br><span class="line">     *</span><br><span class="line">     * @param nums 节点之间的花费</span><br><span class="line">     * @param n    节点个数</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public int getMinCost(int[][] nums, int n) &#123;</span><br><span class="line">        int row &#x3D; n;</span><br><span class="line">        int col &#x3D; (int) Math.pow(2, n - 1);</span><br><span class="line">        int[][] dp &#x3D; new int[row][col];</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; countLists &#x3D; getCountLists(row, col);</span><br><span class="line"></span><br><span class="line">        init(dp, nums, row);</span><br><span class="line"></span><br><span class="line">			&#x2F;&#x2F;遍历数组中的每一个数</span><br><span class="line">        for (int j &#x3D; 1; j &lt; row; j++) &#123; &#x2F;&#x2F;循环遍历 数量 数组</span><br><span class="line">            List&lt;Integer&gt; countList &#x3D; countLists.get(j);</span><br><span class="line">				&#x2F;&#x2F;用来确定横坐标</span><br><span class="line">            for (int k &#x3D; 0; k &lt; countList.size(); k++) &#123;</span><br><span class="line">				&#x2F;&#x2F;纵坐标       </span><br><span class="line">                for (int i &#x3D; 0; i &lt; row; i++) &#123;           </span><br><span class="line">                    Integer num &#x3D; countList.get(k);</span><br><span class="line">                    int currentMinCost &#x3D; getCurrentMinCost(i, num, row, col, nums, dp);</span><br><span class="line">                    dp[i][num] &#x3D; currentMinCost;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 0; j &lt; col; j++) &#123;</span><br><span class="line">                System.out.print(dp[i][j] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][col - 1];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取一个 list</span><br><span class="line">     * list[0] 表示 从 0 ~ col 中二进制 拥有 0 个 1 的数字组成的集合</span><br><span class="line">     * list[1] 表示 从 0 ~ col 中二进制 拥有 1 个 1 的数字组成的集合</span><br><span class="line">     *</span><br><span class="line">     * @param row</span><br><span class="line">     * @param col</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private List&lt;List&lt;Integer&gt;&gt; getCountLists(int row, int col) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; countLists &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            countLists.add(new ArrayList&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; col; i++) &#123;</span><br><span class="line">            int count &#x3D; bitCount(i);</span><br><span class="line">            countLists.get(count).add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return countLists;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取一个整数 二进制 1 的个数</span><br><span class="line">     *</span><br><span class="line">     * @param n</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int bitCount(int n) &#123;</span><br><span class="line">        int c;</span><br><span class="line">        for (c &#x3D; 0; n !&#x3D; 0; ++c) &#123;</span><br><span class="line">            n &amp;&#x3D; (n - 1); &#x2F;&#x2F; 清除最低位的1</span><br><span class="line">        &#125;</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取当前条件下的最小花费</span><br><span class="line">     *</span><br><span class="line">     * @param i</span><br><span class="line">     * @param num</span><br><span class="line">     * @param row</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int getCurrentMinCost(int i, int num, int row, </span><br><span class="line">			int col, int[][] nums, int[][] dp) &#123;</span><br><span class="line">        int pow &#x3D; (int) Math.pow(2, i - 1);</span><br><span class="line"></span><br><span class="line">        if (num !&#x3D; col - 1 &amp;&amp; (i &#x3D;&#x3D; 0 || (pow &amp; num) &#x3D;&#x3D; pow)) &#123;</span><br><span class="line">            return Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int min &#x3D; Integer.MAX_VALUE;</span><br><span class="line">        for (int j &#x3D; 1; j &lt; row; j++) &#123;</span><br><span class="line">            int pow1 &#x3D; (int) Math.pow(2, j - 1);</span><br><span class="line">            if ((pow1 &amp; num) &#x3D;&#x3D; pow1 &amp;&amp; nums[i][j] !&#x3D; Integer.MAX_VALUE) &#123;</span><br><span class="line">                int y &#x3D; num - pow1;</span><br><span class="line">                int cost &#x3D; nums[i][j] + dp[j][y];</span><br><span class="line">                if (cost &lt; min) &#123;</span><br><span class="line">                    min &#x3D; cost;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 初始化 dp</span><br><span class="line">     *</span><br><span class="line">     * @param dp</span><br><span class="line">     * @param nums</span><br><span class="line">     * @param row</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void init(int[][] dp, int[][] nums, int row) &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            dp[i][0] &#x3D; nums[i][0];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>dp</tag>
         <tag>动态规划</tag>
@@ -924,21 +788,7 @@ public class TspDp &#123;
 <p>这时所有的筹码都集中到了 a b 两点，</p>
 <p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
 <p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
-<h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><pre><code>class Solution &#123;
-    public int minCostToMoveChips(int[] positions) &#123;
-            int eventCount = 0;
-            int addCount = 0;
-            for (int position : positions) &#123;
-                if (position % 2 == 0) &#123;
-                    eventCount++;
-                &#125; else &#123;
-                    addCount++;
-                &#125;
-            &#125;
-            return Math.min(eventCount, addCount);
-        &#125;
-&#125;</code></pre>
-]]></content>
+<h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>连续子数组的最大和</title>
@@ -955,21 +805,7 @@ public class TspDp &#123;
 <p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
-<pre><code>public int maxSubArray(int[] nums) &#123;
-    int sum = 0;
-    int max = Integer.MIN_VALUE;
-    for (int num : nums) &#123;
-        sum += num;
-        if (max &lt; sum) &#123;
-            max = sum;
-        &#125;
-
-        if (sum &lt; 0) &#123;
-            sum = 0;
-        &#125;
-    &#125;
-    return max;
-&#125;</code></pre>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
 <p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
 ]]></content>
@@ -1011,23 +847,7 @@ public class TspDp &#123;
 7、最后的胜利者属于最后能够生存下来的国家；
 
 则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
-<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><pre><code>public int majorityElement(int[] nums) &#123;
-    int mode = 0;//士兵数量暂时领先的国家
-    int count = 0;//士兵数量暂时领先的数量
-    for (int num : nums) &#123;      //每个国家都随机的往战场中投放士兵
-        if (count == 0) &#123;       //若战场中不存在士兵
-            mode = num;         //投放士兵的国家就变成了  士兵数量暂时领先的国家
-        &#125;
-        if (mode == num) &#123;      //如果投放的士兵和战场中的士兵来自相同的国家
-            count++;            //士兵数量就会 + 1
-        &#125; else &#123;                //如果投放的士兵和战场中的士兵来自不同的国家
-            count--;            //两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵
-        &#125;
-    &#125;
-    //最后可以生存下来的国家
-    return mode;
-&#125;</code></pre>
-]]></content>
+<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int majorityElement(int[] nums) &#123;</span><br><span class="line">    int mode &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的国家</span><br><span class="line">    int count &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的数量</span><br><span class="line">    for (int num : nums) &#123;      &#x2F;&#x2F;每个国家都随机的往战场中投放士兵</span><br><span class="line">        if (count &#x3D;&#x3D; 0) &#123;       &#x2F;&#x2F;若战场中不存在士兵</span><br><span class="line">            mode &#x3D; num;         &#x2F;&#x2F;投放士兵的国家就变成了  士兵数量暂时领先的国家</span><br><span class="line">        &#125;</span><br><span class="line">        if (mode &#x3D;&#x3D; num) &#123;      &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自相同的国家</span><br><span class="line">            count++;            &#x2F;&#x2F;士兵数量就会 + 1</span><br><span class="line">        &#125; else &#123;                &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自不同的国家</span><br><span class="line">            count--;            &#x2F;&#x2F;两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;最后可以生存下来的国家</span><br><span class="line">    return mode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>算法</tag>
         <tag>leetcode</tag>
@@ -1060,25 +880,25 @@ public class TspDp &#123;
 
 2、取出两块最重的石头之后，剩余的石头仍然保持有序，
 
-
-可以使用 *二分查找* 找到形成的新石头需要在数组中插入的位置。</code></pre>
+可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
 <p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
 <p>寻找右侧边界的二分查找都做了详细的介绍</p>
 <p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
-<p><strong>一、当两块最重的石头重量相同时</strong></p>
-<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头，元素组为 stones
+<p><strong>二、当两块最重的石头重量相同时</strong></p>
+<p>设保存石头重量的数组名称为 stones    </p>
+<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
 
 2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
 
 3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
-<p><strong>二、当两块石头单位重量不同时</strong></p>
+<p><strong>三、当两块石头单位重量不同时</strong></p>
 <pre><code>1、在数组 stones 取出两块最重的石头
 
 2、将两块石头粉碎，并形成新的石头 newStone
 
 3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
 
-（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 ~ stones.length - 2）
+（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
 
 4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
 
@@ -1086,86 +906,29 @@ public class TspDp &#123;
 
 5、将 newStone 插入到 newStones 的 i 位置
 
-6、将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
-<p><strong>三、结果返回</strong></p>
+6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
+<p><strong>四、结果返回</strong></p>
 <p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
 <pre><code>当数组长度为 0 时返回 0
 
 当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
-<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><pre><code>public int lastStoneWeight(int[] stones) &#123;
-    //用来保存新的数据
-    int[] newStones = stones;
-    Arrays.sort(newStones);
-    for (; newStones.length &gt; 1; ) &#123;
-        int max_1 = newStones[newStones.length - 1];
-        int max_2 = newStones[newStones.length - 2];
-        int t = max_1 - max_2;
-        int[] original = newStones;
-        if (t == 0) &#123;
-            //每次都会创建一个新数组
-            newStones = new int[newStones.length - 2];
-            //将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中
-            copyArray(original, 0, newStones, 0, newStones.length);
-        &#125; else &#123;
-            //每次都会创建一个新数组
-            newStones = new int[newStones.length - 1];
-            int index = leftBoundBinarySearch(original, t, 0, original.length - 2);
-            //original 0 ~ index - 1   arr 0 ~ index - 1
-            //将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
-            copyArray(original, 0, newStones, 0, index);
-            //arr index
-            //将 newStone 插入到 newStones 的 i 位置
-            newStones[index] = t;
-            //将 stones i 之后的数据插入依次插入到 newStones i 之后的位置
-            copyArray(original, index, newStones, index + 1, newStones.length - index - 1);
-        &#125;
-    &#125;
-    return newStones.length == 0 ? 0 : newStones[0];
-&#125;
-
-/**
- * @param originalArr   数据来源的数组
- * @param originalIndex 从数据来源的那个下标开始取值
- * @param targetArr     复制的目标数组
- * @param targetIndex   从目标数组的哪个下标开始赋值
- * @param len           需要赋值的长度
- */
-private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;
-    for (int i = 0; i &lt; len; i++) &#123;
-        targetArr[targetIndex + i] = originalArr[originalIndex + i];
-    &#125;
-&#125;
-
-/**
- * 寻找左侧边界的二分搜索
- *
- * @param nums
- * @param target
- * @return
- */
-int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;
-    if (nums.length == 0) return -1;
-    int left = l;
-    int right = r; // 注意
-
-    while (left &lt; right) &#123; // 注意
-        int mid = (left + right) / 2;
-        if (nums[mid] == target) &#123;
-            right = mid;
-        &#125; else if (nums[mid] &lt; target) &#123;
-            left = mid + 1;
-        &#125; else if (nums[mid] &gt; target) &#123;
-            right = mid; // 注意
-        &#125;
-    &#125;
-    return left;
-&#125;</code></pre>
+<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>算法</tag>
         <tag>leetcode</tag>
         <tag>二分查找</tag>
         <tag>插入排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>并查集</title>
+    <url>/2021/01/14/bing-cha-ji/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>并查集</tag>
+        <tag>查找回路</tag>
       </tags>
   </entry>
 </search>

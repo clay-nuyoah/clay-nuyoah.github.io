@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">619</span>
+            <span class="post-count">646</span>
         </span>
     </span>
 
@@ -138,23 +138,7 @@ ga('send', 'pageview');
 7、最后的胜利者属于最后能够生存下来的国家；
 
 则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
-<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><pre><code>public int majorityElement(int[] nums) &#123;
-    int mode = 0;//士兵数量暂时领先的国家
-    int count = 0;//士兵数量暂时领先的数量
-    for (int num : nums) &#123;      //每个国家都随机的往战场中投放士兵
-        if (count == 0) &#123;       //若战场中不存在士兵
-            mode = num;         //投放士兵的国家就变成了  士兵数量暂时领先的国家
-        &#125;
-        if (mode == num) &#123;      //如果投放的士兵和战场中的士兵来自相同的国家
-            count++;            //士兵数量就会 + 1
-        &#125; else &#123;                //如果投放的士兵和战场中的士兵来自不同的国家
-            count--;            //两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵
-        &#125;
-    &#125;
-    //最后可以生存下来的国家
-    return mode;
-&#125;</code></pre>
- 
+<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public int majorityElement(int[] nums) &#123;</span><br><span class="line">    int mode &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的国家</span><br><span class="line">    int count &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的数量</span><br><span class="line">    for (int num : nums) &#123;      &#x2F;&#x2F;每个国家都随机的往战场中投放士兵</span><br><span class="line">        if (count &#x3D;&#x3D; 0) &#123;       &#x2F;&#x2F;若战场中不存在士兵</span><br><span class="line">            mode &#x3D; num;         &#x2F;&#x2F;投放士兵的国家就变成了  士兵数量暂时领先的国家</span><br><span class="line">        &#125;</span><br><span class="line">        if (mode &#x3D;&#x3D; num) &#123;      &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自相同的国家</span><br><span class="line">            count++;            &#x2F;&#x2F;士兵数量就会 + 1</span><br><span class="line">        &#125; else &#123;                &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自不同的国家</span><br><span class="line">            count--;            &#x2F;&#x2F;两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;最后可以生存下来的国家</span><br><span class="line">    return mode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
       <div id="reword-out">
