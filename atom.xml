@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-01-14T13:38:42.642Z</updated>
+  <updated>2021-01-18T11:59:58.232Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -17,12 +17,14 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>并查集</title>
+    <title>使用并查集查找回路</title>
     <link href="http://clay-nuyoah.github.io/2021/01/14/bing-cha-ji/"/>
     <id>http://clay-nuyoah.github.io/2021/01/14/bing-cha-ji/</id>
     <published>2021-01-14T13:37:55.000Z</published>
-    <updated>2021-01-14T13:38:42.642Z</updated>
+    <updated>2021-01-18T11:59:58.232Z</updated>
     
+    
+    <summary type="html">&lt;p&gt; 一步步的教你并查集是如何查找回路&lt;/p&gt;</summary>
     
     
     
