@@ -921,18 +921,4 @@ dp[3][6] = ∞ 已经证明</code></pre>
         <tag>插入排序</tag>
       </tags>
   </entry>
-  <entry>
-    <title>使用并查集查找回路</title>
-    <url>/2021/01/14/bing-cha-ji/</url>
-    <content><![CDATA[<p> 一步步的教你并查集是如何查找回路</p>
-<a id="more"></a>
-
-<h1 id="一、并查集的操作"><a href="#一、并查集的操作" class="headerlink" title="一、并查集的操作"></a>一、并查集的操作</h1><p>1、查找（find）：确定元素属于哪个集合<br>2、合并（union）：将两个集合归并成一个集合</p>
-<h1 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h1>]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>并查集</tag>
-        <tag>查找回路</tag>
-      </tags>
-  </entry>
 </search>
