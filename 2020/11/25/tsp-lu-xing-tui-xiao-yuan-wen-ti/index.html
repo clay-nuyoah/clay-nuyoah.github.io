@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="Ebm6aLTeotukER-WuZsMGUdrcUd7nVLKhHl0bvbMZQ4" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    TSP旅行推销员问题 |  CLAY
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-XKPTQSV9FV', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-tsp-lu-xing-tui-xiao-yuan-wen-ti"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  TSP旅行推销员问题
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/" class="article-date">
+  <time datetime="2020-11-25T06:38:25.000Z" itemprop="datePublished">2020-11-25</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">9.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">44 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>使用动态规划的方式求解TSP旅行推销员问题</p>
+<a id="more"></a>
+<h1 id="一、问题描述："><a href="#一、问题描述：" class="headerlink" title="一、问题描述："></a>一、问题描述：</h1><p>给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。</p>
+<h1 id="二、例题"><a href="#二、例题" class="headerlink" title="二、例题"></a>二、例题</h1><p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/o_image_2.png"></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;图 1    </p>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201125211440.png"><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;图 2</p>
+<p>有向图图1可以用图2的矩阵进行表示。</p>
+<p>现在要求从城市 0 出发，访问城市 1，城市 2，城市 3 （需要访遍每一座城市），</p>
+<p>最后回到城市 0 的最短路径</p>
+<h1 id="三、基础知识讲解"><a href="#三、基础知识讲解" class="headerlink" title="三、基础知识讲解"></a>三、基础知识讲解</h1><h2 id="1、首先定义一项规则"><a href="#1、首先定义一项规则" class="headerlink" title="1、首先定义一项规则"></a>1、首先定义一项规则</h2><p>i -&gt; V’ -&gt; 0 = num    ①</p>
+<p>可以记为 d(i,V’) = num ②</p>
+<p>其中 V’ = {i1, i2, …, ik} k = 1,2,3,…,n 表示需要经过的点集</p>
+<p> ① 表示，从点 i 出发，经果点集 V’，最后到达起始点 0 的最短路径为 num </p>
+<p> ②是简洁的表示形式</p>
+<p>如 3 -&gt; {2, 3} -&gt; 0    10</p>
+<p>所代表的意思是，从点 3 出发，经过点 2，点3 最后到达起始点 0 的最短路径为 10</p>
+<p>也可以表示为 d(3,{2,3}) = 10</p>
+<h1 id="四、例题分析"><a href="#四、例题分析" class="headerlink" title="四、例题分析"></a>四、例题分析</h1><p><strong>1、该题需要进行逆过程思考, 接下来将会对下列的过程进行讨论：</strong></p>
+<pre><code>**1、不经过任何点集**
+
+    1 -&gt; &#123;&#125; -&gt; 0    记为 d(1,&#123;&#125;)    (4.1.1)
+    2 -&gt; &#123;&#125; -&gt; 0    记为 d(2,&#123;&#125;)    (4.1.2)
+    3 -&gt; &#123;&#125; -&gt; 0    记为 d(3,&#123;&#125;)    (4.1.3)
+
+**2、经过 1 条点集**
+
+    2 -&gt; &#123;1&#125; -&gt; 0    记为 d(2,&#123;1&#125;)    (4.1.4)
+    3 -&gt; &#123;1&#125; -&gt; 0    记为 d(3,&#123;1&#125;)    (4.1.5)
+
+    1 -&gt; &#123;2&#125; -&gt; 0    记为 d(1,&#123;2&#125;)    (4.1.6)
+    3 -&gt; &#123;2&#125; -&gt; 0    记为 d(3,&#123;2&#125;)    (4.1.7)
+
+    1 -&gt; &#123;3&#125; -&gt; 0    记为 d(1,&#123;3&#125;)    (4.1.8)
+    2 -&gt; &#123;3&#125; -&gt; 0    记为 d(2,&#123;3&#125;)    (4.1.9)
+
+**3、经过 2 条点集**
+
+    1 -&gt; &#123;2, 3&#125; -&gt; 0    记为 d(1,&#123;2, 3&#125;)    (4.1.10)
+    2 -&gt; &#123;1, 3&#125; -&gt; 0    记为 d(2,&#123;1, 3&#125;)    (4.1.11)
+    3 -&gt; &#123;1, 2&#125; -&gt; 0    记为 d(3,&#123;1, 2&#125;)    (4.1.12)
+
+**4、经过 3 条点集**
+
+    0 -&gt; &#123;1, 2, 3&#125; -&gt; 0    (4.1.13) d(0,&#123;1, 2, 3&#125;) (4.1.13)</code></pre>
+<p><strong>2、对 1 内容进行解释</strong></p>
+<pre><code>由于最终要回到起点 0 点，在我们不经过任何点集时，有 1 点，2 点，3 点，可以回到 0 点，
+
+所以有如下解释
+
+(4.1.1) 表示，从 1 点不经过任何点集，到达起始点 0 点；
+(4.1.2) 表示，从 2 点不经过任何点集，到达起始点 0 点；
+(4.1.3) 表示，从 3 点不经过任何点集，到达起始点 0 点；
+
+(4.1.4) 表示，从 2 点经过点集 1，到达起始点 0 点；
+(4.1.5) 表示，从 3 点经过点集 1，到达起始点 0 点；
+
+(4.1.6) 表示，从 1 点经过点集 2，到达起始点 0 点；
+(4.1.7) 表示，从 3 点经过点集 2，到达起始点 0 点；
+
+(4.1.8) 表示，从 1 点经过点集 3，到达起始点 0 点；
+(4.1.9) 表示，从 2 点经过点集 3，到达起始点 0 点；
+
+(4.1.10) 表示，从 1 点经过点集 2，3，到达起始点 0 点；
+(4.1.11) 表示，从 2 点经过点集 1，3，到达起始点 0 点；
+(4.1.12) 表示，从 3 点经过点集 1，2，到达起始点 0 点；
+
+(4.1.13) 表示，从起始 0 点经过点集1， 2，3，到达起始点 0 点；</code></pre>
+<p>显然 (4.1.13) 是我们需要求解的结果,</p>
+<p>现在还不适合求解最短路径，因此没有给出任何 ① 中提到的 num 的信息</p>
+<p><strong>3、对(4.1.x)的数据进行分解</strong></p>
+<pre><code>**1、不经过任何点集**
+
+    1 -&gt; &#123;&#125; -&gt; 0    (4.1.1)
+    2 -&gt; &#123;&#125; -&gt; 0    (4.1.2)
+    3 -&gt; &#123;&#125; -&gt; 0    (4.1.3)
+
+**2、经过 1 条点集**
+
+    2 -&gt; &#123;1&#125; -&gt; 0    (4.1.4)
+        2 -&gt; 1 -&gt; &#123;&#125; -&gt; 0    (4.1.4.1)
+    3 -&gt; &#123;1&#125; -&gt; 0    (4.1.5)
+        3 -&gt; 1 -&gt; &#123;&#125; -&gt; 0    (4.1.5.1)
+
+    1 -&gt; &#123;2&#125; -&gt; 0    (4.1.6)
+        1 -&gt; 2 -&gt; &#123;&#125; -&gt; 0    (4.1.6.1)
+    3 -&gt; &#123;2&#125; -&gt; 0    (4.1.7)
+        3 -&gt; 2 -&gt; &#123;&#125; -&gt; 0    (4.1.7.1)
+
+    1 -&gt; &#123;3&#125; -&gt; 0    (4.1.8)
+        1 -&gt; 3 -&gt; &#123;&#125; -&gt; 0    (4.1.8.1)
+    2 -&gt; &#123;3&#125; -&gt; 0    (4.1.9)
+        2 -&gt; 3 -&gt; &#123;&#125; -&gt; 0    (4.1.9.1)
+
+**3、经过 2 条点集**
+
+    1 -&gt; &#123;2, 3&#125; -&gt; 0    (4.1.10)
+        1 -&gt; 2 -&gt; &#123;3&#125; -&gt; 0    (4.1.10.1)
+        1 -&gt; 3 -&gt; &#123;2&#125; -&gt; 0     (4.1.10.2)
+
+    2 -&gt; &#123;1, 3&#125; -&gt; 0    (4.1.11)
+        2 -&gt; 1 -&gt; &#123;3&#125; -&gt; 0    (4.1.11.1)
+        2 -&gt; 3 -&gt; &#123;1&#125; -&gt; 0    (4.1.11.2)
+
+    3 -&gt; &#123;1, 2&#125; -&gt; 0    (4.1.12)
+        3 -&gt; 1 -&gt; &#123;2&#125; -&gt; 0    (4.1.12.1)
+        3 -&gt; 2 -&gt; &#123;1&#125; -&gt; 0    (4.1.12.2)
+
+**4、经过 3 条点集**
+
+    0 -&gt; &#123;1, 2, 3&#125; -&gt; 0    (4.1.13)
+        0 -&gt; 1 -&gt; &#123;2,3&#125; -&gt; 0    (4.1.13.1)
+        0 -&gt; 2 -&gt; &#123;1,3&#125; -&gt; 0    (4.1.13.2)
+        0 -&gt; 3 -&gt; &#123;1,2&#125; -&gt; 0    (4.1.13.3)</code></pre>
+<p><strong>4、数据分解带来的好处</strong></p>
+<p>为什么要对上述数据进行分解呢，因为分解之后我们就可以利用上面已经产生的数据，简化计算。</p>
+<p>有了 3 的分解过程，我们就可以求最短路径了，</p>
+<p>由图 2 可知，C 表示各个点的路径长度，即 C[i][j] 表示从 i 点到达 j 点的路径长度。</p>
+<p>由 ② 可知，d(i,V’) 表示，从点 i 出发，经过点集 V’ 到达零的最短路径</p>
+<p>现在对上述的分解过程进行第一部分讲解,<br>    第一部<br>        <strong>1、不经过任何点集</strong></p>
+<pre><code>    1 -&gt; &#123;&#125; -&gt; 0    (4.1.1)
+    2 -&gt; &#123;&#125; -&gt; 0    (4.1.2)
+    3 -&gt; &#123;&#125; -&gt; 0    (4.1.3)</code></pre>
+<p>对于这三项不用计算，直接求最短路径</p>
+<pre><code>(4.1.1) 表示，从 1 点不经过任何点集，到达起始点 0 点，即 1 到 0 点的距离，可以用矩阵
+C[1][0] = 5
+(4.1.2) 表示，从 2 点不经过任何点集，到达起始点 0 点,即 2 到 0 点的距离，可以用矩阵
+C[2][0] = 6
+(4.1.3) 表示，从 3 点不经过任何点集，到达起始点 0 点，即 3 到 0 点的距离，可以用矩阵
+C[2][0] = 3</code></pre>
+<p>整理得，</p>
+<pre><code>**1、不经过任何点集**
+
+1 -&gt; &#123;&#125; -&gt; 0    记为 d(1,&#123;&#125;) = 5        (4.4.1)
+2 -&gt; &#123;&#125; -&gt; 0    记为 d(2,&#123;&#125;) = 6        (4.4.2)
+3 -&gt; &#123;&#125; -&gt; 0    记为 d(3,&#123;&#125;) = 3        (4.4.3)</code></pre>
+<p>进行第二部分的讲解</p>
+<pre><code>第二部分
+    **2、经过 1 条点集**
+
+        2 -&gt; &#123;1&#125; -&gt; 0    (4.1.4)
+            2 -&gt; 1 -&gt; &#123;&#125; -&gt; 0    (4.1.4.1)
+        3 -&gt; &#123;1&#125; -&gt; 0    (4.1.5)
+            3 -&gt; 1 -&gt; &#123;&#125; -&gt; 0    (4.1.5.1)
+
+        1 -&gt; &#123;2&#125; -&gt; 0    (4.1.6)
+            1 -&gt; 2 -&gt; &#123;&#125; -&gt; 0    (4.1.6.1)
+        3 -&gt; &#123;2&#125; -&gt; 0    (4.1.7)
+            3 -&gt; 2 -&gt; &#123;&#125; -&gt; 0    (4.1.7.1)
+
+        1 -&gt; &#123;3&#125; -&gt; 0    (4.1.8)
+            1 -&gt; 3 -&gt; &#123;&#125; -&gt; 0    (4.1.8.1)
+        2 -&gt; &#123;3&#125; -&gt; 0    (4.1.9)
+            2 -&gt; 3 -&gt; &#123;&#125; -&gt; 0    (4.1.9.1)</code></pre>
+<p>对于 (4.1.4.1) 可以看成两部分，第一部分时 2 -&gt; 1，第二部分是 1 -&gt; {} -&gt; 0，</p>
+<p>即先从点 2 出发然后经过点 1，然后经过空点集，到达 0 点</p>
+<p>第一部分为矩阵 C[2][1] = 4 的值</p>
+<p>而第二部分也已经求解，即 (4.4.1) 的结果 d(1,{}) = 5</p>
+<p>所以 2 -&gt; {1} -&gt; 0 =&gt; 2 -&gt; 1 -&gt; {} -&gt; 0 =&gt; C[2][1] + d(1,{}) = 4 + 5 = 9</p>
+<p>对于 (4.1.5.1) 可以看成两部分，第一部分时 3 -&gt; 1，第二部分是 1 -&gt; {} -&gt; 0，</p>
+<p>即先从点 3 出发然后经过点 1，然后经过空点集，到达 0 点</p>
+<p>第一部分为矩阵 C[3][1] = 7 的值</p>
+<p>可以发现第二部分已经求解，即 (4.4.1) 的结果 d(1,{}) = 5</p>
+<p>所以 3 -&gt; {1} -&gt; 0 =&gt; 3 -&gt; 1 -&gt; {} -&gt; 0 =&gt; C[3][1] + d(1,{}) = 7 + 5 = 12</p>
+<p>同理，可得其他;</p>
+<p>整理得，</p>
+<pre><code>(4.1.4.1) : C[2][1] + d(1,&#123;&#125;) = 4 + 5 = 9    记为 d(2,&#123;1&#125;) = 9    (4.4.4)
+(4.1.5.1) : C[3][1] + d(1,&#123;&#125;) = 7 + 5 = 12    记为 d(3,&#123;1&#125;) = 12    (4.4.5)
+(4.1.6.1) : C[1][2] + d(2,&#123;&#125;) = 2 + 6 = 8    记为 d(1,&#123;2&#125;) = 8    (4.4.6)
+(4.1.7.1) : C[3][2] + d(2,&#123;&#125;) = 5 + 6 = 11    记为 d(3,&#123;2&#125;) = 11    (4.4.7)
+(4.1.8.1) : C[1][3] + d(3,&#123;&#125;) = 3 + 3 = 6    记为 d(1,&#123;3&#125;) = 6    (4.4.8)
+(4.1.9.1) : C[2][3] + d(3,&#123;&#125;) = 2 + 3 = 5    记为 d(2,&#123;3&#125;) = 5    (4.4.9)</code></pre>
+<p>进行第三部分得讲解</p>
+<pre><code>第三部分
+    **3、经过 2 条点集**
+
+        1 -&gt; &#123;2, 3&#125; -&gt; 0    (4.1.10)
+            1 -&gt; 2 -&gt; &#123;3&#125; -&gt; 0    (4.1.10.1)
+            1 -&gt; 3 -&gt; &#123;2&#125; -&gt; 0     (4.1.10.2)
+
+        2 -&gt; &#123;1, 3&#125; -&gt; 0    (4.1.11)
+            2 -&gt; 1 -&gt; &#123;3&#125; -&gt; 0    (4.1.11.1)
+            2 -&gt; 3 -&gt; &#123;1&#125; -&gt; 0    (4.1.11.2)
+
+        3 -&gt; &#123;1, 2&#125; -&gt; 0    (4.1.12)
+            3 -&gt; 1 -&gt; &#123;2&#125; -&gt; 0    (4.1.12.1)
+            3 -&gt; 2 -&gt; &#123;1&#125; -&gt; 0    (4.1.12.2)</code></pre>
+<p>1 -&gt; {2, 3} -&gt; 0 ，表示从 点 1 出发，经过点集 2 3，然后达到 0，得最短路径</p>
+<p>此时我们有两种方式可以实现该过程，即上式得 (4.1.10.1) 和 (4.1.10.2)</p>
+<p>(4.1.10.1) 表示先从点 1 出发，到达点 2，然后经过点集 3，最后到达起始点 0</p>
+<p>(4.1.10.2) 表示先从点 1 出发，到达点 3，然后经过点集 2，最后到达起始点 0</p>
+<p>因为要实现 1 -&gt; {2, 3} -&gt; 0 这个过程，有两种方式，而我们要求的是最短路径，</p>
+<p>所以要求得 1 -&gt; {2, 3} -&gt; 0 最短路径为 1 -&gt; 2 -&gt; {3} -&gt; 0 和 1 -&gt; 3 -&gt; {2} -&gt; 0 得最小值</p>
+<p>对于 (4.1.10.1) 可以分解为两个过程，第一个过程为 1 -&gt; 2，第二个过程为 2 -&gt; {3} -&gt; 0</p>
+<p>即先从点 1 出发，经过点 2，在经过点集 3，最后到达起始点 0</p>
+<p>第一部分为矩阵 C[1][2] = 2 的值</p>
+<p>而第二部分也已经求解，即 (4.4.9) 的结果 d(2,{3}) = 5</p>
+<p>所以 1 -&gt; 2 -&gt; {3} -&gt; 0 = C[1][2] + d(2,{3}) = 2 + 5 = 7 </p>
+<p>对于 (4.1.10.1) 可以分解为两个过程，第一个过程为 1 -&gt; 3，第二个过程为 3 -&gt; {2} -&gt; 0</p>
+<p>即先从点 1 出发，经过点 2，在经过点集 3，最后到达起始点 0</p>
+<p>第一部分为矩阵 C[1][3] = 3 的值</p>
+<p>而第二部分也已经求解，即 (4.4.7) 的结果 d(3,{2}) = 11</p>
+<p>所以 1 -&gt; 3 -&gt; {2} -&gt; 0     = C[1][3] + d(3,{2}) = 3 + 11 = 14</p>
+<p>所以 1 -&gt; {2, 3} -&gt; 0 需要取两者得最小值为 min(7, 14) = 7</p>
+<p>同理，可得其他;</p>
+<p>整理得，</p>
+<pre><code>(4.1.10.1) : C[1][2] + d(2,&#123;3&#125;) = 2 + 5 = 7    
+(4.1.10.2) : C[1][3] + d(3,&#123;2&#125;) = 3 + 11 = 14
+(4.1.11.1) : C[2][1] + d(1,&#123;3&#125;) = 4 + 6 = 10
+(4.1.11.2) : C[2][3] + d(3,&#123;1&#125;) = 2 + 12 = 14
+(4.1.12.1) : C[3][1] + d(1,&#123;2&#125;) = 7 + 8 = 15
+(4.1.12.2) : C[3][2] + d(2,&#123;1&#125;) = 5 + 9 = 14
+取最小值得
+(4.1.10) : min((4.1.10.1),(4.1.10.2)) = 7         记为 d(1,&#123;2,3&#125;) = 7        (4.4.10)
+(4.1.11) : min((4.1.11.1),(4.1.11.2)) = 10        记为 d(2,&#123;1,3&#125;) = 10        (4.4.11)
+(4.1.12) : min((4.1.12.1),(4.1.12.2)) = 14        记为 d(3,&#123;1,2&#125;) = 14        (4.4.12)</code></pre>
+<p>进行第四部分的讲解</p>
+<pre><code>第四部
+    **4、经过 3 条点集**
+        0 -&gt; &#123;1, 2, 3&#125; -&gt; 0    (4.1.13)
+            0 -&gt; 1 -&gt; &#123;2,3&#125; -&gt; 0    (4.1.13.1)
+            0 -&gt; 2 -&gt; &#123;1,3&#125; -&gt; 0    (4.1.13.2)
+            0 -&gt; 3 -&gt; &#123;1,2&#125; -&gt; 0    (4.1.13.3)</code></pre>
+<p>0 -&gt; {1, 2, 3} -&gt; 0，表示从点 0 出发，经过点集 1，2，3 最终回到出发点 0，</p>
+<p>这就是我们要求的最短路径(因为 TSP 算法要求我们必须从 0 出发，经过多有得点，最后再回到 0 点)</p>
+<p>此时我们有三种方式可以实现该过程，即上式得 (4.1.13.1),(4.1.13.2) 和 (4.1.13.3)</p>
+<p>(4.1.13.1) 表示先从点 0 出发，到达点 1，然后经过点集 2 3，最后到达起始点 0；</p>
+<p>(4.1.13.2) 表示先从点 0 出发，到达点 2，然后经过点集 1 3，最后到达起始点 0；</p>
+<p>(4.1.13.2) 表示先从点 0 出发，到达点 3，然后经过点集 1 2，最后到达起始点 0；</p>
+<p>因为要实现 0 -&gt; {1, 2, 3} -&gt; 0 这个过程，有三种方式，而我们要求的是最短路径，</p>
+<p>所以要求得 0 -&gt; {1, 2, 3} -&gt; 0 最短路径为 </p>
+<p>0 -&gt; 1 -&gt; {2,3} -&gt; 0，0 -&gt; 2 -&gt; {1,3} -&gt; 0 和 0 -&gt; 3 -&gt; {1,2} -&gt; 0 得最小值</p>
+<p>对于 (4.1.13.1) 可以分解为两个过程，第一个过程为 0 -&gt; 1，第二个过程为 1 -&gt; {2，3} -&gt; 0</p>
+<p>即先从点 0 出发，经过点 1，在经过点集 2 3，最后到达起始点 0</p>
+<p>第一部分为矩阵 C[0][1] = 3 的值</p>
+<p>而第二部分也已经求解，即 (4.4.10) 的结果 d(1,{2,3}) = 7</p>
+<p>所以 1 -&gt; 2 -&gt; {3} -&gt; 0 = C[0][1] + d(1,{2,3}) = 3 + 7 = 10 </p>
+<p>对于 (4.1.13.2) 可以分解为两个过程，第一个过程为 0 -&gt; 2，第二个过程为 2 -&gt; {1，3} -&gt; 0</p>
+<p>即先从点 0 出发，经过点 2，在经过点集 1 3，最后到达起始点 0</p>
+<p>第一部分为矩阵 C[0][2] = 6 的值</p>
+<p>而第二部分也已经求解，即 (4.4.11) 的结果 d(2,{1,3}) = 10</p>
+<p>所以 1 -&gt; 2 -&gt; {3} -&gt; 0 = C[0][2] + d(2,{1,3}) = 6 + 10 = 16</p>
+<p>对于 (4.1.13.3) 可以分解为两个过程，第一个过程为 0 -&gt; 3，第二个过程为 3 -&gt; {1，2} -&gt; 0</p>
+<p>即先从点 0 出发，经过点 3，在经过点集 1 2，最后到达起始点 0</p>
+<p>第一部分为矩阵 C[0][3] = 7 的值</p>
+<p>而第二部分也已经求解，即 (4.4.12) 的结果 d(3,{1,2}) = 14</p>
+<p>所以 1 -&gt; 2 -&gt; {3} -&gt; 0 = C[0][3] + d(3,{1,2}) = 7 + 14 = 21</p>
+<p>整理得，</p>
+<pre><code>(4.1.13.1) : C[0][1] + d(1,&#123;2,3&#125;) = 3 + 7 = 10 
+(4.1.13.2) : C[0][2] + d(2,&#123;1,3&#125;) = 6 + 10 = 16
+(4.1.13.3) : C[0][3] + d(3,&#123;1,2&#125;) = 7 + 14 = 21
+取最小值得
+(4.1.13) ： min((4.1.13.1),(4.1.13.2),(4.1.13.3)) = 10 记为 d(0,&#123;1,2,3&#125;) = 10(4.4.13)</code></pre>
+<p><strong>5、整理数据</strong></p>
+<p>整理上方数据我们可以得到图 3 所示得表格，使用 dp 来表示这个二维数组</p>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/o_image_thumb_1.png"></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<br>&emsp;&emsp;&emsp;&emsp;图 3</p>
+<p>其中 d[i][j] 表示点 i 通过 j 所表示得点集，然后回到 0 所得到的最短路径</p>
+<p>dp[1][6](两个下标都是从 0 开始) 其中 1 表示节点 1 ，6 表示点集{2，3}</p>
+<p>dp[1][6] 表示从点 1 出发，经过点集 {2,3} 最后到达 0 求得的最短路径为 7</p>
+<h1 id="五、分析过程存在的难点"><a href="#五、分析过程存在的难点" class="headerlink" title="五、分析过程存在的难点"></a>五、分析过程存在的难点</h1><p><strong>1、如何表示 j 所代表的数据</strong></p>
+<p>j 所代表的数据即,{},{1},{2},{3},{1,2},{1,3},{2,3},{1,2,3}</p>
+<p>要想表示上边的点集，我们需要使用二进制形式表示，由于点集最多有三个点，</p>
+<p>可以使用三位二进制来表示，具体表示方法为二进制从低位到高位依次表示 1 2 3，</p>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/20201127113614.png"></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;图 4</p>
+<p>第 1 行第 2 列表示每位所代表的数字(行列下标都是从 1 开始)，</p>
+<p>如第 5 行(下标从 1 开始) 0 1 1，从<em>右到左以</em>此表示 1 存在，2 存在，3不存在，</p>
+<p>所以 011 表示点集{1,2}</p>
+<p>这样我们就能用数字表示点集了</p>
+<p>由于点集出现的顺序和图 3 的 j 所代表的顺序是不一致的，</p>
+<p>所以需要重新绘制图 3 得到图 5，如下</p>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201123113626.png"></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;图 5</p>
+<p>该图也将那些需要赋值为空的数据，赋值为 ∞，表示该点不可达,</p>
+<p>我们将在下面介绍如何找到这些点</p>
+<h1 id="六、对图中数据生成的过程进行说明"><a href="#六、对图中数据生成的过程进行说明" class="headerlink" title="六、对图中数据生成的过程进行说明"></a>六、对图中数据生成的过程进行说明</h1><h2 id="1、必备基础知识-以下所有的讨论都是基于图-5-红框中的数据，行列下标都从-0-开始"><a href="#1、必备基础知识-以下所有的讨论都是基于图-5-红框中的数据，行列下标都从-0-开始" class="headerlink" title="1、必备基础知识 (以下所有的讨论都是基于图 5 红框中的数据，行列下标都从 0 开始)##"></a>1、必备基础知识 (以下所有的讨论都是基于图 5 红框中的数据，行列下标都从 0 开始)##</h2><p><strong>1、可以通过整数来表示一个点集</strong></p>
+<p>在图 4 中，可以通过一个整数找到对应的点集，对应关系如下</p>
+<pre><code>0 = 000 -&gt; &#123;&#125;        1 = 001 -&gt; &#123;1&#125;
+2 = 010 -&gt; &#123;2&#125;        3 = 011 -&gt; &#123;1,2&#125;
+4 = 100 -&gt; &#123;3&#125;        5 = 101 -&gt; &#123;1,3&#125;
+6 = 110 - &gt; &#123;2,3&#125;    7 = 111 -&gt; &#123;1,2,3&#125;
+
+这说明我可以通过一个整数，找到对应的点集
+例如 整数 6 就可以找到点集 &#123;2,3&#125;
+
+同样，给定一个点集，也可以找到他在数组中对应的横坐标
+如点集 &#123;1,3&#125; 二进制表示形式为 101 = 5,所以他在二维数组的横坐标为 5</code></pre>
+<p><strong>2、dp[i][j] = num 表示的是什么</strong></p>
+<p>dp[i][j] = num 表示的是从点 i 出发，经过 j 所表示的点集 V’，</p>
+<p>到达 0 的最短距离为 num，即 d(i,V’) 的最短距离为 num</p>
+<p>如 d[3][3] = 14 表示从 3 出发，经过 3 所表示的点集{1,2}，</p>
+<p>到达 0 的最短距离为 14，即 d(3,{1,2}) = 14</p>
+<p><strong>3、如何判断整数 num 的二进制表示形式的第 j 位上为 1（以8位二进制数为例）</strong></p>
+<pre><code>通过 num &amp; 0000 0001 
+    结果为 0000 0001(2的0次方) num 的第 1 位上存在 1，为 0 不存在
+通过 num &amp; 0000 0010 
+    结果为 0000 0010(2的1次方) num 的第 2 位上存在 1，为 0 不存在
+通过 num &amp; 0000 0100 
+    结果为 0000 0100(2的2次方) num 的第 3 位上存在 1，为 0 不存在
+通过 num &amp; 0000 1000 
+    结果为 0000 1000(2的3次方) num 的第 4 位上存在 1，为 0 不存在
+通过 num &amp; 0001 0000 
+    结果为 0001 0000(2的4次方) num 的第 5 位上存在 1，为 0 不存在
+通过 num &amp; 0010 0000 
+    结果为 0010 0000(2的5次方) num 的第 6 位上存在 1，为 0 不存在
+通过 num &amp; 0100 0000 
+    结果为 0100 0000(2的6次方) num 的第 7 位上存在 1，为 0 不存在
+通过 num &amp; 1000 0000 
+    结果为 1000 0000(2的7次方) num 的第 8 位上存在 1，为 0 不存在</code></pre>
+<p>例如对于 252 二进制为 1010 1010</p>
+<pre><code>第 1 位    1010 1010 &amp; 0000 0001 = 0000 0000
+第 2 位    1010 1010 &amp; 0000 0010 = 0000 0010
+第 3 位    1010 1010 &amp; 0000 0100 = 0000 0000
+第 4 位    1010 1010 &amp; 0000 1000 = 0000 1000
+第 5 位    1010 1010 &amp; 0001 0000 = 0000 0000
+第 6 位    1010 1010 &amp; 0010 0000 = 0010 0000
+第 7 位    1010 1010 &amp; 0100 0000 = 0000 0000
+第 8 位    1010 1010 &amp; 1000 0000 = 1000 0000
+可以得出 252 这个整数的第 2，4，6，8 位上面各存在一个 1
+                     而 1，3，5，7 位上面没有 1，与 252 的二进制表示形式相符</code></pre>
+<p><strong>4、第 j 位上的 1 代表的是哪个点</strong></p>
+<p><em>直接说结论，第 j 位上的 1 代表的是 j 这个点</em><br>因为从左到右以此表示的点为 1 2 3 4 ……</p>
+<p>例如对于 252 二进制为 1010 1010</p>
+<pre><code>1010 1010 第 2 位存在 1 ，代表点 2
+1010 1010 第 4 位存在 1 ，代表点 4
+1010 1010 第 6 位存在 1 ，代表点 6
+1010 1010 第 8 位存在 1 ，代表点 8</code></pre>
+<p><strong>5、如何判断点 k 是否存在于点集之中</strong></p>
+<p>还是直接说结论，若点集的整数表示形式为 pointNum,则点 k 存在于点集中，</p>
+<p>必有如下规则 pointNum &amp; 2^(k - 1) = 2^(k - 1)</p>
+<p>例如对于 252 二进制为1010 1010</p>
+<pre><code>1010 1010 &amp; 0000 0010 = 0000 0010 表示点 2 在点集中(0000 0010 = 2^(2 - 1))
+1010 1010 &amp; 0000 1000 = 0000 1000 表示点 4 在点集中(0000 1000 = 2^(4 - 1))
+1010 1010 &amp; 0010 0000 = 0010 0000 表示点 6 在点集中(0010 0000 = 2^(6 - 1))
+1010 1010 &amp; 1000 0000 = 1000 0000 表示点 8 在点集中(1000 0000 = 2^(8 - 1))</code></pre>
+<p><strong>6、从点集中取出一个点后形成一个新的点集</strong></p>
+<p>可以先通过 <strong>5</strong> 判断在点集中是否存在一个点，若存在，则移除该点，</p>
+<p>可以通过如下的方法从点集中移除该点</p>
+<p>选择点集 V’ 用整数 pointNum 表示，判断一个点是否在点集里面，若存在，取出该点，</p>
+<p>获得新的点集 V’’ 用整数 newPointNum 表示，获取一个新的点集的过程如下</p>
+<pre><code>1、
+    判断点集中是否存在 1 点
+    pointNum &amp; 0000 0001(2的 0 次方) = 0000 0001
+    获取新的点集(若点 1 存在点集中，则执行下列步骤，否则判断点 2)
+    pointNum - 0000 0001 = newPointNum
+    newPointNum 就是新的点集的整数表示形式
+2、
+    判断点集中是否存在 2 点
+    pointNum &amp; 0000 0010(2的 1 次方) = 0000 0010
+    获取新的点集(若第 2 位上存在 1，则执行下列步骤，否则判断点 3)
+    pointNum - 0000 0010 = newPointNum
+    newPointNum 就是新的点集的整数表示形式
+
+                    ………………
+
+i、
+    判断点集中是否存在 i 点
+    pointNum &amp; 1(i 个 0)(2的 i - 1 次方) = 1(i 个 0)
+    获取新的点集(若第 i 位上存在 1，则执行下列步骤，否则判断点 i + 1)
+    pointNum - 1(i 个 0) = newPointNum
+    newPointNum 就是新的点集的整数表示形式</code></pre>
+<p>例如对于 252 二进制为 1010 1010</p>
+<pre><code>1010 1010 &amp; 0000 0001 = 0000 0000 第 1 位没有 1
+1010 1010 &amp; 0000 0010 = 0000 0010 第 2 位存在 1
+    1010 1010 - 0000 0010 = 1010 1000 新点集 1010 1000
+
+1010 1010 &amp; 0000 0100 = 0000 0000 第 3 位没有 1
+1010 1010 &amp; 0000 1000 = 0000 1000 第 4 位存在 1
+    1010 1010 - 0000 1000 = 1010 0010 新点集 1010 0010
+
+1010 1010 &amp; 0001 0000 = 0000 0000 第 5 位没有 1
+1010 1010 &amp; 0010 0000 = 0010 0000 第 6 位存在 1
+    1010 1010 - 0010 0000 = 1000 1010 新点集 1000 1010
+
+1010 1010 &amp; 0100 0000 = 0000 0000 第 7 位没有 1
+1010 1010 &amp; 1000 0000 = 1000 0000 第 8 位存在 1
+    1010 1010 - 1000 0000 = 0010 1010 新点集 0010 1010</code></pre>
+<p><strong>7、d(i,V’)的另外一种表示</strong></p>
+<p>d(i,V’) 表示从点 i 出发,经过点集 V’ （使用整数 pointNum 表示）,</p>
+<p>到达点 0 的最短距离（假设在 pointNum 的二进制表示形式中第 j 位上存在 1）</p>
+<p>由 2 知，</p>
+<p>dp[i][pointNum] 表示的是从点 i 出发，经过 pointNum 所表示的点集 V’，</p>
+<p>到达点 0 的最短距离。</p>
+<p>因此可以看出 d(i,V’) = dp[i][pointNum] (在 pointNum 能够表示 V’ 的情况下)</p>
+<p><strong>8、拆分之后如何求最短路径</strong></p>
+<p>最短路径 d(i,V’) 表示从点 i 出发,经过点集 V’ （使用整数 pointNum 表示）,</p>
+<p>最后到达 0 的最短距离（假设在 pointNum 的二进制表示形式中第 j 位上存在 1）</p>
+<p>我们可以通过 3 判断出在 pointNum 的第 j 位上存在 1,</p>
+<p>然后我们通过 6 可以取出点 j </p>
+<p>那么取出的点为 k （2 的 j - 1 次方），构成的新点集为 V’’ 用整数 newPointNum 表示</p>
+<p>那么我们就获得了一条新的路径，新路径为 i -&gt; j -&gt; V’’ -&gt; 0</p>
+<p>表示为 从点 i 出发，然后到达点 j，然后从点 j(2 的 j - 1 次方) 出发，</p>
+<p>绕后经过点集 V’’,最后到达 0 点的最短路径，拆分为两部分</p>
+<pre><code>第一部分 i -&gt; j 表示从 i 到 j 的距离，可以通过 C[i][j] 表示
+第二部分 j -&gt; V&#39;&#39; -&gt; 0 j 经过点集 V&#39;&#39; 最后到达 0 的距离
+可以通过 dp[j][newPointNum] 表示
+
+由 2 可知，
+dp[i][j] 表示的是从点 i 出发，经过 j 所表示的点集 V&#39;，然后到达 0 的最短距离，
+那么 dp[j][newPointNum] 表示的是从点 j 出发，
+经过 newPointNum 所表示的点集 V&#39;&#39;，然后到达 0 的最短距离,
+所以 j -&gt; V&#39;&#39; -&gt; 0 可以使用 dp[j][newPointNum] 来表示</code></pre>
+<p>因此,</p>
+<p>d(i,V’) = dp[i][pointNum] = i -&gt; V’ -&gt; 0 = i -&gt; j -&gt; V’’ -&gt; 0 = C[i][j] + dp[j][newPointNum]</p>
+<p>其中 i 是已知的不用求，k = 2^(j -1)，newPointNum = pointNum - k</p>
+<p>pointNum 也是已知的，它是 V’ 的整数表示形式，</p>
+<p>那么我们只需要找出 j 和 newPointNum 就行了</p>
+<p>当我们知道了 j 时，k 就已知， newPointNum 也就已知，所以主要求 j</p>
+<p>例如，由 6 可知，对于图 5 的 dp[3][3] = d(3,{1,2}) = 14</p>
+<pre><code>其中 i = 3，pointNum = 011 = 3
+    第 1 位 第 2 位 第 3 位
+    011        011        011
+   &amp;001       &amp;010       &amp;100
+    001        010        000
+
+得到 
+    j1 = 1                               j2 = 2(表示第 1 2 位上存在 1)
+    k1 = 2^(1-1) = 1                    k2 = 2^(2 - 1) = 2(表示点 1 2 在点集中)
+    newPointNum1 = pointNum - k1 = 2    newPointNum2 = pointNum - k2 = 1
+    C[3][1] + dp[1][2] = 7 + 8 = 15        C[3][2] + dp[2][1] = 5 + 9 = 14
+
+两者取最小值为14，即为数组 dp[3][3] 所求
+dp[1][2],dp[2][1]我们会在下面介绍如何得到的</code></pre>
+<p><strong>9、如何找出无效的点</strong></p>
+<p>无效的点分为两种情况，</p>
+<ul>
+<li>没有经过完整的点集</li>
+<li>经过了重复的点</li>
+</ul>
+<p>将 dp 中的无效点进行分类，可以得到下列数据</p>
+<pre><code>对于第一种在 dp 数组中有点
+    dp[0][0],dp[0][1],dp[0][2]dp[0][3],dp[0][4],dp[0][5],dp[0][6]
+    有这 7 个点
+对于第 2 种情况在 dp 数组中有点
+    dp[1][1],dp[1][3],dp[1][5],dp[1][7]
+    dp[2][2],dp[2][3],dp[2][6],dp[2][7]
+    dp[3][4],dp[3][5],dp[3][6],dp[3][7]
+    有这 12 个点
+
+第一种情况可以通过 if 判断，当在 0 行时，是否为最后一列，若不是最后一列，
+就赋值为无效值
+对于第二种情况,由于是经过了重复的点，通过 5 我们可以判断在点集中是否存在一个点，
+这时候我们只需要知道判断的是哪个点在不在点击就可以了
+对于dp[i][j] 来说，只需要判断 i 是不是在点集中就好了，
+
+dp[1][1] k = 2^(1 - 1) = 1        j &amp; k = 001 &amp; 001 = 001
+表示在点集中存在 1
+dp[1][3] k = 2^(1 - 1) = 1        j &amp; k = 011 &amp; 001 = 001
+表示在点击中存在 1
+dp[1][5] k = 2^(1 - 1) = 1        j &amp; k = 101 &amp; 001 = 001
+表示在点集中存在 1
+dp[1][7] k = 2^(1 - 1) = 1        j &amp; k = 111 &amp; 001 = 001
+表示在点集中存在 1
+
+dp[2][2] k = 2^(2 - 1) = 2        j &amp; k = 010 &amp; 010 = 010
+表示在点集中存在 2
+dp[2][3] k = 2^(2 - 1) = 2        j &amp; k = 011 &amp; 010 = 010
+表示在点击中存在 2
+dp[2][6] k = 2^(2 - 1) = 2        j &amp; k = 110 &amp; 010 = 010
+表示在点集中存在 2
+dp[2][7] k = 2^(2 - 1) = 2        j &amp; k = 111 &amp; 010 = 010
+表示在点集中存在 2
+
+dp[3][4] k = 2^(3 - 1) = 4        j &amp; k = 100 &amp; 100 = 100
+表示在点集中存在 3
+dp[3][5] k = 2^(3 - 1) = 4        j &amp; k = 101 &amp; 100 = 100
+表示在点击中存在 3
+dp[3][6] k = 2^(3 - 1) = 4        j &amp; k = 110 &amp; 100 = 100
+表示在点集中存在 3
+dp[3][7] k = 2^(3 - 1) = 4        j &amp; k = 111 &amp; 100 = 100
+表示在点集中存在 3</code></pre>
+<h2 id="2、表格数据进行说明-只要我们能够找到-k-就可以解决问题了"><a href="#2、表格数据进行说明-只要我们能够找到-k-就可以解决问题了" class="headerlink" title="2、表格数据进行说明(只要我们能够找到 k 就可以解决问题了)##"></a>2、表格数据进行说明(只要我们能够找到 k 就可以解决问题了)##</h2><p>我们在 9、如何找出无效的点章节已经找出了无效的点，下面的讨论将会一笔带过，</p>
+<p>它们分别是 </p>
+<pre><code>dp[0][0],dp[0][1],dp[0][2],dp[0][3],
+dp[0][4],dp[0][5],dp[0][6]
+dp[1][1],dp[1][3],dp[1][5],dp[1][7]
+dp[2][2],dp[2][3],dp[2][6],dp[2][7]
+dp[3][4],dp[3][5],dp[3][6],dp[3][7]</code></pre>
+<p>对红框框起来的数据进行讨论    </p>
+<p>第 0 列数据</p>
+<pre><code>dp[0][0] = ∞ 已经证明
+dp[1][0] = d(1,&#123;&#125;) = C[1][0] = 5
+dp[2][0] = d(2,&#123;&#125;) = C[2][0] = 6
+dp[3][0] = d(3,&#123;&#125;) = C[3][0] = 3</code></pre>
+<p>这一行的数据可以在初始化的时候给表格赋值初始值</p>
+<p>第 1 列数据</p>
+<pre><code>dp[0][1] = ∞ 已经证明
+dp[1][1] = ∞ 已经证明
+dp[2][1] = d(2,&#123;1&#125;)
+    其中 i = 2，pointNum = 001 = 1
+    第 1 位 第 2 位 第 3 位
+    001        001        001
+   &amp;001       &amp;010       &amp;100
+    001        000        000 
+得到 
+    j = 1                               
+    k = 2^(1 - 1) = 1                    
+    newPointNum = pointNum - k = 0    
+    C[2][1] + dp[1][0] = 4 + 5 = 9
+
+dp[3][1] = d(3,&#123;1&#125;)
+    其中 i = 3，pointNum = 001 = 1
+    第 1 位 第 2 位 第 3 位
+    001        001        001
+   &amp;001       &amp;010       &amp;100
+    001        000        000 
+得到 
+    j = 1                               
+    k = 2^(1 - 1) = 1                    
+    newPointNum = pointNum - k = 0    
+    C[3][1] + dp[1][0] = 7 + 5 = 12    </code></pre>
+<p>第 2 列数据</p>
+<pre><code>dp[0][2] = ∞ 已经证明
+dp[1][2] = d(1,&#123;2&#125;)
+其中 i = 1，pointNum = 010 = 2
+    第 1 位 第 2 位 第 3 位
+    010        010        010
+   &amp;001       &amp;010       &amp;100
+    000        010        000 
+得到 
+    j = 2                               
+    k = 2^(2 - 1) = 2                    
+    newPointNum = pointNum - k = 0    
+    C[1][2] + dp[2][0] = 2 + 6 = 8    
+dp[2][2] = ∞ 已经证明
+dp[3][2] = d(3,&#123;2&#125;)
+    其中 i = 3，pointNum = 010 = 2
+    第 1 位 第 2 位 第 3 位
+    010        010        010
+   &amp;001       &amp;010       &amp;100
+    000        010        000 
+得到 
+    j = 2                               
+    k = 2^(2 - 1) = 2                    
+    newPointNum = pointNum - k = 0    
+    C[3][2] + dp[2][0] = 5 + 6 = 11    </code></pre>
+<p>第 4 列（注意这里是第 4 列，不是第 3 列，先把单个点集的列计算完）</p>
+<pre><code>dp[0][4] = ∞ 已经证明
+dp[1][4] = d(1,&#123;3&#125;)
+    其中 i = 1，pointNum = 100 = 4
+    第 1 位 第 2 位 第 3 位
+    100        100        100
+   &amp;001       &amp;010       &amp;100
+    000        000        100 
+得到 
+    j = 3                               
+    k = 2^(3 - 1) = 4                    
+    newPointNum = pointNum - k = 0    
+    C[1][3] + dp[3][0] = 3 + 3 = 6    
+dp[2][4] = d(2,&#123;3&#125;)
+    其中 i = 2，pointNum = 100 = 4
+    第 1 位 第 2 位 第 3 位
+    100        100        100
+   &amp;001       &amp;010       &amp;100
+    000        000        100 
+得到 
+    j = 3                               
+    k = 2^(3 - 1) = 4                    
+    newPointNum = pointNum - k = 0    
+    C[2][3] + dp[3][0] = 2 + 3 = 5    
+dp[3][4] = ∞ 已经证明</code></pre>
+<p>第 3 列数据</p>
+<pre><code>dp[0][3] = ∞ 已经证明
+dp[1][3] = ∞ 已经证明
+dp[2][3] = ∞ 已经证明
+dp[3][3] = d(2,&#123;1,2&#125;) (上面也已经证明,摘录一下)
+其中 i = 3，pointNum = 011 = 3
+    第 1 位 第 2 位 第 3 位
+    011        011        011
+   &amp;001       &amp;010       &amp;100
+    001        010        000
+
+得到 
+    j1 = 1                               j2 = 2(表示第 1 2 位上存在 1)
+    k1 = 2^(1-1) = 1                    k2 = 2^(2 - 1) = 2(表示点 1 2 在点集中)
+    newPointNum1 = pointNum - k1 = 2    newPointNum2 = pointNum - k2 = 1
+    C[3][1] + dp[1][2] = 7 + 8 = 15        C[3][2] + dp[2][1] = 5 + 9 = 14
+
+两者取最小值为14，即为数组 dp[3][3] 所求</code></pre>
+<p>第 5 列数据</p>
+<pre><code>dp[0][5] = ∞ 已经证明
+dp[1][5] = ∞ 已经证明
+dp[2][5] = d(2,&#123;1,3&#125;)
+其中 i = 2，pointNum = 101 = 5
+    第 1 位 第 2 位 第 3 位
+    101        101        101
+   &amp;001       &amp;010       &amp;100
+    001        000        100
+
+得到 
+    j1 = 1                               j2 = 3(表示第 1 2 位上存在 1)
+    k1 = 2^(1 - 1) = 1                    k2 = 2^(3 - 1) = 4(表示点 1 2 在点集中)
+    newPointNum1 = pointNum - k1 = 4    newPointNum2 = pointNum - k2 = 1
+    C[2][1] + dp[1][4] = 4 + 6 = 10        C[2][3] + dp[3][1] = 2 + 12 = 14
+    两者取最小值为10，即为数组 dp[2][5] 所求
+dp[3][5] = ∞ 已经证明</code></pre>
+<p>第 6 列数据</p>
+<pre><code>dp[0][6] = ∞ 已经证明
+dp[1][6] = d(1,&#123;2,3&#125;)
+其中 i = 1，pointNum = 110 = 6
+    第 1 位 第 2 位 第 3 位
+    110        110        110
+   &amp;001       &amp;010       &amp;100
+    000        010        100
+
+得到 
+    j1 = 2                               j2 = 3(表示第 1 2 位上存在 1)
+    k1 = 2^(2 - 1) = 2                    k2 = 2^(3 - 1) = 4(表示点 1 2 在点集中)
+    newPointNum1 = pointNum - k1 = 4    newPointNum2 = pointNum - k2 = 2
+    C[1][2] + dp[2][4] = 2 + 5 = 7        C[1][3] + dp[3][2] = 3 + 11 = 14    
+    两者取最小值为7，即为数组 dp[1][5] 所求
+dp[2][6] = ∞ 已经证明
+dp[3][6] = ∞ 已经证明</code></pre>
+<p>第 7 列数据</p>
+<pre><code>dp[0][7] = d(0,&#123;1,2,3&#125;) 这个是有数据的，因为经过了所有的点集
+    其中 i = 0，pointNum = 111 = 7
+    第 1 位 第 2 位 第 3 位
+    111        111        111
+   &amp;001       &amp;010       &amp;100
+    001        010        100
+
+得到 
+    j1 = 1                   j2 = 2                                                j3 = 3
+    k1 = 1                    k2 = 2                                                k3 = 4
+    newPointNum1  = 6        newPointNum2 = 5                                    newPointNum2 = 3
+    C[0][1] + dp[1][6] = 3 + 7 = 10        C[0][2] + dp[2][5] = 6 + 10 = 16  C[0][3] + dp[3][3] = 7 + 14 = 21
+    三者取最小值为10，即为数组 dp[0][7] 所求</code></pre>
+<p>整个数组就这样讲解完了</p>
+<h1 id="七、代码讲解"><a href="#七、代码讲解" class="headerlink" title="七、代码讲解"></a>七、代码讲解</h1><p>通过上面的讲解，我们知道要先求点的数量为 0 1 2 3 的点集，但是点集在横坐标上并不是按照数量进行排序的，而是按照点集的整数表现形式，从小到大进行排序的。如图 5 的第 3 列和第 4 列(下标从 0 开始)。</p>
+<p>因此我们需要找到点的数量为 0 1 2 3 的点集，可以通过下面的代码进行求解，第一张图片显示了如何求解一个整数中 1 的数量，第 2 张图片显示，构造一个列表，该列表存储了有 0 个 1，1 个 1，2 个 1，3 个 1 的都有哪些列表，最终构造的列表如下<br>0    [0]<br>1    [1,2,4]<br>2    [3,5,6]<br>3    [7]</p>
+<p>所代表的含义是，</p>
+<pre><code>0 个 1 的整数有 0
+1 个 1 的整数有 1,2,4
+2 个 1 的整数有 3,5,6
+3 个 1 的整数有 7</code></pre>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/20201206204556.png"></p>
+<p>如何从一个整数中获取 1 的个数，可以查看这篇博客，此处的代码片段也是从该博客中截取的</p>
+<p>地址：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html">https://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html</a></p>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/20201204211841.png"></p>
+<p>在开始有个初始化的操作，因为在初始的时候我们就已经知道了，点集中点的个数有多少，</p>
+<p>对于图 1，有 4 个点，去掉起始点 0(因为起始点不能加入到点集中)，剩余的 3 个点，</p>
+<p>共有 4 种情况，0 个 1，1 个 1，2 个 1，3 个 1。</p>
+<p><img src="https://clay-nuyoah.github.io/post-images/2020-11-25/20201204212242.png"></p>
+<pre><code>1 处就是把无效数据给赋值成 ∞，这里用 Integer.MAX_VALUE 代替
+2 处判断一个点是都存在点集中，并且拆出来的这个点能够由 i 点可达
+3 处进行点的拆分
+4 处当拆分出多个点的时候，取其最小值</code></pre>
+<h1 id="八、代码"><a href="#八、代码" class="headerlink" title="八、代码"></a>八、代码</h1><p>代码地址:<a target="_blank" rel="noopener" href="https://github.com/clay-nuyoah/TSP" title="TSP代码地址">https://github.com/clay-nuyoah/TSP</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">package tsp;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * TSP 算法旅行推销员问题</span><br><span class="line"> * 给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class TspDp &#123;</span><br><span class="line">	    public static void main(String[] args) &#123;</span><br><span class="line">	        int[][] nums &#x3D; &#123;&#123;Integer.MAX_VALUE, 3, 6, 7&#125;,</span><br><span class="line">	                &#123;5, Integer.MAX_VALUE, 2, 3&#125;,</span><br><span class="line">	                &#123;6, 4, Integer.MAX_VALUE, 2&#125;,</span><br><span class="line">	                &#123;3, 7, 5, Integer.MAX_VALUE&#125;</span><br><span class="line">	        &#125;;</span><br><span class="line">	        TspDp tspDp &#x3D; new TspDp();</span><br><span class="line">	        int minCost &#x3D; tspDp.getMinCost(nums, nums.length);</span><br><span class="line">	        System.out.println(minCost);</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取最小花费</span><br><span class="line">     *</span><br><span class="line">     * @param nums 节点之间的花费</span><br><span class="line">     * @param n    节点个数</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public int getMinCost(int[][] nums, int n) &#123;</span><br><span class="line">        int row &#x3D; n;</span><br><span class="line">        int col &#x3D; (int) Math.pow(2, n - 1);</span><br><span class="line">        int[][] dp &#x3D; new int[row][col];</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; countLists &#x3D; getCountLists(row, col);</span><br><span class="line"></span><br><span class="line">        init(dp, nums, row);</span><br><span class="line"></span><br><span class="line">			&#x2F;&#x2F;遍历数组中的每一个数</span><br><span class="line">        for (int j &#x3D; 1; j &lt; row; j++) &#123; &#x2F;&#x2F;循环遍历 数量 数组</span><br><span class="line">            List&lt;Integer&gt; countList &#x3D; countLists.get(j);</span><br><span class="line">				&#x2F;&#x2F;用来确定横坐标</span><br><span class="line">            for (int k &#x3D; 0; k &lt; countList.size(); k++) &#123;</span><br><span class="line">				&#x2F;&#x2F;纵坐标       </span><br><span class="line">                for (int i &#x3D; 0; i &lt; row; i++) &#123;           </span><br><span class="line">                    Integer num &#x3D; countList.get(k);</span><br><span class="line">                    int currentMinCost &#x3D; getCurrentMinCost(i, num, row, col, nums, dp);</span><br><span class="line">                    dp[i][num] &#x3D; currentMinCost;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 0; j &lt; col; j++) &#123;</span><br><span class="line">                System.out.print(dp[i][j] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][col - 1];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取一个 list</span><br><span class="line">     * list[0] 表示 从 0 ~ col 中二进制 拥有 0 个 1 的数字组成的集合</span><br><span class="line">     * list[1] 表示 从 0 ~ col 中二进制 拥有 1 个 1 的数字组成的集合</span><br><span class="line">     *</span><br><span class="line">     * @param row</span><br><span class="line">     * @param col</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private List&lt;List&lt;Integer&gt;&gt; getCountLists(int row, int col) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; countLists &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            countLists.add(new ArrayList&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; col; i++) &#123;</span><br><span class="line">            int count &#x3D; bitCount(i);</span><br><span class="line">            countLists.get(count).add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return countLists;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取一个整数 二进制 1 的个数</span><br><span class="line">     *</span><br><span class="line">     * @param n</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int bitCount(int n) &#123;</span><br><span class="line">        int c;</span><br><span class="line">        for (c &#x3D; 0; n !&#x3D; 0; ++c) &#123;</span><br><span class="line">            n &amp;&#x3D; (n - 1); &#x2F;&#x2F; 清除最低位的1</span><br><span class="line">        &#125;</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取当前条件下的最小花费</span><br><span class="line">     *</span><br><span class="line">     * @param i</span><br><span class="line">     * @param num</span><br><span class="line">     * @param row</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int getCurrentMinCost(int i, int num, int row, </span><br><span class="line">			int col, int[][] nums, int[][] dp) &#123;</span><br><span class="line">        int pow &#x3D; (int) Math.pow(2, i - 1);</span><br><span class="line"></span><br><span class="line">        if (num !&#x3D; col - 1 &amp;&amp; (i &#x3D;&#x3D; 0 || (pow &amp; num) &#x3D;&#x3D; pow)) &#123;</span><br><span class="line">            return Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int min &#x3D; Integer.MAX_VALUE;</span><br><span class="line">        for (int j &#x3D; 1; j &lt; row; j++) &#123;</span><br><span class="line">            int pow1 &#x3D; (int) Math.pow(2, j - 1);</span><br><span class="line">            if ((pow1 &amp; num) &#x3D;&#x3D; pow1 &amp;&amp; nums[i][j] !&#x3D; Integer.MAX_VALUE) &#123;</span><br><span class="line">                int y &#x3D; num - pow1;</span><br><span class="line">                int cost &#x3D; nums[i][j] + dp[j][y];</span><br><span class="line">                if (cost &lt; min) &#123;</span><br><span class="line">                    min &#x3D; cost;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 初始化 dp</span><br><span class="line">     *</span><br><span class="line">     * @param dp</span><br><span class="line">     * @param nums</span><br><span class="line">     * @param row</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void init(int[][] dp, int[][] nums, int row) &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span><br><span class="line">            dp[i][0] &#x3D; nums[i][0];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TSP/" rel="tag">TSP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/11/30/wan-chou-ma-leetcode/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            玩筹码 leetcode
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">动态规划求解判断子序列问题</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
