@@ -6,8 +6,11 @@
     <content><![CDATA[<p> 一步步的教你并查集是如何查找回路</p>
 <a id="more"></a>
 
-<h1 id="一、并查集的操作"><a href="#一、并查集的操作" class="headerlink" title="一、并查集的操作"></a>一、并查集的操作</h1><p>1、查找（find）：确定元素属于哪个集合<br>2、合并（union）：将两个集合归并成一个集合</p>
-<h1 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h1>]]></content>
+<h1 id="一、并查集的操作"><a href="#一、并查集的操作" class="headerlink" title="一、并查集的操作"></a>一、并查集的操作</h1><p>1、查找（find）：确定元素属于哪个集合</p>
+<p>2、合并（union）：将两个集合归并成一个集合</p>
+<h1 id="二、-实例讲解"><a href="#二、-实例讲解" class="headerlink" title="二、 实例讲解#"></a>二、 实例讲解#</h1><p>查找图示中是否存在回路</p>
+<p><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2021-01-18/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210118200641.png"></p>
+]]></content>
       <tags>
         <tag>算法</tag>
         <tag>并查集</tag>
