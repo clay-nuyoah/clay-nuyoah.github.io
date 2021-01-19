@@ -1,103 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
-    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
+    <title>使用并查集查找回路</title>
+    <url>/2021/01/14/bing-cha-ji/</url>
+    <content><![CDATA[<p> 一步步的教你并查集是如何查找回路</p>
 <a id="more"></a>
-<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
-<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
-<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说，最后两个字符相等
-    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
-    由于 s 和 t 的最后两个字符相等
-    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
-<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说,最后两个字符相等
-    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
-    即使 s 和 t 的最后两个字符相等
-    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
-<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
-<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
-    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
-<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
-    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
-<p>三、</p>
-<hr>
-<p>综上所述：</p>
-<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
-            当 s 的长度为 i - 1,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
-    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
-            当 s 的长度为 i,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
-<hr>
-<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
-<p>第一步：</p>
-<p>初始化：</p>
-<pre><code>            将第一行和第一列的数据进行初始化
-            第一行表示 t 为空串时，必为 s 的子序列
-            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
-<p>第二步：</p>
-<p>由左到右，由上到下为 dp 数组赋值</p>
-<pre><code>            第二行数据：
-            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
-
-            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
-
-            dp[1][4],dp[1][5],dp[1][6] 同理
-
-            第三行数据：
-            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
-
-            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
-
-            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
-            dp[2][4],dp[2][5],dp[2][6] 同理
-
-            第四行也可以用一样的方法进行求解</code></pre>
-<p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="一、并查集的操作"><a href="#一、并查集的操作" class="headerlink" title="一、并查集的操作"></a>一、并查集的操作</h1><p>1、查找（find）：确定元素属于哪个集合</p>
+<p>2、合并（union）：将两个集合归并成一个集合</p>
+<h1 id="二、-实例讲解"><a href="#二、-实例讲解" class="headerlink" title="二、 实例讲解#"></a>二、 实例讲解#</h1><p>查找图示中是否存在回路</p>
+<p><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2021-01-18/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210118200641.png"></p>
 ]]></content>
       <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
         <tag>算法</tag>
-        <tag>字符串</tag>
+        <tag>并查集</tag>
+        <tag>查找回路</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>最后一块石头的重量 leetcode</title>
+    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
+    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
+<p>使用了二分查找和插入排序的方法</p>
+<a id="more"></a>
+
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
+<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
+<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
+<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
+<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
+<pre><code>对数组中的元素进行排序;
+
+这样做有以下两个好处：
+
+1、能从数组的末尾取出最重的两块石头
+
+2、取出两块最重的石头之后，剩余的石头仍然保持有序，
+
+可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
+<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
+<p>寻找右侧边界的二分查找都做了详细的介绍</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
+<p><strong>二、当两块最重的石头重量相同时</strong></p>
+<p>设保存石头重量的数组名称为 stones    </p>
+<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
+
+2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
+
+3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
+<p><strong>三、当两块石头单位重量不同时</strong></p>
+<pre><code>1、在数组 stones 取出两块最重的石头
+
+2、将两块石头粉碎，并形成新的石头 newStone
+
+3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
+
+（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
+
+4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
+
+5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
+
+5、将 newStone 插入到 newStones 的 i 位置
+
+6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
+<p><strong>四、结果返回</strong></p>
+<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
+<pre><code>当数组长度为 0 时返回 0
+
+当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
+<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>插入排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多数元素 leetcode</title>
+    <url>/2021/01/10/duo-shu-yuan-su-leetcode/</url>
+    <content><![CDATA[<p>leetcode 题库 剑指 Offer 39 数组中出现次数超过一半的数字</p>
+<p>使用 摩尔投票法 解决众数问题</p>
+<a id="more"></a>
+
+<h1 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h1><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p>示例 1:</p>
+<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]</p>
+<p>输出: 2</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof">https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>可以换做下面的方式来理解本体：</p>
+<h1 id="二、诸侯争霸游戏："><a href="#二、诸侯争霸游戏：" class="headerlink" title="二、诸侯争霸游戏："></a>二、诸侯争霸游戏：</h1><p><strong>游戏规则设定：</strong></p>
+<pre><code>1、m 个国家进行诸侯争霸；
+
+2、每个国家的士兵人数为 a1,a2……，am,总士兵人数为 a1 + a2 + a3 …… + am 记为 C；
+
+3、其中存在一个国家 i 的士兵人数超过总士兵人数的一半，即 ai &gt; C/2；
+
+4、m 个国家随机的往战场上面投放士兵，并且每个国家每次只能投放一个士兵；
+
+5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，两个士兵同归于尽；
+
+6、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
+
+7、最后的胜利者属于最后能够生存下来的国家；
+
+则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
+<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int majorityElement(int[] nums) &#123;</span><br><span class="line">    int mode &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的国家</span><br><span class="line">    int count &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的数量</span><br><span class="line">    for (int num : nums) &#123;      &#x2F;&#x2F;每个国家都随机的往战场中投放士兵</span><br><span class="line">        if (count &#x3D;&#x3D; 0) &#123;       &#x2F;&#x2F;若战场中不存在士兵</span><br><span class="line">            mode &#x3D; num;         &#x2F;&#x2F;投放士兵的国家就变成了  士兵数量暂时领先的国家</span><br><span class="line">        &#125;</span><br><span class="line">        if (mode &#x3D;&#x3D; num) &#123;      &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自相同的国家</span><br><span class="line">            count++;            &#x2F;&#x2F;士兵数量就会 + 1</span><br><span class="line">        &#125; else &#123;                &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自不同的国家</span><br><span class="line">            count--;            &#x2F;&#x2F;两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;最后可以生存下来的国家</span><br><span class="line">    return mode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>leetcode</tag>
+        <tag>摩尔投票法</tag>
+        <tag>众数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>玩筹码 leetcode</title>
+    <url>/2020/11/30/wan-chou-ma-leetcode/</url>
+    <content><![CDATA[<p>leetcode 题库 1217 玩筹码</p>
+<a id="more"></a>
+
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。</p>
+<p>你可以对 任何筹码 执行下面两种操作之一（不限操作次数，0 次也可以）：</p>
+<p>将第 i 个筹码向左或者右移动 2 个单位，代价为 0。</p>
+<p>将第 i 个筹码向左或者右移动 1 个单位，代价为 1。</p>
+<p>最开始的时候，同一位置上也可能放着两个或者更多的筹码。</p>
+<p>返回将所有筹码移动到同一位置（任意位置）上所需要的最小代价。</p>
+<p>示例 1：</p>
+<p>输入：chips = [1,2,3]</p>
+<p>输出：1</p>
+<p>解释：第二个筹码移动到位置三的代价是 1，第一个筹码移动到位置三的代价是 0，总代价为 1。</p>
+<p>示例 2：</p>
+<p>输入：chips = [2,2,2,3,3]</p>
+<p>输出：2</p>
+<p>解释：第四和第五个筹码移动到位置二的代价都是 1，所以最小总代价为 2。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position">https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position</a></p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p>我们任意挑选两个相邻的位置，两个位置必然会有一个偶数位置(记为 a)，</p>
+<p>一个奇数位置(记为b),由于移动偶数个位置的代价为 0，</p>
+<p>所以把所有在偶数位置的筹码移动到 a 点的代价和为 0</p>
+<p>(每一个筹码都可以通过移动偶数个单位移动到 a 点),</p>
+<p>同样把所有在奇数位置的筹码移动到 b 点的代价和也为 0,</p>
+<p>这时所有的筹码都集中到了 a b 两点，</p>
+<p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
+<p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
+<h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>TSP旅行推销员问题</title>
@@ -759,36 +815,103 @@ dp[3][6] = ∞ 已经证明</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>玩筹码 leetcode</title>
-    <url>/2020/11/30/wan-chou-ma-leetcode/</url>
-    <content><![CDATA[<p>leetcode 题库 1217 玩筹码</p>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
 <a id="more"></a>
+<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
+<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。</p>
-<p>你可以对 任何筹码 执行下面两种操作之一（不限操作次数，0 次也可以）：</p>
-<p>将第 i 个筹码向左或者右移动 2 个单位，代价为 0。</p>
-<p>将第 i 个筹码向左或者右移动 1 个单位，代价为 1。</p>
-<p>最开始的时候，同一位置上也可能放着两个或者更多的筹码。</p>
-<p>返回将所有筹码移动到同一位置（任意位置）上所需要的最小代价。</p>
-<p>示例 1：</p>
-<p>输入：chips = [1,2,3]</p>
-<p>输出：1</p>
-<p>解释：第二个筹码移动到位置三的代价是 1，第一个筹码移动到位置三的代价是 0，总代价为 1。</p>
-<p>示例 2：</p>
-<p>输入：chips = [2,2,2,3,3]</p>
-<p>输出：2</p>
-<p>解释：第四和第五个筹码移动到位置二的代价都是 1，所以最小总代价为 2。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position">https://leetcode-cn.com/problems/minimum-cost-to-move-chips-to-the-same-position</a></p>
-<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p>我们任意挑选两个相邻的位置，两个位置必然会有一个偶数位置(记为 a)，</p>
-<p>一个奇数位置(记为b),由于移动偶数个位置的代价为 0，</p>
-<p>所以把所有在偶数位置的筹码移动到 a 点的代价和为 0</p>
-<p>(每一个筹码都可以通过移动偶数个单位移动到 a 点),</p>
-<p>同样把所有在奇数位置的筹码移动到 b 点的代价和也为 0,</p>
-<p>这时所有的筹码都集中到了 a b 两点，</p>
-<p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
-<p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
-<h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+      </tags>
   </entry>
   <entry>
     <title>连续子数组的最大和</title>
@@ -813,129 +936,6 @@ dp[3][6] = ∞ 已经证明</code></pre>
         <tag>算法</tag>
         <tag>数组</tag>
         <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多数元素 leetcode</title>
-    <url>/2021/01/10/duo-shu-yuan-su-leetcode/</url>
-    <content><![CDATA[<p>leetcode 题库 剑指 Offer 39 数组中出现次数超过一半的数字</p>
-<p>使用 摩尔投票法 解决众数问题</p>
-<a id="more"></a>
-
-<h1 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h1><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p>示例 1:</p>
-<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]</p>
-<p>输出: 2</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof">https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<p>可以换做下面的方式来理解本体：</p>
-<h1 id="二、诸侯争霸游戏："><a href="#二、诸侯争霸游戏：" class="headerlink" title="二、诸侯争霸游戏："></a>二、诸侯争霸游戏：</h1><p><strong>游戏规则设定：</strong></p>
-<pre><code>1、m 个国家进行诸侯争霸；
-
-2、每个国家的士兵人数为 a1,a2……，am,总士兵人数为 a1 + a2 + a3 …… + am 记为 C；
-
-3、其中存在一个国家 i 的士兵人数超过总士兵人数的一半，即 ai &gt; C/2；
-
-4、m 个国家随机的往战场上面投放士兵，并且每个国家每次只能投放一个士兵；
-
-5、只要战场上存在两个不同国家的士兵，那么就会相会搏杀，两个士兵同归于尽；
-
-6、所有的国家都要出动所有的士兵参战，中途不能退出，直至士兵消耗完毕；
-
-7、最后的胜利者属于最后能够生存下来的国家；
-
-则最终的胜利一定属于第 i 个国家，这个国家就是那个士兵数量超过总士兵人数的一半的国家；</code></pre>
-<h1 id="三、代码如下："><a href="#三、代码如下：" class="headerlink" title="三、代码如下："></a>三、代码如下：</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int majorityElement(int[] nums) &#123;</span><br><span class="line">    int mode &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的国家</span><br><span class="line">    int count &#x3D; 0;&#x2F;&#x2F;士兵数量暂时领先的数量</span><br><span class="line">    for (int num : nums) &#123;      &#x2F;&#x2F;每个国家都随机的往战场中投放士兵</span><br><span class="line">        if (count &#x3D;&#x3D; 0) &#123;       &#x2F;&#x2F;若战场中不存在士兵</span><br><span class="line">            mode &#x3D; num;         &#x2F;&#x2F;投放士兵的国家就变成了  士兵数量暂时领先的国家</span><br><span class="line">        &#125;</span><br><span class="line">        if (mode &#x3D;&#x3D; num) &#123;      &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自相同的国家</span><br><span class="line">            count++;            &#x2F;&#x2F;士兵数量就会 + 1</span><br><span class="line">        &#125; else &#123;                &#x2F;&#x2F;如果投放的士兵和战场中的士兵来自不同的国家</span><br><span class="line">            count--;            &#x2F;&#x2F;两个士兵同归于尽 这是会消耗掉 1 个 暂时领先的国家的士兵</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;最后可以生存下来的国家</span><br><span class="line">    return mode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>leetcode</tag>
-        <tag>摩尔投票法</tag>
-        <tag>众数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最后一块石头的重量 leetcode</title>
-    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
-    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
-<p>使用了二分查找和插入排序的方法</p>
-<a id="more"></a>
-
-<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
-<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
-<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
-<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
-<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
-<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
-<pre><code>对数组中的元素进行排序;
-
-这样做有以下两个好处：
-
-1、能从数组的末尾取出最重的两块石头
-
-2、取出两块最重的石头之后，剩余的石头仍然保持有序，
-
-可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
-<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
-<p>寻找右侧边界的二分查找都做了详细的介绍</p>
-<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
-<p><strong>二、当两块最重的石头重量相同时</strong></p>
-<p>设保存石头重量的数组名称为 stones    </p>
-<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
-
-2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
-
-3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
-<p><strong>三、当两块石头单位重量不同时</strong></p>
-<pre><code>1、在数组 stones 取出两块最重的石头
-
-2、将两块石头粉碎，并形成新的石头 newStone
-
-3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
-
-（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
-
-4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
-
-5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
-
-5、将 newStone 插入到 newStones 的 i 位置
-
-6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
-<p><strong>四、结果返回</strong></p>
-<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
-<pre><code>当数组长度为 0 时返回 0
-
-当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
-<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>插入排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用并查集查找回路</title>
-    <url>/2021/01/14/bing-cha-ji/</url>
-    <content><![CDATA[<p> 一步步的教你并查集是如何查找回路</p>
-<a id="more"></a>
-
-<h1 id="一、并查集的操作"><a href="#一、并查集的操作" class="headerlink" title="一、并查集的操作"></a>一、并查集的操作</h1><p>1、查找（find）：确定元素属于哪个集合</p>
-<p>2、合并（union）：将两个集合归并成一个集合</p>
-<h1 id="二、-实例讲解"><a href="#二、-实例讲解" class="headerlink" title="二、 实例讲解#"></a>二、 实例讲解#</h1><p>查找图示中是否存在回路</p>
-<p><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2021-01-18/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210118200641.png"></p>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>并查集</tag>
-        <tag>查找回路</tag>
       </tags>
   </entry>
 </search>
