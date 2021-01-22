@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-01-22T12:21:01.219Z</updated>
+  <updated>2021-01-22T12:25:17.367Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>0-1-bei-bao</title>
+    <title>0-1 背包问题</title>
     <link href="http://clay-nuyoah.github.io/2021/01/22/0-1-bei-bao/"/>
     <id>http://clay-nuyoah.github.io/2021/01/22/0-1-bei-bao/</id>
     <published>2021-01-22T12:19:32.000Z</published>
-    <updated>2021-01-22T12:21:01.219Z</updated>
+    <updated>2021-01-22T12:25:17.367Z</updated>
     
     
     <summary type="html">&lt;p&gt;使用动态规划解决 0-1 背包问题&lt;/p&gt;</summary>
