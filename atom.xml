@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-01-18T13:36:32.881Z</updated>
+  <updated>2021-01-22T12:12:32.288Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -17,14 +17,14 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>使用并查集查找回路</title>
+    <title>使用并查集查找无向图回路</title>
     <link href="http://clay-nuyoah.github.io/2021/01/14/bing-cha-ji/"/>
     <id>http://clay-nuyoah.github.io/2021/01/14/bing-cha-ji/</id>
     <published>2021-01-14T13:37:55.000Z</published>
-    <updated>2021-01-18T13:36:32.881Z</updated>
+    <updated>2021-01-22T12:12:32.288Z</updated>
     
     
-    <summary type="html">&lt;p&gt; 一步步的教你并查集是如何查找回路&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt; 一步步的教你使用并查集查找无向图回路&lt;/p&gt;</summary>
     
     
     
@@ -33,7 +33,7 @@
     
     <category term="并查集" scheme="http://clay-nuyoah.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
-    <category term="查找回路" scheme="http://clay-nuyoah.github.io/tags/%E6%9F%A5%E6%89%BE%E5%9B%9E%E8%B7%AF/"/>
+    <category term="查找无向图回路" scheme="http://clay-nuyoah.github.io/tags/%E6%9F%A5%E6%89%BE%E6%97%A0%E5%90%91%E5%9B%BE%E5%9B%9E%E8%B7%AF/"/>
     
   </entry>
   

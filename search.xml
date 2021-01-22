@@ -1,20 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>使用并查集查找回路</title>
+    <title>使用并查集查找无向图回路</title>
     <url>/2021/01/14/bing-cha-ji/</url>
-    <content><![CDATA[<p> 一步步的教你并查集是如何查找回路</p>
+    <content><![CDATA[<p> 一步步的教你使用并查集查找无向图回路</p>
 <a id="more"></a>
 
 <h1 id="一、并查集的操作"><a href="#一、并查集的操作" class="headerlink" title="一、并查集的操作"></a>一、并查集的操作</h1><p>1、查找（find）：确定元素属于哪个集合</p>
 <p>2、合并（union）：将两个集合归并成一个集合</p>
-<h1 id="二、-实例讲解"><a href="#二、-实例讲解" class="headerlink" title="二、 实例讲解#"></a>二、 实例讲解#</h1><p>查找图示中是否存在回路</p>
-<p><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2021-01-18/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210118200641.png"></p>
+<h1 id="二、查找、合并操作代码"><a href="#二、查找、合并操作代码" class="headerlink" title="二、查找、合并操作代码"></a>二、查找、合并操作代码</h1><p><strong>1、查找操作 代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int find(int x, int[] find) &#123;</span><br><span class="line">    if (find[x] &lt; 0)</span><br><span class="line">        return x;</span><br><span class="line">    else</span><br><span class="line">        return find(find[x], find);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2、合并操作 代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public void union(int root1, int root2, int[] find) &#123;</span><br><span class="line">    find[root1] &#x3D; root2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、-实例讲解"><a href="#三、-实例讲解" class="headerlink" title="三、 实例讲解#"></a>三、 实例讲解#</h1><h2 id="1、准备工作"><a href="#1、准备工作" class="headerlink" title="1、准备工作"></a>1、准备工作</h2><p><strong>1、初始化</strong></p>
+<pre><code>1、在无向图中存在几个顶点，就开辟一个长度为顶点数量大小的数组， 并初始化为 -1，数组记为 trance</code></pre>
+<p><strong>2、find 函数的作用</strong></p>
+<p><em>1、</em> 若此时 trance 数组为图示状态，先不用计较该数组是如何得到的，只需要知道 find 函数的执行流程，下边会介绍如何构建 trance 数组</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/21/16-50-45-14cbd3089cc9c8fedbb709741155f999-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210121165039-e52219.png"></p>
+<p><em>2、</em>find 函数的执行过程</p>
+<p>对 3 调用 find 函数</p>
+<pre><code>搜索 trance[3],
+由于 trance[3] = 2,
+搜索 trance[2],
+由于 trance[2] = 1,
+搜索 trance[1],
+由于 trance[1] = 0,
+搜索 trance[0],
+由于 trance[0] = -1,
+此时返回 0</code></pre>
+<p>对 5 调用 find 函数</p>
+<pre><code>搜索 trance[5],
+由于 trance[5] = 4,
+搜索 trance[4],
+由于 trance[4] = 1,
+此时返回 4</code></pre>
+<p>这就是整个 find 的函数的执行流程</p>
+<p><strong>2、union 函数的作用</strong></p>
+<p>union 函数非常简单，传入两个参数 root1, root2</p>
+<pre><code>让第一个参数作为数组 trance 的下标，让第二个参数作为第一个参数对应下标的值
+例如 root1 = 3, root2 = 5
+则有 trance[3] = 5
+
+例如 例如 root1 = 0, root2 = 2
+则 trance[0] = 2</code></pre>
+<p><strong>3、如何判断是否存在回路</strong></p>
+<p>存在一条边  side，该边有两个顶点 a，b(find 函数的详细过程请看上面 <strong>2、find 函数的作用</strong>)</p>
+<p>若</p>
+<pre><code>使用 a 调用 find 函数返回 num1 &gt;= 0
+使用 b 调用 find 函数返回 num2 &gt;= 0
+当 num1 与 num2 相等时，证明若把 side 边纳入到 trance 数组中时，
+会出现回路，因此此时不要将 side 边纳入到 trance 数组中</code></pre>
+<p><em>示例：</em></p>
+<p>此时 trance 数组为图示状态，先不用计较该数组是如何得到的，</p>
+<p>只需要知道如何判断回路就可以，下边会介绍如何构建 trance 数组</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/18-59-39-0ac970c02df0b3b774112fa1f9afbfde-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122185914-284af2.png"></p>
+<p>存在一条边 side，该边有两个顶点 3，5</p>
+<pre><code>使用 2 调用 find 函数 trance[3] = 2
+                     trance[2] = 1
+                     trance[1] = 0
+                     trance[0] = 4
+                     trance[4] = -1
+                     所以 num1 = 4 &gt;= 0
+
+使用 5 调用 find 函数 trance[5] = 4
+                     trance[4] = -1
+                     所以 num2 = 4 &gt;= 0
+                    由于 num1 = num2,所以在该有无图中存在回路
+                    不会将边 side 纳入到 trance 数组中</code></pre>
+<h2 id="2、使用并查集判断下图所示的无向图中是否存在回路"><a href="#2、使用并查集判断下图所示的无向图中是否存在回路" class="headerlink" title="2、使用并查集判断下图所示的无向图中是否存在回路"></a>2、使用并查集判断下图所示的无向图中是否存在回路</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/21/16-14-08-973fd7b073b8a90c47a1b0c185c5addf-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210118200641-15e9b8.png"></p>
+<p><em>下面将通过实例讲解 trance 数组是如何构建的</em></p>
+<p><strong>1、初始化</strong></p>
+<p>由于在图示中存在 4 个顶点，所以初始化一个长度为 4 的数组，数组记为 trance，</p>
+<p>并初始化为 -1</p>
+<p>数组的初始状态如图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-20-23-f763a0d4ed8b88879304c1a2656221b2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122192012_1-0cd5df.png"></p>
+<p><strong>2、将边 a 纳入到 trance 数组</strong></p>
+<p>此时数组 trance 的状态如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-20-23-f763a0d4ed8b88879304c1a2656221b2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122192012_1-0cd5df.png"></p>
+<pre><code>边 a 有 0， 1 顶点
+对 0 调用 find 函数    tranc[0] = -1
+                    所以 num1 = 0 &gt;= 0
+
+对 1 调用 find 函数    tranc[1] = -1
+                    所以 num2 = 1 &gt;= 0
+
+此时使用 num1 和 num2 调用 union 函数 (这里可以看 2、union 函数的作用 上方黑体字部分)
+                    有 trance[0] = 1</code></pre>
+<p><strong>2、将边 b 纳入到 trance 数组</strong></p>
+<p>此时数组 trance 的状态如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-25-48-8bead02351c0bcceb3d024ee7d908a71-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122192540_2-718ed1.png"></p>
+<pre><code>边 b 有 0， 2 顶点
+对 0 调用 find 函数    tranc[0] = 1
+                    tranc[1] = -1
+                    所以 num1 = 1 &gt;= 0
+
+对 2 调用 find 函数 tranc[2] = -1
+                    所以 num2 = 2 &gt;= 0
+
+此时使用 num1 和 num2 调用 union 函数
+                    有 trance[1] = 2</code></pre>
+<p><strong>3、将边 c 纳入到 trance 数组</strong></p>
+<p>此时数组 trance 的状态如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-44-24-f50b59405fefcfe8783fc42be5a83c21-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122193619_3-d5651c.png"></p>
+<pre><code>边 c 有 0， 3 顶点
+对 0 调用 find 函数    tranc[0] = 1
+                    tranc[1] = 2
+                    trance[2] = -1
+                    所以 num1 = 2 &gt;= 0
+
+对 3 调用 find 函数 tranc[3] = -1
+                    所以 num2 = 3 &gt;= 0
+
+此时使用 num1 和 num2 调用 union 函数
+                    有 trance[2] = 3</code></pre>
+<p><strong>4、将边 d 纳入到 trance 数组</strong></p>
+<p>此时数组 trance 的状态如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-49-25-7bfd5acf78cff097307e28014a4e08da-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122194910_4-be3740.png"></p>
+<pre><code>边 d 有 1， 2 顶点
+对 1 调用 find 函数    tranc[1] = 2
+                    tranc[2] = 3
+                    trance[3] = -1
+                    所以 num1 = 3 &gt;= 0
+
+对 2 调用 find 函数    tranc[2] = 3
+                    tranc[3] = -1
+                    所以 num2 = 3 &gt;= 0
+
+此时 num1 = num2 存在回路，就不向 trance 中纳入边 d，此时 trance 数组不发生变化</code></pre>
+<p><strong>5、将边 e 纳入到 trance 数组</strong></p>
+<p>此时数组 trance 的状态如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-49-25-7bfd5acf78cff097307e28014a4e08da-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122194910_4-be3740.png"></p>
+<pre><code>边 e 有 1， 3 顶点
+对 1 调用 find 函数    tranc[1] = 2
+                    tranc[2] = 3
+                    trance[3] = -1
+                    所以 num1 = 3 &gt;= 0
+
+对 3 调用 find 函数    tranc[3] = -1
+                    所以 num2 = 3 &gt;= 0
+
+此时 num1 = num2 存在回路，就不向 trance 中纳入边 e，此时 trance 数组不发生变化</code></pre>
+<p><strong>6、将边 f 纳入到 trance 数组</strong></p>
+<p>此时数组 trance 的状态如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/bing-cha-ji/2021/01/22/19-49-25-7bfd5acf78cff097307e28014a4e08da-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210122194910_4-be3740.png"></p>
+<pre><code>边 f 有 2， 3 顶点
+对 2 调用 find 函数    tranc[2] = 3
+                    trance[3] = -1
+                    所以 num1 = 3 &gt;= 0
+
+对 3 调用 find 函数    tranc[3] = -1
+                    所以 num2 = 3 &gt;= 0
+
+此时 num1 = num2 存在回路，就不向 trance 中纳入边 e，此时 trance 数组不发生变化</code></pre>
 ]]></content>
       <tags>
         <tag>算法</tag>
         <tag>并查集</tag>
-        <tag>查找回路</tag>
+        <tag>查找无向图回路</tag>
       </tags>
   </entry>
   <entry>
