@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>方向选择</title>
+    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
+    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
+<a id="more"></a>
+
+<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
+<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
+<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
+<p>流数据：流数据是由不同来源连续生成的数据</p>
+<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
+<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
+<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
+<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
+<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
+<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+        <tag>敏感信息</tag>
+        <tag>条件功能依赖</tag>
+        <tag>大数据</tag>
+        <tag>数据质量</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>0-1 背包问题</title>
     <url>/2021/01/22/0-1-bei-bao/</url>
     <content><![CDATA[<p>使用动态规划解决 0-1 背包问题</p>
@@ -12,105 +43,6 @@
         <tag>算法</tag>
         <tag>背包问题</tag>
         <tag>0-1 背包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
-    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
-<a id="more"></a>
-<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
-<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
-<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说，最后两个字符相等
-    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
-    由于 s 和 t 的最后两个字符相等
-    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
-<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说,最后两个字符相等
-    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
-    即使 s 和 t 的最后两个字符相等
-    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
-<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
-<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
-    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
-<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
-    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
-<p>三、</p>
-<hr>
-<p>综上所述：</p>
-<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
-            当 s 的长度为 i - 1,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
-    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
-            当 s 的长度为 i,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
-<hr>
-<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
-<p>第一步：</p>
-<p>初始化：</p>
-<pre><code>            将第一行和第一列的数据进行初始化
-            第一行表示 t 为空串时，必为 s 的子序列
-            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
-<p>第二步：</p>
-<p>由左到右，由上到下为 dp 数组赋值</p>
-<pre><code>            第二行数据：
-            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
-
-            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
-
-            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
-
-            dp[1][4],dp[1][5],dp[1][6] 同理
-
-            第三行数据：
-            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
-
-            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
-
-            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
-            dp[2][4],dp[2][5],dp[2][6] 同理
-
-            第四行也可以用一样的方法进行求解</code></pre>
-<p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
-        <tag>算法</tag>
-        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -274,28 +206,69 @@
       </tags>
   </entry>
   <entry>
-    <title>连续子数组的最大和</title>
-    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
-    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
+    <title>最后一块石头的重量 leetcode</title>
+    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
+    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
+<p>使用了二分查找和插入排序的方法</p>
 <a id="more"></a>
 
-<p>题目描述：</p>
-<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
-<p>返回其最大和。</p>
-<p>示例:</p>
-<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
-<p>输出: 6</p>
-<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
+<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
+<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
+<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
+<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
 <p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
-<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
+<pre><code>对数组中的元素进行排序;
+
+这样做有以下两个好处：
+
+1、能从数组的末尾取出最重的两块石头
+
+2、取出两块最重的石头之后，剩余的石头仍然保持有序，
+
+可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
+<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
+<p>寻找右侧边界的二分查找都做了详细的介绍</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
+<p><strong>二、当两块最重的石头重量相同时</strong></p>
+<p>设保存石头重量的数组名称为 stones    </p>
+<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
+
+2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
+
+3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
+<p><strong>三、当两块石头单位重量不同时</strong></p>
+<pre><code>1、在数组 stones 取出两块最重的石头
+
+2、将两块石头粉碎，并形成新的石头 newStone
+
+3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
+
+（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
+
+4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
+
+5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
+
+5、将 newStone 插入到 newStones 的 i 位置
+
+6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
+<p><strong>四、结果返回</strong></p>
+<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
+<pre><code>当数组长度为 0 时返回 0
+
+当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
+<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>算法</tag>
-        <tag>数组</tag>
         <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>插入排序</tag>
       </tags>
   </entry>
   <entry>
@@ -369,72 +342,6 @@
 <p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
 <p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
 <h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
-    <title>最后一块石头的重量 leetcode</title>
-    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
-    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
-<p>使用了二分查找和插入排序的方法</p>
-<a id="more"></a>
-
-<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
-<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
-<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
-<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
-<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
-<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
-<pre><code>对数组中的元素进行排序;
-
-这样做有以下两个好处：
-
-1、能从数组的末尾取出最重的两块石头
-
-2、取出两块最重的石头之后，剩余的石头仍然保持有序，
-
-可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
-<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
-<p>寻找右侧边界的二分查找都做了详细的介绍</p>
-<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
-<p><strong>二、当两块最重的石头重量相同时</strong></p>
-<p>设保存石头重量的数组名称为 stones    </p>
-<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
-
-2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
-
-3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
-<p><strong>三、当两块石头单位重量不同时</strong></p>
-<pre><code>1、在数组 stones 取出两块最重的石头
-
-2、将两块石头粉碎，并形成新的石头 newStone
-
-3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
-
-（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
-
-4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
-
-5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
-
-5、将 newStone 插入到 newStones 的 i 位置
-
-6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
-<p><strong>四、结果返回</strong></p>
-<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
-<pre><code>当数组长度为 0 时返回 0
-
-当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
-<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>插入排序</tag>
-      </tags>
   </entry>
   <entry>
     <title>TSP旅行推销员问题</title>
@@ -1096,27 +1003,127 @@ dp[3][6] = ∞ 已经证明</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>方向选择</title>
-    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
-    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
 <a id="more"></a>
+<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
+<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
-<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
-<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
-<p>流数据：流数据是由不同来源连续生成的数据</p>
-<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
-<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
-<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
-<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
-<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
-<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
-        <tag>数据流挖掘；多标签数据；多标签分类；数据挖掘；敏感信息；数据挖掘；条件功能依赖；大数据；数据质量</tag>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连续子数组的最大和</title>
+    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
+    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
+<a id="more"></a>
+
+<p>题目描述：</p>
+<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
+<p>返回其最大和。</p>
+<p>示例:</p>
+<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
+<p>输出: 6</p>
+<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
+<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>数组</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
 </search>
