@@ -1,6 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-2</title>
+    <url>/2021/03/10/A-Survey-on-Multi-Label-Data-Stream-Classification-2/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第二天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/13-56-38-f93233735c53c5c765d51f9f9163ba9d-post_1-1c749a.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>因此，在本文中，我们主要对多标签数据流分类的最新算法进行全面综述。更准确地说，我们首先总结现有的多标签分类算法，并在第二节中讨论它们的优缺点。其次，我们在第三节中介绍了数据流分类的初步知识和概述，包括它们的约束条件和评估指标。第三，在第四节中我们对多标签数据流分类算法进行了全面的研究，分析了每种多标签数据流算法的优缺点，并讨论了对多标签数据流进行分类的高级问题。最后，我们在第五节中得出有关此调查的结论</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>precise : 精确的；明确的</p>
+<p>summarize : 总结</p>
+<p>preliminary ： 初步的</p>
+<p>overview ： 综述；概述</p>
+<p>constrains： 约束</p>
+<p>evaluation metrics ： 评估标准</p>
+<p>metrics ： 指标</p>
+<p>merit ： 优点</p>
+<p>conclusion ： 结论</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-22-19-44fe67df706c1178e841ea08b16c93a7-post_2-38ea1e.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>传统多标签分类</p>
+<p>与使用单标签数据的传统机器学习相反，多标签学习中的实例包含多个类标签。在本节中，我们主要从不同角度概述著名的多标签分类方法，并分析每种算法背后的动机（即算法所解决的约束）。根据多标签学习（MLL）中的常见分类法，我们可以将多标签分类方法分为三类，包括问题转换（PT），自适应算法（AA）和多标签分类集成（EMLC）。这三种方法的更多详细信息如下：</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>well-known ： 著名的</p>
+<p>perspective ： 观点；远景</p>
+<p>motivations ： 动机；备注</p>
+<p>taxonomy ： 分类学</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-39-19-8bca8593a0fd8cac05c436d23dad9a71-post_3-628a45.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-42-03-9476b05c5698999622a65eaa597edb6e-post_4-de11e2.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>A、问题转移</p>
+<p>问题转换（PT）方法主要将多标签分类问题转换为许多更简单的单标签分类问题。在所有的PT方法中，Binary Relevance（BR）是最常用的方法。在 “二值相关” 方法中，多标签分类问题被转换为 |L| 种不同的二值单标签分类问题。转换后，我们可以选择任何现有的二值分类算法作为预测二值问题的基础分类器。因为它可以按与标签数量成线性比例的方式处理多标签数据，这使其可应用于许多实际需求。但是，BR方法固有地忽略了标签之间的相互依赖性，并且已经得到了验证。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Binary Relevance(二值相关) ： 将多标签问题转换为多个分类问题</p>
+<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>linear ： 线性；线的</p>
+<p>proportion ： 比例，占比</p>
+<p>practical ： 实际的；实用性的</p>
+<p>interdependence ： 相互依存</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-24-04-b9e2a6f221022c57ecd97b9b170fb7ef-post_5-01737f.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>为了考虑标签之间的相互依赖性并克服BR方法的这一缺点，研究人员提出了其他几种基于 BR 的方法。最著名的分类器链（CC）以类似链的方式随机排列 BR 分类器。同时，每个 BR 分类器将预测结果作为其所连接的邻居分类器的属性输出。这对于分类器捕获标签之间的相关性是有益的，因为链中的每个 BR 分类器都可以了解链中除数据本身之外的每个祖先分类器的标签相关性。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>take into account ： 考虑</p>
+<p>drawback ： 缺点</p>
+<p>propose ： 提出；建议；打算</p>
+<p>manner ： 方式；习惯；</p>
+<p>arrange ： 安排；排列；</p>
+<p>correlation ： 相关性</p>
+<p>capture ： 俘虏；捕获</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-43-03-324c2609bf70449a4a96ea8aaf58e3a7-post_6-0c6a14.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>标签幂集（LP）是 PT 的一种常见方法，其中单个标签表示标签子集。在这种情况下，LP 将多标签问题转换为具有 2^|L| 个类别标签的多类别问题。 基于LP，修剪集（PS）技术得到了发展。在这种技术中，具有频繁标签集的实例将保留并考虑进行分类，而那些不频繁的实例通常会从数据集中删除。关于基于 LP 方法的更详细的描述可以参考[13]。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Label Powerset(标签密集) ：LP是一个将多标签学习问题转换为多类别分类问题的简单直接的方法。</p>
+<p>PT：Problem Transformation（问题转移）主要将多标签分类问题转换为许多更简单的单标签分类问题。（来自第三部分翻译）</p>
+<h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>indicate ： 表明；指出</p>
+<p>retain ： 保留</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/17-05-00-49d9f0c73841bf330fce90d080c9f940-post_7-886264.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>PT 的另一种常见的多标签分类方法是 Pair Wise（PW），其中将每对可能的类别标签转换为二进制分类任务。尽管 PW 方法在某些情况下具有某些优点，但由于时间成本较高，因此难以应用于处理大规模多标签数据。有关PT方法的更多介绍，请参考[19]。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Pair Wise（配对法）：配对法的基本思路是对样本进行两两比较，构建偏序文档对，从比较中学习排序，因为对于一个查询关键字来说，最重要的其实不是针对某一个文档的相关性是否估计得准确，而是要能够正确估计一组文档之间的 “相对关系”。</p>
+<p>Pair wise 方法相比pointwise有优势，可以学习到一些顺序。但是pairwise也有缺点：</p>
+<p>1.当有多个顺序的类别时，只知道good or bad，不知道好多少和差多少。</p>
+<p>2.当文章较多时，会产生大量的pairs。</p>
+<p>3.对噪声的label 非常敏感，一个错误的label，可能会导致分类结果中有较多的错误。</p>
+<p>4.大多数没有考虑结果中文档对的顺序，文档对的顺序也没有在损失函数中体现。</p>
+<p>作者：数据小新手<br>链接：<a href="https://www.jianshu.com/p/235756fbf6b6">https://www.jianshu.com/p/235756fbf6b6</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>extensive ： 广泛的</p>
+<h1 id="7、总结"><a href="#7、总结" class="headerlink" title="7、总结"></a>7、总结</h1><h2 id="1、文章的研究顺序"><a href="#1、文章的研究顺序" class="headerlink" title="1、文章的研究顺序"></a>1、文章的研究顺序</h2><p>1、总结现有的多标签分类算法</p>
+<p>2、总结现有的多标签分类算法的优缺点</p>
+<p>3、介绍数据流分类的初步知识和概述</p>
+<p>4、对多标签数据流进行全面研究，并分析多标签数据流的优缺点</p>
+<p>5、得出调查结论</p>
+<h2 id="2、传统的多标签分类"><a href="#2、传统的多标签分类" class="headerlink" title="2、传统的多标签分类"></a>2、传统的多标签分类</h2><p>1、Problem Transformation（PT） : 问题转移</p>
+<p>2、Algorithm Adaptation（AA） ： 自适应算法</p>
+<p>3、Ensembles of Multi-Label Classification (EMLCs) ： 多标签分类集</p>
+<h2 id="3、问题转移的集中算法"><a href="#3、问题转移的集中算法" class="headerlink" title="3、问题转移的集中算法"></a>3、问题转移的集中算法</h2><p><strong>1、Binary Relevance (BR) ：二值相关算法</strong></p>
+<p>1、使用最频繁的问题转移算法</p>
+<p>2、将多标签分类问题转换为多个二值单标签问题，转换之后可以通过现有的二值分类算法作为预测二值问题的基础分类器</p>
+<p>3、可以按照与标签数量呈线性比例的方式来处理多标签数据，可以解决很多的实际问题</p>
+<p>4、天生的具有忽略标签之间相关性的特点</p>
+<p><strong>2、Classifier Chains (CC) ：分类器链</strong></p>
+<p>1、为了考虑标签之间的相关性，并且克服 BR 不考虑标签之间相关性的缺点，研究了 CC 算法</p>
+<p>2、以类似链的方式安排 BR 分类器</p>
+<p>3、每一个 BR 分类器都会产生一条属性（BR 分类器产生的预测结果），并把它传递给相邻的分类器</p>
+<p>4、可以捕获标签之间的相关性，因为每个 BR 分类器可以了解链中的每个祖先分类器的相关性</p>
+<p><strong>3、 Label Powerset（LP） : 标签幂集</strong></p>
+<p>1、单个标签表示标签子集</p>
+<p>2、多标签问题转换为具有 2^|L| 个类别标签的多类别问题</p>
+<p><strong>4、Pruned Set(PS) ： 修剪集</strong></p>
+<p>1、改算法是一种基于 LP 的算法</p>
+<p>2、具有频繁标签集的实例将保留并考虑进行分类</p>
+<p>3、不频繁使用的实例将会从数据集中移除</p>
+<p><strong>5、 Pair Wise (PW) ： 配对法</strong></p>
+<p>1、每对可能的类别标签转换为二进制分类任务</p>
+<p>2、不能够处理大规模的多标签数据，因为需要付出很大的时间代价</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification_1</title>
+    <url>/2021/03/09/A-Survey-on-Multi-Label-Data-Stream-Classification-1/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第一天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
+<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>流数据：流数据是由不同来源连续生成的数据</p>
+<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sensor ： 传感器</p>
+<p>contrary to ： 与之相反</p>
+<p>finite ： 有限</p>
+<p>comprehensive ： 综合的；全方位</p>
+<p>perspective ： 观点；角度</p>
+<p>briefly ： 短暂地；简略地；</p>
+<p>summarize ： 总结</p>
+<p>merit : 优点</p>
+<p>demerit ： 缺点，短处</p>
+<p>open issues ： 未解决的问题</p>
+<p>pursue ： 从事；追赶</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/15-26-01-e25fe572559c1515a685de784058aa9c-post_1-97607f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-09-21-67848f1ed9b3765b95f43e27d6d428f7-post_2-7f5ac3.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>介绍</p>
+<p>在当今世界，许多组织以前所未有的高速度生成大量的数据。例如，仅在一天之内，Google处理了超过35亿条的搜索记录，NASA卫星产生了大约4TB的图像数据，而沃尔玛超市则产生了超过2000万笔交易记录。作为两个代表性搜索引擎的 Google 和 Yahoo 每天将处理数百万个查询流。因此，许多研究人员专注于查询流挖掘，以为用户提供更好的搜索结果。同时，像 Twitter、腾讯和微博等在线社交网络吸引了更多关注，它们产生了大量的在线数据流，包括文本，图像和视频等。这些数据具有以下新特征，例如大容量，高速度，概念漂移，尤其是多标签数据，我们称它们为多标签数据流。新型“密集数据”的研究问题是，如何在无限、连续、快速、时间演化、时间要求严格的多标签数据流上建立分类模型?由于这些数据的规模很大，因此它们无法容纳在主存储器中。因此，辅助存储设备用于存储这些数据。相应地，就时间和空间成本而言，这些数据很难随机的被访问。因此，数据流挖掘首要目标时在不断线性增加的实例中学习。此外，随着新实例在数据流中的传入，生成的模型必须适应新实例的数据分布，同时删除隐藏在过时数据中的信息。仅使用新数据来重新训练模型是无效且不足的。因此，随着数据流中每个实例的到达，生成的模型可以逐步更新，这是数据流挖掘的另一个目标。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>概念漂移 ： 在预测分析和机器学习中，概念漂移意味着模型试图预测的目标变量的统计属性会随着时间的推移以无法预料的方式变化。这导致了问题，因为随着时间的流逝，预测变得越来越不准确。</p>
+<p>时间演化 ： 时间演化是由时间的流逝引起的状态变化，适用于具有内部状态的系统（也称为有状态系统）。 在这种表述中，时间不是必须是连续的参数，而可以是离散的，甚至是有限的。</p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>introduction : 介绍</p>
+<p>characteristic ： 典型的；特有的；特征；特性</p>
+<p>velocity ： 速度</p>
+<p>concept drift : 概念漂移</p>
+<p>intensive ： 密集的；集中的</p>
+<p>continuous : 连续的，持续的</p>
+<p>rapid : 快速</p>
+<p>time-evolving : 时间演化</p>
+<p>secondary ： 第二的；中等的；次要的；副手；</p>
+<p>hence ： 因此</p>
+<p>corre-spondingly ： 相应的</p>
+<p>ineffective ： 无效的</p>
+<p>inadequate ： 不充分的</p>
+<p>incremen-tally ： 递增地；增值地</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-39-3345911ba96e701f49e3db560a2546a0-post_3-0c8c0b.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-49-db8a575d85dd081b72d851b3ece3646e-post_4-26fa64.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据传统数据挖掘的类别，在数据流上有各种各样的挖掘任务，例如数据流分类，数据流聚类等。在本次调查中，我们主要关注多标签数据流分类，因为它是数据挖掘重最常见的形式，也是研究人数最多的研究主题。分类是标记未知数据的过程，通常包括两个步骤，即从具有已知属性和关联标签的训练数据集中训练通用模型，并采用训练后的模型来预测新数据实例的标签。读者可以从 Han 和 Kamber 撰写的书中获得有关传统数据挖掘的更详细的介绍。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>cluster ： 聚集；集群</p>
+<p>namely ： 即</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/17-44-41-c973071c8654713f9e4e824d5cb96665-post_5-8551d5.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>近年来，已经提供了许多对数据流挖掘的调查，介绍了各种数据流算法的细节。例如，Gaber 等人综述了数据流挖掘的理论基础和基本算法。关于数据流分类，研究人员介绍了基于决策树的算法，集成分类器和k-NN（k最近邻）分类器有关的调查，以满足分类的需求。然而，上述工作并未清楚地描述现有分类算法之间的差异，并且很少关注流数据中的多标签分类。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>reviewed ： 综述；</p>
+<p>review ： 回顾；复习；评论；检讨；检阅</p>
+<p>ensemble ： 整体；总体</p>
+<p>aforementioned ： 上述的；前面提及的</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>方向选择</title>
+    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
+    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
+<a id="more"></a>
+
+<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
+<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
+<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
+<p>流数据：流数据是由不同来源连续生成的数据</p>
+<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
+<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
+<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
+<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
+<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
+<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+        <tag>敏感信息</tag>
+        <tag>条件功能依赖</tag>
+        <tag>大数据</tag>
+        <tag>数据质量</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>0-1 背包问题</title>
     <url>/2021/01/22/0-1-bei-bao/</url>
     <content><![CDATA[<p>使用动态规划解决 0-1 背包问题</p>
@@ -12,105 +194,6 @@
         <tag>算法</tag>
         <tag>背包问题</tag>
         <tag>0-1 背包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
-    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
-<a id="more"></a>
-<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
-<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
-<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说，最后两个字符相等
-    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
-    由于 s 和 t 的最后两个字符相等
-    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
-<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说,最后两个字符相等
-    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
-    即使 s 和 t 的最后两个字符相等
-    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
-<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
-<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
-    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
-<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
-    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
-<p>三、</p>
-<hr>
-<p>综上所述：</p>
-<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
-            当 s 的长度为 i - 1,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
-    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
-            当 s 的长度为 i,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
-<hr>
-<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
-<p>第一步：</p>
-<p>初始化：</p>
-<pre><code>            将第一行和第一列的数据进行初始化
-            第一行表示 t 为空串时，必为 s 的子序列
-            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
-<p>第二步：</p>
-<p>由左到右，由上到下为 dp 数组赋值</p>
-<pre><code>            第二行数据：
-            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
-
-            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
-
-            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
-
-            dp[1][4],dp[1][5],dp[1][6] 同理
-
-            第三行数据：
-            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
-
-            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
-
-            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
-            dp[2][4],dp[2][5],dp[2][6] 同理
-
-            第四行也可以用一样的方法进行求解</code></pre>
-<p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
-        <tag>算法</tag>
-        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -274,28 +357,69 @@
       </tags>
   </entry>
   <entry>
-    <title>连续子数组的最大和</title>
-    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
-    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
+    <title>最后一块石头的重量 leetcode</title>
+    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
+    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
+<p>使用了二分查找和插入排序的方法</p>
 <a id="more"></a>
 
-<p>题目描述：</p>
-<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
-<p>返回其最大和。</p>
-<p>示例:</p>
-<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
-<p>输出: 6</p>
-<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
+<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
+<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
+<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
+<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
 <p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
-<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
+<pre><code>对数组中的元素进行排序;
+
+这样做有以下两个好处：
+
+1、能从数组的末尾取出最重的两块石头
+
+2、取出两块最重的石头之后，剩余的石头仍然保持有序，
+
+可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
+<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
+<p>寻找右侧边界的二分查找都做了详细的介绍</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
+<p><strong>二、当两块最重的石头重量相同时</strong></p>
+<p>设保存石头重量的数组名称为 stones    </p>
+<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
+
+2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
+
+3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
+<p><strong>三、当两块石头单位重量不同时</strong></p>
+<pre><code>1、在数组 stones 取出两块最重的石头
+
+2、将两块石头粉碎，并形成新的石头 newStone
+
+3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
+
+（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
+
+4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
+
+5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
+
+5、将 newStone 插入到 newStones 的 i 位置
+
+6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
+<p><strong>四、结果返回</strong></p>
+<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
+<pre><code>当数组长度为 0 时返回 0
+
+当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
+<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>算法</tag>
-        <tag>数组</tag>
         <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>插入排序</tag>
       </tags>
   </entry>
   <entry>
@@ -369,72 +493,6 @@
 <p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
 <p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
 <h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
-    <title>最后一块石头的重量 leetcode</title>
-    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
-    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
-<p>使用了二分查找和插入排序的方法</p>
-<a id="more"></a>
-
-<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
-<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
-<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
-<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
-<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
-<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
-<pre><code>对数组中的元素进行排序;
-
-这样做有以下两个好处：
-
-1、能从数组的末尾取出最重的两块石头
-
-2、取出两块最重的石头之后，剩余的石头仍然保持有序，
-
-可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
-<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
-<p>寻找右侧边界的二分查找都做了详细的介绍</p>
-<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
-<p><strong>二、当两块最重的石头重量相同时</strong></p>
-<p>设保存石头重量的数组名称为 stones    </p>
-<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
-
-2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
-
-3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
-<p><strong>三、当两块石头单位重量不同时</strong></p>
-<pre><code>1、在数组 stones 取出两块最重的石头
-
-2、将两块石头粉碎，并形成新的石头 newStone
-
-3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
-
-（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
-
-4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
-
-5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
-
-5、将 newStone 插入到 newStones 的 i 位置
-
-6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
-<p><strong>四、结果返回</strong></p>
-<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
-<pre><code>当数组长度为 0 时返回 0
-
-当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
-<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>插入排序</tag>
-      </tags>
   </entry>
   <entry>
     <title>TSP旅行推销员问题</title>
@@ -1096,185 +1154,127 @@ dp[3][6] = ∞ 已经证明</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>方向选择</title>
-    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
-    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
 <a id="more"></a>
+<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
+<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
-<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
-<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
-<p>流数据：流数据是由不同来源连续生成的数据</p>
-<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
-<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
-<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
-<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
-<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
-<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-        <tag>敏感信息</tag>
-        <tag>条件功能依赖</tag>
-        <tag>大数据</tag>
-        <tag>数据质量</tag>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification_1</title>
-    <url>/2021/03/09/A-Survey-on-Multi-Label-Data-Stream-Classification-1/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第一天</p>
+    <title>连续子数组的最大和</title>
+    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
+    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
 <a id="more"></a>
 
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
-<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>流数据：流数据是由不同来源连续生成的数据</p>
-<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sensor ： 传感器</p>
-<p>contrary to ： 与之相反</p>
-<p>finite ： 有限</p>
-<p>comprehensive ： 综合的；全方位</p>
-<p>perspective ： 观点；角度</p>
-<p>briefly ： 短暂地；简略地；</p>
-<p>summarize ： 总结</p>
-<p>merit : 优点</p>
-<p>demerit ： 缺点，短处</p>
-<p>open issues ： 未解决的问题</p>
-<p>pursue ： 从事；追赶</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/15-26-01-e25fe572559c1515a685de784058aa9c-post_1-97607f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-09-21-67848f1ed9b3765b95f43e27d6d428f7-post_2-7f5ac3.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>介绍</p>
-<p>在当今世界，许多组织以前所未有的高速度生成大量的数据。例如，仅在一天之内，Google处理了超过35亿条的搜索记录，NASA卫星产生了大约4TB的图像数据，而沃尔玛超市则产生了超过2000万笔交易记录。作为两个代表性搜索引擎的 Google 和 Yahoo 每天将处理数百万个查询流。因此，许多研究人员专注于查询流挖掘，以为用户提供更好的搜索结果。同时，像 Twitter、腾讯和微博等在线社交网络吸引了更多关注，它们产生了大量的在线数据流，包括文本，图像和视频等。这些数据具有以下新特征，例如大容量，高速度，概念漂移，尤其是多标签数据，我们称它们为多标签数据流。新型“密集数据”的研究问题是，如何在无限、连续、快速、时间演化、时间要求严格的多标签数据流上建立分类模型?由于这些数据的规模很大，因此它们无法容纳在主存储器中。因此，辅助存储设备用于存储这些数据。相应地，就时间和空间成本而言，这些数据很难随机的被访问。因此，数据流挖掘首要目标时在不断线性增加的实例中学习。此外，随着新实例在数据流中的传入，生成的模型必须适应新实例的数据分布，同时删除隐藏在过时数据中的信息。仅使用新数据来重新训练模型是无效且不足的。因此，随着数据流中每个实例的到达，生成的模型可以逐步更新，这是数据流挖掘的另一个目标。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>概念漂移 ： 在预测分析和机器学习中，概念漂移意味着模型试图预测的目标变量的统计属性会随着时间的推移以无法预料的方式变化。这导致了问题，因为随着时间的流逝，预测变得越来越不准确。</p>
-<p>时间演化 ： 时间演化是由时间的流逝引起的状态变化，适用于具有内部状态的系统（也称为有状态系统）。 在这种表述中，时间不是必须是连续的参数，而可以是离散的，甚至是有限的。</p>
-<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>introduction : 介绍</p>
-<p>characteristic ： 典型的；特有的；特征；特性</p>
-<p>velocity ： 速度</p>
-<p>concept drift : 概念漂移</p>
-<p>intensive ： 密集的；集中的</p>
-<p>continuous : 连续的，持续的</p>
-<p>rapid : 快速</p>
-<p>time-evolving : 时间演化</p>
-<p>secondary ： 第二的；中等的；次要的；副手；</p>
-<p>hence ： 因此</p>
-<p>corre-spondingly ： 相应的</p>
-<p>ineffective ： 无效的</p>
-<p>inadequate ： 不充分的</p>
-<p>incremen-tally ： 递增地；增值地</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-39-3345911ba96e701f49e3db560a2546a0-post_3-0c8c0b.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-49-db8a575d85dd081b72d851b3ece3646e-post_4-26fa64.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据传统数据挖掘的类别，在数据流上有各种各样的挖掘任务，例如数据流分类，数据流聚类等。在本次调查中，我们主要关注多标签数据流分类，因为它是数据挖掘重最常见的形式，也是研究人数最多的研究主题。分类是标记未知数据的过程，通常包括两个步骤，即从具有已知属性和关联标签的训练数据集中训练通用模型，并采用训练后的模型来预测新数据实例的标签。读者可以从 Han 和 Kamber 撰写的书中获得有关传统数据挖掘的更详细的介绍。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>cluster ： 聚集；集群</p>
-<p>namely ： 即</p>
-<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/17-44-41-c973071c8654713f9e4e824d5cb96665-post_5-8551d5.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>近年来，已经提供了许多对数据流挖掘的调查，介绍了各种数据流算法的细节。例如，Gaber 等人综述了数据流挖掘的理论基础和基本算法。关于数据流分类，研究人员介绍了基于决策树的算法，集成分类器和k-NN（k最近邻）分类器有关的调查，以满足分类的需求。然而，上述工作并未清楚地描述现有分类算法之间的差异，并且很少关注流数据中的多标签分类。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>reviewed ： 综述；</p>
-<p>review ： 回顾；复习；评论；检讨；检阅</p>
-<p>ensemble ： 整体；总体</p>
-<p>aforementioned ： 上述的；前面提及的</p>
+<p>题目描述：</p>
+<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
+<p>返回其最大和。</p>
+<p>示例:</p>
+<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
+<p>输出: 6</p>
+<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
+<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
 ]]></content>
       <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-2</title>
-    <url>/2021/03/10/A-Survey-on-Multi-Label-Data-Stream-Classification-2/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第二天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/13-56-38-f93233735c53c5c765d51f9f9163ba9d-post_1-1c749a.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>因此，在本文中，我们主要对多标签数据流分类的最新算法进行全面综述。更准确地说，我们首先总结现有的多标签分类算法，并在第二节中讨论它们的优缺点。其次，我们在第三节中介绍了数据流分类的初步知识和概述，包括它们的约束条件和评估指标。第三，在第四节中我们对多标签数据流分类算法进行了全面的研究，分析了每种多标签数据流算法的优缺点，并讨论了对多标签数据流进行分类的高级问题。最后，我们在第五节中得出有关此调查的结论</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>precise : 精确的；明确的</p>
-<p>summarize : 总结</p>
-<p>preliminary ： 初步的</p>
-<p>overview ： 综述；概述</p>
-<p>constrains： 约束</p>
-<p>evaluation metrics ： 评估标准</p>
-<p>metrics ： 指标</p>
-<p>merit ： 优点</p>
-<p>conclusion ： 结论</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-22-19-44fe67df706c1178e841ea08b16c93a7-post_2-38ea1e.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>传统多标签分类</p>
-<p>与使用单标签数据的传统机器学习相反，多标签学习中的实例包含多个类标签。在本节中，我们主要从不同角度概述著名的多标签分类方法，并分析每种算法背后的动机（即算法所解决的约束）。根据多标签学习（MLL）中的常见分类法，我们可以将多标签分类方法分为三类，包括问题转换（PT），自适应算法（AA）和多标签分类集成（EMLC）。这三种方法的更多详细信息如下：</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>well-known ： 著名的</p>
-<p>perspective ： 观点；远景</p>
-<p>motivations ： 动机；备注</p>
-<p>taxonomy ： 分类学</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-39-19-8bca8593a0fd8cac05c436d23dad9a71-post_3-628a45.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-42-03-9476b05c5698999622a65eaa597edb6e-post_4-de11e2.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>A、问题转移</p>
-<p>问题转换（PT）方法主要将多标签分类问题转换为许多更简单的单标签分类问题。在所有的PT方法中，Binary Relevance（BR）是最常用的方法。在 “二值相关” 方法中，多标签分类问题被转换为 |L| 种不同的二值单标签分类问题。转换后，我们可以选择任何现有的二值分类算法作为预测二值问题的基础分类器。因为它可以按与标签数量成线性比例的方式处理多标签数据，这使其可应用于许多实际需求。但是，BR方法固有地忽略了标签之间的相互依赖性，并且已经得到了验证。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Binary Relevance(二值相关) ： 将多标签问题转换为多个分类问题</p>
-<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>linear ： 线性；线的</p>
-<p>proportion ： 比例，占比</p>
-<p>practical ： 实际的；实用性的</p>
-<p>interdependence ： 相互依存</p>
-<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-24-04-b9e2a6f221022c57ecd97b9b170fb7ef-post_5-01737f.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>为了考虑标签之间的相互依赖性并克服BR方法的这一缺点，研究人员提出了其他几种基于 BR 的方法。最著名的分类器链（CC）以类似链的方式随机排列 BR 分类器。同时，每个 BR 分类器将预测结果作为其所连接的邻居分类器的属性输出。这对于分类器捕获标签之间的相关性是有益的，因为链中的每个 BR 分类器都可以了解链中除数据本身之外的每个祖先分类器的标签相关性。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>take into account ： 考虑</p>
-<p>drawback ： 缺点</p>
-<p>propose ： 提出；建议；打算</p>
-<p>manner ： 方式；习惯；</p>
-<p>arrange ： 安排；排列；</p>
-<p>correlation ： 相关性</p>
-<p>capture ： 俘虏；捕获</p>
-<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-43-03-324c2609bf70449a4a96ea8aaf58e3a7-post_6-0c6a14.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>标签幂集（LP）是 PT 的一种常见方法，其中单个标签表示标签子集。在这种情况下，LP 将多标签问题转换为具有 2^|L| 个类别标签的多类别问题。 基于LP，修剪集（PS）技术得到了发展。在这种技术中，具有频繁标签集的实例将保留并考虑进行分类，而那些不频繁的实例通常会从数据集中删除。关于基于 LP 方法的更详细的描述可以参考[13]。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Label Powerset(标签密集) ：LP是一个将多标签学习问题转换为多类别分类问题的简单直接的方法。</p>
-<p>PT：Problem Transformation（问题转移）主要将多标签分类问题转换为许多更简单的单标签分类问题。（来自第三部分翻译）</p>
-<h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>indicate ： 表明；指出</p>
-<p>retain ： 保留</p>
-<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/17-05-00-49d9f0c73841bf330fce90d080c9f940-post_7-886264.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>PT 的另一种常见的多标签分类方法是 Pair Wise（PW），其中将每对可能的类别标签转换为二进制分类任务。尽管 PW 方法在某些情况下具有某些优点，但由于时间成本较高，因此难以应用于处理大规模多标签数据。有关PT方法的更多介绍，请参考[19]。</p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Pair Wise（配对法）：配对法的基本思路是对样本进行两两比较，构建偏序文档对，从比较中学习排序，因为对于一个查询关键字来说，最重要的其实不是针对某一个文档的相关性是否估计得准确，而是要能够正确估计一组文档之间的 “相对关系”。</p>
-<p>Pair wise 方法相比pointwise有优势，可以学习到一些顺序。但是pairwise也有缺点：</p>
-<p>1.当有多个顺序的类别时，只知道good or bad，不知道好多少和差多少。</p>
-<p>2.当文章较多时，会产生大量的pairs。</p>
-<p>3.对噪声的label 非常敏感，一个错误的label，可能会导致分类结果中有较多的错误。</p>
-<p>4.大多数没有考虑结果中文档对的顺序，文档对的顺序也没有在损失函数中体现。</p>
-<p>作者：数据小新手<br>链接：<a href="https://www.jianshu.com/p/235756fbf6b6">https://www.jianshu.com/p/235756fbf6b6</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>extensive ： 广泛的</p>
-<h1 id="7、总结"><a href="#7、总结" class="headerlink" title="7、总结"></a>7、总结</h1><h2 id="1、文章的研究顺序"><a href="#1、文章的研究顺序" class="headerlink" title="1、文章的研究顺序"></a>1、文章的研究顺序</h2><p>1、总结现有的多标签分类算法</p>
-<p>2、总结现有的多标签分类算法的优缺点</p>
-<p>3、介绍数据流分类的初步知识和概述</p>
-<p>4、对多标签数据流进行全面研究，并分析多标签数据流的优缺点</p>
-<p>5、得出调查结论</p>
-<h2 id="2、传统的多标签分类"><a href="#2、传统的多标签分类" class="headerlink" title="2、传统的多标签分类"></a>2、传统的多标签分类</h2><p>1、Problem Transformation（PT） : 问题转移</p>
-<p>2、Algorithm Adaptation（AA） ： 自适应算法</p>
-<p>3、Ensembles of Multi-Label Classification (EMLCs) ： 多标签分类集</p>
-<h2 id="3、问题转移的集中算法"><a href="#3、问题转移的集中算法" class="headerlink" title="3、问题转移的集中算法"></a>3、问题转移的集中算法</h2><p><strong>1、Binary Relevance (BR) ：二值相关算法</strong></p>
-<p>1、使用最频繁的问题转移算法</p>
-<p>2、将多标签分类问题转换为多个二值单标签问题，转换之后可以通过现有的二值分类算法作为预测二值问题的基础分类器</p>
-<p>3、可以按照与标签数量呈线性比例的方式来处理多标签数据，可以解决很多的实际问题</p>
-<p>4、天生的具有忽略标签之间相关性的特点</p>
-<p><strong>2、Classifier Chains (CC) ：分类器链</strong></p>
-<p>1、为了考虑标签之间的相关性，并且克服 BR 不考虑标签之间相关性的缺点，研究了 CC 算法</p>
-<p>2、以类似链的方式安排 BR 分类器</p>
-<p>3、每一个 BR 分类器都会产生一条属性（BR 分类器产生的预测结果），并把它传递给相邻的分类器</p>
-<p>4、可以捕获标签之间的相关性，因为每个 BR 分类器可以了解链中的每个祖先分类器的相关性</p>
-<p><strong>3、 Label Powerset（LP） : 标签幂集</strong></p>
-<p>1、单个标签表示标签子集</p>
-<p>2、多标签问题转换为具有 2^|L| 个类别标签的多类别问题</p>
-<p><strong>4、Pruned Set(PS) ： 修剪集</strong></p>
-<p>1、改算法是一种基于 LP 的算法</p>
-<p>2、具有频繁标签集的实例将保留并考虑进行分类</p>
-<p>3、不频繁使用的实例将会从数据集中移除</p>
-<p><strong>5、 Pair Wise (PW) ： 配对法</strong></p>
-<p>1、每对可能的类别标签转换为二进制分类任务</p>
-<p>2、不能够处理大规模的多标签数据，因为需要付出很大的时间代价</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
+        <tag>算法</tag>
+        <tag>数组</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
 </search>
