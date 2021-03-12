@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-3</title>
+    <url>/2021/03/12/A-Survey-on-Multi-Label-Data-Stream-Classification-3/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第三天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/19-35-47-b4a0d81d6acb8137c44d2723e43f273e-post_1-84bb89.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/20-24-41-3f7885a7cf367d7ecce392b943676b58-post_2-080e31.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>自适应算法</p>
+<p>顾名思义，自适应算法会修改现有的算法以适应解决新的问题。在多标签分类设置中，AA 表示对现有的单标签分类算法进行调整以适应对多标签分类问题。构建多标签分类器的流行模型包括kNN（K-近邻算法），DT（决策树），SVM（支持向量机），NN（神经网络）和基于实例的算法等等。具体来说，ML-kNN (Multi-Label k-Nearest Neighbor，多标签k近邻)从kNN算法中派生出来，计算kNN识别出的每个相邻实例的相关标签数，然后利用最大后验概率(MAP)原则确定每个测试实例的标签集。IBLR算法是一种改进，它将基于实例的kNN学习与逻辑回归相结合，用于多标签分类。ML-DT算法引入了多标签熵的概念，以完善C4.5决策树中的分裂测试。此外，ML-C4.5是对著名的C4.5算法的改进，通过允许多个标签在树的叶子中进行多标签的学习。此外，为了适应流环境，Hoeffding 树作为决策树模型被广泛使用，因为它可以逐步生成决策树，理论分析证明从部分实例学习的得到的增量决策树近似于从数据流中所有实例学习得到的批量决策树。因此，就 Hoeffding 树而言，通过在 Hoeffding 树中引入多标签分裂测试，提出了多标签 Hoeffding 树。最近，在增量决策树的基础上，提出了一种新的方法，称为iSOUP-Tree（增量结构化输出预测树）。 在该方法中，树叶处的基本分类器采用自适应感知，可以同时处理多标签分类和多目标回归问题。在[38]中引入了一种基于SVN(支持向量机)的多标签分类方法，其目标函数是最小化排序损失。基于朴素贝叶斯分类，在[37]中提出了一种多标签自适应算法。在关联规则挖掘方面，针对多标签规则集提出了一种多类、多标签关联分类方法，称为MMAC[128]。考虑到标签之间的相关性和依赖性，[39]中的工作引入了最大熵方法。而在[60]中提出了预测聚类树的随机森林，称为RF-PCT，它建立在预测聚类树(PCTs)[28]的基础上，被看成是聚类的层次结构，是决策树。为了保证合集中基础分类器的多样性，该方法随机选择实例和特征。一句话，PT算法使多标签数据适应现有算法; 而AA算法可以使自己适应多标签数据。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Hoeffding 树：</p>
+<p>Hoeffding 树代表了在高速数据流分类问题上的一种趋势，即在保证高效率的情况下，能满足高速数据流潜在无限性、快速性、单一扫描性处理的需求。</p>
+<p>Hoeffding 树归纳算法基本思想是：</p>
+<p>Hoeffding算法是一种决策树算法，它从数据流中增量式的生成一棵决策树，</p>
+<p>对数据流的每个元素仅处理一次，</p>
+<p>数据处理过后不需要额外空间进行存储；</p>
+<p>内存空间中存储的唯一对象是 在叶节点保存了供树增长的足够多的信息的决策树本身；</p>
+<p>决策树可以在处理训练样本集的任意时间点对新来的样本进行预测。</p>
+<p>有充分的证据表明，对同一样本，Hoeffding 树算法生成的决策树与批处理学习算法（如C4.5,CART等）生成的决策树是很一致的。</p>
+<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>deriving : 派生；起源</p>
+<p>utilize ： 利用</p>
+<p>posteriori ： 后验；后面的</p>
+<p>entropy ： 熵</p>
+<p>refine ：完善</p>
+<p>incrementally ： 递增地；增值地</p>
+<p>incremental ： （定额）增长的；逐渐的</p>
+<p>perception ： 认识能力；知觉</p>
+<p>forest ： 森林</p>
+<p>cluster :  群；使聚集</p>
+<p>hierarchy : 层次结构</p>
+<p>diversity  : 多样性</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/20-49-41-8882c895a4d2cd799cdc03247b257f53-post_3-b9b37f.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>多标签分类器集成</p>
+<p>在多标签分类场景中，许多以前的文献已经表明，一个分类器委员会比一个单独的分类器表现得更好。事实上，如果各个分类器相互独立，那么聚集在一起表现的会更好。更确切地说，我们将几个基础分类器组合成一个集合体，来预测一个新的多标签数据实例，命名为EMLCs（多标签分类器的集成模型）[57]。细节如下：</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/21-00-14-013d5077f72d5c619275998661b7f405-post_4-4c470c.png"></p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>scene ： 场面；情景</p>
+<p>previous ： 以前的；早先的</p>
+<p>committee ： 委员会</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/21-00-14-013d5077f72d5c619275998661b7f405-post_4-4c470c.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于二值相关的集成</p>
+<p>我们都知道，BR方法简单、好理解、标签组合抗过拟合，所以它是多标签学习最直观的解决方案。为了在多标签分类（MLC）中获得单个 BR 分类器的更好性能，近年来提出了几种基于 BR 的集成分类器。例如，Read等人提出了两种基于 BR 分类器的集成算法，分别称为EBR和MBR，这两种算法极大地提高了分类的效果，特别是在类不平衡条件下(即对于给定的数据集，一个类的实例数明显少于其他类的实例数，称为不平衡数据集)。但是，EBR也没有考虑到标签的相关性（即标签之间的相互依赖性和相关性）。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intuitive ： 直觉的</p>
+<p>improve : 改善，增进</p>
+<p>obvious ： 明显的；显著的 </p>
+]]></content>
+  </entry>
+  <entry>
     <title>A-Survey-on-Multi-Label-Data-Stream-Classification-2</title>
     <url>/2021/03/10/A-Survey-on-Multi-Label-Data-Stream-Classification-2/</url>
     <content><![CDATA[<p>多标签数据流分类研究第二天</p>
@@ -180,20 +226,6 @@
         <tag>条件功能依赖</tag>
         <tag>大数据</tag>
         <tag>数据质量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>0-1 背包问题</title>
-    <url>/2021/01/22/0-1-bei-bao/</url>
-    <content><![CDATA[<p>使用动态规划解决 0-1 背包问题</p>
-<a id="more"></a>
-]]></content>
-      <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
-        <tag>算法</tag>
-        <tag>背包问题</tag>
-        <tag>0-1 背包</tag>
       </tags>
   </entry>
   <entry>
