@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.4k</span>
+            <span class="post-count">1.9k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5 分钟</span>
+            <span class="post-count">6 分钟</span>
         </span>
     </span>
 </div>
@@ -145,12 +145,21 @@ ga('send', 'pageview');
 <p>previous ： 以前的；早先的</p>
 <p>committee ： 委员会</p>
 <h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/21-00-14-013d5077f72d5c619275998661b7f405-post_4-4c470c.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/13/17-56-40-170a15333cd813589b7f1c932c527980-post_5-e084f5.png"></p>
 <h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于二值相关的集成</p>
-<p>我们都知道，BR方法简单、好理解、标签组合抗过拟合，所以它是多标签学习最直观的解决方案。为了在多标签分类（MLC）中获得单个 BR 分类器的更好性能，近年来提出了几种基于 BR 的集成分类器。例如，Read等人提出了两种基于 BR 分类器的集成算法，分别称为EBR和MBR，这两种算法极大地提高了分类的效果，特别是在类不平衡条件下(即对于给定的数据集，一个类的实例数明显少于其他类的实例数，称为不平衡数据集)。但是，EBR也没有考虑到标签的相关性（即标签之间的相互依赖性和相关性）。</p>
+<p>我们都知道，BR方法简单、好理解、标签组合抗过拟合，所以它是多标签学习最直观的解决方案。为了在多标签分类（MLC）中获得单个 BR 分类器的更好性能，近年来提出了几种基于 BR 的集成分类器。例如，Read等人提出了两种基于 BR 分类器的集成算法，分别称为EBR和MBR，这两种算法极大地提高了分类的效果，特别是在类不平衡条件下(即对于给定的数据集，一个类的实例数明显少于其他类的实例数，称为不平衡数据集)。但是，EBR也没有考虑到标签的相关性（即标签之间的相互依赖性和相关性）。因此，为了克服 BR 和 EBR 的缺点，如类标签的相关性，提出了几种完善的基于BR的方法。扩展的方法包括但不限于通过配对比较进行排序，通过配对比较进行校准排序，校准标签排序（CLR）和分类器链（CC）。在分类器链方法中，每个单独的二进制分类器以有序链的方式排列和链接。 而在链中，每个二元相关性分类器都与数据集中的一个预定义类标签相关联。因此,虽然考虑了标签的相关性,但由于链式分类器的误差传播,分类精度受到链式顺序的影响,可能导致分类性能变差。为了解决这一缺点，首次提出了一种基于分类器链的集成算法，称为ECC，该算法随机选择链的顺序，减少了因错误传播而导致分类性能变差的风险。其次,在[41]中提出了称为PCC的概率分类器链,它考虑了每个标签组合的条件概率。但PCC对类标签的顺序很敏感，时间复杂度很高。为了寻找更合适的标签顺序，实现更低的计算复杂度，已经提出了一些扩展算法，如BCC、PCC-beam、MCC、PACC和MIML-ECC。 同时，提出了PruDent、LLSF-DL和EMHG的算法，以解决类标签之间的依赖结构，降低时间复杂度。</p>
 <h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intuitive ： 直觉的</p>
 <p>improve : 改善，增进</p>
 <p>obvious ： 明显的；显著的 </p>
- 
+<p>refine ：完善</p>
+<p>calibrate ： 校正；标定</p>
+<p>permuted ： 排列</p>
+<p>accuracy ： 精确度；准确性</p>
+<p>propagation ： 传播；繁殖</p>
+<p>Probabilistic ：概率性的；概率论 </p>
+<p>sensitive  ： 敏感的；感觉的</p>
+<p>complexity ： 复杂性</p>
+<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1> 
       <!-- reward -->
       
       <div id="reword-out">

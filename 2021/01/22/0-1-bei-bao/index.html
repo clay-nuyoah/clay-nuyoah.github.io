@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
     0-1 背包问题 |  CLAY
-  </title><meta name="robots" content="noindex">
+  </title>
   <meta name="generator" content="hexo-theme-ayer">
   
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">247</span>
+            <span class="post-count">2.1k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">8 分钟</span>
         </span>
     </span>
 </div>
@@ -112,7 +112,8 @@ ga('send', 'pageview');
   <p>使用动态规划解决 0-1 背包问题</p>
 <a id="more"></a>
 
-<h1 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h1><p>有 n 个物品，它们有各自的重量和价值，现有给定容量的背包，如何让背包里装入的物品具有最大的价值总和？（注意：每种物品只能放入到背包中一次）</p>
+<h1 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h1><p>有 n 个物品，它们有各自的重量和价值，现有给定容量的背包，</p>
+<p>如何让背包里装入的物品具有最大的价值总和？（注意：每种物品只能放入到背包中一次）</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-d873196dcb9b54a1001a4559f2d350a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111327-2d3f85.png"></p>
 <p>上图给出了 a、b、c、d 4 种物品以及每种物品对应的体积和价值。</p>
 <p>我们将要求体积为 8 的背包可以存放的最大价值</p>
@@ -126,7 +127,85 @@ w(d) 表示物品 d 的重量</code></pre>
 v(b) 表示物品 b 的价值
 v(c) 表示物品 c 的价值
 v(d) 表示物品 d 的价值</code></pre>
-<!-- flag of hidden posts --> 
+<p><strong>3、dp[i][j] 的含义</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/13/16-22-44-933b8ac26bb816025a4e8ec066c5dfca-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210313161113-0977f1.png"></p>
+<p>该图为初始化时，动态规划所用到的数组</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-df04c8075f2fd9fc2d30ab289a7a8c0b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111818-abe5b5.png"></p>
+<p>该图为动态规划执行完毕之后得到的二维数组，怎么构建该数组会在下面介绍，</p>
+<p>这里先不用关注计算的过程</p>
+<p>我们使用二维数组 dp 表示动态规划需要构造的数组，其中 dp[i][j] 表示，</p>
+<p>当只有<strong>前 i 件</strong>物品时，且背包的<strong>容量为 j</strong> 时，</p>
+<p>背包里装入物品的<strong>最大</strong>的价值总和为 <strong>dp[i][j]</strong></p>
+<p><strong>4、对于 dp[i][j] 的进一步解释</strong></p>
+<p>对于本题来说，我们假设</p>
+<pre><code>a 为第一件商品        b 为第二件商品        c 为第三件商品        d 为第四件商品</code></pre>
+<p>那么当 p[3][7] = 9,表示当只有前 3 件物品时，且背包的容量为 7 时，</p>
+<p>背包里装入物品的最大的价值总和为 9</p>
+<p>p[3][7] = 9 需要注意到的重点</p>
+<pre><code>1、只有前 3 件商品，即 a b c 这三件商品，即使物品的总数量为 4，但是就 dp[3][7] 
+来说只能去前三件，要是需要将 4 件商品全部放入到背包，需要求 dp[4][7]
+
+2、背包的容量是 7，即使背包总容量是 8，但是就 dp[3][7] 来说，目前背包的容量为 7
+3、p[3][7] 表示 当只有前 3 件商品时，并且背包的容量为 7 时，
+背包里面能装的最大价值为 9，这里的 9 表示的时最大价值，是一个最优的结果，
+无论前三种商品怎么组合，在现有的容量下，能够得到的最大价值是 9</code></pre>
+<p><strong>5、动态规划矩阵（即 dp 矩阵）计算的方向</strong></p>
+<p>我们在 dp 矩阵的时候，是从上到下，从左到右依次计算的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/13/16-51-17-c164af316dee7f8f802a27336cecf586-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210313164831-7bafeb.png"></p>
+<p>这又有什么意义呢？</p>
+<p>假设我们需要计算图中标黄的值（改值可以用 dp[2][4] 表示），</p>
+<p>按照从上到下，从左到右的计算方向，计算的顺序是</p>
+<pre><code>dp[0][0] -&gt; dp[1][0] -&gt; dp[2][0] -&gt; dp[3][0] -&gt; dp[4][0] -&gt; 
+dp[0][1] -&gt; dp[1][1] -&gt; dp[2][1] -&gt; dp[3][1] -&gt; dp[4][1] -&gt;
+dp[0][2] -&gt; dp[1][2] -&gt; dp[2][2] -&gt; dp[3][2] -&gt; dp[4][2] -&gt; 
+dp[0][3] -&gt; dp[1][3] -&gt; dp[2][3] -&gt; dp[3][3] -&gt; dp[4][3] -&gt;
+dp[0][4] -&gt; dp[1][4] -&gt; dp[2][4]</code></pre>
+<p>也就是说在计算 标黄值位置的时候，标绿值的位置已经全部都计算完毕了</p>
+<h2 id="三、对于公式的理解"><a href="#三、对于公式的理解" class="headerlink" title="三、对于公式的理解"></a>三、对于公式的理解</h2><p>几乎所有的博客都会出现下列的公式，那么就让我来给你解释一下它的意义；</p>
+<p>dp[i][j]=max{dp[i-1][j],dp[i-1][j-w[i]]+v[i]}</p>
+<p>在 <strong>二、符号化</strong>中 我们已经介绍了 w[i] 和 v[i] 的含义，</p>
+<p>其中 w[i] 表示 i 物品的重量，v[i] 表示物品 i 的价值</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/13/16-51-17-c164af316dee7f8f802a27336cecf586-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210313164831-7bafeb.png"></p>
+<p>还是拿着这张图来用上面的公式搞事情</p>
+<p>就来求 dp[2][4]</p>
+<p>根据计算方向，求完了 dp[1][4] = 3 才能求 dp[2][4] = 4,这说明了背包的容量为 4 时，</p>
+<p>如果我有 1 件商品（即 只有 a 商品）能存放的最大价值为 3，</p>
+<p>但是当又添加了一件商品（即现在又 a b 两件商品）时，</p>
+<p>背包还是那个背包（容量没有发生变化），这是背包能存放的总价值变成了 4。</p>
+<p>我们分析下面两种情况就能知道公式的意义了：</p>
+<h2 id="1、当物品-b-出现时，背包装不下"><a href="#1、当物品-b-出现时，背包装不下" class="headerlink" title="1、当物品 b 出现时，背包装不下"></a>1、当物品 b 出现时，背包装不下</h2><p>当物品 b 出现时，背包的容量已经放不下物品 b 了，</p>
+<p>这时背包能够存放的最大价值就是只有前 1 件货物（即只有货物 a）时所能存放最大价值，</p>
+<p>因为没法把 b 放入到背包，背包的总价值就是前 1 件物品（只有货物 a）的总价值</p>
+<h3 id="2、知识延申"><a href="#2、知识延申" class="headerlink" title="2、知识延申"></a>2、知识延申</h3><p>若要求 dp[i][j] 在这种情况下可以表示为表示，</p>
+<p>当物品 i 出现时，背包的容量已经放不下物品 i 了，这时背包能够存放的最大价值就是只有前 i - 1 件货物时所能存放最大价值，因为没法把 i 放入到背包，背包的容量为 j 时，背包的总价值就是只有前 i - 1 时的最大价值</p>
+<p>我们知道 dp[i-1][j] 就代表了背包的容量为 j 时，背包的总价值就是只有前 i - 1 时的最大价值</p>
+<p>所以公式中前一部分搞定了，即图中划红线的部分</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/13/17-52-16-63dc62414102a1b76abc36f254cabe4e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210313171644-5652a0.png"></p>
+<h2 id="2、当物品-b-出现时，背包能装下"><a href="#2、当物品-b-出现时，背包能装下" class="headerlink" title="2、当物品 b 出现时，背包能装下"></a>2、当物品 b 出现时，背包能装下</h2><p>当物品 b 出现时，物品 b 能够放入到背包中，那么背包就要留出一定的空间，</p>
+<p>那么需要留出多大的空间呢？</p>
+<p>留出的空间的大小是刚好能够容纳 b，这样可以充分利用空间。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-d873196dcb9b54a1001a4559f2d350a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111327-2d3f85.png"></p>
+<p>就本题而言，w(b) = 3,也就是说我们再没有把 b 放入背包之前需要留出 3 的空间大小</p>
+<p><strong>重点强调</strong></p>
+<pre><code>1、因为要留出空间来存放 b，所以要在 b 未放入之前为 b 留出空间
+2、留出空间的大小为 3，因为这样刚好能够放下 b
+3、若要能满足以上的条件，我们从满足添加的数据里面挑选一个价值最大的数据就行了</code></pre>
+<p>对于本题来说，我们要保证在背包容量小于等于 1（即 4 - w(b) = 4 - 3 = 1） 的时候，</p>
+<p>才能安全的把 b 物品放入到背板</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/13/17-30-07-cce8c6e9fdf6024371afeaa913deeab8-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210313172958-9bf56e.png"></p>
+<p>我们用上图来分析一下那些区域可以放 c 物品，图中蓝色区域是已经有了 b 货物，</p>
+<p>所以不能选，橙色区域但我们把 b 物品放入到包，背包是放不下的，绿色区域是安全区域，</p>
+<p>我们可以安全的把 b 货物放入到背包,</p>
+<p>对于 dp[0][0],dp[1][0] 和 dp[0][1],dp[1][1],我们要选dp[0][1],dp[1][1],因为 背包的容量大啊，能装的东西就多啊，能得到的价值就多啊，你 dp[0][0],dp[1][0],能装的 我 dp[0][1],dp[1][1] 都能装啊，而且我还能比你更能装。</p>
+<p>但是对于 dp[0][1],dp[1][1] 这两个值，我们要选择 dp[1][1],因为 dp[0][0] 是在前 0 种物品中选取物品，而我们要把第 2 件商品放入背包，是要在前 1 件物品中选择物品</p>
+<h2 id="2、知识延申-1"><a href="#2、知识延申-1" class="headerlink" title="2、知识延申"></a>2、知识延申</h2><p>若要求 dp[i][j] 在这种情况下可以表示为表示，</p>
+<p>当物品 i 出现时，物品 i 能够放入到背包中，那么背包就要留出一定的空间,</p>
+<p>留出的空间大小为 w(i)，保证背包的容量为 j - w（i） 这样刚好放下物品 i</p>
+<p>而且还要在前 i - 1 件货物中挑选物品，</p>
+<p>而且还要保证得到最大的价值，只能选择 dp[i - 1][j - w(i)]</p>
+<p>这是再把 i 商品放入到背包中，就得到了 dp[i - 1][j - w(i)] + v[i]</p>
+<h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>根据 一、二 取最大值就是能得到的最大价值</p>
+ 
       <!-- reward -->
       
       <div id="reword-out">
@@ -201,12 +280,31 @@ v(d) 表示物品 d 的价值</code></pre>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/0-1-%E8%83%8C%E5%8C%85/" rel="tag">0-1 背包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="tag">背包问题</a></li></ul>
 
     </footer>
   </div>
 
    
+  <nav class="article-nav">
+    
+      <a href="/2021/03/08/fang-xiang-xuan-ze/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            方向选择
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/01/14/bing-cha-ji/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">使用并查集查找无向图回路</div>
+      </a>
+    
+  </nav>
+
    
  
    

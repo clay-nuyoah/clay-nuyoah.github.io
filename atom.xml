@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-03-12T13:19:08.677Z</updated>
+  <updated>2021-03-13T13:08:19.394Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://clay-nuyoah.github.io/2021/03/12/A-Survey-on-Multi-Label-Data-Stream-Classification-3/"/>
     <id>http://clay-nuyoah.github.io/2021/03/12/A-Survey-on-Multi-Label-Data-Stream-Classification-3/</id>
     <published>2021-03-12T11:33:11.000Z</published>
-    <updated>2021-03-12T13:19:08.677Z</updated>
+    <updated>2021-03-13T13:08:19.394Z</updated>
     
     
     <summary type="html">&lt;p&gt;多标签数据流分类研究第三天&lt;/p&gt;</summary>
@@ -105,6 +105,31 @@
     <category term="大数据" scheme="http://clay-nuyoah.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     <category term="数据质量" scheme="http://clay-nuyoah.github.io/tags/%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>0-1 背包问题</title>
+    <link href="http://clay-nuyoah.github.io/2021/01/22/0-1-bei-bao/"/>
+    <id>http://clay-nuyoah.github.io/2021/01/22/0-1-bei-bao/</id>
+    <published>2021-01-22T12:19:32.000Z</published>
+    <updated>2021-03-13T09:54:15.679Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;使用动态规划解决 0-1 背包问题&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="dp" scheme="http://clay-nuyoah.github.io/tags/dp/"/>
+    
+    <category term="动态规划" scheme="http://clay-nuyoah.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="算法" scheme="http://clay-nuyoah.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="背包问题" scheme="http://clay-nuyoah.github.io/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+    
+    <category term="0-1 背包" scheme="http://clay-nuyoah.github.io/tags/0-1-%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   
