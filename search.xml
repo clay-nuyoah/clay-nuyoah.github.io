@@ -1,6 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-6</title>
+    <url>/2021/03/16/A-Survey-on-Multi-Label-Data-Stream-Classification-6/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第六天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-29-18-d9c897c35b6b326800c70a0b8961f8ba-post_1-ab35ab.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-39-37-8973681724759961fd6ae8e7279b9d13-table_3_1-a34b42.png"></p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-41-05-77597514d369cf74a470fd363e0165b6-post_1-463d89.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于自适应算法的集成</p>
+<p>现有的许多算法，如FaIE、LEML、CML、LCML、PLST和CPLST等，都考虑到了类标签向量和特征表示在低维潜空间中的线性关系。然而，上述方法忽略了尾部标签的问题，而许多真实世界的多标签数据集有大量的尾部标签（即不经常分配给实例的标签）。为了解决这个问题，提出了一种高效半监督多标签分类器（ESMC）针对标签缺失（即数据集呈现部分标签或无标签），[66]中的工作采用尾部标签考虑类标签缺失，[51]中应用交互最小二乘法（MC）方法填补缺失条目，并兼顾特征和标签缺失。为了解决标签带来的弱点，通过RF-PCT、FaIE等取得了较好的性能。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>矩阵补全（atrix completion）:矩阵补全是填充部分观察到的矩陣的缺失条目的任务。</p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>latent ：潜在的；潜伏的</p>
+<p>representation ： 代表；表现</p>
+<p>aforementioned ： 上述的；前面提及的</p>
+<p>entries ： 条目</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p>为了解决标签带来的弱点，通过RF-PCT[60]、FaIE[61]等取得了较好的性能。</p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/17-11-04-2b8e498729082431e2165ab74cdb361b-QQ%E6%88%AA%E5%9B%BE20210316171011-32ae90.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/17-11-40-23bab71278ec161103b58b657079078d-QQ%E6%88%AA%E5%9B%BE20210316171050-ef0097.png"></p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>据我们所知，在保留未知标签组合的泛化能力或标签联合概率的模型建立方面，很少有多标签分类方法。为了弥补这一不足，提出了一种新的多标签分类机制，命名为多标签分类的标签嵌入网络（Label Network Embedding for Multi-Label Classification，LNEMLC）。 它将标签网络嵌入到多标签学习中，以扩展输入空间，从而可以使用任何多标签基础分类器以较低的计算复杂度提高分类质量。而在[68]中的工作提出了一种针对大规模类的快速线性降维方法。更准确地说，所有的标签都被转化为一个缩小的编码空间，得到的伪标签被用来训练集成模型。</p>
+<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>seldom ： 很；不常</p>
+<p>retain ： 保持；保留</p>
+<p>generalization ： 泛化；概括</p>
+<p>compensate ： 补偿;赔偿</p>
+<p>shortage :  缺乏，缺少</p>
+<p>mechanism : 机制；原理</p>
+<p>embed ：  栽种；使嵌入</p>
+<p>extend ： 延伸；扩大</p>
+<p>dimension ： 方面；维</p>
+<p>pseudo ： 冒充的，假的</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/20-05-17-9a37aeb248f7d7f03b76874f45a7e3c4-post_4-e5b862.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>一句话，上述合集方法解决了关于标签的问题（包括标签相关性、大规模类、标签缺失）和关于特征的问题（主要是高维特征）。其他如IEML、ICML等作品的提出，不仅涉及标签问题，还涉及特征相关性问题。在[62]作品中，利用损失函数的结构来解决在ERM问题，提出了一种基于标签转换技术的概率模型，用于多标签分类。而更详细的总结见表3。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1>]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-5</title>
+    <url>/2021/03/15/A-Survey-on-Multi-Label-Data-Stream-Classification-5/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第五天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/14-52-16-b27e4e9ba0e6d6cc7834181a8e9aa1f3-post_1-9ae8d8.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在多标签数据学习中，很少有作品提出从数据集中明确识别相关标签。例如，在[54]的作品中明确评估了标签相关性得分。在[55]中提出了一种利用标签之间的条件依赖性，建立了一个贝叶斯网络来代表所有标签关于特征空间的联合概率。因此，生成的网络结构能够清晰地显示标签之间的条件依赖关系。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>explicitly ：  明确地；明白地</p>
+<p>evaluate ： 评价；估价</p>
+<p>exploit ： 开发；利用</p>
+<p>stand for ： 代表；支持</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-06-18-f617bf4d834ec7efea15a21b2df9e80c-post_2-602fd3.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>综上所述，上述基于BR的集成方法主要解决两类问题。第一个是关于标签的问题，包括标签相关性、类不平衡、结构化类和标签噪声。而第二个是关于特征的问题，包括特征噪声和高维特征。表 1 总结了上述基于 BR 的集成的的详细细节。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>aforementioned ： 上述的；前面提及的</p>
+<p>summarizes ： 概述；总计</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-17-58-f2bbf666cbbeac8f183331f966505649-post_3-126f68.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于标签幂集的集成</p>
+<p>在LP中，它将存在于训练集中的不同标签组合作为标签组合或标签集，不同的标签组合被认为是不同的类。标签幂集（Label Powerset，LP）将训练集中存在的每一个标签组合视为一个类标签，多标签数据集相应地被转化为单标签数据集。因此，LP算法只输出训练集中存在的标签集。 为了克服这一弱点，在[57]中提出了一种多标签集成分类器（ENsemble Multi-Label Classification,ENMLC）算法，与单个 LP 分类器相比，它发挥了集成算法的优势。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>correspondingly ： 相应地，相对地</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-32-05-2b242e494ac8ce42708a88b0a595cec4-post_4-be7033.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-33-30-0e55eb445b5054633453af3fc58b046f-post_5-3f519e.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于LP的数据稀疏问题（可能是由于高维特征空间或数据分布不平衡造成的，称为特征稀疏和类稀疏，我们通常将它们称为数据稀疏），这是剪枝集合(EPS)的集成方法在文献[18]提出了探索最重要的标签相关性。然而，它可能不适合包含大量标签和不平衡类的条件。为了解决这个问题，提出了一种基于聚类的多标签分类算法，称为CBMLC[58]。该方法基于这样的假设：相似的标签通常出现在相似的对象中，因此，有利于减少每个分类器的标签空间。此外，还有人提出了随机K标签集合(RAkEL)和 Rank-SVM 来随机选择标签组合或标签集，以提高系统的整体性能。他们可以更好地处理有许多类而训练实例很少的应用域。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sparseness ： 稀疏；稀少</p>
+<p>pruned ： 修剪</p>
+<p>assumption ： 假定；设想</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-52-36-f10a29a92aac75a87f64f886554d3fb5-post_6-7f3ee7.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>上述大多数多标签学习的算法主要是在全局范围内只利用正向标签相关性，并假设所有对象共享相同的标签相关性。然而，在现实中，不同的标签相关性往往被不同的实例所共享，标签不仅是正向相关的。为了克服这一缺点，提出了一种基于局部正负配对标签相关性（LPLC）的有效贝叶斯模型，用于多标签分类。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>aforementioned ： 上述的；前面提及的</p>
+<p>assume ：  假定；设想</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/16-02-40-cc22096c181f36e93d749876ff4d8c3b-post_7-c71570.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>综上所述，基于标签密集（Label Powerset，LP）的集成解决了标签相关性问题（包括标签相关性、类不平衡性、类稀疏性和大规模类）和特征相关问题（即高维特征）。考虑到有关问题的标签，ENMLC，EPS 等实现了更好的结果，考虑到特征相关问题，CBMLC ，RAkEL 等实现了显着的改进。 在表2中，我们总结了上述方法的特征。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>summary ： 总结，概要</p>
+<p>realise ： 认识到，明白</p>
+<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/16/15-45-49-cb9059f2332eb0335ada61e188f66da9-table_2-4ee932.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/16/16-39-18-46b9cd322d324a9991e361d7684792d3-table_2_1-e85bc7.png"></p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="8、总结"><a href="#8、总结" class="headerlink" title="8、总结"></a>8、总结</h1><p>在多标签数据学习中，很少有作品提出中数据集中明确识别相关标签</p>
+<p>可以利用标签之间的条件依赖性，建立一个贝叶斯网络来代表所有标签关于特征向量的联合概率，因此生成的网络结构能清晰的显示标签之间的条件依赖关系</p>
+<p>基于 BR 的集成方法主要解决两类问题</p>
+<p>1、关于标签的问题：1、标签相关性、类不平衡、结构化类、标签噪声</p>
+<p>2、关于特征的问题：1、特征噪声2、高维特征</p>
+<p>标签幂集（Label Powerset，LP）：存在于训练集中的不同标签组合作为标签组合或标签集，不同的标签组合被认为是不同的类。</p>
+<p>标签幂集把每一个标签组合视为一个标签类，多标签数据集被转换成单标签数据集，因此 LP 算法只输出训练集中存在的标签</p>
+<p>多标签集成分类器（ENsemble Multi-Label Classification,ENMLC）：为了克服 LP 算法存在的缺点，与单个的 LP 分类器相比，发挥了集成算法的优势</p>
+<p>由于高维特征空间或数据分布不平衡造成的 LP 的数据稀疏问题，EPS 方法在文献中提出了探索最重要的标签相关性</p>
+<p>CBMLC（基于聚类的多标签分类算法）：相似的标签出现在相似的对象中，减少了每个分类器的标签空间</p>
+<p>RAkEL 和 Rank-SVM，随机的选择标签组合和标签集，来提高系统性能，可以用来处理有很多类而训练集很少的应用</p>
+<p>局部正负配对标签相关性（Local Positive and negative pairwise Label Correlations,LPLC）:上述的多标签学习算法存在很多缺点：1、假设所有的对象共享相同的标签相关性，2、在全局范围内利用正向标签相关性。在现实生活中标签相关性往往被不同的实例所共享，标签不仅仅是正向相关的</p>
+<p>基于基于标签幂集的集成解决了标签相关性问题</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A-Survey-on-Multi-Label-Data-Stream-Classification-4</title>
     <url>/2021/03/14/A-Survey-on-Multi-Label-Data-Stream-Classification-4/</url>
     <content><![CDATA[<p>多标签数据流分类研究第四天</p>
@@ -22,7 +117,7 @@
 <p>associative : 联想的；联合的</p>
 <p>overlook ： 忽略；俯瞰</p>
 <h1 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-59-32-a5ca3b22e67a0fd47d2dc7396ecaadf9-post_3-ebee00.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/16-36-44-8917af4b3f5dc30ce681dde273ed6a8c-table_1-c08564.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/15/15-12-59-471cada4ebf55247dd6afdaf50527941-table_1-b417af.png"></p>
 <h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、总结："><a href="#4、总结：" class="headerlink" title="4、总结："></a>4、总结：</h1><p>Credal C4.5（CC4.5）分类器链的集成：解决带有噪声和二进制问题的的多标签数据的分类</p>
 <p>面向对象的混合多标签学习（Hybrid Noise-Oriented Multi-Label learning，HNOML）： 考虑到标签噪声和特征噪声，采用双稀疏性正则化与标签富集进行桥接。</p>
 <p>多标签分类的层次结构：采用树形的层次结构组织所有标签，层次结构的每个节点都包含一组标签，其大小远远小于整个标签集。</p>
@@ -432,13 +527,78 @@ dp[0][4] -&gt; dp[1][4] -&gt; dp[2][4]</code></pre>
 <p>这时背包的最大价值就是 dp[i - 1][j - w(i)] + v[i]</p>
 <p>这里解释了公式的后半部分</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/14/21-57-56-36765a6a260f1f821c9a354d159dad03-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210314215731-a22cca.png"></p>
-<h1 id="3、补充"><a href="#3、补充" class="headerlink" title="3、补充"></a>3、补充</h1><h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p>对上面的两种情况取最大值就好了 </p>
-<p>经过以上两点 我们弄明白了 </p>
-<pre><code>dp[2][4] = max &#123; dp[2 - 1][4],dp[2 - 1][4 - w(b)] + v(b) &#125;
-
-= max&#123;dp[1][4],dp[1][1] + 4&#125; = max&#123;3，4&#125; = 4</code></pre>
-<p>同时也弄明白了</p>
-<pre><code>dp[i][j] = max &#123; dp[i - 1][j], dp[i - 1][j - w[i]] + v[i] &#125;</code></pre>
+<h2 id="3、补充"><a href="#3、补充" class="headerlink" title="3、补充"></a>3、补充</h2><p><strong>1、当背包中容量留不出第 i 件物品需要的空间</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/19-47-47-e5ad3d771ad98712fe209446bf94040f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315193253-f27007.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-d873196dcb9b54a1001a4559f2d350a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111327-2d3f85.png"></p>
+<p>图中标绿的位置可以使用 dp[2][2] = 3 表示，按照上述公式，该位置为</p>
+<pre><code>dp[2][2] = max&#123; dp[1][2], dp[1][2 - w(b)] + v(a) &#125;</code></pre>
+<p>由于在后半部分 2 - w(b) 2 - 3 &lt; -1 &lt; 0,这说明无论背包怎么留空间都不足以给物品 b 留出足够的空间，</p>
+<p>所以这时候 dp[2][2] 只来自于第一部分，即 dp[2][2] = dp[1][2]</p>
+<p>在完善以下上述公式可以得到如下公式：</p>
+<pre><code>dp[i][j] = max &#123; dp[i - 1][j], dp[i - 1][j - w(i)] + v(i) &#125;  j - w(i) &gt;=0
+dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0</code></pre>
+<h1 id="四、对于本题来说完整的执行过程"><a href="#四、对于本题来说完整的执行过程" class="headerlink" title="四、对于本题来说完整的执行过程"></a>四、对于本题来说完整的执行过程</h1><p>下述的所有过程会在代码中体现出来</p>
+<h2 id="1、初始化"><a href="#1、初始化" class="headerlink" title="1、初始化"></a>1、初始化</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-00-43-80fd021643237a39faff9da800387918-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315195715-b52a66.png"></p>
+<p>将上图中标记为绿色和黄色的部分初始化为 0</p>
+<p><strong>这样做的好处</strong></p>
+<p>1、便于计算，不如说我们在计算橙色位置 dp[1][1] 的时候，</p>
+<p>这时候背包的总容量时小于 a 的体积的，所以无法留出阻攻的空间来存放物品 a，</p>
+<p>所以根据公式该处的位置直接是 dp[1][1] = dp[0][1] = 0</p>
+<p>这样可以省略一些判断</p>
+<p>2、也符合逻辑，绿色部分表示，一件物品都没有，所以背包能存放的最大价值为 0，</p>
+<p>因为没有东西可以往背包中放；黄色部分表示，背包的容量为 0，</p>
+<p>这时候无论什么物品都没法放入到背包中，所以背包能存放的最大价值为 0</p>
+<h2 id="2、第一部分计算"><a href="#2、第一部分计算" class="headerlink" title="2、第一部分计算"></a>2、第一部分计算</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-29-45-49d1af40a82559ce820b70c206a3ea88-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315202934-73abd8.png"></p>
+<p>对于上图来说，灰色部分表示已经计算完毕的部分，绿色部分表示即将要计算的部分</p>
+<p>他们分别用 dp[1][1],dp[2][1],dp[3][1],dp[4][1] 表示</p>
+<p>物品的体积和价值表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-d873196dcb9b54a1001a4559f2d350a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111327-2d3f85.png"></p>
+<p><strong>对于 dp[1][1]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(a) = 1 - 2 = -1 &lt; 0（背包留不出足够的空间)</p>
+<p>所以有</p>
+<pre><code>dp[1][1] = dp[1 - 1][1] = dp[0][1] = 0</code></pre>
+<p><strong>对于 dp[2][1]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(b) = 1 - 3 = -2 &lt; 0（背包留不出阻攻的空间）</p>
+<pre><code>dp[2][1] = dp[2 - 1][1] = dp[1][1] = 0</code></pre>
+<p><strong>对于 dp[3][1]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(c) = 1 - 4 = -3 &lt; 0（背包留不出阻攻的空间）</p>
+<pre><code>dp[3][1] = dp[3 - 1][1] = dp[2][1] = 0</code></pre>
+<p><strong>对于 dp[4][1]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(d) = 1 - 5 = -4 &lt; 0（背包留不出阻攻的空间）</p>
+<pre><code>dp[4][1] = dp[4 - 1][1] = dp[3][1] = 0</code></pre>
+<p>这一列计算完毕的结果如下图，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-46-44-c57957c93415fc3f346dc6bbfd60488d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315204634-84beff.png"></p>
+<p>其中灰色的部分表示已经计算完毕</p>
+<h2 id="3、第三部分计算"><a href="#3、第三部分计算" class="headerlink" title="3、第三部分计算"></a>3、第三部分计算</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-41-19-50918d671635b22991b8943ed889d49b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315204107-bd96af.png"></p>
+<p>对于上图来说，灰色部分表示已经计算完毕的部分，绿色部分表示即将要计算的部分</p>
+<p>他们分别用 dp[1][2],dp[2][2],dp[3][2],dp[4][2] 表示</p>
+<p>物品的体积和价值表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-d873196dcb9b54a1001a4559f2d350a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111327-2d3f85.png"></p>
+<p><strong>对于 dp[1][2]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(a) = 2 - 2 = 0 &gt;= 0（背包能留出足够的空间)</p>
+<p>所以有</p>
+<pre><code>dp[1][2] = max&#123; dp[0][2],dp[0][0] + v(a) &#125; = max&#123; dp[0][2],dp[0][0] + 3 &#125;
+= max&#123; 0,3 &#125; = 3</code></pre>
+<p><strong>对于 dp[2][2]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(b) = 2 - 3 = -1 &lt; 0（背包不能留出足够的空间)</p>
+<p>所以有</p>
+<pre><code>dp[2][2] = dp[1][2] = 3</code></pre>
+<p><strong>对于 dp[3][2]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(b) = 2 - 4 = -2 &lt; 0（背包不能留出足够的空间)</p>
+<p>所以有<br>    dp[3][2] = dp[2][2] = 3</p>
+<p><strong>对于 dp[4][2]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(b) = 2 - 5 = -3 &lt; 0（背包不能留出足够的空间)</p>
+<p>所以有<br>    dp[4][2] = dp[3][2] = 3</p>
+<p>这一列计算完毕的结果如下图，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-52-42-756817a6e9d93cd806c4c141121bf82c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315205229-04c016.png"></p>
 ]]></content>
       <tags>
         <tag>dp</tag>
