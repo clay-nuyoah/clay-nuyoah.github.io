@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">3.4k</span>
+            <span class="post-count">3.7k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">13 分钟</span>
+            <span class="post-count">15 分钟</span>
         </span>
     </span>
 </div>
@@ -281,7 +281,7 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
 <p>这一列计算完毕的结果如下图，</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-46-44-c57957c93415fc3f346dc6bbfd60488d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315204634-84beff.png"></p>
 <p>其中灰色的部分表示已经计算完毕</p>
-<h2 id="3、第三部分计算"><a href="#3、第三部分计算" class="headerlink" title="3、第三部分计算"></a>3、第三部分计算</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-41-19-50918d671635b22991b8943ed889d49b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315204107-bd96af.png"></p>
+<h2 id="3、第二部分计算"><a href="#3、第二部分计算" class="headerlink" title="3、第二部分计算"></a>3、第二部分计算</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-41-19-50918d671635b22991b8943ed889d49b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315204107-bd96af.png"></p>
 <p>对于上图来说，灰色部分表示已经计算完毕的部分，绿色部分表示即将要计算的部分</p>
 <p>他们分别用 dp[1][2],dp[2][2],dp[3][2],dp[4][2] 表示</p>
 <p>物品的体积和价值表</p>
@@ -307,6 +307,29 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
 <p>所以有<br>    dp[4][2] = dp[3][2] = 3</p>
 <p>这一列计算完毕的结果如下图，</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/15/20-52-42-756817a6e9d93cd806c4c141121bf82c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210315205229-04c016.png"></p>
+<h2 id="4、第三部分计算"><a href="#4、第三部分计算" class="headerlink" title="4、第三部分计算"></a>4、第三部分计算</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/16/20-27-07-05840f576e8afc56aacc3b91dfff63e0-20210316202555-9c8ff2.png"></p>
+<p>对于上图来说，灰色部分表示已经计算完毕的部分，绿色部分表示即将要计算的部分</p>
+<p>他们分别用 dp[1][3],dp[2][3],dp[3][3],dp[4][3] 表示</p>
+<p>物品的体积和价值表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/12/11-23-18-d873196dcb9b54a1001a4559f2d350a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210312111327-2d3f85.png"></p>
+<p><strong>对于 dp[1][3]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(a) = 3 - 2 = 1 &gt;= 0（背包能留出足够的空间)</p>
+<p>所以有<br>    dp[1][3] = max{ dp[0][3],dp[0][1] + v(a) } = max{ dp[0][3],dp[0][1] + 3 }<br>    = max{ 0,3 } = 3</p>
+<p><strong>对于 dp[2][3]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(a) = 3 - 3 = 0 &gt;= 0（背包能留出足够的空间)</p>
+<p>所以有<br>    dp[2][3] = max{ dp[1][3],dp[1][0] + v(a) } = max{ dp[1][3],dp[1][0] + 4 }<br>    = max{ 0,4 } = 4</p>
+<p><strong>对于 dp[3][3]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(a) = 3 - 4 = -1 &lt; 0（背包能留出足够的空间)</p>
+<p>所以有<br>    dp[3][3] = dp[2][3] = 4</p>
+<p><strong>对于 dp[4][3]</strong></p>
+<p>判断背包能不能留出足够的空间</p>
+<p>利用公式 j - w(a) = 3 - 5 = -2 &lt; 0（背包能留出足够的空间)</p>
+<p>所以有<br>    dp[4][3] = dp[3][3] = 4</p>
+<p>这一列计算完毕的结果如下图，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/0-1-bei-bao/2021/03/16/20-34-55-e994224c25d25b206b1abaf263b958fd-20210316203441-afeb6f.png"></p>
  
       <!-- reward -->
       
