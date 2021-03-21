@@ -1,598 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-9</title>
-    <url>/2021/03/21/A-Survey-on-Multi-Label-Data-Stream-Classification-9/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第九天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分："><a href="#1、第一部分：" class="headerlink" title="1、第一部分："></a>1、第一部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-06-e2e2da35d44f12f3faa2d3ce7183cad5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102305-77e292.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类的局限和挑战</p>
-<p>在本小节中，我们主要介绍了流媒体数据分类的一些常见约束条件。数据流有其固有的特殊性，如可能是无限的存储、时间顺序、随时间的动态变化和多标签等。如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。例如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。同时，隐藏在这些查询中的不同热门话题始终随着时间也在不断发生着变化。另一方面，数据流分类的结果可能是近似的，并且必须主要满足以下约束：</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>peculiarities ： 独特性；怪癖</p>
-<p>temporal ： 时间</p>
-<p>hence  ： 因此；今后</p>
-<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="2、第二部分："><a href="#2、第二部分：" class="headerlink" title="2、第二部分："></a>2、第二部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-22-4771672eef68d85745d3a78fba79408f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102435-627268.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-44-546d2b12340f8f105e89c56dd5ce2640-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102448-dc5cef.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>单次：传统数据挖掘中使用的数据集是静态的，可以反复多次读取，而在数据流中，数据实例是动态的，最多只能读取一次。</p>
-<p>实时响应。许多关于数据流的实际应用，如股票市场预测和信用卡交易，都需要实时响应。较低的时间成本是对数据处理和决策的重要要求。</p>
-<p>储存器受限：随着数据实例的到来，数据流的容量是无限的。因此，只能存储和计算数据摘要以获得可接受的近似结果，而由于有限的内存存储和计算能力，许多实例将被丢弃。</p>
-<p>漂移检测：概念漂移是指随着时间的推移，类空间、特征空间或两个空间的数据分布发生变化。 而漂移检测有利于更新建立的模型，以适应隐藏在数据流中的动态变化。</p>
-<p>多标签问题：在流式数据中，每个数据实例都与一个或多个标签相关联。在这一场景中，如一类新闻流，它可能同时属于多个主题。多标签数据流分类的目的是将每个数据实例划分为一个预定义的标签或标签集。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>stock ： 股份；股票；库存</p>
-<p>simultaneous ： 同时的</p>
-<h1 id="3、第三部分："><a href="#3、第三部分：" class="headerlink" title="3、第三部分："></a>3、第三部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-35-09-f60255804669995834038a6e589f2508-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102524-dd4ac1.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流中的概念漂移和漂移检测方法的分类。</p>
-<p>在这一小节中，我们首先对概念漂移的原因和类别进行了简单的介绍，然后我们总结了一些先进的漂移检测方法。</p>
-<p>概念漂移的原因和类别：研究人员通常会考虑以前未知的隐藏数据背景来界定概念漂移。在[74]中，作者将其命名为不可预见的变化，因为有关的变化与目前的领域知识或以前的学习实例相比是出乎意料的。</p>
-<p>根据这些漂移的原因和影响，概念漂移有两种类型，包括真实漂移和虚拟漂移 。此外，根据漂移速度，我们可以将漂移分为四种流行的类型，即增量漂移、突发性和渐进性漂移、反复性漂移[78]。然而，在实际案例中，概念漂移可能是各种漂移的复杂组合。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>brief ： 短暂的；简短的</p>
-<p>previously ：  以前；预先</p>
-<p>incremental ： 增长的；逐渐的</p>
-<p>abrupt :  生硬的；突然的</p>
-<p>gradual : 逐渐的；平缓的</p>
-<p>recurrent : 复发的；周期性的</p>
-<h1 id="4、第四部分："><a href="#4、第四部分：" class="headerlink" title="4、第四部分："></a>4、第四部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-36-28-71caa70146b4f0157293826fbd5b21cc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102535-d54499.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-36-42-de53ac571c6c91f070209b6bb4ece215-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102549-528363.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流的漂移检测方法：概念漂移检测方法，一般根据分类性能或传入数据实例本身的信息来检测漂移的概念，这意味着数据流中数据的分布变化。这意味着通常会导致模型的更新，或者只是用一个新的模型替换过时的模型。因此，一个理想的漂移检测技术必须满足可以快速更换过时的模型，同时保持较短的恢复时间成本。因此，为了评估漂移检测器的效果，我们通常考虑以下措施：</p>
-<p>正确的漂移检测数；</p>
-<p>误报次数；</p>
-<p>恢复时间；</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>imply ： 意味；暗示</p>
-<p>restoration ： 恢复；复位</p>
-<p>alarms ： 警报</p>
-<p>intolerable ： 无法忍受的</p>
-<h1 id="5、第五部分："><a href="#5、第五部分：" class="headerlink" title="5、第五部分："></a>5、第五部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-36-57-78e3676794c2f8402a418ff2ec01383a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102601-5cb37f.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在实践中，我们通常会考虑不同指标之间的权衡。例如，有些方法可以有效降低漂移检测器的检测延迟，但可能会导致较高的误报率。没有多少漂移检测方法可以汇总度量，并且大多数方法都利用了所有上述度量。更具体地说，将漂移检测器分为以下四类：</p>
-<p>基于统计过程控制的方法；</p>
-<p>基于顺序分析相关性的方法；</p>
-<p>监测相邻两个时间窗口之间数据分布的方法;</p>
-<p>基于上下文的方法。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>relevance ： 相关性；关联</p>
-<p>aggregate ：集合；聚集 </p>
-<p>adjacent : 邻近的，毗连的</p>
-<h1 id="6、第六部分："><a href="#6、第六部分：" class="headerlink" title="6、第六部分："></a>6、第六部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-37-20-4f97f0df6519f33a4a4dc421e1956e33-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102610-066d27.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>下面，我们就一些检测漂移的方法进行简要介绍。最著名的漂移检测方法是DDM（Drift Detection Method）[80]。guaDDM方面，开发了EDDM（早期漂移检测方法）[81]，以提高渐进漂移的检测性能。在DDM方面，为了提高渐变漂移的检测性能，开发了EDDM（Early Drift Detection Method）。另一个称为EWMA（指数加权移动平均值）的检测器[82]通过采用观察指数加权移动平均值变化的理想方法来检测概念漂移。CUmulative SUM方法(CUSUM)可以检测给定参数值的概率分布是否发生变化，并指出发生重大变化的时间点。另外，在[15]，[95]-[98]中，还存在一些非参数检验，例如用于检测漂移的计算智能累积和检验。其他一些检测方法则采用自适应窗口算法（ADWIN），例如CVFDT（适应概念的快速决策树学习器），E-CVFDT（高效CVFDT）和SUN（针对具有概念漂移和未标记数据的数据流的半监督分类算法） ， 等等。</p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>brief : 简短的，简洁的</p>
-<p>resort to : 依靠;求助于</p>
-<h1 id="7、第七部分："><a href="#7、第七部分：" class="headerlink" title="7、第七部分："></a>7、第七部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-37-35-70990a1701679aacba3795441dd454b3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102622-2992d1.png"></p>
-<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类中的评估指标</p>
-<p>正确评估分类模型的性能是机器学习的重要方面。在流式数据挖掘的背景下，需要得到新的解决方案，尤其是在非稳态环境下。在性能评价方面，我们不仅要考虑数据特征不断变化的增量处理，还要考虑分类器对变化的反应。在流媒体环境下，随着时间的推移，新的类可能会出现，属性空间可能会发生变化，决策规则可能会失去相应的相关性。更重要的是，有时数据流中加入人工漂移，可以进行详细分析。因此，在预测模型和漂移检测器的评价中，真实世界的数据流和合成的数据流都很重要。</p>
-<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>stationary : 固定的；静止的</p>
-<p>incremental  : 增长的；逐渐的</p>
-<p>evolve:  发展；进化</p>
-<p>synthetic ：  合成物</p>
-<h1 id="8、第八部分："><a href="#8、第八部分：" class="headerlink" title="8、第八部分："></a>8、第八部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-38-16-b73fa3321d1de0f99792ed640297fe82-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102631-7d80da.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-38-39-21ad31f891a7e0a9bdba328117602610-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102646-7a4bf4.png"></p>
-<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>交叉验证是静态和批处理学习中一种非常流行的评估技术。但是，在非平稳流环境中，由于其连续性和时序性，它几乎不能直接应用于流数据中。因此，就稳定的或非稳定的数据流的类型而言，下面有两种相应的方法。</p>
-<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、第九部分："><a href="#9、第九部分：" class="headerlink" title="9、第九部分："></a>9、第九部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-39-01-beba2eaef85a243a6cc9f1570f681e32-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102654-f7f531.png"></p>
-<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>留出法评估：在保持评估中，需要两个数据子集，一个是用于训练模型的训练数据集，另一个是用于测试模型的测试数据集（即留出集）。我们维护一个留出集，该留出集先前未被我们的模型用于评估模型。通过在不断更新的数据集上测试学习模型，我们可以获得模型的无偏估计。</p>
-<p>前期评估：事前评估，也称为交织训练和测试，是一种用于评估流挖掘中分类器的预测准确性的流行方法。而在这个措施中，数据样本是边采集边评估的，因此数据样本的大小并不是事先固定的。</p>
-<h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>maintain ： 维持；继续 </p>
-<p>estimation ：估计；尊重 </p>
-<p>interleaving ： 交错；交叉</p>
-<p>assess ： 评定；估价</p>
-<h1 id="10、第十部分："><a href="#10、第十部分：" class="headerlink" title="10、第十部分："></a>10、第十部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-40-31-f387e8b58d6aa635a1960004ba5675e2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102706-88116f.png"></p>
-<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="11、第十一部分："><a href="#11、第十一部分：" class="headerlink" title="11、第十一部分："></a>11、第十一部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-39-37-60b3762cb6f1410d055ca5f0af72ff75-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102718-f7d331.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-41-16-3276de8a4bbbb6da5e21b8ab84e661b9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102733-2f965a.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-41-28-6665f2e7946b06c24d9eb0b2cff06c91-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102740-2018a5.png"></p>
-<h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-10"><a href="#2、名词解释-10" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2>]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-8</title>
-    <url>/2021/03/20/A-Survey-on-Multi-Label-Data-Stream-Classification-8/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第八天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-30-c80b0c0fc999f3644543e7d28e8d345e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095011-34d32f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-41-e094db1ae64128ebcc0f982f8c641cdd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095624-70b576.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-52-1bcd338b061202c6e630d9457b0de983-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095636-d6aac9.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-03-1831148d83e5b4a130002dbd6b35c3f7-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095644-d8bde7.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-11-d1b14b4bbc4691aa9e6be8d8b9ba3997-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095656-1df353.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-24-81e7493e865c62f1d43434008d108eba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095706-4d56f5.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-59-04-d4248f49488410c7655b9f8b33b53d89-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095718-625058.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>我们主要介绍基于实例的度量和效率方面的结果。基于实例的评价指标包括汉明损失、准确度、精度、召回率、F1和子集精确度。统计评价结果见图1-8，完整的具体结果见表6-13。 从表中总结的结果，我们可以得出一些结论。首先，从召回率评估，HOMER 表现最好，而 RF-PCT 在精度方面表现最好。HOMER 的预测比较完整，而 RF-PCT 的预测比较准确。其次，关于方法在六个评价指标上的表现，我们可以看到，方法在所有指标上表现最好的是RF-PCT，其次是HOMER、BR和CC。根据汉明损失和精度，RF-PCT的表现最好，关于精度和F1的表现第三好。HOMER方法在子集精度、准确度、召回率和F1上表现最佳，而在汉明损失和精度上表现不佳。HOMER在汉明损失方面表现不佳的原因可能是构建HOMER的层次结构的程序忽略了汉明损失的优化。同时我们可以得知，在0.05的显著性水平下，预测性能的差异是显著的。HOMER和RF-PCT往往明显优于单一的 PCT，或单一的 ML-C4.5 树。从合集学习来看，RF-PCT合集提高了单个PCT的性能，但对于ECC和RF-MLC4.5合集来说，情况并非如此，一些单个模型在某些指标上的平均表现甚至优于对应的合集。从集成学习来看，RF-PCT集成提高了单个 PCT 的性能，但对于 ECC 和 RF-MLC4.5 合集来说，情况并非如此，一些单个模型在某些指标上的平均表现甚至优于对应的合集。 最后，我们还知道，基于 SVM 的方法在较小的数据集上呈现出更好的性能，而基于树的方法更适用于具有大量特征的大数据集。</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>specific ： 特殊的，特定的；明确的</p>
-<p>corresponding  ： 相当的，相应的</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-28-51-2a93ee9bc79afcc062d7f4d20e91050e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102403-7008ce.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>从表12和表13得知，基于树的方法比基于SVM的方法效率高。即PCT是最有效的方法，其次是ML-C4.5和ML-kNN。PCT 比 ML-C4.5 更快地构建模型，因为它们采用的修剪策略不同。    </p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-10-4a936cf677509ebf2504e88cf84728ad-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102410-7e9bfe.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-28-53c968909b2d0f07a9082be5469a650e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102421-cdbae8.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>总而言之，无论是问题转化、算法自适应还是集成法，没有一种方法在所有的性能评价指标上都是最优的。相比之下，集成法在效果上表现较好，但在效率上的表现还有待提高。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-41-9e3e7f1e9648ed8c743ab60aa97d9c58-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102427-403bee.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类</p>
-<p>在本节中，我们首先介绍数据流和数据流分类的相关概念，然后介绍数据流分类的常见约束，并主要解决数据流分类中的概念漂移问题。最后，我们总结了数据流分类中的评估指标，开放数据和软件资源。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-00-61fbbdda76343ab39090acdefb1e29ab-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102436-4d06db.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-44-036aaa0f4593ce981bd346666109d9a5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102446-4f3527.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于数据流和数据流分类的概念</p>
-<p>数据流是由一串有序的数据序列组成的，有起始字节和结束字节。而数据流DS定义为 n(n → ∞) 个数据样本的序列，表示为：DS = {x1, x2, … …。, xi, … . , xn}，其中xi(1 ≤ i ≤ n)表示第i个可视的数据对象，xn是数据流中最后一个可视的数据对象的符号。在对数据流进行分类时，如果每个数据对象xi仅具有一份标签 yi ∈ Y = {y1, y2, . . . , yc}，则将它们命名为单标签数据流。否则，如果在对数据流进行分类时每个数据对象都与一个以上的标签（即标签集Yi⊆Y）相关联，则称为多标签数据流。因此，多标签数据流表示具有多个类标签的数据实例序列，且没有边界和一定的顺序。数据流有几个新的特点，可能是无限量、连续、数据点速度高、多标签概念漂移等等。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>be composed of : 由……组成</p>
-<p>sequences ： 序列</p>
-<p>velocity ： 速度</p>
-<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-56-256f6a82742d0108c63252c0f9623831-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102501-564f53.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类源于传统的监督机器学习的分类任务，它涉及到预测一个未知例子的类标签的问题，而这个类标签是由一个特征向量来表示的。 与静态数据上的分类相反，流式数据分类中的分类器不容易实时访问数据实例，因为数据实例是以连续顺序数据流的形式随时间高速到达的。由于数据流具有无限长、高速度的特性，数据流的实例只能扫描一次或存储时间很短，因此，一个理想的数据流分类器必须做好充分的准备，才能实时处理大量的实例，以获得更好的分类性能。数据流分类的应用领域包括但不限于短文数据流分类、图像数据流分类、视频流数据分类等。</p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>real-time ： 实时</p>
-<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-31-21-406f00a5c756fd73c415adcabe17362e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102510-3d885f.png"></p>
-<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在这个分类的任务中，数据流DS中的实例依次到达。给定一个实例 xi∈DS，它表示在时间i到达的没有标签的属性值的向量。在 Δi 个时间单位的间隔中，我们假设在实例 xi+Δi 到来之前，可以访问到 xi 的地真标签 yi，因此，我们可以先利用实例xi作为测试实例，然后将其作为训练实例。说白了，给定 χ 表示输入特征空间，Y表示可能的标签空间，Yi代表标签子集。数据流分类的目的首先是利用新到的和历史的实例来训练一个分类器，这些实例具有单个标签或多个标签。然后我们利用生成的模型对数据流中的任何一个传入的数据实例 xi∈χ 给出一个标签或一个标签集的预测，即自动预测xi的一个标签yi或一个标签集yi ∈ Y。</p>
-<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intervals : 时间间隔</p>
-<p>ground :  地面；土地</p>
-<p>bluntly ： 直言地，单刀直入地</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-7</title>
-    <url>/2021/03/17/A-Survey-on-Multi-Label-Data-Stream-Classification-7/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第七天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/14-58-31-80fd023caf95ef7b075987082b319a8a-QQ%E6%88%AA%E5%9B%BE20210317145758-989aeb.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于传统的多标签数据分类的讨论</p>
-<p>在这一小节中，我们将从更广泛的角度讨论上述多标签分类方法，并对几种具有代表性的算法在不同评价指标上进行一些对比实验。</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>broader ： 广大的；一片的比较级</p>
-<p>perspective ：  观点；远景</p>
-<p>conduct : 组织;实施;行为</p>
-<p>comparative ： 比较的；相当的</p>
-<p>experiment ： 实验；试验</p>
-<p>evaluation ：  评价；评估</p>
-<p>metric ： 指标；度量</p>
-<p>merit ： 优点；价值</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-08-17-afebf9ac92acd0ce1dbeecaf076b6e93-QQ%E6%88%AA%E5%9B%BE20210317150810-32a42e.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-09-14-226d6708ea1f13c5626a9e8a0f01e7c1-QQ%E6%88%AA%E5%9B%BE20210317150825-e8cc79.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据以上小节，多标签分类方法有三类，PT、AA和PT与AA的集成。同时，我们了解到每种方法的产生是为了提高分类器的性能指标。据我们所知，现有的大多数多标签学习方法实际上是通过显性或隐性地优化某一个或多个指标来从训练实例中学习。鉴于公平和诚信的评价，算法的性能应该在更广泛的指标上进行测试。 例如，一些研究者证明，一些解决最大化子集准确度的分类器在汉明损失方面表现不佳。因此，在本小节中，我们从不同类别中选取9种典型的多标签学习算法，比较它们的差异。如表4所示，我们总结了这些算法的特性，包括计算复杂度：训练复杂度和测试复杂度，以及测试数据集域。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p> 汉明损失（hamming loss ）： 表示所有label中错误样本的比例，所以该值越小则网络的分类能力越强。</p>
-<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>explicitly : 显式地</p>
-<p>typical ：  典型的；特有的</p>
-<p>propertie ： 属性；性能</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-25-35-fd8cd7ede28622aa9378d373610fd24f-QQ%E6%88%AA%E5%9B%BE20210317152528-683117.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-44-51-8229fcaa832887526c3ff40fd3eabc41-QQ%E6%88%AA%E5%9B%BE20210317154446-9ab5db.png"></p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-45-34-899c5a65c6aaf5afa053027bbf324ea5-QQ%E6%88%AA%E5%9B%BE20210317154526-5b3ffc.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>从表4中，就测试数据域而言，我们了解到不同类型的数据集代表了不同的领域，在这些领域中，相应的算法在原始文献中表现出更好的效果。根据表4，文本域、生物域和图像域是常用的测试域，它们也是多标签学习中常用的测试选择。至于不同多标签学习算法的复杂度，我们从训练复杂度和测试复杂度进行分析，知道每种算法的复杂度对不同规模数据集的适应性起着重要作用。为了衡量适用性，我们一般会考虑训练样本的数量、维度和可能的标签大小等因素。通过分析，我们了解到，在多标签学习中，汉明损失和排序损失是最常被优化的指标，即让算法在这些指标上表现得最好。 同时我们也发现，RAndom k-labELsets优化的子集精度仅由k-labELsets而不是整个标签空间来衡量。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>corresponding ：  相当的，相应的</p>
-<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/16-44-13-d067f03d19ea7e7b25a84ed3aa324359-QQ%E6%88%AA%E5%9B%BE20210317164303-43f257.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/16-44-53-effa3c6d4d597991266c50caae005c28-QQ%E6%88%AA%E5%9B%BE20210317164319-4000fa.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>经过比较，我们知道，所有的PT方法都包括两个过程，即把复杂的多标签问题转化为若干个单标签问题，并把每个单标签问题的结果结合起来，而所有的AA方法都是把现有的算法改进行造成来解决多标签问题。与PT和AA相比，集成方法的复杂度可能更高，它可以更好地处理复杂的多标签问题。因此，在多标签数据挖掘中，集成技术可能是进一步研究的最佳选择。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/16-51-49-a98c5f7aa2e084d60c626f7cd749d4c6-QQ%E6%88%AA%E5%9B%BE20210317165102-7287ae.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/18/17-05-29-76fc3f73c7648c437a53a35d056e1418-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210318170510-e6eab9.png"></p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/17-02-55-1616bc8d53211041847a5190ece10e42-QQ%E6%88%AA%E5%9B%BE20210317164954-27eafd.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/17-03-23-e69c10ffe699996904cc209b97018b81-QQ%E6%88%AA%E5%9B%BE20210317165014-a4abd3.png"></p>
-<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>此外，我们进行实验，研究多标签分类中的典型算法。我们采用了9个不同规模、来自不同应用领域的多标签分类基准数据集。而在这组实验中，我们选取了11个不同的类型的具有代表性的算法，包括PT、AA以及PT和AA的集成，比较它们在不同的评价指标（多标签分类中常用的评价指标，包括基于实例的指标和基于标签的指标.为了简单起见，我们在这里只选取基于实例的指标来研究算法的性能）和效率（训练时间和测试时间）。我们采用 Friedman 检验与 Nemenyi 事后分析来检验不同算法之间的统计学意义。在本次统计学意义的测试中，我们使用 α=0.05 的 Friedman 检验，零假设是所有测量值均来自同一分布。更好的模型平均排名较低，即在临界距离图的右侧。计算 Nemenyi Significance 重要性的临界距离，其中m是要比较的模型数量，|D| 表示在其上进行实验的数据集的数量。在这里，m = 11，| D | = 9且q（α= 0.05，m = 11 ）= 3.219，<br>我们得到CD = 5.0333作为我们的临界距离。</p>
-<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>弗里德曼检验（Friedman test ）： 即“弗里德曼双向秩方差分析”，是多个(相关)样本齐一性的统计检验。</p>
-<h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>competing : 竞争</p>
-<p>hypothesis ： 假设</p>
-<h1 id="8、第八部分"><a href="#8、第八部分" class="headerlink" title="8、第八部分"></a>8、第八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/17-35-40-b54905e1fadc9f68c16228b75a6f8cad-QQ%E6%88%AA%E5%9B%BE20210317173510-9cc639.png"></p>
-<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>一般来说，如果零假设不成立，通常采用 Nemenyi 后分析法来观察哪种方法的统计学表现明显优于其他方法。我们可以从“关键距离图”中看到Friedman-Nemenyi的结果，其中，方法是根据数字线上某个度量的平均排名对方法进行排序的。从理论上讲，在相互之间的临界距离内的方法在统计上被认为并不比彼此显着更好，并且它们在图中用一条线链接。</p>
-<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、总结"><a href="#9、总结" class="headerlink" title="9、总结"></a>9、总结</h1><p>多标签分类分为三种方式：<br>1、问题转移（Problem Transformation，PT）2、自适应算法（Algorithm Adaptation，AA）3、PT 和 AA 算法的集成</p>
-<p>每种方法的产生都是为了提升分类器的性能指标</p>
-<p>现有的大多数多标签学习方法实际上是通过显性或隐性的优化某一个或多个指标来从训练实例中学习，</p>
-<p>有研究者证明，一些解决最大化子集准确度的分类器在汉明损失方面表现不佳</p>
-<p>不同类型的数据集代表了不同的领域</p>
-<p>文本域、生物域、图像域是常用的测试域，也是多标签学习中常用的测试选择；</p>
-<p>针对多标签学习算法的复杂度，可以从训练复杂度和测试复杂度进行分析</p>
-<p>每种算法的复杂度对不同规模数据集的适应性起着重要的作用</p>
-<p>为了衡量适应性，通常考虑 训练样本的数量、维度、和可能的标签大小等因素。</p>
-<p>汉明损失和排序损失是最常被优化的指标</p>
-<p>RAndom k-labELsets优化的子集精度仅由k-labELsets而不是整个标签空间来衡量。</p>
-<p>PT方法包含两个过程：1、把复杂的多标签问题转换成若干个单标签问题2、把每个单标签问题的结果结合起来</p>
-<p>AA方法都是把现有的算法进行改造来解决多标签问题</p>
-<p>与 PT 与 AA 相比，集成方法的复杂度可能更高，可以更好的处理复杂的多标签问题。</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-6</title>
-    <url>/2021/03/16/A-Survey-on-Multi-Label-Data-Stream-Classification-6/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第六天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-29-18-d9c897c35b6b326800c70a0b8961f8ba-post_1-ab35ab.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-39-37-8973681724759961fd6ae8e7279b9d13-table_3_1-a34b42.png"></p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-41-05-77597514d369cf74a470fd363e0165b6-post_1-463d89.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于自适应算法的集成</p>
-<p>现有的许多算法，如FaIE、LEML、CML、LCML、PLST和CPLST等，都考虑到了类标签向量和特征表示在低维潜在空间中的线性关系。然而，上述方法忽略了尾部标签的问题，而许多真实世界的多标签数据集有大量的尾部标签（即不经常分配给实例的标签）。为了解决这个问题，提出了一种高效半监督多标签分类器（ESMC）针对标签缺失（即数据集呈现部分标签或无标签），[66]中的工作采用尾部标签考虑类标签缺失，[51]中应用交互最小二乘法（MC）方法填补缺失条目，并兼顾特征和标签缺失。为了解决标签带来的弱点，通过RF-PCT、FaIE等取得了较好的性能。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>矩阵补全（atrix completion）:矩阵补全是填充部分观察到的矩陣的缺失条目的任务。</p>
-<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>latent ：潜在的；潜伏的</p>
-<p>representation ： 代表；表现</p>
-<p>aforementioned ： 上述的；前面提及的</p>
-<p>entries ： 条目</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p>为了解决标签带来的弱点，通过RF-PCT[60]、FaIE[61]等取得了较好的性能。</p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/17-11-04-2b8e498729082431e2165ab74cdb361b-QQ%E6%88%AA%E5%9B%BE20210316171011-32ae90.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/17-11-40-23bab71278ec161103b58b657079078d-QQ%E6%88%AA%E5%9B%BE20210316171050-ef0097.png"></p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>据我们所知，在保留未知标签组合的泛化能力或标签联合概率的模型建立方面，很少有多标签分类方法。为了弥补这一不足，提出了一种新的多标签分类机制，命名为多标签分类的标签嵌入网络（Label Network Embedding for Multi-Label Classification，LNEMLC）。 它将标签网络嵌入到多标签学习中，以扩展输入空间，从而可以使用任何多标签基础分类器以较低的计算复杂度提高分类质量。而在 [68] 中的工作提出了一种针对大规模类的快速线性降维方法。更准确地说，所有的标签都被转化为一个缩小的编码空间，得到的伪标签被用来训练集成模型。</p>
-<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>seldom ： 很；不常</p>
-<p>retain ： 保持；保留</p>
-<p>generalization ： 泛化；概括</p>
-<p>compensate ： 补偿;赔偿</p>
-<p>shortage :  缺乏，缺少</p>
-<p>mechanism : 机制；原理</p>
-<p>embed ：  栽种；使嵌入</p>
-<p>extend ： 延伸；扩大</p>
-<p>dimension ： 方面；维</p>
-<p>pseudo ： 冒充的，假的</p>
-<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/20-05-17-9a37aeb248f7d7f03b76874f45a7e3c4-post_4-e5b862.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>一句话，上述集成方法解决了关于标签的问题（包括标签相关性、大规模类、标签缺失）和关于特征的问题（主要是高维特征）。其他如 IEML、ICM L等作品的提出，不仅涉及标签问题，还涉及特征相关性问题。在 [62] 作品中，利用损失函数的结构来解决在ERM问题，提出了一种基于标签转换技术的概率模型，用于多标签分类。而更详细的总结见表3。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>FaIE、LEML、CML、LCML、PLST和CPLST算法：考虑了类标签向量和特征表示在低维潜在空间中的</p>
-<p>线性关系，上述的算法忽略了尾部标签的问题，而现实世界中的多标签数据集有大量的尾部标签。</p>
-<p>高效半监督多标签分类器（Efficient Semi-supervised Multi-label Classifier，ESMC）：为了解决标签缺失问题提出的算法</p>
-<p>在 [66] 文章中，采用了尾部标签考虑类标签确实，</p>
-<p>在 [51] 文章中应用交互最小二乘法填补缺失目录，并兼顾特征和标签缺失</p>
-<p>RF-PCT、FaIE，解决了标签带来的若点，并取得了很好的性能</p>
-<p>保留未知标签组合的泛化能力或标签联合概率的模型建立方面，很少有标签分类方法</p>
-<p>标签分类的标签嵌入网络（Label Network Embedding for Multi-Label Classification，LNEMLC）：</p>
-<p>为了弥补上述所发的缺点，他将标签网络嵌入到了多标签学习中，以扩展输入空间，这样就可以使</p>
-<p>用任何的多标签基础分类器以较低的计算复杂度提高分类质量</p>
-<p>在 [68] 中，一种针对大规模类的快速线性降维方法被提出，所有的标签都被转换为一个缩小的编</p>
-<p>码空间，得到的伪标签被用来训练集成模型。</p>
-<p>上述的集成方法解决了关于标签的问题和关于特征的问题</p>
-<p>IEML、ICML等作品的提出，不仅涉及标签问题，还涉及特征相关性问题</p>
-<p>在作品 [62] 中利用损失函数的结构来解决在 ERM 问题提出了基于标签转换技术的概率模型，用于多标签分类。</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-5</title>
-    <url>/2021/03/15/A-Survey-on-Multi-Label-Data-Stream-Classification-5/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第五天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/14-52-16-b27e4e9ba0e6d6cc7834181a8e9aa1f3-post_1-9ae8d8.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在多标签数据学习中，很少有作品提出从数据集中明确识别相关标签。例如，在[54]的作品中明确评估了标签相关性得分。在[55]中提出了一种利用标签之间的条件依赖性，建立了一个贝叶斯网络来代表所有标签关于特征空间的联合概率。因此，生成的网络结构能够清晰地显示标签之间的条件依赖关系。</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>explicitly ：  明确地；明白地</p>
-<p>evaluate ： 评价；估价</p>
-<p>exploit ： 开发；利用</p>
-<p>stand for ： 代表；支持</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-06-18-f617bf4d834ec7efea15a21b2df9e80c-post_2-602fd3.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>综上所述，上述基于BR的集成方法主要解决两类问题。第一个是关于标签的问题，包括标签相关性、类不平衡、结构化类和标签噪声。而第二个是关于特征的问题，包括特征噪声和高维特征。表 1 总结了上述基于 BR 的集成的的详细细节。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>aforementioned ： 上述的；前面提及的</p>
-<p>summarizes ： 概述；总计</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-17-58-f2bbf666cbbeac8f183331f966505649-post_3-126f68.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于标签幂集的集成</p>
-<p>在LP中，它将存在于训练集中的不同标签组合作为标签组合或标签集，不同的标签组合被认为是不同的类。标签幂集（Label Powerset，LP）将训练集中存在的每一个标签组合视为一个类标签，多标签数据集相应地被转化为单标签数据集。因此，LP算法只输出训练集中存在的标签集。 为了克服这一弱点，在[57]中提出了一种多标签集成分类器（ENsemble Multi-Label Classification,ENMLC）算法，与单个 LP 分类器相比，它发挥了集成算法的优势。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>correspondingly ： 相应地，相对地</p>
-<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-32-05-2b242e494ac8ce42708a88b0a595cec4-post_4-be7033.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-33-30-0e55eb445b5054633453af3fc58b046f-post_5-3f519e.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于LP的数据稀疏问题（可能是由于高维特征空间或数据分布不平衡造成的，称为特征稀疏和类稀疏，我们通常将它们称为数据稀疏），这是剪枝集合(EPS)的集成方法在文献[18]提出了探索最重要的标签相关性。然而，它可能不适合包含大量标签和不平衡类的条件。为了解决这个问题，提出了一种基于聚类的多标签分类算法，称为CBMLC[58]。该方法基于这样的假设：相似的标签通常出现在相似的对象中，因此，有利于减少每个分类器的标签空间。此外，还有人提出了随机K标签集合(RAkEL)和 Rank-SVM 来随机选择标签组合或标签集，以提高系统的整体性能。他们可以更好地处理有许多类而训练实例很少的应用域。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sparseness ： 稀疏；稀少</p>
-<p>pruned ： 修剪</p>
-<p>assumption ： 假定；设想</p>
-<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-52-36-f10a29a92aac75a87f64f886554d3fb5-post_6-7f3ee7.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>上述大多数多标签学习的算法主要是在全局范围内只利用正向标签相关性，并假设所有对象共享相同的标签相关性。然而，在现实中，不同的标签相关性往往被不同的实例所共享，标签不仅是正向相关的。为了克服这一缺点，提出了一种基于局部正负配对标签相关性（LPLC）的有效贝叶斯模型，用于多标签分类。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>aforementioned ： 上述的；前面提及的</p>
-<p>assume ：  假定；设想</p>
-<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/16-02-40-cc22096c181f36e93d749876ff4d8c3b-post_7-c71570.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>综上所述，基于标签密集（Label Powerset，LP）的集成解决了标签相关性问题（包括标签相关性、类不平衡性、类稀疏性和大规模类）和特征相关问题（即高维特征）。考虑到有关问题的标签，ENMLC，EPS 等实现了更好的结果，考虑到特征相关问题，CBMLC ，RAkEL 等实现了显着的改进。 在表2中，我们总结了上述方法的特征。</p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>summary ： 总结，概要</p>
-<p>realise ： 认识到，明白</p>
-<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/16/15-45-49-cb9059f2332eb0335ada61e188f66da9-table_2-4ee932.png"></p>
-<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/16/16-39-18-46b9cd322d324a9991e361d7684792d3-table_2_1-e85bc7.png"></p>
-<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="8、总结"><a href="#8、总结" class="headerlink" title="8、总结"></a>8、总结</h1><p>在多标签数据学习中，很少有作品提出中数据集中明确识别相关标签</p>
-<p>可以利用标签之间的条件依赖性，建立一个贝叶斯网络来代表所有标签关于特征向量的联合概率，因此生成的网络结构能清晰的显示标签之间的条件依赖关系</p>
-<p>基于 BR 的集成方法主要解决两类问题</p>
-<p>1、关于标签的问题：1、标签相关性、类不平衡、结构化类、标签噪声</p>
-<p>2、关于特征的问题：1、特征噪声2、高维特征</p>
-<p>标签幂集（Label Powerset，LP）：存在于训练集中的不同标签组合作为标签组合或标签集，不同的标签组合被认为是不同的类。</p>
-<p>标签幂集把每一个标签组合视为一个标签类，多标签数据集被转换成单标签数据集，因此 LP 算法只输出训练集中存在的标签</p>
-<p>多标签集成分类器（ENsemble Multi-Label Classification,ENMLC）：为了克服 LP 算法存在的缺点，与单个的 LP 分类器相比，发挥了集成算法的优势</p>
-<p>由于高维特征空间或数据分布不平衡造成的 LP 的数据稀疏问题，EPS 方法在文献中提出了探索最重要的标签相关性</p>
-<p>CBMLC（基于聚类的多标签分类算法）：相似的标签出现在相似的对象中，减少了每个分类器的标签空间</p>
-<p>RAkEL 和 Rank-SVM，随机的选择标签组合和标签集，来提高系统性能，可以用来处理有很多类而训练集很少的应用</p>
-<p>局部正负配对标签相关性（Local Positive and negative pairwise Label Correlations,LPLC）:上述的多标签学习算法存在很多缺点：1、假设所有的对象共享相同的标签相关性，2、在全局范围内利用正向标签相关性。在现实生活中标签相关性往往被不同的实例所共享，标签不仅仅是正向相关的</p>
-<p>基于基于标签幂集的集成解决了标签相关性问题</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-4</title>
-    <url>/2021/03/14/A-Survey-on-Multi-Label-Data-Stream-Classification-4/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第四天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-15-12-50d84e179fa07c035d1086d082ae20fb-post_1-d09215.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于不精确的    ，提出了使用 Credal C4.5（CC4.5）的分类器链的集成，以解决带有噪声和二进制问题的多标签数据的分类。考虑到标签噪声和特征噪声(由于受到很多外部不确定性的影响，数据源可能会产生带有噪声的数据集，考虑到噪声的来源，我们将其称为标签噪声和特征噪声)，Hybrid Noise-Oriented Multi-Label learning(HNOML)，采用双稀疏性正则化与标签富集进行桥接。</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Hybrid Noise-Oriented Multi-Label learning ： 面向噪声的混合多标签学习</p>
-<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>external ： 外部的；表面的</p>
-<p>Hybrid ： 混合的；杂种的</p>
-<p>sparsity ： 稀疏，稀少</p>
-<p>regularization ： 规则化；调整</p>
-<p>enrichment ： 丰富；改进</p>
-<h1 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-36-23-0335c6b57a9d3b6004739ea5aae89249-post_2-abf39f.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于海量标签的多标签分类问题，Traumas 等人提出了多标签分类的层次结构（Hierarchy Of Multi-label classifiERs，HOMERs）。它采用树形的层次结构来组织所有标签，层次结构的每个节点都包括一组标签，其大小远远小于整个标签集。层次多标签分类（Hierarchical Multi-label Classification，HMC）考虑了蕴含在类层次结构中的结构信息（组织层次结构中的数据），HMC的扩展–完全关联集成学习（Fully Associative Ensemble Learning，FAEL）考虑了类之间的全局和局部相关性。但这些方法可能忽略了每个树节点内标签之间可能的相关性。此外，AdaBoost算法的扩展，称为AdaBoost.MH，它保留了两个权重集：一个权重集在实例上，另一个权重集在标签上，并且还可以与产生可改变决策树的算法相结合。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>hierarchy ： 层次结构</p>
-<p>substantially ： 实质上；大体上</p>
-<p>extension ： 拓展；延伸</p>
-<p>associative : 联想的；联合的</p>
-<p>overlook ： 忽略；俯瞰</p>
-<h1 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-59-32-a5ca3b22e67a0fd47d2dc7396ecaadf9-post_3-ebee00.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/15/15-12-59-471cada4ebf55247dd6afdaf50527941-table_1-b417af.png"></p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、总结："><a href="#4、总结：" class="headerlink" title="4、总结："></a>4、总结：</h1><p>Credal C4.5（CC4.5）分类器链的集成：解决带有噪声和二进制问题的的多标签数据的分类</p>
-<p>面向对象的混合多标签学习（Hybrid Noise-Oriented Multi-Label learning，HNOML）： 考虑到标签噪声和特征噪声，采用双稀疏性正则化与标签富集进行桥接。</p>
-<p>多标签分类的层次结构：采用树形的层次结构组织所有标签，层次结构的每个节点都包含一组标签，其大小远远小于整个标签集。</p>
-<p>层次多标签分类：考虑了蕴含在类层次结构中的结构信息（组织层次结构中的数据）</p>
-<p>完全关联集成学习（Fully Associative Ensemble Learning）：HMC的一种扩展：考虑了考虑了类之间的全局和局部相关性。</p>
-<p>以上的所有算法都忽略了每个树节点内标签之间可能的相关性。</p>
-<p>AdaBoost算法的扩展，称为AdaBoost.MH，它保留了两个权重表，一个权重表在实例上，另一个权重表在标签上，并且还可以与产生可改变决策树的算法相结合。</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-3</title>
-    <url>/2021/03/12/A-Survey-on-Multi-Label-Data-Stream-Classification-3/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第三天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/19-35-47-b4a0d81d6acb8137c44d2723e43f273e-post_1-84bb89.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/20-24-41-3f7885a7cf367d7ecce392b943676b58-post_2-080e31.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>自适应算法</p>
-<p>顾名思义，自适应算法会修改现有的算法以适应解决新的问题。在多标签分类设置中，AA 表示对现有的单标签分类算法进行调整以适应对多标签分类问题。构建多标签分类器的流行模型包括kNN（K-近邻算法），DT（决策树），SVM（支持向量机），NN（神经网络）和基于实例的算法等等。具体来说，ML-kNN (Multi-Label k-Nearest Neighbor，多标签k近邻)从kNN算法中派生出来，计算kNN识别出的每个相邻实例的相关标签数，然后利用最大后验概率(MAP)原则确定每个测试实例的标签集。IBLR算法是一种改进，它将基于实例的kNN学习与逻辑回归相结合，用于多标签分类。ML-DT算法引入了多标签熵的概念，以完善C4.5决策树中的分裂测试。此外，ML-C4.5是对著名的C4.5算法的改进，通过允许多个标签在树的叶子节点中进行多标签的学习。此外，为了适应流环境，Hoeffding 树作为决策树模型被广泛使用，因为它可以逐步生成决策树，理论分析证明从部分实例学习的得到的增量决策树近似于从数据流中所有实例学习得到的批量决策树。因此，就 Hoeffding 树而言，通过在 Hoeffding 树中引入多标签分裂测试，提出了多标签 Hoeffding 树。最近，在增量决策树的基础上，提出了一种新的方法，称为iSOUP-Tree（增量结构化输出预测树）。 在该方法中，树叶处的基本分类器采用自适应感知，可以同时处理多标签分类和多目标回归问题。在[38]中引入了一种基于SVN(支持向量机)的多标签分类方法，其目标函数是最小化排序损失。基于朴素贝叶斯分类，在[37]中提出了一种多标签自适应算法。在关联规则挖掘方面，针对多标签规则集提出了一种多类、多标签关联分类方法，称为MMAC[128]。考虑到标签之间的相关性和依赖性，[39]中的工作引入了最大熵方法。而在[60]中提出了预测聚类树的随机森林，称为RF-PCT，它建立在预测聚类树(PCTs)[28]的基础上，被看成是聚类的层次结构，是决策树。为了保证合集中基础分类器的多样性，该方法随机选择实例和特征。一句话，PT算法使多标签数据适应现有算法; 而AA算法可以使自己适应多标签数据。</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Hoeffding 树：</p>
-<p>Hoeffding 树代表了在高速数据流分类问题上的一种趋势，即在保证高效率的情况下，能满足高速数据流潜在无限性、快速性、单一扫描性处理的需求。</p>
-<p>Hoeffding 树归纳算法基本思想是：</p>
-<p>Hoeffding算法是一种决策树算法，它从数据流中增量式的生成一棵决策树，</p>
-<p>对数据流的每个元素仅处理一次，</p>
-<p>数据处理过后不需要额外空间进行存储；</p>
-<p>内存空间中存储的唯一对象是 在叶节点保存了供树增长的足够多的信息的决策树本身；</p>
-<p>决策树可以在处理训练样本集的任意时间点对新来的样本进行预测。</p>
-<p>有充分的证据表明，对同一样本，Hoeffding 树算法生成的决策树与批处理学习算法（如C4.5,CART等）生成的决策树是很一致的。</p>
-<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>deriving : 派生；起源</p>
-<p>utilize ： 利用</p>
-<p>posteriori ： 后验；后面的</p>
-<p>entropy ： 熵</p>
-<p>refine ：完善</p>
-<p>incrementally ： 递增地；增值地</p>
-<p>incremental ： （定额）增长的；逐渐的</p>
-<p>perception ： 认识能力；知觉</p>
-<p>forest ： 森林</p>
-<p>cluster :  群；使聚集</p>
-<p>hierarchy : 层次结构</p>
-<p>diversity  : 多样性</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/20-49-41-8882c895a4d2cd799cdc03247b257f53-post_3-b9b37f.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>多标签分类器集成</p>
-<p>在多标签分类场景中，许多以前的文献已经表明，一个分类器委员会比一个单独的分类器表现得更好。事实上，如果各个分类器相互独立，那么聚集在一起表现的会更好。更确切地说，我们将几个基础分类器组合成一个集合体，来预测一个新的多标签数据实例，命名为EMLCs（多标签分类器的集成模型）[57]。细节如下：</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>scene ： 场面；情景</p>
-<p>previous ： 以前的；早先的</p>
-<p>committee ： 委员会</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/21-00-14-013d5077f72d5c619275998661b7f405-post_4-4c470c.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/13/17-56-40-170a15333cd813589b7f1c932c527980-post_5-e084f5.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于二值相关的集成</p>
-<p>我们都知道，BR方法简单、好理解、标签组合抗过拟合，所以它是多标签学习最直观的解决方案。为了在多标签分类（MLC）中获得单个 BR 分类器的更好性能，近年来提出了几种基于 BR 的集成分类器。例如，Read等人提出了两种基于 BR 分类器的集成算法，分别称为EBR和MBR，这两种算法极大地提高了分类的效果，特别是在类不平衡条件下(即对于给定的数据集，一个类的实例数明显少于其他类的实例数，称为不平衡数据集)。但是，EBR也没有考虑到标签的相关性（即标签之间的相互依赖性和相关性）。因此，为了克服 BR 和 EBR 的缺点，如类标签的相关性，提出了几种完善的基于BR的方法。扩展的方法包括但不限于通过配对比较排序，通过配对比较进行校准排序，校准标签排序（CLR）和分类器链（CC）。在分类器链方法中，每个单独的二进制分类器以有序链的方式排列和链接。 而在链中，每个二元相关性分类器都与数据集中的一个预定义类标签相关联。因此,虽然考虑了标签的相关性,但由于链式分类器的误差传播,分类精度受到链式顺序的影响,可能导致分类性能变差。为了解决这一缺点，首次提出了一种基于分类器链的集成算法，称为ECC，该算法随机选择链的顺序，减少了因错误传播而导致分类性能变差的风险。其次,在[41]中提出了称为PCC的概率分类器链,它考虑了每个标签组合的条件概率。但PCC对类标签的顺序很敏感，时间复杂度很高。为了寻找更合适的标签顺序，实现更低的计算复杂度，已经提出了一些扩展算法，如BCC、PCC-beam、MCC、PACC和MIML-ECC。 同时，提出了PruDent、LLSF-DL和EMHG的算法，以解决类标签之间的依赖结构，降低时间复杂度。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intuitive ： 直觉的</p>
-<p>improve : 改善，增进</p>
-<p>obvious ： 明显的；显著的 </p>
-<p>refine ：完善</p>
-<p>calibrate ： 校正；标定</p>
-<p>permuted ： 排列</p>
-<p>accuracy ： 精确度；准确性</p>
-<p>propagation ： 传播；繁殖</p>
-<p>Probabilistic ：概率性的；概率论 </p>
-<p>sensitive  ： 敏感的；感觉的</p>
-<p>complexity ： 复杂性</p>
-<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1><h2 id="1、自适应算法"><a href="#1、自适应算法" class="headerlink" title="1、自适应算法"></a>1、自适应算法</h2><p>在多标签分类中，自适应算法表现为对现有的单标签算法进行调整以适应多标签算法。构建多标签分类器的流行模型包括KNN，DT，SVM，NN和基于实例的算法。</p>
-<p>ML-KNN是KNN派生出来的一种算法，计算KNN识别出来的每个相邻标签的相关标签数。利用最大后验概率确定每个测试实例的标签集。</p>
-<p>IBLR算法是将基于实例的KNN和逻辑回归相结合用于多标签分类。</p>
-<p>ML-DT 引入了多标签熵的概念完善C4.5决策树中的分裂测试。</p>
-<p>ML-C4.5是对著名的C4.6算法的改进，允许多个标签在树的叶子节点中进行多标签学习。</p>
-<p>Hoeffding 树作为决策树模型被广泛使用，因为他逐步的生成决策树，理论分析证明从部分实例学习得到的增量决策树近似于从所有数据流的所有实例中学习的道德批量决策树。在 Hoeffding 树中引入多标签，可以得到多标签 Hoeffding 树。</p>
-<p>iSOUP-Tree（增量结构化输出预测树）是以增量决策树为基础，该方法是树叶处的基本分类器采用自适应感知，可以同时处理错标签分类和多目标回归问题</p>
-<p>基于 SVN 的多标签分类方法，目标函数是最小化排序苏损失。</p>
-<p>基于朴素贝叶斯分类的的多标签分类算法。</p>
-<p>MMAC是一种针对多标签规则集提出的多类、多标签的关联分类方法</p>
-<p>最大熵方法考虑到了标签之间的相关性和依赖性</p>
-<p>RF-PCT 是预测聚集类的随机森林，是建立在预测聚集树的基础之上，被看成是聚类的层次结构，是决策树，为了保证基础分类器的多样性，该方法随机选择实力和特征</p>
-<p>PT算法使多标签数据适应现有算法，AA算法使自己事应多标签数据。</p>
-<h2 id="2、多标签分类的集成"><a href="#2、多标签分类的集成" class="headerlink" title="2、多标签分类的集成"></a>2、多标签分类的集成</h2><p>将几个基础分类器组合成一个集合体，来预测一个新的多标签数据实例，命名为EMLCs（多标签分类器的集成模型），主要的目的是获得比单个 BR 分类器更好的性能</p>
-<p>BR 算法具有简单、好理解、标签组合抗拟合的优点，成为了多标签学习的最直观解决方案。</p>
-<p>两种基于 BR 分类器的集成算法，分别是 EBR和MBR，两种算法都提高了分类的效果，特别是在类不平衡的条件下（对于给定的数据集，一个类的实例树明显少于另一个类的实例数）。</p>
-<p>EBR 没有考虑到类之间的相关性</p>
-<p>为了克服 BR 和 EBR 的缺点，例如类标签的相关性，提出了几种完善的基于BR 的方法。</p>
-<p>配对比较排序：通过配对比较进行校准排序，校准标签排序和分类器链。</p>
-<p>分类器链：每个单独的二进制分类器链都以有序链的方式进行排序和链接，在链中，每个二元相关性分类器都与数据集中的一个预定义类标签相关联，这种方法虽然考虑了标签之间的相关性，但是链式分类器的传播误差，分类精度会受到链式顺序的影响，可能导致分类性能变差。</p>
-<p>ECC（基于分类器链的集成算法）：为了解决分类器链上述出现的缺点，，该算法随机的选择链的顺序，减少了因错误传播而导致分类性能变差的风险。</p>
-<p>PCC(概率分类链)：考虑了每个标签组合的条件概率，但是该算法对于标签的顺序很敏感，时间复杂度很高。为了寻找更合适的标签顺序，实现更低的计算复杂度，已经提出了一些扩展算法，如BCC、PCC-beam、MCC、PACC和MIML-ECC。</p>
-<p>PruDent、LLSF-DL和EMHG 算法 ：解决类标签之间的依赖结构，降低时间复杂度。</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-2</title>
-    <url>/2021/03/10/A-Survey-on-Multi-Label-Data-Stream-Classification-2/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第二天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/13-56-38-f93233735c53c5c765d51f9f9163ba9d-post_1-1c749a.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>因此，在本文中，我们主要对多标签数据流分类的最新算法进行全面综述。更准确地说，我们首先总结现有的多标签分类算法，并在第二节中讨论它们的优缺点。其次，我们在第三节中介绍了数据流分类的初步知识和概述，包括它们的约束条件和评估指标。第三，在第四节中我们对多标签数据流分类算法进行了全面的研究，分析了每种多标签数据流算法的优缺点，并讨论了对多标签数据流进行分类的高级问题。最后，我们在第五节中得出有关此调查的结论</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>precise : 精确的；明确的</p>
-<p>summarize : 总结</p>
-<p>preliminary ： 初步的</p>
-<p>overview ： 综述；概述</p>
-<p>constrains： 约束</p>
-<p>evaluation metrics ： 评估标准</p>
-<p>metrics ： 指标</p>
-<p>merit ： 优点</p>
-<p>conclusion ： 结论</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-22-19-44fe67df706c1178e841ea08b16c93a7-post_2-38ea1e.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>传统多标签分类</p>
-<p>与使用单标签数据的传统机器学习相反，多标签学习中的实例包含多个类标签。在本节中，我们主要从不同角度概述著名的多标签分类方法，并分析每种算法背后的动机（即算法所解决的约束）。根据多标签学习（MLL）中的常见分类法，我们可以将多标签分类方法分为三类，包括问题转换（PT），自适应算法（AA）和多标签分类集成（EMLC）。这三种方法的更多详细信息如下：</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>well-known ： 著名的</p>
-<p>perspective ： 观点；远景</p>
-<p>motivations ： 动机；备注</p>
-<p>taxonomy ： 分类学</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-39-19-8bca8593a0fd8cac05c436d23dad9a71-post_3-628a45.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-42-03-9476b05c5698999622a65eaa597edb6e-post_4-de11e2.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>A、问题转移</p>
-<p>问题转换（PT）方法主要将多标签分类问题转换为许多更简单的单标签分类问题。在所有的PT方法中，Binary Relevance（BR）是最常用的方法。在 “二值相关” 方法中，多标签分类问题被转换为 |L| 种不同的二值单标签分类问题。转换后，我们可以选择任何现有的二值分类算法作为预测二值问题的基础分类器。因为它可以按与标签数量成线性比例的方式处理多标签数据，这使其可应用于许多实际需求。但是，BR方法固有地忽略了标签之间的相互依赖性，并且已经得到了验证。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Binary Relevance(二值相关) ： 将多标签问题转换为多个分类问题</p>
-<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>linear ： 线性；线的</p>
-<p>proportion ： 比例，占比</p>
-<p>practical ： 实际的；实用性的</p>
-<p>interdependence ： 相互依存</p>
-<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-24-04-b9e2a6f221022c57ecd97b9b170fb7ef-post_5-01737f.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>为了考虑标签之间的相互依赖性并克服BR方法的这一缺点，研究人员提出了其他几种基于 BR 的方法。最著名的分类器链（CC）以类似链的方式随机排列 BR 分类器。同时，每个 BR 分类器将预测结果作为其所连接的邻居分类器的属性输出。这对于分类器捕获标签之间的相关性是有益的，因为链中的每个 BR 分类器都可以了解链中除数据本身之外的每个祖先分类器的标签相关性。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>take into account ： 考虑</p>
-<p>drawback ： 缺点</p>
-<p>propose ： 提出；建议；打算</p>
-<p>manner ： 方式；习惯；</p>
-<p>arrange ： 安排；排列；</p>
-<p>correlation ： 相关性</p>
-<p>capture ： 俘虏；捕获</p>
-<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-43-03-324c2609bf70449a4a96ea8aaf58e3a7-post_6-0c6a14.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>标签幂集（LP）是 PT 的一种常见方法，其中单个标签表示标签子集。在这种情况下，LP 将多标签问题转换为具有 2^|L| 个类别标签的多类别问题。 基于LP，修剪集（PS）技术得到了发展。在这种技术中，具有频繁标签集的实例将保留并考虑进行分类，而那些不频繁的实例通常会从数据集中删除。关于基于 LP 方法的更详细的描述可以参考[13]。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Label Powerset(标签密集) ：LP是一个将多标签学习问题转换为多类别分类问题的简单直接的方法。</p>
-<p>PT：Problem Transformation（问题转移）主要将多标签分类问题转换为许多更简单的单标签分类问题。（来自第三部分翻译）</p>
-<h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>indicate ： 表明；指出</p>
-<p>retain ： 保留</p>
-<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/17-05-00-49d9f0c73841bf330fce90d080c9f940-post_7-886264.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>PT 的另一种常见的多标签分类方法是 Pair Wise（PW），其中将每对可能的类别标签转换为二进制分类任务。尽管 PW 方法在某些情况下具有某些优点，但由于时间成本较高，因此难以应用于处理大规模多标签数据。有关PT方法的更多介绍，请参考[19]。</p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Pair Wise（配对法）：配对法的基本思路是对样本进行两两比较，构建偏序文档对，从比较中学习排序，因为对于一个查询关键字来说，最重要的其实不是针对某一个文档的相关性是否估计得准确，而是要能够正确估计一组文档之间的 “相对关系”。</p>
-<p>Pair wise 方法相比pointwise有优势，可以学习到一些顺序。但是pairwise也有缺点：</p>
-<p>1.当有多个顺序的类别时，只知道good or bad，不知道好多少和差多少。</p>
-<p>2.当文章较多时，会产生大量的pairs。</p>
-<p>3.对噪声的label 非常敏感，一个错误的label，可能会导致分类结果中有较多的错误。</p>
-<p>4.大多数没有考虑结果中文档对的顺序，文档对的顺序也没有在损失函数中体现。</p>
-<p>作者：数据小新手<br>链接：<a href="https://www.jianshu.com/p/235756fbf6b6">https://www.jianshu.com/p/235756fbf6b6</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>extensive ： 广泛的</p>
-<h1 id="7、总结"><a href="#7、总结" class="headerlink" title="7、总结"></a>7、总结</h1><h2 id="1、文章的研究顺序"><a href="#1、文章的研究顺序" class="headerlink" title="1、文章的研究顺序"></a>1、文章的研究顺序</h2><p>1、总结现有的多标签分类算法</p>
-<p>2、总结现有的多标签分类算法的优缺点</p>
-<p>3、介绍数据流分类的初步知识和概述</p>
-<p>4、对多标签数据流进行全面研究，并分析多标签数据流的优缺点</p>
-<p>5、得出调查结论</p>
-<h2 id="2、传统的多标签分类"><a href="#2、传统的多标签分类" class="headerlink" title="2、传统的多标签分类"></a>2、传统的多标签分类</h2><p>1、Problem Transformation（PT） : 问题转移</p>
-<p>2、Algorithm Adaptation（AA） ： 自适应算法</p>
-<p>3、Ensembles of Multi-Label Classification (EMLCs) ： 多标签分类集</p>
-<h2 id="3、问题转移的集中算法"><a href="#3、问题转移的集中算法" class="headerlink" title="3、问题转移的集中算法"></a>3、问题转移的集中算法</h2><p><strong>1、Binary Relevance (BR) ：二值相关算法</strong></p>
-<p>1、使用最频繁的问题转移算法</p>
-<p>2、将多标签分类问题转换为多个二值单标签问题，转换之后可以通过现有的二值分类算法作为预测二值问题的基础分类器</p>
-<p>3、可以按照与标签数量呈线性比例的方式来处理多标签数据，可以解决很多的实际问题</p>
-<p>4、天生的具有忽略标签之间相关性的特点</p>
-<p><strong>2、Classifier Chains (CC) ：分类器链</strong></p>
-<p>1、为了考虑标签之间的相关性，并且克服 BR 不考虑标签之间相关性的缺点，研究了 CC 算法</p>
-<p>2、以类似链的方式安排 BR 分类器</p>
-<p>3、每一个 BR 分类器都会产生一条属性（BR 分类器产生的预测结果），并把它传递给相邻的分类器</p>
-<p>4、可以捕获标签之间的相关性，因为每个 BR 分类器可以了解链中的每个祖先分类器的相关性</p>
-<p><strong>3、 Label Powerset（LP） : 标签幂集</strong></p>
-<p>1、单个标签表示标签子集</p>
-<p>2、多标签问题转换为具有 2^|L| 个类别标签的多类别问题</p>
-<p><strong>4、Pruned Set(PS) ： 修剪集</strong></p>
-<p>1、改算法是一种基于 LP 的算法</p>
-<p>2、具有频繁标签集的实例将保留并考虑进行分类</p>
-<p>3、不频繁使用的实例将会从数据集中移除</p>
-<p><strong>5、 Pair Wise (PW) ： 配对法</strong></p>
-<p>1、每对可能的类别标签转换为二进制分类任务</p>
-<p>2、不能够处理大规模的多标签数据，因为需要付出很大的时间代价</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A-Survey-on-Multi-Label-Data-Stream-Classification_1</title>
-    <url>/2021/03/09/A-Survey-on-Multi-Label-Data-Stream-Classification-1/</url>
-    <content><![CDATA[<p>多标签数据流分类研究第一天</p>
-<a id="more"></a>
-
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
-<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>流数据：流数据是由不同来源连续生成的数据</p>
-<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sensor ： 传感器</p>
-<p>contrary to ： 与之相反</p>
-<p>finite ： 有限</p>
-<p>comprehensive ： 综合的；全方位</p>
-<p>perspective ： 观点；角度</p>
-<p>briefly ： 短暂地；简略地；</p>
-<p>summarize ： 总结</p>
-<p>merit : 优点</p>
-<p>demerit ： 缺点，短处</p>
-<p>open issues ： 未解决的问题</p>
-<p>pursue ： 从事；追赶</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/15-26-01-e25fe572559c1515a685de784058aa9c-post_1-97607f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-09-21-67848f1ed9b3765b95f43e27d6d428f7-post_2-7f5ac3.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>介绍</p>
-<p>在当今世界，许多组织以前所未有的高速度生成大量的数据。例如，仅在一天之内，Google处理了超过35亿条的搜索记录，NASA卫星产生了大约4TB的图像数据，而沃尔玛超市则产生了超过2000万笔交易记录。作为两个代表性搜索引擎的 Google 和 Yahoo 每天将处理数百万个查询流。因此，许多研究人员专注于查询流挖掘，以为用户提供更好的搜索结果。同时，像 Twitter、腾讯和微博等在线社交网络吸引了更多关注，它们产生了大量的在线数据流，包括文本，图像和视频等。这些数据具有以下新特征，例如大容量，高速度，概念漂移，尤其是多标签数据，我们称它们为多标签数据流。新型“密集数据”的研究问题是，如何在无限、连续、快速、时间演化、时间要求严格的多标签数据流上建立分类模型?由于这些数据的规模很大，因此它们无法容纳在主存储器中。因此，辅助存储设备用于存储这些数据。相应地，就时间和空间成本而言，这些数据很难随机的被访问。因此，数据流挖掘首要目标时在不断线性增加的实例中学习。此外，随着新实例在数据流中的传入，生成的模型必须适应新实例的数据分布，同时删除隐藏在过时数据中的信息。仅使用新数据来重新训练模型是无效且不足的。因此，随着数据流中每个实例的到达，生成的模型可以逐步更新，这是数据流挖掘的另一个目标。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>概念漂移 ： 在预测分析和机器学习中，概念漂移意味着模型试图预测的目标变量的统计属性会随着时间的推移以无法预料的方式变化。这导致了问题，因为随着时间的流逝，预测变得越来越不准确。</p>
-<p>时间演化 ： 时间演化是由时间的流逝引起的状态变化，适用于具有内部状态的系统（也称为有状态系统）。 在这种表述中，时间不是必须是连续的参数，而可以是离散的，甚至是有限的。</p>
-<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>introduction : 介绍</p>
-<p>characteristic ： 典型的；特有的；特征；特性</p>
-<p>velocity ： 速度</p>
-<p>concept drift : 概念漂移</p>
-<p>intensive ： 密集的；集中的</p>
-<p>continuous : 连续的，持续的</p>
-<p>rapid : 快速</p>
-<p>time-evolving : 时间演化</p>
-<p>secondary ： 第二的；中等的；次要的；副手；</p>
-<p>hence ： 因此</p>
-<p>corre-spondingly ： 相应的</p>
-<p>ineffective ： 无效的</p>
-<p>inadequate ： 不充分的</p>
-<p>incremen-tally ： 递增地；增值地</p>
-<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-39-3345911ba96e701f49e3db560a2546a0-post_3-0c8c0b.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-49-db8a575d85dd081b72d851b3ece3646e-post_4-26fa64.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据传统数据挖掘的类别，在数据流上有各种各样的挖掘任务，例如数据流分类，数据流聚类等。在本次调查中，我们主要关注多标签数据流分类，因为它是数据挖掘重最常见的形式，也是研究人数最多的研究主题。分类是标记未知数据的过程，通常包括两个步骤，即从具有已知属性和关联标签的训练数据集中训练通用模型，并采用训练后的模型来预测新数据实例的标签。读者可以从 Han 和 Kamber 撰写的书中获得有关传统数据挖掘的更详细的介绍。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>cluster ： 聚集；集群</p>
-<p>namely ： 即</p>
-<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/17-44-41-c973071c8654713f9e4e824d5cb96665-post_5-8551d5.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>近年来，已经提供了许多对数据流挖掘的调查，介绍了各种数据流算法的细节。例如，Gaber 等人综述了数据流挖掘的理论基础和基本算法。关于数据流分类，研究人员介绍了基于决策树的算法，集成分类器和k-NN（k最近邻）分类器有关的调查，以满足分类的需求。然而，上述工作并未清楚地描述现有分类算法之间的差异，并且很少关注流数据中的多标签分类。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>reviewed ： 综述；</p>
-<p>review ： 回顾；复习；评论；检讨；检阅</p>
-<p>ensemble ： 整体；总体</p>
-<p>aforementioned ： 上述的；前面提及的</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>方向选择</title>
-    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
-    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
-<a id="more"></a>
-
-<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
-<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
-<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
-<p>流数据：流数据是由不同来源连续生成的数据</p>
-<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
-<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
-<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
-<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
-<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
-<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-        <tag>敏感信息</tag>
-        <tag>条件功能依赖</tag>
-        <tag>大数据</tag>
-        <tag>数据质量</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>0-1 背包问题</title>
     <url>/2021/01/22/0-1-bei-bao/</url>
     <content><![CDATA[<p>使用动态规划解决 0-1 背包问题</p>
@@ -826,6 +234,105 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
       </tags>
   </entry>
   <entry>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
+<a id="more"></a>
+<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
+<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
+
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用并查集查找无向图回路</title>
     <url>/2021/01/14/bing-cha-ji/</url>
     <content><![CDATA[<p> 一步步的教你使用并查集查找无向图回路</p>
@@ -986,69 +493,28 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
       </tags>
   </entry>
   <entry>
-    <title>最后一块石头的重量 leetcode</title>
-    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
-    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
-<p>使用了二分查找和插入排序的方法</p>
+    <title>连续子数组的最大和</title>
+    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
+    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
 <a id="more"></a>
 
-<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
-<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
-<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
-<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
-<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
-<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
+<p>题目描述：</p>
+<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
+<p>返回其最大和。</p>
+<p>示例:</p>
+<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
+<p>输出: 6</p>
+<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
 <p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
-<pre><code>对数组中的元素进行排序;
-
-这样做有以下两个好处：
-
-1、能从数组的末尾取出最重的两块石头
-
-2、取出两块最重的石头之后，剩余的石头仍然保持有序，
-
-可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
-<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
-<p>寻找右侧边界的二分查找都做了详细的介绍</p>
-<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
-<p><strong>二、当两块最重的石头重量相同时</strong></p>
-<p>设保存石头重量的数组名称为 stones    </p>
-<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
-
-2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
-
-3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
-<p><strong>三、当两块石头单位重量不同时</strong></p>
-<pre><code>1、在数组 stones 取出两块最重的石头
-
-2、将两块石头粉碎，并形成新的石头 newStone
-
-3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
-
-（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
-
-4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
-
-5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
-
-5、将 newStone 插入到 newStones 的 i 位置
-
-6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
-<p><strong>四、结果返回</strong></p>
-<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
-<pre><code>当数组长度为 0 时返回 0
-
-当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
-<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
+<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
 ]]></content>
       <tags>
         <tag>算法</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>插入排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1122,6 +588,72 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
 <p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
 <p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
 <h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>最后一块石头的重量 leetcode</title>
+    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
+    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
+<p>使用了二分查找和插入排序的方法</p>
+<a id="more"></a>
+
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
+<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
+<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
+<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
+<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
+<pre><code>对数组中的元素进行排序;
+
+这样做有以下两个好处：
+
+1、能从数组的末尾取出最重的两块石头
+
+2、取出两块最重的石头之后，剩余的石头仍然保持有序，
+
+可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
+<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
+<p>寻找右侧边界的二分查找都做了详细的介绍</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
+<p><strong>二、当两块最重的石头重量相同时</strong></p>
+<p>设保存石头重量的数组名称为 stones    </p>
+<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
+
+2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
+
+3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
+<p><strong>三、当两块石头单位重量不同时</strong></p>
+<pre><code>1、在数组 stones 取出两块最重的石头
+
+2、将两块石头粉碎，并形成新的石头 newStone
+
+3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
+
+（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
+
+4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
+
+5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
+
+5、将 newStone 插入到 newStones 的 i 位置
+
+6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
+<p><strong>四、结果返回</strong></p>
+<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
+<pre><code>当数组长度为 0 时返回 0
+
+当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
+<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>插入排序</tag>
+      </tags>
   </entry>
   <entry>
     <title>TSP旅行推销员问题</title>
@@ -1783,127 +1315,609 @@ dp[3][6] = ∞ 已经证明</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
-    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
+    <title>方向选择</title>
+    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
+    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
 <a id="more"></a>
-<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
-<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
-<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说，最后两个字符相等
-    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
-    由于 s 和 t 的最后两个字符相等
-    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
-<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说,最后两个字符相等
-    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
-    即使 s 和 t 的最后两个字符相等
-    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
-<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
-<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
-    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
-<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
-    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
-<p>三、</p>
-<hr>
-<p>综上所述：</p>
-<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
-            当 s 的长度为 i - 1,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
-    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
-            当 s 的长度为 i,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
-<hr>
-<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
-<p>第一步：</p>
-<p>初始化：</p>
-<pre><code>            将第一行和第一列的数据进行初始化
-            第一行表示 t 为空串时，必为 s 的子序列
-            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
-<p>第二步：</p>
-<p>由左到右，由上到下为 dp 数组赋值</p>
-<pre><code>            第二行数据：
-            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
-
-            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
-
-            dp[1][4],dp[1][5],dp[1][6] 同理
-
-            第三行数据：
-            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
-
-            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
-
-            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
-            dp[2][4],dp[2][5],dp[2][6] 同理
-
-            第四行也可以用一样的方法进行求解</code></pre>
-<p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
+<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
+<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
+<p>流数据：流数据是由不同来源连续生成的数据</p>
+<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
+<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
+<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
+<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
+<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
+<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
 ]]></content>
       <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
-        <tag>算法</tag>
-        <tag>字符串</tag>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+        <tag>敏感信息</tag>
+        <tag>条件功能依赖</tag>
+        <tag>大数据</tag>
+        <tag>数据质量</tag>
       </tags>
   </entry>
   <entry>
-    <title>连续子数组的最大和</title>
-    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
-    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification_1</title>
+    <url>/2021/03/09/A-Survey-on-Multi-Label-Data-Stream-Classification-1/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第一天</p>
 <a id="more"></a>
 
-<p>题目描述：</p>
-<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
-<p>返回其最大和。</p>
-<p>示例:</p>
-<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
-<p>输出: 6</p>
-<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
-<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
+<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>流数据：流数据是由不同来源连续生成的数据</p>
+<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sensor ： 传感器</p>
+<p>contrary to ： 与之相反</p>
+<p>finite ： 有限</p>
+<p>comprehensive ： 综合的；全方位</p>
+<p>perspective ： 观点；角度</p>
+<p>briefly ： 短暂地；简略地；</p>
+<p>summarize ： 总结</p>
+<p>merit : 优点</p>
+<p>demerit ： 缺点，短处</p>
+<p>open issues ： 未解决的问题</p>
+<p>pursue ： 从事；追赶</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/15-26-01-e25fe572559c1515a685de784058aa9c-post_1-97607f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-09-21-67848f1ed9b3765b95f43e27d6d428f7-post_2-7f5ac3.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>介绍</p>
+<p>在当今世界，许多组织以前所未有的高速度生成大量的数据。例如，仅在一天之内，Google处理了超过35亿条的搜索记录，NASA卫星产生了大约4TB的图像数据，而沃尔玛超市则产生了超过2000万笔交易记录。作为两个代表性搜索引擎的 Google 和 Yahoo 每天将处理数百万个查询流。因此，许多研究人员专注于查询流挖掘，以为用户提供更好的搜索结果。同时，像 Twitter、腾讯和微博等在线社交网络吸引了更多关注，它们产生了大量的在线数据流，包括文本，图像和视频等。这些数据具有以下新特征，例如大容量，高速度，概念漂移，尤其是多标签数据，我们称它们为多标签数据流。新型“密集数据”的研究问题是，如何在无限、连续、快速、时间演化、时间要求严格的多标签数据流上建立分类模型?由于这些数据的规模很大，因此它们无法容纳在主存储器中。因此，辅助存储设备用于存储这些数据。相应地，就时间和空间成本而言，这些数据很难随机的被访问。因此，数据流挖掘首要目标时在不断线性增加的实例中学习。此外，随着新实例在数据流中的传入，生成的模型必须适应新实例的数据分布，同时删除隐藏在过时数据中的信息。仅使用新数据来重新训练模型是无效且不足的。因此，随着数据流中每个实例的到达，生成的模型可以逐步更新，这是数据流挖掘的另一个目标。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>概念漂移 ： 在预测分析和机器学习中，概念漂移意味着模型试图预测的目标变量的统计属性会随着时间的推移以无法预料的方式变化。这导致了问题，因为随着时间的流逝，预测变得越来越不准确。</p>
+<p>时间演化 ： 时间演化是由时间的流逝引起的状态变化，适用于具有内部状态的系统（也称为有状态系统）。 在这种表述中，时间不是必须是连续的参数，而可以是离散的，甚至是有限的。</p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>introduction : 介绍</p>
+<p>characteristic ： 典型的；特有的；特征；特性</p>
+<p>velocity ： 速度</p>
+<p>concept drift : 概念漂移</p>
+<p>intensive ： 密集的；集中的</p>
+<p>continuous : 连续的，持续的</p>
+<p>rapid : 快速</p>
+<p>time-evolving : 时间演化</p>
+<p>secondary ： 第二的；中等的；次要的；副手；</p>
+<p>hence ： 因此</p>
+<p>corre-spondingly ： 相应的</p>
+<p>ineffective ： 无效的</p>
+<p>inadequate ： 不充分的</p>
+<p>incremen-tally ： 递增地；增值地</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-39-3345911ba96e701f49e3db560a2546a0-post_3-0c8c0b.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/16-28-49-db8a575d85dd081b72d851b3ece3646e-post_4-26fa64.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据传统数据挖掘的类别，在数据流上有各种各样的挖掘任务，例如数据流分类，数据流聚类等。在本次调查中，我们主要关注多标签数据流分类，因为它是数据挖掘重最常见的形式，也是研究人数最多的研究主题。分类是标记未知数据的过程，通常包括两个步骤，即从具有已知属性和关联标签的训练数据集中训练通用模型，并采用训练后的模型来预测新数据实例的标签。读者可以从 Han 和 Kamber 撰写的书中获得有关传统数据挖掘的更详细的介绍。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>cluster ： 聚集；集群</p>
+<p>namely ： 即</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_1/2021/03/09/17-44-41-c973071c8654713f9e4e824d5cb96665-post_5-8551d5.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>近年来，已经提供了许多对数据流挖掘的调查，介绍了各种数据流算法的细节。例如，Gaber 等人综述了数据流挖掘的理论基础和基本算法。关于数据流分类，研究人员介绍了基于决策树的算法，集成分类器和k-NN（k最近邻）分类器有关的调查，以满足分类的需求。然而，上述工作并未清楚地描述现有分类算法之间的差异，并且很少关注流数据中的多标签分类。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>reviewed ： 综述；</p>
+<p>review ： 回顾；复习；评论；检讨；检阅</p>
+<p>ensemble ： 整体；总体</p>
+<p>aforementioned ： 上述的；前面提及的</p>
 ]]></content>
       <tags>
-        <tag>算法</tag>
-        <tag>数组</tag>
-        <tag>leetcode</tag>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-2</title>
+    <url>/2021/03/10/A-Survey-on-Multi-Label-Data-Stream-Classification-2/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第二天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/13-56-38-f93233735c53c5c765d51f9f9163ba9d-post_1-1c749a.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>因此，在本文中，我们主要对多标签数据流分类的最新算法进行全面综述。更准确地说，我们首先总结现有的多标签分类算法，并在第二节中讨论它们的优缺点。其次，我们在第三节中介绍了数据流分类的初步知识和概述，包括它们的约束条件和评估指标。第三，在第四节中我们对多标签数据流分类算法进行了全面的研究，分析了每种多标签数据流算法的优缺点，并讨论了对多标签数据流进行分类的高级问题。最后，我们在第五节中得出有关此调查的结论</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>precise : 精确的；明确的</p>
+<p>summarize : 总结</p>
+<p>preliminary ： 初步的</p>
+<p>overview ： 综述；概述</p>
+<p>constrains： 约束</p>
+<p>evaluation metrics ： 评估标准</p>
+<p>metrics ： 指标</p>
+<p>merit ： 优点</p>
+<p>conclusion ： 结论</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-22-19-44fe67df706c1178e841ea08b16c93a7-post_2-38ea1e.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>传统多标签分类</p>
+<p>与使用单标签数据的传统机器学习相反，多标签学习中的实例包含多个类标签。在本节中，我们主要从不同角度概述著名的多标签分类方法，并分析每种算法背后的动机（即算法所解决的约束）。根据多标签学习（MLL）中的常见分类法，我们可以将多标签分类方法分为三类，包括问题转换（PT），自适应算法（AA）和多标签分类集成（EMLC）。这三种方法的更多详细信息如下：</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>well-known ： 著名的</p>
+<p>perspective ： 观点；远景</p>
+<p>motivations ： 动机；备注</p>
+<p>taxonomy ： 分类学</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-39-19-8bca8593a0fd8cac05c436d23dad9a71-post_3-628a45.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/14-42-03-9476b05c5698999622a65eaa597edb6e-post_4-de11e2.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>A、问题转移</p>
+<p>问题转换（PT）方法主要将多标签分类问题转换为许多更简单的单标签分类问题。在所有的PT方法中，Binary Relevance（BR）是最常用的方法。在 “二值相关” 方法中，多标签分类问题被转换为 |L| 种不同的二值单标签分类问题。转换后，我们可以选择任何现有的二值分类算法作为预测二值问题的基础分类器。因为它可以按与标签数量成线性比例的方式处理多标签数据，这使其可应用于许多实际需求。但是，BR方法固有地忽略了标签之间的相互依赖性，并且已经得到了验证。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Binary Relevance(二值相关) ： 将多标签问题转换为多个分类问题</p>
+<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>linear ： 线性；线的</p>
+<p>proportion ： 比例，占比</p>
+<p>practical ： 实际的；实用性的</p>
+<p>interdependence ： 相互依存</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-24-04-b9e2a6f221022c57ecd97b9b170fb7ef-post_5-01737f.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>为了考虑标签之间的相互依赖性并克服BR方法的这一缺点，研究人员提出了其他几种基于 BR 的方法。最著名的分类器链（CC）以类似链的方式随机排列 BR 分类器。同时，每个 BR 分类器将预测结果作为其所连接的邻居分类器的属性输出。这对于分类器捕获标签之间的相关性是有益的，因为链中的每个 BR 分类器都可以了解链中除数据本身之外的每个祖先分类器的标签相关性。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>take into account ： 考虑</p>
+<p>drawback ： 缺点</p>
+<p>propose ： 提出；建议；打算</p>
+<p>manner ： 方式；习惯；</p>
+<p>arrange ： 安排；排列；</p>
+<p>correlation ： 相关性</p>
+<p>capture ： 俘虏；捕获</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/15-43-03-324c2609bf70449a4a96ea8aaf58e3a7-post_6-0c6a14.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>标签幂集（LP）是 PT 的一种常见方法，其中单个标签表示标签子集。在这种情况下，LP 将多标签问题转换为具有 2^|L| 个类别标签的多类别问题。 基于LP，修剪集（PS）技术得到了发展。在这种技术中，具有频繁标签集的实例将保留并考虑进行分类，而那些不频繁的实例通常会从数据集中删除。关于基于 LP 方法的更详细的描述可以参考[13]。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Label Powerset(标签密集) ：LP是一个将多标签学习问题转换为多类别分类问题的简单直接的方法。</p>
+<p>PT：Problem Transformation（问题转移）主要将多标签分类问题转换为许多更简单的单标签分类问题。（来自第三部分翻译）</p>
+<h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>indicate ： 表明；指出</p>
+<p>retain ： 保留</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_2/2021/03/10/17-05-00-49d9f0c73841bf330fce90d080c9f940-post_7-886264.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>PT 的另一种常见的多标签分类方法是 Pair Wise（PW），其中将每对可能的类别标签转换为二进制分类任务。尽管 PW 方法在某些情况下具有某些优点，但由于时间成本较高，因此难以应用于处理大规模多标签数据。有关PT方法的更多介绍，请参考[19]。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Pair Wise（配对法）：配对法的基本思路是对样本进行两两比较，构建偏序文档对，从比较中学习排序，因为对于一个查询关键字来说，最重要的其实不是针对某一个文档的相关性是否估计得准确，而是要能够正确估计一组文档之间的 “相对关系”。</p>
+<p>Pair wise 方法相比pointwise有优势，可以学习到一些顺序。但是pairwise也有缺点：</p>
+<p>1.当有多个顺序的类别时，只知道good or bad，不知道好多少和差多少。</p>
+<p>2.当文章较多时，会产生大量的pairs。</p>
+<p>3.对噪声的label 非常敏感，一个错误的label，可能会导致分类结果中有较多的错误。</p>
+<p>4.大多数没有考虑结果中文档对的顺序，文档对的顺序也没有在损失函数中体现。</p>
+<p>作者：数据小新手<br>链接：<a href="https://www.jianshu.com/p/235756fbf6b6">https://www.jianshu.com/p/235756fbf6b6</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>extensive ： 广泛的</p>
+<h1 id="7、总结"><a href="#7、总结" class="headerlink" title="7、总结"></a>7、总结</h1><h2 id="1、文章的研究顺序"><a href="#1、文章的研究顺序" class="headerlink" title="1、文章的研究顺序"></a>1、文章的研究顺序</h2><p>1、总结现有的多标签分类算法</p>
+<p>2、总结现有的多标签分类算法的优缺点</p>
+<p>3、介绍数据流分类的初步知识和概述</p>
+<p>4、对多标签数据流进行全面研究，并分析多标签数据流的优缺点</p>
+<p>5、得出调查结论</p>
+<h2 id="2、传统的多标签分类"><a href="#2、传统的多标签分类" class="headerlink" title="2、传统的多标签分类"></a>2、传统的多标签分类</h2><p>1、Problem Transformation（PT） : 问题转移</p>
+<p>2、Algorithm Adaptation（AA） ： 自适应算法</p>
+<p>3、Ensembles of Multi-Label Classification (EMLCs) ： 多标签分类集</p>
+<h2 id="3、问题转移的集中算法"><a href="#3、问题转移的集中算法" class="headerlink" title="3、问题转移的集中算法"></a>3、问题转移的集中算法</h2><p><strong>1、Binary Relevance (BR) ：二值相关算法</strong></p>
+<p>1、使用最频繁的问题转移算法</p>
+<p>2、将多标签分类问题转换为多个二值单标签问题，转换之后可以通过现有的二值分类算法作为预测二值问题的基础分类器</p>
+<p>3、可以按照与标签数量呈线性比例的方式来处理多标签数据，可以解决很多的实际问题</p>
+<p>4、天生的具有忽略标签之间相关性的特点</p>
+<p><strong>2、Classifier Chains (CC) ：分类器链</strong></p>
+<p>1、为了考虑标签之间的相关性，并且克服 BR 不考虑标签之间相关性的缺点，研究了 CC 算法</p>
+<p>2、以类似链的方式安排 BR 分类器</p>
+<p>3、每一个 BR 分类器都会产生一条属性（BR 分类器产生的预测结果），并把它传递给相邻的分类器</p>
+<p>4、可以捕获标签之间的相关性，因为每个 BR 分类器可以了解链中的每个祖先分类器的相关性</p>
+<p><strong>3、 Label Powerset（LP） : 标签幂集</strong></p>
+<p>1、单个标签表示标签子集</p>
+<p>2、多标签问题转换为具有 2^|L| 个类别标签的多类别问题</p>
+<p><strong>4、Pruned Set(PS) ： 修剪集</strong></p>
+<p>1、改算法是一种基于 LP 的算法</p>
+<p>2、具有频繁标签集的实例将保留并考虑进行分类</p>
+<p>3、不频繁使用的实例将会从数据集中移除</p>
+<p><strong>5、 Pair Wise (PW) ： 配对法</strong></p>
+<p>1、每对可能的类别标签转换为二进制分类任务</p>
+<p>2、不能够处理大规模的多标签数据，因为需要付出很大的时间代价</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-3</title>
+    <url>/2021/03/12/A-Survey-on-Multi-Label-Data-Stream-Classification-3/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第三天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/19-35-47-b4a0d81d6acb8137c44d2723e43f273e-post_1-84bb89.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/20-24-41-3f7885a7cf367d7ecce392b943676b58-post_2-080e31.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>自适应算法</p>
+<p>顾名思义，自适应算法会修改现有的算法以适应解决新的问题。在多标签分类设置中，AA 表示对现有的单标签分类算法进行调整以适应对多标签分类问题。构建多标签分类器的流行模型包括kNN（K-近邻算法），DT（决策树），SVM（支持向量机），NN（神经网络）和基于实例的算法等等。具体来说，ML-kNN (Multi-Label k-Nearest Neighbor，多标签k近邻)从kNN算法中派生出来，计算kNN识别出的每个相邻实例的相关标签数，然后利用最大后验概率(MAP)原则确定每个测试实例的标签集。IBLR算法是一种改进，它将基于实例的kNN学习与逻辑回归相结合，用于多标签分类。ML-DT算法引入了多标签熵的概念，以完善C4.5决策树中的分裂测试。此外，ML-C4.5是对著名的C4.5算法的改进，通过允许多个标签在树的叶子节点中进行多标签的学习。此外，为了适应流环境，Hoeffding 树作为决策树模型被广泛使用，因为它可以逐步生成决策树，理论分析证明从部分实例学习的得到的增量决策树近似于从数据流中所有实例学习得到的批量决策树。因此，就 Hoeffding 树而言，通过在 Hoeffding 树中引入多标签分裂测试，提出了多标签 Hoeffding 树。最近，在增量决策树的基础上，提出了一种新的方法，称为iSOUP-Tree（增量结构化输出预测树）。 在该方法中，树叶处的基本分类器采用自适应感知，可以同时处理多标签分类和多目标回归问题。在[38]中引入了一种基于SVN(支持向量机)的多标签分类方法，其目标函数是最小化排序损失。基于朴素贝叶斯分类，在[37]中提出了一种多标签自适应算法。在关联规则挖掘方面，针对多标签规则集提出了一种多类、多标签关联分类方法，称为MMAC[128]。考虑到标签之间的相关性和依赖性，[39]中的工作引入了最大熵方法。而在[60]中提出了预测聚类树的随机森林，称为RF-PCT，它建立在预测聚类树(PCTs)[28]的基础上，被看成是聚类的层次结构，是决策树。为了保证合集中基础分类器的多样性，该方法随机选择实例和特征。一句话，PT算法使多标签数据适应现有算法; 而AA算法可以使自己适应多标签数据。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Hoeffding 树：</p>
+<p>Hoeffding 树代表了在高速数据流分类问题上的一种趋势，即在保证高效率的情况下，能满足高速数据流潜在无限性、快速性、单一扫描性处理的需求。</p>
+<p>Hoeffding 树归纳算法基本思想是：</p>
+<p>Hoeffding算法是一种决策树算法，它从数据流中增量式的生成一棵决策树，</p>
+<p>对数据流的每个元素仅处理一次，</p>
+<p>数据处理过后不需要额外空间进行存储；</p>
+<p>内存空间中存储的唯一对象是 在叶节点保存了供树增长的足够多的信息的决策树本身；</p>
+<p>决策树可以在处理训练样本集的任意时间点对新来的样本进行预测。</p>
+<p>有充分的证据表明，对同一样本，Hoeffding 树算法生成的决策树与批处理学习算法（如C4.5,CART等）生成的决策树是很一致的。</p>
+<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>deriving : 派生；起源</p>
+<p>utilize ： 利用</p>
+<p>posteriori ： 后验；后面的</p>
+<p>entropy ： 熵</p>
+<p>refine ：完善</p>
+<p>incrementally ： 递增地；增值地</p>
+<p>incremental ： （定额）增长的；逐渐的</p>
+<p>perception ： 认识能力；知觉</p>
+<p>forest ： 森林</p>
+<p>cluster :  群；使聚集</p>
+<p>hierarchy : 层次结构</p>
+<p>diversity  : 多样性</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/20-49-41-8882c895a4d2cd799cdc03247b257f53-post_3-b9b37f.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>多标签分类器集成</p>
+<p>在多标签分类场景中，许多以前的文献已经表明，一个分类器委员会比一个单独的分类器表现得更好。事实上，如果各个分类器相互独立，那么聚集在一起表现的会更好。更确切地说，我们将几个基础分类器组合成一个集合体，来预测一个新的多标签数据实例，命名为EMLCs（多标签分类器的集成模型）[57]。细节如下：</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>scene ： 场面；情景</p>
+<p>previous ： 以前的；早先的</p>
+<p>committee ： 委员会</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/12/21-00-14-013d5077f72d5c619275998661b7f405-post_4-4c470c.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_3/2021/03/13/17-56-40-170a15333cd813589b7f1c932c527980-post_5-e084f5.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于二值相关的集成</p>
+<p>我们都知道，BR方法简单、好理解、标签组合抗过拟合，所以它是多标签学习最直观的解决方案。为了在多标签分类（MLC）中获得单个 BR 分类器的更好性能，近年来提出了几种基于 BR 的集成分类器。例如，Read等人提出了两种基于 BR 分类器的集成算法，分别称为EBR和MBR，这两种算法极大地提高了分类的效果，特别是在类不平衡条件下(即对于给定的数据集，一个类的实例数明显少于其他类的实例数，称为不平衡数据集)。但是，EBR也没有考虑到标签的相关性（即标签之间的相互依赖性和相关性）。因此，为了克服 BR 和 EBR 的缺点，如类标签的相关性，提出了几种完善的基于BR的方法。扩展的方法包括但不限于通过配对比较排序，通过配对比较进行校准排序，校准标签排序（CLR）和分类器链（CC）。在分类器链方法中，每个单独的二进制分类器以有序链的方式排列和链接。 而在链中，每个二元相关性分类器都与数据集中的一个预定义类标签相关联。因此,虽然考虑了标签的相关性,但由于链式分类器的误差传播,分类精度受到链式顺序的影响,可能导致分类性能变差。为了解决这一缺点，首次提出了一种基于分类器链的集成算法，称为ECC，该算法随机选择链的顺序，减少了因错误传播而导致分类性能变差的风险。其次,在[41]中提出了称为PCC的概率分类器链,它考虑了每个标签组合的条件概率。但PCC对类标签的顺序很敏感，时间复杂度很高。为了寻找更合适的标签顺序，实现更低的计算复杂度，已经提出了一些扩展算法，如BCC、PCC-beam、MCC、PACC和MIML-ECC。 同时，提出了PruDent、LLSF-DL和EMHG的算法，以解决类标签之间的依赖结构，降低时间复杂度。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intuitive ： 直觉的</p>
+<p>improve : 改善，增进</p>
+<p>obvious ： 明显的；显著的 </p>
+<p>refine ：完善</p>
+<p>calibrate ： 校正；标定</p>
+<p>permuted ： 排列</p>
+<p>accuracy ： 精确度；准确性</p>
+<p>propagation ： 传播；繁殖</p>
+<p>Probabilistic ：概率性的；概率论 </p>
+<p>sensitive  ： 敏感的；感觉的</p>
+<p>complexity ： 复杂性</p>
+<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1><h2 id="1、自适应算法"><a href="#1、自适应算法" class="headerlink" title="1、自适应算法"></a>1、自适应算法</h2><p>在多标签分类中，自适应算法表现为对现有的单标签算法进行调整以适应多标签算法。构建多标签分类器的流行模型包括KNN，DT，SVM，NN和基于实例的算法。</p>
+<p>ML-KNN是KNN派生出来的一种算法，计算KNN识别出来的每个相邻标签的相关标签数。利用最大后验概率确定每个测试实例的标签集。</p>
+<p>IBLR算法是将基于实例的KNN和逻辑回归相结合用于多标签分类。</p>
+<p>ML-DT 引入了多标签熵的概念完善C4.5决策树中的分裂测试。</p>
+<p>ML-C4.5是对著名的C4.6算法的改进，允许多个标签在树的叶子节点中进行多标签学习。</p>
+<p>Hoeffding 树作为决策树模型被广泛使用，因为他逐步的生成决策树，理论分析证明从部分实例学习得到的增量决策树近似于从所有数据流的所有实例中学习的道德批量决策树。在 Hoeffding 树中引入多标签，可以得到多标签 Hoeffding 树。</p>
+<p>iSOUP-Tree（增量结构化输出预测树）是以增量决策树为基础，该方法是树叶处的基本分类器采用自适应感知，可以同时处理错标签分类和多目标回归问题</p>
+<p>基于 SVN 的多标签分类方法，目标函数是最小化排序苏损失。</p>
+<p>基于朴素贝叶斯分类的的多标签分类算法。</p>
+<p>MMAC是一种针对多标签规则集提出的多类、多标签的关联分类方法</p>
+<p>最大熵方法考虑到了标签之间的相关性和依赖性</p>
+<p>RF-PCT 是预测聚集类的随机森林，是建立在预测聚集树的基础之上，被看成是聚类的层次结构，是决策树，为了保证基础分类器的多样性，该方法随机选择实力和特征</p>
+<p>PT算法使多标签数据适应现有算法，AA算法使自己事应多标签数据。</p>
+<h2 id="2、多标签分类的集成"><a href="#2、多标签分类的集成" class="headerlink" title="2、多标签分类的集成"></a>2、多标签分类的集成</h2><p>将几个基础分类器组合成一个集合体，来预测一个新的多标签数据实例，命名为EMLCs（多标签分类器的集成模型），主要的目的是获得比单个 BR 分类器更好的性能</p>
+<p>BR 算法具有简单、好理解、标签组合抗拟合的优点，成为了多标签学习的最直观解决方案。</p>
+<p>两种基于 BR 分类器的集成算法，分别是 EBR和MBR，两种算法都提高了分类的效果，特别是在类不平衡的条件下（对于给定的数据集，一个类的实例树明显少于另一个类的实例数）。</p>
+<p>EBR 没有考虑到类之间的相关性</p>
+<p>为了克服 BR 和 EBR 的缺点，例如类标签的相关性，提出了几种完善的基于BR 的方法。</p>
+<p>配对比较排序：通过配对比较进行校准排序，校准标签排序和分类器链。</p>
+<p>分类器链：每个单独的二进制分类器链都以有序链的方式进行排序和链接，在链中，每个二元相关性分类器都与数据集中的一个预定义类标签相关联，这种方法虽然考虑了标签之间的相关性，但是链式分类器的传播误差，分类精度会受到链式顺序的影响，可能导致分类性能变差。</p>
+<p>ECC（基于分类器链的集成算法）：为了解决分类器链上述出现的缺点，，该算法随机的选择链的顺序，减少了因错误传播而导致分类性能变差的风险。</p>
+<p>PCC(概率分类链)：考虑了每个标签组合的条件概率，但是该算法对于标签的顺序很敏感，时间复杂度很高。为了寻找更合适的标签顺序，实现更低的计算复杂度，已经提出了一些扩展算法，如BCC、PCC-beam、MCC、PACC和MIML-ECC。</p>
+<p>PruDent、LLSF-DL和EMHG 算法 ：解决类标签之间的依赖结构，降低时间复杂度。</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-4</title>
+    <url>/2021/03/14/A-Survey-on-Multi-Label-Data-Stream-Classification-4/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第四天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-15-12-50d84e179fa07c035d1086d082ae20fb-post_1-d09215.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于不精确的    ，提出了使用 Credal C4.5（CC4.5）的分类器链的集成，以解决带有噪声和二进制问题的多标签数据的分类。考虑到标签噪声和特征噪声(由于受到很多外部不确定性的影响，数据源可能会产生带有噪声的数据集，考虑到噪声的来源，我们将其称为标签噪声和特征噪声)，Hybrid Noise-Oriented Multi-Label learning(HNOML)，采用双稀疏性正则化与标签富集进行桥接。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>Hybrid Noise-Oriented Multi-Label learning ： 面向噪声的混合多标签学习</p>
+<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>external ： 外部的；表面的</p>
+<p>Hybrid ： 混合的；杂种的</p>
+<p>sparsity ： 稀疏，稀少</p>
+<p>regularization ： 规则化；调整</p>
+<p>enrichment ： 丰富；改进</p>
+<h1 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-36-23-0335c6b57a9d3b6004739ea5aae89249-post_2-abf39f.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于海量标签的多标签分类问题，Traumas 等人提出了多标签分类的层次结构（Hierarchy Of Multi-label classifiERs，HOMERs）。它采用树形的层次结构来组织所有标签，层次结构的每个节点都包括一组标签，其大小远远小于整个标签集。层次多标签分类（Hierarchical Multi-label Classification，HMC）考虑了蕴含在类层次结构中的结构信息（组织层次结构中的数据），HMC的扩展–完全关联集成学习（Fully Associative Ensemble Learning，FAEL）考虑了类之间的全局和局部相关性。但这些方法可能忽略了每个树节点内标签之间可能的相关性。此外，AdaBoost算法的扩展，称为AdaBoost.MH，它保留了两个权重集：一个权重集在实例上，另一个权重集在标签上，并且还可以与产生可改变决策树的算法相结合。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>hierarchy ： 层次结构</p>
+<p>substantially ： 实质上；大体上</p>
+<p>extension ： 拓展；延伸</p>
+<p>associative : 联想的；联合的</p>
+<p>overlook ： 忽略；俯瞰</p>
+<h1 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/14/15-59-32-a5ca3b22e67a0fd47d2dc7396ecaadf9-post_3-ebee00.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_4/2021/03/15/15-12-59-471cada4ebf55247dd6afdaf50527941-table_1-b417af.png"></p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、总结："><a href="#4、总结：" class="headerlink" title="4、总结："></a>4、总结：</h1><p>Credal C4.5（CC4.5）分类器链的集成：解决带有噪声和二进制问题的的多标签数据的分类</p>
+<p>面向对象的混合多标签学习（Hybrid Noise-Oriented Multi-Label learning，HNOML）： 考虑到标签噪声和特征噪声，采用双稀疏性正则化与标签富集进行桥接。</p>
+<p>多标签分类的层次结构：采用树形的层次结构组织所有标签，层次结构的每个节点都包含一组标签，其大小远远小于整个标签集。</p>
+<p>层次多标签分类：考虑了蕴含在类层次结构中的结构信息（组织层次结构中的数据）</p>
+<p>完全关联集成学习（Fully Associative Ensemble Learning）：HMC的一种扩展：考虑了考虑了类之间的全局和局部相关性。</p>
+<p>以上的所有算法都忽略了每个树节点内标签之间可能的相关性。</p>
+<p>AdaBoost算法的扩展，称为AdaBoost.MH，它保留了两个权重表，一个权重表在实例上，另一个权重表在标签上，并且还可以与产生可改变决策树的算法相结合。</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-5</title>
+    <url>/2021/03/15/A-Survey-on-Multi-Label-Data-Stream-Classification-5/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第五天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/14-52-16-b27e4e9ba0e6d6cc7834181a8e9aa1f3-post_1-9ae8d8.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在多标签数据学习中，很少有作品提出从数据集中明确识别相关标签。例如，在[54]的作品中明确评估了标签相关性得分。在[55]中提出了一种利用标签之间的条件依赖性，建立了一个贝叶斯网络来代表所有标签关于特征空间的联合概率。因此，生成的网络结构能够清晰地显示标签之间的条件依赖关系。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>explicitly ：  明确地；明白地</p>
+<p>evaluate ： 评价；估价</p>
+<p>exploit ： 开发；利用</p>
+<p>stand for ： 代表；支持</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-06-18-f617bf4d834ec7efea15a21b2df9e80c-post_2-602fd3.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>综上所述，上述基于BR的集成方法主要解决两类问题。第一个是关于标签的问题，包括标签相关性、类不平衡、结构化类和标签噪声。而第二个是关于特征的问题，包括特征噪声和高维特征。表 1 总结了上述基于 BR 的集成的的详细细节。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>aforementioned ： 上述的；前面提及的</p>
+<p>summarizes ： 概述；总计</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-17-58-f2bbf666cbbeac8f183331f966505649-post_3-126f68.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于标签幂集的集成</p>
+<p>在LP中，它将存在于训练集中的不同标签组合作为标签组合或标签集，不同的标签组合被认为是不同的类。标签幂集（Label Powerset，LP）将训练集中存在的每一个标签组合视为一个类标签，多标签数据集相应地被转化为单标签数据集。因此，LP算法只输出训练集中存在的标签集。 为了克服这一弱点，在[57]中提出了一种多标签集成分类器（ENsemble Multi-Label Classification,ENMLC）算法，与单个 LP 分类器相比，它发挥了集成算法的优势。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>correspondingly ： 相应地，相对地</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-32-05-2b242e494ac8ce42708a88b0a595cec4-post_4-be7033.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-33-30-0e55eb445b5054633453af3fc58b046f-post_5-3f519e.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于LP的数据稀疏问题（可能是由于高维特征空间或数据分布不平衡造成的，称为特征稀疏和类稀疏，我们通常将它们称为数据稀疏），这是剪枝集合(EPS)的集成方法在文献[18]提出了探索最重要的标签相关性。然而，它可能不适合包含大量标签和不平衡类的条件。为了解决这个问题，提出了一种基于聚类的多标签分类算法，称为CBMLC[58]。该方法基于这样的假设：相似的标签通常出现在相似的对象中，因此，有利于减少每个分类器的标签空间。此外，还有人提出了随机K标签集合(RAkEL)和 Rank-SVM 来随机选择标签组合或标签集，以提高系统的整体性能。他们可以更好地处理有许多类而训练实例很少的应用域。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sparseness ： 稀疏；稀少</p>
+<p>pruned ： 修剪</p>
+<p>assumption ： 假定；设想</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/15-52-36-f10a29a92aac75a87f64f886554d3fb5-post_6-7f3ee7.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>上述大多数多标签学习的算法主要是在全局范围内只利用正向标签相关性，并假设所有对象共享相同的标签相关性。然而，在现实中，不同的标签相关性往往被不同的实例所共享，标签不仅是正向相关的。为了克服这一缺点，提出了一种基于局部正负配对标签相关性（LPLC）的有效贝叶斯模型，用于多标签分类。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>aforementioned ： 上述的；前面提及的</p>
+<p>assume ：  假定；设想</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/15/16-02-40-cc22096c181f36e93d749876ff4d8c3b-post_7-c71570.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>综上所述，基于标签密集（Label Powerset，LP）的集成解决了标签相关性问题（包括标签相关性、类不平衡性、类稀疏性和大规模类）和特征相关问题（即高维特征）。考虑到有关问题的标签，ENMLC，EPS 等实现了更好的结果，考虑到特征相关问题，CBMLC ，RAkEL 等实现了显着的改进。 在表2中，我们总结了上述方法的特征。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>summary ： 总结，概要</p>
+<p>realise ： 认识到，明白</p>
+<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/16/15-45-49-cb9059f2332eb0335ada61e188f66da9-table_2-4ee932.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_5/2021/03/16/16-39-18-46b9cd322d324a9991e361d7684792d3-table_2_1-e85bc7.png"></p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="8、总结"><a href="#8、总结" class="headerlink" title="8、总结"></a>8、总结</h1><p>在多标签数据学习中，很少有作品提出中数据集中明确识别相关标签</p>
+<p>可以利用标签之间的条件依赖性，建立一个贝叶斯网络来代表所有标签关于特征向量的联合概率，因此生成的网络结构能清晰的显示标签之间的条件依赖关系</p>
+<p>基于 BR 的集成方法主要解决两类问题</p>
+<p>1、关于标签的问题：1、标签相关性、类不平衡、结构化类、标签噪声</p>
+<p>2、关于特征的问题：1、特征噪声2、高维特征</p>
+<p>标签幂集（Label Powerset，LP）：存在于训练集中的不同标签组合作为标签组合或标签集，不同的标签组合被认为是不同的类。</p>
+<p>标签幂集把每一个标签组合视为一个标签类，多标签数据集被转换成单标签数据集，因此 LP 算法只输出训练集中存在的标签</p>
+<p>多标签集成分类器（ENsemble Multi-Label Classification,ENMLC）：为了克服 LP 算法存在的缺点，与单个的 LP 分类器相比，发挥了集成算法的优势</p>
+<p>由于高维特征空间或数据分布不平衡造成的 LP 的数据稀疏问题，EPS 方法在文献中提出了探索最重要的标签相关性</p>
+<p>CBMLC（基于聚类的多标签分类算法）：相似的标签出现在相似的对象中，减少了每个分类器的标签空间</p>
+<p>RAkEL 和 Rank-SVM，随机的选择标签组合和标签集，来提高系统性能，可以用来处理有很多类而训练集很少的应用</p>
+<p>局部正负配对标签相关性（Local Positive and negative pairwise Label Correlations,LPLC）:上述的多标签学习算法存在很多缺点：1、假设所有的对象共享相同的标签相关性，2、在全局范围内利用正向标签相关性。在现实生活中标签相关性往往被不同的实例所共享，标签不仅仅是正向相关的</p>
+<p>基于基于标签幂集的集成解决了标签相关性问题</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-6</title>
+    <url>/2021/03/16/A-Survey-on-Multi-Label-Data-Stream-Classification-6/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第六天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-29-18-d9c897c35b6b326800c70a0b8961f8ba-post_1-ab35ab.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-39-37-8973681724759961fd6ae8e7279b9d13-table_3_1-a34b42.png"></p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/16-41-05-77597514d369cf74a470fd363e0165b6-post_1-463d89.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于自适应算法的集成</p>
+<p>现有的许多算法，如FaIE、LEML、CML、LCML、PLST和CPLST等，都考虑到了类标签向量和特征表示在低维潜在空间中的线性关系。然而，上述方法忽略了尾部标签的问题，而许多真实世界的多标签数据集有大量的尾部标签（即不经常分配给实例的标签）。为了解决这个问题，提出了一种高效半监督多标签分类器（ESMC）针对标签缺失（即数据集呈现部分标签或无标签），[66]中的工作采用尾部标签考虑类标签缺失，[51]中应用交互最小二乘法（MC）方法填补缺失条目，并兼顾特征和标签缺失。为了解决标签带来的弱点，通过RF-PCT、FaIE等取得了较好的性能。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>矩阵补全（atrix completion）:矩阵补全是填充部分观察到的矩陣的缺失条目的任务。</p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>latent ：潜在的；潜伏的</p>
+<p>representation ： 代表；表现</p>
+<p>aforementioned ： 上述的；前面提及的</p>
+<p>entries ： 条目</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p>为了解决标签带来的弱点，通过RF-PCT[60]、FaIE[61]等取得了较好的性能。</p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/17-11-04-2b8e498729082431e2165ab74cdb361b-QQ%E6%88%AA%E5%9B%BE20210316171011-32ae90.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/17-11-40-23bab71278ec161103b58b657079078d-QQ%E6%88%AA%E5%9B%BE20210316171050-ef0097.png"></p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>据我们所知，在保留未知标签组合的泛化能力或标签联合概率的模型建立方面，很少有多标签分类方法。为了弥补这一不足，提出了一种新的多标签分类机制，命名为多标签分类的标签嵌入网络（Label Network Embedding for Multi-Label Classification，LNEMLC）。 它将标签网络嵌入到多标签学习中，以扩展输入空间，从而可以使用任何多标签基础分类器以较低的计算复杂度提高分类质量。而在 [68] 中的工作提出了一种针对大规模类的快速线性降维方法。更准确地说，所有的标签都被转化为一个缩小的编码空间，得到的伪标签被用来训练集成模型。</p>
+<h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>seldom ： 很；不常</p>
+<p>retain ： 保持；保留</p>
+<p>generalization ： 泛化；概括</p>
+<p>compensate ： 补偿;赔偿</p>
+<p>shortage :  缺乏，缺少</p>
+<p>mechanism : 机制；原理</p>
+<p>embed ：  栽种；使嵌入</p>
+<p>extend ： 延伸；扩大</p>
+<p>dimension ： 方面；维</p>
+<p>pseudo ： 冒充的，假的</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_6/2021/03/16/20-05-17-9a37aeb248f7d7f03b76874f45a7e3c4-post_4-e5b862.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>一句话，上述集成方法解决了关于标签的问题（包括标签相关性、大规模类、标签缺失）和关于特征的问题（主要是高维特征）。其他如 IEML、ICM L等作品的提出，不仅涉及标签问题，还涉及特征相关性问题。在 [62] 作品中，利用损失函数的结构来解决在ERM问题，提出了一种基于标签转换技术的概率模型，用于多标签分类。而更详细的总结见表3。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>FaIE、LEML、CML、LCML、PLST和CPLST算法：考虑了类标签向量和特征表示在低维潜在空间中的</p>
+<p>线性关系，上述的算法忽略了尾部标签的问题，而现实世界中的多标签数据集有大量的尾部标签。</p>
+<p>高效半监督多标签分类器（Efficient Semi-supervised Multi-label Classifier，ESMC）：为了解决标签缺失问题提出的算法</p>
+<p>在 [66] 文章中，采用了尾部标签考虑类标签确实，</p>
+<p>在 [51] 文章中应用交互最小二乘法填补缺失目录，并兼顾特征和标签缺失</p>
+<p>RF-PCT、FaIE，解决了标签带来的若点，并取得了很好的性能</p>
+<p>保留未知标签组合的泛化能力或标签联合概率的模型建立方面，很少有标签分类方法</p>
+<p>标签分类的标签嵌入网络（Label Network Embedding for Multi-Label Classification，LNEMLC）：</p>
+<p>为了弥补上述所发的缺点，他将标签网络嵌入到了多标签学习中，以扩展输入空间，这样就可以使</p>
+<p>用任何的多标签基础分类器以较低的计算复杂度提高分类质量</p>
+<p>在 [68] 中，一种针对大规模类的快速线性降维方法被提出，所有的标签都被转换为一个缩小的编</p>
+<p>码空间，得到的伪标签被用来训练集成模型。</p>
+<p>上述的集成方法解决了关于标签的问题和关于特征的问题</p>
+<p>IEML、ICML等作品的提出，不仅涉及标签问题，还涉及特征相关性问题</p>
+<p>在作品 [62] 中利用损失函数的结构来解决在 ERM 问题提出了基于标签转换技术的概率模型，用于多标签分类。</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-7</title>
+    <url>/2021/03/17/A-Survey-on-Multi-Label-Data-Stream-Classification-7/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第七天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/14-58-31-80fd023caf95ef7b075987082b319a8a-QQ%E6%88%AA%E5%9B%BE20210317145758-989aeb.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于传统的多标签数据分类的讨论</p>
+<p>在这一小节中，我们将从更广泛的角度讨论上述多标签分类方法，并对几种具有代表性的算法在不同评价指标上进行一些对比实验。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>broader ： 广大的；一片的比较级</p>
+<p>perspective ：  观点；远景</p>
+<p>conduct : 组织;实施;行为</p>
+<p>comparative ： 比较的；相当的</p>
+<p>experiment ： 实验；试验</p>
+<p>evaluation ：  评价；评估</p>
+<p>metric ： 指标；度量</p>
+<p>merit ： 优点；价值</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-08-17-afebf9ac92acd0ce1dbeecaf076b6e93-QQ%E6%88%AA%E5%9B%BE20210317150810-32a42e.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-09-14-226d6708ea1f13c5626a9e8a0f01e7c1-QQ%E6%88%AA%E5%9B%BE20210317150825-e8cc79.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据以上小节，多标签分类方法有三类，PT、AA和PT与AA的集成。同时，我们了解到每种方法的产生是为了提高分类器的性能指标。据我们所知，现有的大多数多标签学习方法实际上是通过显性或隐性地优化某一个或多个指标来从训练实例中学习。鉴于公平和诚信的评价，算法的性能应该在更广泛的指标上进行测试。 例如，一些研究者证明，一些解决最大化子集准确度的分类器在汉明损失方面表现不佳。因此，在本小节中，我们从不同类别中选取9种典型的多标签学习算法，比较它们的差异。如表4所示，我们总结了这些算法的特性，包括计算复杂度：训练复杂度和测试复杂度，以及测试数据集域。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p> 汉明损失（hamming loss ）： 表示所有label中错误样本的比例，所以该值越小则网络的分类能力越强。</p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>explicitly : 显式地</p>
+<p>typical ：  典型的；特有的</p>
+<p>propertie ： 属性；性能</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-25-35-fd8cd7ede28622aa9378d373610fd24f-QQ%E6%88%AA%E5%9B%BE20210317152528-683117.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-44-51-8229fcaa832887526c3ff40fd3eabc41-QQ%E6%88%AA%E5%9B%BE20210317154446-9ab5db.png"></p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/15-45-34-899c5a65c6aaf5afa053027bbf324ea5-QQ%E6%88%AA%E5%9B%BE20210317154526-5b3ffc.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>从表4中，就测试数据域而言，我们了解到不同类型的数据集代表了不同的领域，在这些领域中，相应的算法在原始文献中表现出更好的效果。根据表4，文本域、生物域和图像域是常用的测试域，它们也是多标签学习中常用的测试选择。至于不同多标签学习算法的复杂度，我们从训练复杂度和测试复杂度进行分析，知道每种算法的复杂度对不同规模数据集的适应性起着重要作用。为了衡量适用性，我们一般会考虑训练样本的数量、维度和可能的标签大小等因素。通过分析，我们了解到，在多标签学习中，汉明损失和排序损失是最常被优化的指标，即让算法在这些指标上表现得最好。 同时我们也发现，RAndom k-labELsets优化的子集精度仅由k-labELsets而不是整个标签空间来衡量。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>corresponding ：  相当的，相应的</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/16-44-13-d067f03d19ea7e7b25a84ed3aa324359-QQ%E6%88%AA%E5%9B%BE20210317164303-43f257.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/16-44-53-effa3c6d4d597991266c50caae005c28-QQ%E6%88%AA%E5%9B%BE20210317164319-4000fa.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>经过比较，我们知道，所有的PT方法都包括两个过程，即把复杂的多标签问题转化为若干个单标签问题，并把每个单标签问题的结果结合起来，而所有的AA方法都是把现有的算法改进行造成来解决多标签问题。与PT和AA相比，集成方法的复杂度可能更高，它可以更好地处理复杂的多标签问题。因此，在多标签数据挖掘中，集成技术可能是进一步研究的最佳选择。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/16-51-49-a98c5f7aa2e084d60c626f7cd749d4c6-QQ%E6%88%AA%E5%9B%BE20210317165102-7287ae.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/18/17-05-29-76fc3f73c7648c437a53a35d056e1418-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210318170510-e6eab9.png"></p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/17-02-55-1616bc8d53211041847a5190ece10e42-QQ%E6%88%AA%E5%9B%BE20210317164954-27eafd.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/17-03-23-e69c10ffe699996904cc209b97018b81-QQ%E6%88%AA%E5%9B%BE20210317165014-a4abd3.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>此外，我们进行实验，研究多标签分类中的典型算法。我们采用了9个不同规模、来自不同应用领域的多标签分类基准数据集。而在这组实验中，我们选取了11个不同的类型的具有代表性的算法，包括PT、AA以及PT和AA的集成，比较它们在不同的评价指标（多标签分类中常用的评价指标，包括基于实例的指标和基于标签的指标.为了简单起见，我们在这里只选取基于实例的指标来研究算法的性能）和效率（训练时间和测试时间）。我们采用 Friedman 检验与 Nemenyi 事后分析来检验不同算法之间的统计学意义。在本次统计学意义的测试中，我们使用 α=0.05 的 Friedman 检验，零假设是所有测量值均来自同一分布。更好的模型平均排名较低，即在临界距离图的右侧。计算 Nemenyi Significance 重要性的临界距离，其中m是要比较的模型数量，|D| 表示在其上进行实验的数据集的数量。在这里，m = 11，| D | = 9且q（α= 0.05，m = 11 ）= 3.219，<br>我们得到CD = 5.0333作为我们的临界距离。</p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>弗里德曼检验（Friedman test ）： 即“弗里德曼双向秩方差分析”，是多个(相关)样本齐一性的统计检验。</p>
+<h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>competing : 竞争</p>
+<p>hypothesis ： 假设</p>
+<h1 id="8、第八部分"><a href="#8、第八部分" class="headerlink" title="8、第八部分"></a>8、第八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_7/2021/03/17/17-35-40-b54905e1fadc9f68c16228b75a6f8cad-QQ%E6%88%AA%E5%9B%BE20210317173510-9cc639.png"></p>
+<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>一般来说，如果零假设不成立，通常采用 Nemenyi 后分析法来观察哪种方法的统计学表现明显优于其他方法。我们可以从“关键距离图”中看到Friedman-Nemenyi的结果，其中，方法是根据数字线上某个度量的平均排名对方法进行排序的。从理论上讲，在相互之间的临界距离内的方法在统计上被认为并不比彼此显着更好，并且它们在图中用一条线链接。</p>
+<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、总结"><a href="#9、总结" class="headerlink" title="9、总结"></a>9、总结</h1><p>多标签分类分为三种方式：<br>1、问题转移（Problem Transformation，PT）2、自适应算法（Algorithm Adaptation，AA）3、PT 和 AA 算法的集成</p>
+<p>每种方法的产生都是为了提升分类器的性能指标</p>
+<p>现有的大多数多标签学习方法实际上是通过显性或隐性的优化某一个或多个指标来从训练实例中学习，</p>
+<p>有研究者证明，一些解决最大化子集准确度的分类器在汉明损失方面表现不佳</p>
+<p>不同类型的数据集代表了不同的领域</p>
+<p>文本域、生物域、图像域是常用的测试域，也是多标签学习中常用的测试选择；</p>
+<p>针对多标签学习算法的复杂度，可以从训练复杂度和测试复杂度进行分析</p>
+<p>每种算法的复杂度对不同规模数据集的适应性起着重要的作用</p>
+<p>为了衡量适应性，通常考虑 训练样本的数量、维度、和可能的标签大小等因素。</p>
+<p>汉明损失和排序损失是最常被优化的指标</p>
+<p>RAndom k-labELsets优化的子集精度仅由k-labELsets而不是整个标签空间来衡量。</p>
+<p>PT方法包含两个过程：1、把复杂的多标签问题转换成若干个单标签问题2、把每个单标签问题的结果结合起来</p>
+<p>AA方法都是把现有的算法进行改造来解决多标签问题</p>
+<p>与 PT 与 AA 相比，集成方法的复杂度可能更高，可以更好的处理复杂的多标签问题。</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-8</title>
+    <url>/2021/03/20/A-Survey-on-Multi-Label-Data-Stream-Classification-8/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第八天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-30-c80b0c0fc999f3644543e7d28e8d345e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095011-34d32f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-41-e094db1ae64128ebcc0f982f8c641cdd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095624-70b576.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-52-1bcd338b061202c6e630d9457b0de983-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095636-d6aac9.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-03-1831148d83e5b4a130002dbd6b35c3f7-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095644-d8bde7.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-11-d1b14b4bbc4691aa9e6be8d8b9ba3997-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095656-1df353.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-24-81e7493e865c62f1d43434008d108eba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095706-4d56f5.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-59-04-d4248f49488410c7655b9f8b33b53d89-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095718-625058.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>我们主要介绍基于实例的度量和效率方面的结果。基于实例的评价指标包括汉明损失、准确度、精度、召回率、F1和子集精确度。统计评价结果见图1-8，完整的具体结果见表6-13。 从表中总结的结果，我们可以得出一些结论。首先，从召回率评估，HOMER 表现最好，而 RF-PCT 在精度方面表现最好。HOMER 的预测比较完整，而 RF-PCT 的预测比较准确。其次，关于方法在六个评价指标上的表现，我们可以看到，方法在所有指标上表现最好的是RF-PCT，其次是HOMER、BR和CC。根据汉明损失和精度，RF-PCT的表现最好，关于精度和F1的表现第三好。HOMER方法在子集精度、准确度、召回率和F1上表现最佳，而在汉明损失和精度上表现不佳。HOMER在汉明损失方面表现不佳的原因可能是构建HOMER的层次结构的程序忽略了汉明损失的优化。同时我们可以得知，在0.05的显著性水平下，预测性能的差异是显著的。HOMER和RF-PCT往往明显优于单一的 PCT，或单一的 ML-C4.5 树。从合集学习来看，RF-PCT合集提高了单个PCT的性能，但对于ECC和RF-MLC4.5合集来说，情况并非如此，一些单个模型在某些指标上的平均表现甚至优于对应的合集。从集成学习来看，RF-PCT集成提高了单个 PCT 的性能，但对于 ECC 和 RF-MLC4.5 合集来说，情况并非如此，一些单个模型在某些指标上的平均表现甚至优于对应的合集。 最后，我们还知道，基于 SVM 的方法在较小的数据集上呈现出更好的性能，而基于树的方法更适用于具有大量特征的大数据集。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>specific ： 特殊的，特定的；明确的</p>
+<p>corresponding  ： 相当的，相应的</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-28-51-2a93ee9bc79afcc062d7f4d20e91050e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102403-7008ce.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>从表12和表13得知，基于树的方法比基于SVM的方法效率高。即PCT是最有效的方法，其次是ML-C4.5和ML-kNN。PCT 比 ML-C4.5 更快地构建模型，因为它们采用的修剪策略不同。    </p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-10-4a936cf677509ebf2504e88cf84728ad-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102410-7e9bfe.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-28-53c968909b2d0f07a9082be5469a650e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102421-cdbae8.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>总而言之，无论是问题转化、算法自适应还是集成法，没有一种方法在所有的性能评价指标上都是最优的。相比之下，集成法在效果上表现较好，但在效率上的表现还有待提高。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-41-9e3e7f1e9648ed8c743ab60aa97d9c58-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102427-403bee.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类</p>
+<p>在本节中，我们首先介绍数据流和数据流分类的相关概念，然后介绍数据流分类的常见约束，并主要解决数据流分类中的概念漂移问题。最后，我们总结了数据流分类中的评估指标，开放数据和软件资源。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-00-61fbbdda76343ab39090acdefb1e29ab-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102436-4d06db.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-44-036aaa0f4593ce981bd346666109d9a5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102446-4f3527.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于数据流和数据流分类的概念</p>
+<p>数据流是由一串有序的数据序列组成的，有起始字节和结束字节。而数据流DS定义为 n(n → ∞) 个数据样本的序列，表示为：DS = {x1, x2, … …。, xi, … . , xn}，其中xi(1 ≤ i ≤ n)表示第i个可视的数据对象，xn是数据流中最后一个可视的数据对象的符号。在对数据流进行分类时，如果每个数据对象xi仅具有一份标签 yi ∈ Y = {y1, y2, . . . , yc}，则将它们命名为单标签数据流。否则，如果在对数据流进行分类时每个数据对象都与一个以上的标签（即标签集Yi⊆Y）相关联，则称为多标签数据流。因此，多标签数据流表示具有多个类标签的数据实例序列，且没有边界和一定的顺序。数据流有几个新的特点，可能是无限量、连续、数据点速度高、多标签概念漂移等等。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>be composed of : 由……组成</p>
+<p>sequences ： 序列</p>
+<p>velocity ： 速度</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-56-256f6a82742d0108c63252c0f9623831-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102501-564f53.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类源于传统的监督机器学习的分类任务，它涉及到预测一个未知例子的类标签的问题，而这个类标签是由一个特征向量来表示的。 与静态数据上的分类相反，流式数据分类中的分类器不容易实时访问数据实例，因为数据实例是以连续顺序数据流的形式随时间高速到达的。由于数据流具有无限长、高速度的特性，数据流的实例只能扫描一次或存储时间很短，因此，一个理想的数据流分类器必须做好充分的准备，才能实时处理大量的实例，以获得更好的分类性能。数据流分类的应用领域包括但不限于短文数据流分类、图像数据流分类、视频流数据分类等。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>real-time ： 实时</p>
+<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-31-21-406f00a5c756fd73c415adcabe17362e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102510-3d885f.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在这个分类的任务中，数据流DS中的实例依次到达。给定一个实例 xi∈DS，它表示在时间i到达的没有标签的属性值的向量。在 Δi 个时间单位的间隔中，我们假设在实例 xi+Δi 到来之前，可以访问到 xi 的地真标签 yi，因此，我们可以先利用实例xi作为测试实例，然后将其作为训练实例。说白了，给定 χ 表示输入特征空间，Y表示可能的标签空间，Yi代表标签子集。数据流分类的目的首先是利用新到的和历史的实例来训练一个分类器，这些实例具有单个标签或多个标签。然后我们利用生成的模型对数据流中的任何一个传入的数据实例 xi∈χ 给出一个标签或一个标签集的预测，即自动预测xi的一个标签yi或一个标签集yi ∈ Y。</p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intervals : 时间间隔</p>
+<p>ground :  地面；土地</p>
+<p>bluntly ： 直言地，单刀直入地</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-9</title>
+    <url>/2021/03/21/A-Survey-on-Multi-Label-Data-Stream-Classification-9/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第九天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分："><a href="#1、第一部分：" class="headerlink" title="1、第一部分："></a>1、第一部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-06-e2e2da35d44f12f3faa2d3ce7183cad5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102305-77e292.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类的局限和挑战</p>
+<p>在本小节中，我们主要介绍了流媒体数据分类的一些常见约束条件。数据流有其固有的特殊性，如可能是无限的存储、时间顺序、随时间的动态变化和多标签等。如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。例如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。同时，隐藏在这些查询中的不同热门话题始终随着时间也在不断发生着变化。另一方面，数据流分类的结果可能是近似的，并且必须主要满足以下约束：</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>peculiarities ： 独特性；怪癖</p>
+<p>temporal ： 时间</p>
+<p>hence  ： 因此；今后</p>
+<h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="2、第二部分："><a href="#2、第二部分：" class="headerlink" title="2、第二部分："></a>2、第二部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-22-4771672eef68d85745d3a78fba79408f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102435-627268.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-44-546d2b12340f8f105e89c56dd5ce2640-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102448-dc5cef.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>单次：传统数据挖掘中使用的数据集是静态的，可以反复多次读取，而在数据流中，数据实例是动态的，最多只能读取一次。</p>
+<p>实时响应。许多关于数据流的实际应用，如股票市场预测和信用卡交易，都需要实时响应。较低的时间成本是对数据处理和决策的重要要求。</p>
+<p>储存器受限：随着数据实例的到来，数据流的容量是无限的。因此，只能存储和计算数据摘要以获得可接受的近似结果，而由于有限的内存存储和计算能力，许多实例将被丢弃。</p>
+<p>漂移检测：概念漂移是指随着时间的推移，类空间、特征空间或两个空间的数据分布发生变化。 而漂移检测有利于更新建立的模型，以适应隐藏在数据流中的动态变化。</p>
+<p>多标签问题：在流式数据中，每个数据实例都与一个或多个标签相关联。在这一场景中，如一类新闻流，它可能同时属于多个主题。多标签数据流分类的目的是将每个数据实例划分为一个预定义的标签或标签集。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>stock ： 股份；股票；库存</p>
+<p>simultaneous ： 同时的</p>
+<h1 id="3、第三部分："><a href="#3、第三部分：" class="headerlink" title="3、第三部分："></a>3、第三部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-35-09-f60255804669995834038a6e589f2508-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102524-dd4ac1.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流中的概念漂移和漂移检测方法的分类。</p>
+<p>在这一小节中，我们首先对概念漂移的原因和类别进行了简单的介绍，然后我们总结了一些先进的漂移检测方法。</p>
+<p>概念漂移的原因和类别：研究人员通常会考虑以前未知的隐藏数据背景来界定概念漂移。在[74]中，作者将其命名为不可预见的变化，因为有关的变化与目前的领域知识或以前的学习实例相比是出乎意料的。</p>
+<p>根据这些漂移的原因和影响，概念漂移有两种类型，包括真实漂移和虚拟漂移 。此外，根据漂移速度，我们可以将漂移分为四种流行的类型，即增量漂移、突发性和渐进性漂移、反复性漂移[78]。然而，在实际案例中，概念漂移可能是各种漂移的复杂组合。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>brief ： 短暂的；简短的</p>
+<p>previously ：  以前；预先</p>
+<p>incremental ： 增长的；逐渐的</p>
+<p>abrupt :  生硬的；突然的</p>
+<p>gradual : 逐渐的；平缓的</p>
+<p>recurrent : 复发的；周期性的</p>
+<h1 id="4、第四部分："><a href="#4、第四部分：" class="headerlink" title="4、第四部分："></a>4、第四部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-36-28-71caa70146b4f0157293826fbd5b21cc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102535-d54499.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-36-42-de53ac571c6c91f070209b6bb4ece215-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102549-528363.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流的漂移检测方法：概念漂移检测方法，一般根据分类性能或传入数据实例本身的信息来检测漂移的概念，这意味着数据流中数据的分布变化。这意味着通常会导致模型的更新，或者只是用一个新的模型替换过时的模型。因此，一个理想的漂移检测技术必须满足可以快速更换过时的模型，同时保持较短的恢复时间成本。因此，为了评估漂移检测器的效果，我们通常考虑以下措施：</p>
+<p>正确的漂移检测数；</p>
+<p>误报次数；</p>
+<p>恢复时间；</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>imply ： 意味；暗示</p>
+<p>restoration ： 恢复；复位</p>
+<p>alarms ： 警报</p>
+<p>intolerable ： 无法忍受的</p>
+<h1 id="5、第五部分："><a href="#5、第五部分：" class="headerlink" title="5、第五部分："></a>5、第五部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-36-57-78e3676794c2f8402a418ff2ec01383a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102601-5cb37f.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在实践中，我们通常会考虑不同指标之间的权衡。例如，有些方法可以有效降低漂移检测器的检测延迟，但可能会导致较高的误报率。没有多少漂移检测方法可以汇总度量，并且大多数方法都利用了所有上述度量。更具体地说，将漂移检测器分为以下四类：</p>
+<p>基于统计过程控制的方法；</p>
+<p>基于顺序分析相关性的方法；</p>
+<p>监测相邻两个时间窗口之间数据分布的方法;</p>
+<p>基于上下文的方法。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>relevance ： 相关性；关联</p>
+<p>aggregate ：集合；聚集 </p>
+<p>adjacent : 邻近的，毗连的</p>
+<h1 id="6、第六部分："><a href="#6、第六部分：" class="headerlink" title="6、第六部分："></a>6、第六部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-37-20-4f97f0df6519f33a4a4dc421e1956e33-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102610-066d27.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>下面，我们就一些检测漂移的方法进行简要介绍。最著名的漂移检测方法是DDM（Drift Detection Method）[80]。guaDDM方面，开发了EDDM（早期漂移检测方法）[81]，以提高渐进漂移的检测性能。在DDM方面，为了提高渐变漂移的检测性能，开发了EDDM（Early Drift Detection Method）。另一个称为EWMA（指数加权移动平均值）的检测器[82]通过采用观察指数加权移动平均值变化的理想方法来检测概念漂移。CUmulative SUM方法(CUSUM)可以检测给定参数值的概率分布是否发生变化，并指出发生重大变化的时间点。另外，在[15]，[95]-[98]中，还存在一些非参数检验，例如用于检测漂移的计算智能累积和检验。其他一些检测方法则采用自适应窗口算法（ADWIN），例如CVFDT（适应概念的快速决策树学习器），E-CVFDT（高效CVFDT）和SUN（针对具有概念漂移和未标记数据的数据流的半监督分类算法） ， 等等。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>brief : 简短的，简洁的</p>
+<p>resort to : 依靠;求助于</p>
+<h1 id="7、第七部分："><a href="#7、第七部分：" class="headerlink" title="7、第七部分："></a>7、第七部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-37-35-70990a1701679aacba3795441dd454b3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102622-2992d1.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类中的评估指标</p>
+<p>正确评估分类模型的性能是机器学习的重要方面。在流式数据挖掘的背景下，需要得到新的解决方案，尤其是在非稳态环境下。在性能评价方面，我们不仅要考虑数据特征不断变化的增量处理，还要考虑分类器对变化的反应。在流媒体环境下，随着时间的推移，新的类可能会出现，属性空间可能会发生变化，决策规则可能会失去相应的相关性。更重要的是，有时数据流中加入人工漂移，可以进行详细分析。因此，在预测模型和漂移检测器的评价中，真实世界的数据流和合成的数据流都很重要。</p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>stationary : 固定的；静止的</p>
+<p>incremental  : 增长的；逐渐的</p>
+<p>evolve:  发展；进化</p>
+<p>synthetic ：  合成物</p>
+<h1 id="8、第八部分："><a href="#8、第八部分：" class="headerlink" title="8、第八部分："></a>8、第八部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-38-16-b73fa3321d1de0f99792ed640297fe82-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102631-7d80da.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-38-39-21ad31f891a7e0a9bdba328117602610-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102646-7a4bf4.png"></p>
+<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>交叉验证是静态和批处理学习中一种非常流行的评估技术。但是，在非平稳流环境中，由于其连续性和时序性，它几乎不能直接应用于流数据中。因此，就稳定的或非稳定的数据流的类型而言，下面有两种相应的方法。</p>
+<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、第九部分："><a href="#9、第九部分：" class="headerlink" title="9、第九部分："></a>9、第九部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-39-01-beba2eaef85a243a6cc9f1570f681e32-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102654-f7f531.png"></p>
+<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>留出法评估：在保持评估中，需要两个数据子集，一个是用于训练模型的训练数据集，另一个是用于测试模型的测试数据集（即留出集）。我们维护一个留出集，该留出集先前未被我们的模型用于评估模型。通过在不断更新的数据集上测试学习模型，我们可以获得模型的无偏估计。</p>
+<p>前期评估：事前评估，也称为交织训练和测试，是一种用于评估流挖掘中分类器的预测准确性的流行方法。而在这个措施中，数据样本是边采集边评估的，因此数据样本的大小并不是事先固定的。</p>
+<h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>maintain ： 维持；继续 </p>
+<p>estimation ：估计；尊重 </p>
+<p>interleaving ： 交错；交叉</p>
+<p>assess ： 评定；估价</p>
+<h1 id="10、第十部分："><a href="#10、第十部分：" class="headerlink" title="10、第十部分："></a>10、第十部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-40-31-f387e8b58d6aa635a1960004ba5675e2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102706-88116f.png"></p>
+<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在数据流分类中，我们使用与静态和非线性学习提出的相同的测量方法来评估任何分类模型的预测能力。据我们所知，在最近的文献中，一些评价措施被广泛用于数据流分类器，我们将它们列举如下。</p>
+<h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="11、第十一部分："><a href="#11、第十一部分：" class="headerlink" title="11、第十一部分："></a>11、第十一部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-39-37-60b3762cb6f1410d055ca5f0af72ff75-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102718-f7d331.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-41-16-3276de8a4bbbb6da5e21b8ab84e661b9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102733-2f965a.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-41-28-6665f2e7946b06c24d9eb0b2cff06c91-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102740-2018a5.png"></p>
+<h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>准确度：准确率是分类中最常用的指标之一。 它表示所有真实预测占总实例数的百分比。而准确度的数值越高，分类器越好。</p>
+<p>召回率:召回率与敏感度相同，是覆盖率的度量，是正确预测的阳性样本与真实阳性样本的比率。索引越高，分类器越好。</p>
+<p>精确度：精确度表示所有真实的阳性预测在所有阳性预测中的百分比。精度值越高，说明分类器越好。</p>
+<p>F1: F1值是算术平均值除以几何平均值，F1值越高，分类器越好。</p>
+<p>G-Mean：G-Mean，即召回率和特异性的几何平均值，通常用于不平衡类标签属性的数据流所在的域。我们使用 G-Mean 来避免整体准确性带来的偏差。</p>
+<p>AUC：ROC曲线下的面积称为AUC (Receiver Operating Characteristics)，是一种流行的分类器评价方法。它可以应用在平衡和不平衡类分布的数据流上评估学习模型。它可用于评估具有均衡和不均衡类分布的数据流上的学习模型。</p>
+<p>内存消耗：内存消耗通常表示存储算法和运行内存的平均内存需求，并且会根据运行操作随时间变化。</p>
+<p>运行时间：运行时间，也称为时间复杂度，它是算法在数据集上运行所花费的时间，通常以秒为单位。</p>
+<h2 id="2、名词解释-10"><a href="#2、名词解释-10" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>sensitivity : 灵敏度</p>
+<p>coverage : 覆盖；覆盖范围</p>
+<p>arithmetic ： 算术，算法</p>
+<p>geometric ： 几何学的</p>
+<p>curve : 曲线</p>
+<h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2>]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
       </tags>
   </entry>
 </search>
