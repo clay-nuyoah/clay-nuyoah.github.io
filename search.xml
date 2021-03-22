@@ -1835,7 +1835,7 @@ dp[3][6] = ∞ 已经证明</code></pre>
 
 <h1 id="1、第一部分："><a href="#1、第一部分：" class="headerlink" title="1、第一部分："></a>1、第一部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-34-06-e2e2da35d44f12f3faa2d3ce7183cad5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102305-77e292.png"></p>
 <h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类的局限和挑战</p>
-<p>在本小节中，我们主要介绍了流媒体数据分类的一些常见约束条件。数据流有其固有的特殊性，如可能是无限的存储、时间顺序、随时间的动态变化和多标签等。如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。例如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。同时，隐藏在这些查询中的不同热门话题始终随着时间也在不断发生着变化。另一方面，数据流分类的结果可能是近似的，并且必须主要满足以下约束：</p>
+<p>在本小节中，我们主要介绍了流媒体数据分类的一些常见约束条件。数据流有其固有的特殊性，如可能是无限的存储、时间顺序、随时间的动态变化和多标签等。例如，百度搜索引擎每天处理数百万次查询，因此很难将这些数据全部存储在内存设备中。同时，隐藏在这些查询中的不同热门话题始终随着时间也在不断发生着变化。另一方面，数据流分类的结果可能是近似的，并且必须主要满足以下约束：</p>
 <h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>peculiarities ： 独特性；怪癖</p>
 <p>temporal ： 时间</p>
 <p>hence  ： 因此；今后</p>
@@ -1845,7 +1845,8 @@ dp[3][6] = ∞ 已经证明</code></pre>
 <p>储存器受限：随着数据实例的到来，数据流的容量是无限的。因此，只能存储和计算数据摘要以获得可接受的近似结果，而由于有限的内存存储和计算能力，许多实例将被丢弃。</p>
 <p>漂移检测：概念漂移是指随着时间的推移，类空间、特征空间或两个空间的数据分布发生变化。 而漂移检测有利于更新建立的模型，以适应隐藏在数据流中的动态变化。</p>
 <p>多标签问题：在流式数据中，每个数据实例都与一个或多个标签相关联。在这一场景中，如一类新闻流，它可能同时属于多个主题。多标签数据流分类的目的是将每个数据实例划分为一个预定义的标签或标签集。</p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>stock ： 股份；股票；库存</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><p>概念漂移: 在预测分析和机器学习的概念漂移表示目标变量的统计特性随着时间的推移以不可预见的方式变化的现象。随着时间的推移，模型的预测精度将降低。</p>
+<h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>stock ： 股份；股票；库存</p>
 <p>simultaneous ： 同时的</p>
 <h1 id="3、第三部分："><a href="#3、第三部分：" class="headerlink" title="3、第三部分："></a>3、第三部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-35-09-f60255804669995834038a6e589f2508-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102524-dd4ac1.png"></p>
 <h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流中的概念漂移和漂移检测方法的分类。</p>
@@ -1877,7 +1878,7 @@ dp[3][6] = ∞ 已经证明</code></pre>
 <p>aggregate ：集合；聚集 </p>
 <p>adjacent : 邻近的，毗连的</p>
 <h1 id="6、第六部分："><a href="#6、第六部分：" class="headerlink" title="6、第六部分："></a>6、第六部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-37-20-4f97f0df6519f33a4a4dc421e1956e33-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102610-066d27.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>下面，我们就一些检测漂移的方法进行简要介绍。最著名的漂移检测方法是DDM（Drift Detection Method）[80]。guaDDM方面，开发了EDDM（早期漂移检测方法）[81]，以提高渐进漂移的检测性能。在DDM方面，为了提高渐变漂移的检测性能，开发了EDDM（Early Drift Detection Method）。另一个称为EWMA（指数加权移动平均值）的检测器[82]通过采用观察指数加权移动平均值变化的理想方法来检测概念漂移。CUmulative SUM方法(CUSUM)可以检测给定参数值的概率分布是否发生变化，并指出发生重大变化的时间点。另外，在[15]，[95]-[98]中，还存在一些非参数检验，例如用于检测漂移的计算智能累积和检验。其他一些检测方法则采用自适应窗口算法（ADWIN），例如CVFDT（适应概念的快速决策树学习器），E-CVFDT（高效CVFDT）和SUN（针对具有概念漂移和未标记数据的数据流的半监督分类算法） ， 等等。</p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>下面，我们就一些检测漂移的方法进行简要介绍。最著名的漂移检测方法是DDM（Drift Detection Method）[80]。关于DDM方面，开发了EDDM（早期漂移检测方法）[81]，以提高渐进漂移的检测性能。在DDM方面，为了提高渐变漂移的检测性能，开发了EDDM（Early Drift Detection Method）。另一个称为EWMA（指数加权移动平均值）的检测器[82]通过采用观察指数加权移动平均值变化的理想方法来检测概念漂移。CUmulative SUM方法(CUSUM)可以检测给定参数值的概率分布是否发生变化，并指出发生重大变化的时间点。另外，在[15]，[95]-[98]中，还存在一些非参数检验，例如用于检测漂移的计算智能累积和检验。其他一些检测方法则采用自适应窗口算法（ADWIN），例如CVFDT（适应概念的快速决策树学习器），E-CVFDT（高效CVFDT）和SUN（针对具有概念漂移和未标记数据的数据流的半监督分类算法） ， 等等。</p>
 <h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>brief : 简短的，简洁的</p>
 <p>resort to : 依靠;求助于</p>
 <h1 id="7、第七部分："><a href="#7、第七部分：" class="headerlink" title="7、第七部分："></a>7、第七部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-37-35-70990a1701679aacba3795441dd454b3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102622-2992d1.png"></p>
@@ -1890,14 +1891,14 @@ dp[3][6] = ∞ 已经证明</code></pre>
 <h1 id="8、第八部分："><a href="#8、第八部分：" class="headerlink" title="8、第八部分："></a>8、第八部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-38-16-b73fa3321d1de0f99792ed640297fe82-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102631-7d80da.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-38-39-21ad31f891a7e0a9bdba328117602610-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102646-7a4bf4.png"></p>
 <h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>交叉验证是静态和批处理学习中一种非常流行的评估技术。但是，在非平稳流环境中，由于其连续性和时序性，它几乎不能直接应用于流数据中。因此，就稳定的或非稳定的数据流的类型而言，下面有两种相应的方法。</p>
 <h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、第九部分："><a href="#9、第九部分：" class="headerlink" title="9、第九部分："></a>9、第九部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-39-01-beba2eaef85a243a6cc9f1570f681e32-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102654-f7f531.png"></p>
-<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>留出法评估：在保持评估中，需要两个数据子集，一个是用于训练模型的训练数据集，另一个是用于测试模型的测试数据集（即留出集）。我们维护一个留出集，该留出集先前未被我们的模型用于评估模型。通过在不断更新的数据集上测试学习模型，我们可以获得模型的无偏估计。</p>
-<p>前期评估：事前评估，也称为交织训练和测试，是一种用于评估流挖掘中分类器的预测准确性的流行方法。而在这个措施中，数据样本是边采集边评估的，因此数据样本的大小并不是事先固定的。</p>
+<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>留出法评估：在留出法评估中，需要两个数据子集，一个是用于训练模型的训练数据集，另一个是用于测试模型的测试数据集（即留出集）。我们维护一个留出集，该留出集先前未被我们的模型用于评估模型。通过在不断更新的数据集上测试学习模型，我们可以获得模型的无偏估计。</p>
+<p>事前评估：事前评估，也称为交织训练和测试，是一种用于评估流挖掘中分类器的预测准确性的流行方法。而在这个措施中，数据样本是边采集边评估的，因此数据样本的大小并不是事先固定的。</p>
 <h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>maintain ： 维持；继续 </p>
 <p>estimation ：估计；尊重 </p>
 <p>interleaving ： 交错；交叉</p>
 <p>assess ： 评定；估价</p>
 <h1 id="10、第十部分："><a href="#10、第十部分：" class="headerlink" title="10、第十部分："></a>10、第十部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-40-31-f387e8b58d6aa635a1960004ba5675e2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102706-88116f.png"></p>
-<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在数据流分类中，我们使用与静态和非线性学习提出的相同的测量方法来评估任何分类模型的预测能力。据我们所知，在最近的文献中，一些评价措施被广泛用于数据流分类器，我们将它们列举如下。</p>
+<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在数据流分类中，我们使用与静态和非线性学习相同的测量方法来评估任何分类模型的预测能力。据我们所知，在最近的文献中，一些评价措施被广泛用于数据流分类器，我们将它们列举如下。</p>
 <h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="11、第十一部分："><a href="#11、第十一部分：" class="headerlink" title="11、第十一部分："></a>11、第十一部分：</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-39-37-60b3762cb6f1410d055ca5f0af72ff75-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102718-f7d331.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-41-16-3276de8a4bbbb6da5e21b8ab84e661b9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102733-2f965a.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_9/2021/03/21/10-41-28-6665f2e7946b06c24d9eb0b2cff06c91-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210321102740-2018a5.png"></p>
 <h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>准确度：准确率是分类中最常用的指标之一。 它表示所有真实预测占总实例数的百分比。而准确度的数值越高，分类器越好。</p>
 <p>召回率:召回率与敏感度相同，是覆盖率的度量，是正确预测的阳性样本与真实阳性样本的比率。索引越高，分类器越好。</p>
@@ -1912,7 +1913,117 @@ dp[3][6] = ∞ 已经证明</code></pre>
 <p>arithmetic ： 算术，算法</p>
 <p>geometric ： 几何学的</p>
 <p>curve : 曲线</p>
-<h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2>]]></content>
+<h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="12、总结"><a href="#12、总结" class="headerlink" title="12、总结"></a>12、总结</h1><p>数据流的特性：1、无限的存储、2、时间顺序、3、随着时间动态改变、4、多标签</p>
+<p>数据流分类必须满足的约束：单次、实时响应、存储器受限、漂移检测、多标签问题</p>
+<p>概念漂移：为不可预见的变化，因为有关变化与目前的领域知识或以前的学习实例相比是出乎意料的</p>
+<p>概念漂移可以分为两类：真实漂移和虚拟漂移</p>
+<p>根据漂移的速度可以分为四类：1、增量式漂移、2、突发性漂移、3、渐进性漂移、4、反复性漂移，在实际的案例之中，概念漂移可能是各种漂移的复杂组合</p>
+<p>概念漂移的检测方法，一般根据分类性能或传入数据实例本身的信息来检测漂移的概念，这意味着数据流中数据的分布变化。</p>
+<p>则意味着通常会导致模型的更新，或者是用一个新的模型替换一个旧的模型。</p>
+<p>理想的概念模型必须满足：1、快速更换过时模型；2、保持较短的回复时间成本</p>
+<p>为了检测漂移检测器的效果，通常考虑一下措施：1、正确的漂移检测数；2、误报次数；3、回复时间</p>
+<p>漂移检测器可以分为四类：1、基于统计过程控制的方法；2、基于顺序分析相关性的方法；3、检测相邻两个时间窗口之间数据分布的方法;4、基于上下文的方法</p>
+<p>漂移检测方法（Drift Detection Method，DDM）：最著名的漂移检测方法</p>
+<p>早期漂移检测方法（Early Drift Detection Method，EDDM）：提高了渐进漂移的性能</p>
+<p>指数加权移动平均值（Exponentially Weighted Moving Average，EWMA）：通过观察指数加权移动平均值变化的理想方法来检测概念漂移</p>
+<p>CUmulative SUM方法（CUSUM）：可以检测给定参数值的概率分布是否发生变化，并指出发生重大变化的时间点</p>
+<p>非参数校验：计算智能累计和检验（computational intelligence cumulative sum test）</p>
+<p>自适应窗口算法：CVFD、E-CVFDT、SUN</p>
+<p>数据流分类的评估指标：</p>
+<p>性能评价不仅要考虑数据特征不断变化的增量处理，还要考虑分类器对变化的反应</p>
+<p>流媒体环境存在的问题：随着时间的推移、新的类可能会出现、属性空间可能会发生变化，决策规则可能会失去相应的相关性</p>
+<p>有时加入在数据流中加入人工漂移，可以进行更详细的分析</p>
+<p>在预测模型和漂移检测器的评价中，真实世界的数据流和合成的数据流都很重要。</p>
+<p>交叉验证是静态和批处理学习中一种非常流行的评估技术</p>
+<p>在非平稳流环境中，由于其连续性和时序性，几乎不能应用于流数据中</p>
+<p>留出法评估：需要两个数据子集，一个数据集用于训练模型，一个用于测试模型。留出集先前没有被模型用于评估模型。通过在不断更新的数据集上测试学习模型，我们可以获得模型的无偏估计。</p>
+<p>前期评估：又称交织训练和测试，是一种用于评估流挖掘中分类器的预测准确性的流行方法。该方法，数据样本是边采集，变评估，因此数据样本的大小并不是事先固定的。</p>
+<p>使用静态和非线性相同的测量方法来评估任何分类模型的预测能力，下面列举了一些被广泛用于数据流分类器的评价措施：1、准确率；2、召回率；3、精确度；4、F1；5、G-Mean；6、AUC；7、内存消耗；8、运行时间</p>
+]]></content>
+      <tags>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A-Survey-on-Multi-Label-Data-Stream-Classification-10</title>
+    <url>/2021/03/22/A-Survey-on-Multi-Label-Data-Stream-Classification-10/</url>
+    <content><![CDATA[<p>多标签数据流分类研究第十天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-05-59-3c02031afc3fb222e7f4f260ba80aef5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100033-d1134d.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类中的开放软件和数据源</p>
+<p>在本小节中，我们将简要介绍一些常用的数据流挖掘软件和最常用的基准数据集，包括真实世界数据集和合成数据集。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>benchmark ： 基准 </p>
+<p>synthetic ： 综合的；合成的</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-04-4e1a632629b429e640668186a10e8bc3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100044-54a280.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类的开源软件</p>
+<p>在这部分，我们首先对流式数据挖掘的开源框架或库进行简单介绍，包括分类方法、聚类算法和评估方法等。使用这些开放的软件有利于促进不同研究群体之间的交流与合作，这些开放框架的存在为研究人员带来了极大的便利，例如，人们可以直接在这些平台上实现自己的算法，而不必担心如何评估所提出的算法等其他问题。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>conducive ： 有益的</p>
+<p>be conducive to ： 有利于</p>
+<p>communication ： 通讯；交流</p>
+<p>collaboration ： 合作；勾结</p>
+<p>implement ： 实施；执行</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-09-e816194a5e994d20bd5a1748c1ae19ab-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100058-c892e5.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>MOA：基于WEKA库，开发了MOA（Massive Online Analysis），用于流式数据学习。开发MOA框架是为了提供用于数据流分析的工具。MOA中包括一系列数据流挖掘算法，包括聚类，分类和集成算法等。与WEKA项目相关联，MOA也是用java 语言编写，其扩展性较强。 此外，MOA还提供了一些方法来模拟不同的数据流生成器，如SEA、STAGGER、旋转超平面等。而同时，MOA也提供了一些评价方法，包括留出测试、前序测试等。我们可以通过GUI（图形用户界面）或命令行启动MOA。在MOA平台方面，研究人员可以基于提供的API或现有的类库实现自己的想法。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>scalability ： 可扩展性；可伸缩性</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-18-34f99aca28a8b03c052cdb4178ca5b3a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100108-7f0171.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>SAMOA：SAMOA是一个由数据流挖掘和分布式计算组成的框架或库。 它包括了分布式流式机器学习算法的编程抽象。 在Apache SAMOA框架中，用户可以专注于手头要解决的学习问题，而不需要处理底层分布式流处理执行引擎的复杂性。分布式流处理引擎（DSPE），包括Apache Storm、Apache Samza和Apache Flink，用户可以在这些引擎上实现自己的分布式多标签数据流学习算法。此外，SAMOA还为用户提供了一些自适应数据流学习算法，例如用于分布式处理的Boosting和Vertical Hoeffding Tree方法。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>consist ： 由…组成</p>
+<p>tackle ： 应付；处理</p>
+<p>underly ： 下面</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-31-0e35d77759fd3bfd73b2ca27f7e9d6b4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100204-a01a47.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>JUBATUS：JUBATUS是分布式处理框架和流机器学习库的组合，这是第一个开放源代码分析平台，可以在该平台上更好地分析海量数据流。通过定义Update、Mix、Analyze三个基本操作，JUBATUS采用松散的模型共享架构，更高效地学习和共享机器学习模型。JUBATUS的功能包括以下几个方面，在线机器学习库、特征向量转换器和具有容错功能的分布式在线机器学习框架。JUBATUS的目标是在保持高精度的前提下，尽量减少模型的大小和混合运算的数量。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>loosen ： 放松；松开</p>
+<p>architecture ： 体系结构</p>
+<p>aspects ： 方面</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-13-36-072564b9d73e2f1806cc3b5142276e1e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100214-a3eb10.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>StreamDM：StreamDM作为一种新的开源软件，旨在通过扩展核心Spark API来进行大数据流挖掘，并始于华为诺亚方舟实验室。</p>
+<p>VFML：VFML（非常快速的机器学习）是用于挖掘高速流数据和海量数据集的工具包。它主要由三个部分组成：工具和API的集合、一些现有机器学习算法的集合和一些可扩展的学习算法。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>toolkit ： 工具包；工具箱</p>
+<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-13-52-f45f69f952b8303f7a666bf63379471f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100234-d71b1d.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基准数据集</p>
+<p>在我们的日常生活中，数据流分类中很少有真实的数据。可能的原因如下： 首先，传统数据挖掘中常用的数据集通常较小，无法进行批处理学习。其次，发布较大的数据集涉及隐私问题。</p>
+<p>真实世界数据集 在我们的日常实验中，经常会采用一些真实世界的多标签数据集（如表14所示）来评估算法在流数据挖掘环境中的性能。我们列出了访问它们的方法，特别是对最近文献[36]，[93]-[96]中最常用的方法进行了描述。详细说明如下：</p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="8、第八部分"><a href="#8、第八部分" class="headerlink" title="8、第八部分"></a>8、第八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-14-13-8cf0764e987265b6b7b57884ab3036ee-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100250-b15640.png"></p>
+<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>森林覆盖率：正如UCI9数据集的描述，森林大约有581,000个实例，具有七个类标签和54个属性；</p>
+<p>Nursery：正如UCI数据集中的描述，Nursery 包含5个类标签、8个离散属性维度和约12 960个实例。</p>
+<p>Adult：正如UCI数据集中的描述，Adult 包含2个类标签、14个属性维度和约48 842个对象。</p>
+<p>Connect-4：正如UCI数据集中的描述，Connect-4 包含3个类标签，41个离散属性维度，约67557个例子。</p>
+<p>Census-Income：如UCI数据集中的描述，Census-Income 由2个类标签、40个属性维度和约299285个实例组成。</p>
+<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、第九部分"><a href="#9、第九部分" class="headerlink" title="9、第九部分"></a>9、第九部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-14-46-adab2f0b5f82ce30895c3d698ccc7d06-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322101442-f3b3d7.png"></p>
+<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/17-50-42-df704f0b3550455488355eaa6bda6e8e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322175032-f82bdb.png"></p>
+<h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="10、第十部分"><a href="#10、第十部分" class="headerlink" title="10、第十部分"></a>10、第十部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-15-29-443f0784a82b75b0dcb6bdb36146c38a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100302-67ee32.png"></p>
+<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>Yahoo Shopping：雅虎购物在线数据集主要是通过雅虎网站服务器接口获得的一些相关产品的供应商和购物记录。它包含22个属性维度和11.3万个实例。</p>
+<p>Electricity：从澳大利亚新南威尔士州电力市场收集的电力数据集反映了市场供求与电价变化之间的关系。而它包含了2个类标签、7个属性和约45312个实例。</p>
+<p>KDDCup99：KDDCup99数据集是众所周知的计算机网络竞争性入侵数据集，它收集了大约490,000个实例。在该数据集中，每个实例最初包含42个维度的属性，其中34个连续属性被广泛使用。</p>
+<h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>competitive : 竞争的；比赛的</p>
+<p>intrusion : 入侵</p>
+<h1 id="11、第十一部分"><a href="#11、第十一部分" class="headerlink" title="11、第十一部分"></a>11、第十一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-18-57-1da940a7cecc240db8b53d8beac97942-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100316-d61671.png"></p>
+<h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>合成数据集 由于多标签数据流在真实应用中无处不在，通过标签和时间序列大规模吸收和存储实际应用的流数据可能不太实用。此外，概念漂移使流式分析变得困难。为了克服不同流数据评估实验的真实数据集的弱点，根据现有数据集创建了一些具有开放式示例的合成数据集。</p>
+<p>近期作品[99]-[102]中使用的许多合成数据集都借助 MOA 提供的具有不同漂移和噪声的数据流，包括 SEA 概念，STAGGER 和旋转超平面等。</p>
+<h2 id="2、名词解释-10"><a href="#2、名词解释-10" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>ubiquity : 普遍存在；到处存在</p>
+<p>open-ended :  开放式的；无限制的</p>
+<h1 id="12、第十二部分"><a href="#12、第十二部分" class="headerlink" title="12、第十二部分"></a>12、第十二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-19-12-0b297e4a02eed7cb7047853e09bb690a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100402-1cf087.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-19-22-c87b5164b859df2c361851744dca7f7e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100412-200823.png"></p>
+<h2 id="1、翻译-11"><a href="#1、翻译-11" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>多标签数据流分类</p>
+<p>在许多现实世界的应用中，数据流中的每个实例可能与多个标签相关联。即样本与一个标签集（或标签组合）相关联。例如，在网络新闻分类中，我们可以为一篇标题为’’阿里巴巴将上市’’的新闻文章标注很多标签，如经济、公司、互联网技术等。我们称此为多标签数据流分类（MLSC [96]），旨在通过生成分类模型将新闻页面分配给不同的标签。为了解决多标签分类问题,现有方法通常将传统的单标签数据流分类算法转移到多标签数据分类领域。但其中有些没有考虑到多标签数据流分类的独特属性，如多概念漂移、多标签问题、标签内和标签间的类不平衡、标签缺失和标签相关性等。</p>
+<h2 id="2、名词解释-11"><a href="#2、名词解释-11" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-11"><a href="#3、单词备注-11" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="13、第十三部分"><a href="#13、第十三部分" class="headerlink" title="13、第十三部分"></a>13、第十三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-19-40-d3dd52294ec8c5c84dd031e017f54ebb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100421-81bfe8.png"></p>
+<h2 id="1、翻译-12"><a href="#1、翻译-12" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>集成是多标签数据流分类的重要机制。以前的大量实验表明，特别是由各种分类器组成的模型的集合优于多标签数据流的单个分类器。据我们所知,多标签数据流包括两类:静态和非静态。因此，我们下面关于不同的多标签数据流分类方法的介绍将从这两类展开。根据每一种类别，我们将进一步区分现有的方法，具体内容如下。</p>
+<h2 id="2、名词解释-12"><a href="#2、名词解释-12" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-12"><a href="#3、单词备注-12" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>mechanism :  机制；原理</p>
+<p>extensive ： 广泛的；大量的</p>
+<p>diverse : 不同的；相异的</p>
+<p>superior ： 上级的；优秀的</p>
+<p>be superior to ： 优越于</p>
+<h1 id="14、第十四部分"><a href="#14、第十四部分" class="headerlink" title="14、第十四部分"></a>14、第十四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-20-33-250248649aa1d325f98407f4c0a22b33-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100428-35cd5c.png"></p>
+<h2 id="1、翻译-13"><a href="#1、翻译-13" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>静态流数据中的多标签分类方法</p>
+<p>静态数据流分类方法没有设计任何特殊的机制来检测和促进对概念漂移问题的适应。在多标签学习中，有三种流行的方法来处理多标签分类。同样，在固定流数据场景中，也有三类常见方法，包括PT，AA和“多标签分类器集成”。更详细的描述如下：</p>
+<h2 id="2、名词解释-13"><a href="#2、名词解释-13" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-13"><a href="#3、单词备注-13" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="15、第十五部分"><a href="#15、第十五部分" class="headerlink" title="15、第十五部分"></a>15、第十五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-21-11-ffbfb1210de40b7037bb4a754b3ce5fc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100453-63906c.png"></p>
+<h2 id="1、翻译-14"><a href="#1、翻译-14" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于PT的多标签数据流方法</p>
+<p>问题转移（Problem Transformation，PT）的一个重要优点是，PT能够采用任何现成的单标签基础分类器来满足多标签数据分类的要求。对于多标签流数据的分类可以求助于两种最常用的基于单标签的方法，即一种是二元相关性，另一种是标签组合。二值相关性（BR）通常将与多标签分类有关的问题转换为两个或几个二元分类问题，每个问题与一个标签相关联。而在标签组合(Label Combination，LC)中，它将每个标签组合(标签集)视为一个 “新 “的单类，然后将原来的多标签数据样本与一个 “新 “的类标签相关联，即单标签问题。基于BR的方法是由二元分类器组成的，即每个类标签有一个分类器。利用 BR 的优势，数据流学习可以获得很多意想不到的好处。为了处理数据流问题，对批次的新实例进行批次学习分类器培训是一种简单的方法，可以取代在以前批次上构建的分类器。</p>
+<h2 id="2、名词解释-14"><a href="#2、名词解释-14" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-14"><a href="#3、单词备注-14" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p> off-the-shelf ： 现成的；常备的</p>
+]]></content>
       <tags>
         <tag>数据流挖掘</tag>
         <tag>多标签数据</tag>

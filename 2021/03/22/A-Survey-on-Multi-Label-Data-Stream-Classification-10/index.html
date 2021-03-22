@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="5fFagiALkrBFm256jMyr0Wf9ZkND0mtyCDozn1qlVxE" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    A-Survey-on-Multi-Label-Data-Stream-Classification-10 |  CLAY
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-XKPTQSV9FV', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-A-Survey-on-Multi-Label-Data-Stream-Classification-10"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  A-Survey-on-Multi-Label-Data-Stream-Classification-10
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/22/A-Survey-on-Multi-Label-Data-Stream-Classification-10/" class="article-date">
+  <time datetime="2021-03-22T02:07:57.000Z" itemprop="datePublished">2021-03-22</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>多标签数据流分类研究第十天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-05-59-3c02031afc3fb222e7f4f260ba80aef5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100033-d1134d.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类中的开放软件和数据源</p>
+<p>在本小节中，我们将简要介绍一些常用的数据流挖掘软件和最常用的基准数据集，包括真实世界数据集和合成数据集。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>benchmark ： 基准 </p>
+<p>synthetic ： 综合的；合成的</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-04-4e1a632629b429e640668186a10e8bc3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100044-54a280.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类的开源软件</p>
+<p>在这部分，我们首先对流式数据挖掘的开源框架或库进行简单介绍，包括分类方法、聚类算法和评估方法等。使用这些开放的软件有利于促进不同研究群体之间的交流与合作，这些开放框架的存在为研究人员带来了极大的便利，例如，人们可以直接在这些平台上实现自己的算法，而不必担心如何评估所提出的算法等其他问题。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>conducive ： 有益的</p>
+<p>be conducive to ： 有利于</p>
+<p>communication ： 通讯；交流</p>
+<p>collaboration ： 合作；勾结</p>
+<p>implement ： 实施；执行</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-09-e816194a5e994d20bd5a1748c1ae19ab-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100058-c892e5.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>MOA：基于WEKA库，开发了MOA（Massive Online Analysis），用于流式数据学习。开发MOA框架是为了提供用于数据流分析的工具。MOA中包括一系列数据流挖掘算法，包括聚类，分类和集成算法等。与WEKA项目相关联，MOA也是用java 语言编写，其扩展性较强。 此外，MOA还提供了一些方法来模拟不同的数据流生成器，如SEA、STAGGER、旋转超平面等。而同时，MOA也提供了一些评价方法，包括留出测试、前序测试等。我们可以通过GUI（图形用户界面）或命令行启动MOA。在MOA平台方面，研究人员可以基于提供的API或现有的类库实现自己的想法。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>scalability ： 可扩展性；可伸缩性</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-18-34f99aca28a8b03c052cdb4178ca5b3a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100108-7f0171.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>SAMOA：SAMOA是一个由数据流挖掘和分布式计算组成的框架或库。 它包括了分布式流式机器学习算法的编程抽象。 在Apache SAMOA框架中，用户可以专注于手头要解决的学习问题，而不需要处理底层分布式流处理执行引擎的复杂性。分布式流处理引擎（DSPE），包括Apache Storm、Apache Samza和Apache Flink，用户可以在这些引擎上实现自己的分布式多标签数据流学习算法。此外，SAMOA还为用户提供了一些自适应数据流学习算法，例如用于分布式处理的Boosting和Vertical Hoeffding Tree方法。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>consist ： 由…组成</p>
+<p>tackle ： 应付；处理</p>
+<p>underly ： 下面</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-06-31-0e35d77759fd3bfd73b2ca27f7e9d6b4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100204-a01a47.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>JUBATUS：JUBATUS是分布式处理框架和流机器学习库的组合，这是第一个开放源代码分析平台，可以在该平台上更好地分析海量数据流。通过定义Update、Mix、Analyze三个基本操作，JUBATUS采用松散的模型共享架构，更高效地学习和共享机器学习模型。JUBATUS的功能包括以下几个方面，在线机器学习库、特征向量转换器和具有容错功能的分布式在线机器学习框架。JUBATUS的目标是在保持高精度的前提下，尽量减少模型的大小和混合运算的数量。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>loosen ： 放松；松开</p>
+<p>architecture ： 体系结构</p>
+<p>aspects ： 方面</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-13-36-072564b9d73e2f1806cc3b5142276e1e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100214-a3eb10.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>StreamDM：StreamDM作为一种新的开源软件，旨在通过扩展核心Spark API来进行大数据流挖掘，并始于华为诺亚方舟实验室。</p>
+<p>VFML：VFML（非常快速的机器学习）是用于挖掘高速流数据和海量数据集的工具包。它主要由三个部分组成：工具和API的集合、一些现有机器学习算法的集合和一些可扩展的学习算法。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>toolkit ： 工具包；工具箱</p>
+<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-13-52-f45f69f952b8303f7a666bf63379471f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100234-d71b1d.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基准数据集</p>
+<p>在我们的日常生活中，数据流分类中很少有真实的数据。可能的原因如下： 首先，传统数据挖掘中常用的数据集通常较小，无法进行批处理学习。其次，发布较大的数据集涉及隐私问题。</p>
+<p>真实世界数据集 在我们的日常实验中，经常会采用一些真实世界的多标签数据集（如表14所示）来评估算法在流数据挖掘环境中的性能。我们列出了访问它们的方法，特别是对最近文献[36]，[93]-[96]中最常用的方法进行了描述。详细说明如下：</p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="8、第八部分"><a href="#8、第八部分" class="headerlink" title="8、第八部分"></a>8、第八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-14-13-8cf0764e987265b6b7b57884ab3036ee-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100250-b15640.png"></p>
+<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>森林覆盖率：正如UCI9数据集的描述，森林大约有581,000个实例，具有七个类标签和54个属性；</p>
+<p>Nursery：正如UCI数据集中的描述，Nursery 包含5个类标签、8个离散属性维度和约12 960个实例。</p>
+<p>Adult：正如UCI数据集中的描述，Adult 包含2个类标签、14个属性维度和约48 842个对象。</p>
+<p>Connect-4：正如UCI数据集中的描述，Connect-4 包含3个类标签，41个离散属性维度，约67557个例子。</p>
+<p>Census-Income：如UCI数据集中的描述，Census-Income 由2个类标签、40个属性维度和约299285个实例组成。</p>
+<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、第九部分"><a href="#9、第九部分" class="headerlink" title="9、第九部分"></a>9、第九部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-14-46-adab2f0b5f82ce30895c3d698ccc7d06-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322101442-f3b3d7.png"></p>
+<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/17-50-42-df704f0b3550455488355eaa6bda6e8e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322175032-f82bdb.png"></p>
+<h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="10、第十部分"><a href="#10、第十部分" class="headerlink" title="10、第十部分"></a>10、第十部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-15-29-443f0784a82b75b0dcb6bdb36146c38a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100302-67ee32.png"></p>
+<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>Yahoo Shopping：雅虎购物在线数据集主要是通过雅虎网站服务器接口获得的一些相关产品的供应商和购物记录。它包含22个属性维度和11.3万个实例。</p>
+<p>Electricity：从澳大利亚新南威尔士州电力市场收集的电力数据集反映了市场供求与电价变化之间的关系。而它包含了2个类标签、7个属性和约45312个实例。</p>
+<p>KDDCup99：KDDCup99数据集是众所周知的计算机网络竞争性入侵数据集，它收集了大约490,000个实例。在该数据集中，每个实例最初包含42个维度的属性，其中34个连续属性被广泛使用。</p>
+<h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>competitive : 竞争的；比赛的</p>
+<p>intrusion : 入侵</p>
+<h1 id="11、第十一部分"><a href="#11、第十一部分" class="headerlink" title="11、第十一部分"></a>11、第十一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-18-57-1da940a7cecc240db8b53d8beac97942-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100316-d61671.png"></p>
+<h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>合成数据集 由于多标签数据流在真实应用中无处不在，通过标签和时间序列大规模吸收和存储实际应用的流数据可能不太实用。此外，概念漂移使流式分析变得困难。为了克服不同流数据评估实验的真实数据集的弱点，根据现有数据集创建了一些具有开放式示例的合成数据集。</p>
+<p>近期作品[99]-[102]中使用的许多合成数据集都借助 MOA 提供的具有不同漂移和噪声的数据流，包括 SEA 概念，STAGGER 和旋转超平面等。</p>
+<h2 id="2、名词解释-10"><a href="#2、名词解释-10" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>ubiquity : 普遍存在；到处存在</p>
+<p>open-ended :  开放式的；无限制的</p>
+<h1 id="12、第十二部分"><a href="#12、第十二部分" class="headerlink" title="12、第十二部分"></a>12、第十二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-19-12-0b297e4a02eed7cb7047853e09bb690a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100402-1cf087.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-19-22-c87b5164b859df2c361851744dca7f7e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100412-200823.png"></p>
+<h2 id="1、翻译-11"><a href="#1、翻译-11" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>多标签数据流分类</p>
+<p>在许多现实世界的应用中，数据流中的每个实例可能与多个标签相关联。即样本与一个标签集（或标签组合）相关联。例如，在网络新闻分类中，我们可以为一篇标题为’’阿里巴巴将上市’’的新闻文章标注很多标签，如经济、公司、互联网技术等。我们称此为多标签数据流分类（MLSC [96]），旨在通过生成分类模型将新闻页面分配给不同的标签。为了解决多标签分类问题,现有方法通常将传统的单标签数据流分类算法转移到多标签数据分类领域。但其中有些没有考虑到多标签数据流分类的独特属性，如多概念漂移、多标签问题、标签内和标签间的类不平衡、标签缺失和标签相关性等。</p>
+<h2 id="2、名词解释-11"><a href="#2、名词解释-11" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-11"><a href="#3、单词备注-11" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="13、第十三部分"><a href="#13、第十三部分" class="headerlink" title="13、第十三部分"></a>13、第十三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-19-40-d3dd52294ec8c5c84dd031e017f54ebb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100421-81bfe8.png"></p>
+<h2 id="1、翻译-12"><a href="#1、翻译-12" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>集成是多标签数据流分类的重要机制。以前的大量实验表明，特别是由各种分类器组成的模型的集合优于多标签数据流的单个分类器。据我们所知,多标签数据流包括两类:静态和非静态。因此，我们下面关于不同的多标签数据流分类方法的介绍将从这两类展开。根据每一种类别，我们将进一步区分现有的方法，具体内容如下。</p>
+<h2 id="2、名词解释-12"><a href="#2、名词解释-12" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-12"><a href="#3、单词备注-12" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>mechanism :  机制；原理</p>
+<p>extensive ： 广泛的；大量的</p>
+<p>diverse : 不同的；相异的</p>
+<p>superior ： 上级的；优秀的</p>
+<p>be superior to ： 优越于</p>
+<h1 id="14、第十四部分"><a href="#14、第十四部分" class="headerlink" title="14、第十四部分"></a>14、第十四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-20-33-250248649aa1d325f98407f4c0a22b33-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100428-35cd5c.png"></p>
+<h2 id="1、翻译-13"><a href="#1、翻译-13" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>静态流数据中的多标签分类方法</p>
+<p>静态数据流分类方法没有设计任何特殊的机制来检测和促进对概念漂移问题的适应。在多标签学习中，有三种流行的方法来处理多标签分类。同样，在固定流数据场景中，也有三类常见方法，包括PT，AA和“多标签分类器集成”。更详细的描述如下：</p>
+<h2 id="2、名词解释-13"><a href="#2、名词解释-13" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-13"><a href="#3、单词备注-13" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="15、第十五部分"><a href="#15、第十五部分" class="headerlink" title="15、第十五部分"></a>15、第十五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_10/2021/03/22/10-21-11-ffbfb1210de40b7037bb4a754b3ce5fc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210322100453-63906c.png"></p>
+<h2 id="1、翻译-14"><a href="#1、翻译-14" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>基于PT的多标签数据流方法</p>
+<p>问题转移（Problem Transformation，PT）的一个重要优点是，PT能够采用任何现成的单标签基础分类器来满足多标签数据分类的要求。对于多标签流数据的分类可以求助于两种最常用的基于单标签的方法，即一种是二元相关性，另一种是标签组合。二值相关性（BR）通常将与多标签分类有关的问题转换为两个或几个二元分类问题，每个问题与一个标签相关联。而在标签组合(Label Combination，LC)中，它将每个标签组合(标签集)视为一个 “新 “的单类，然后将原来的多标签数据样本与一个 “新 “的类标签相关联，即单标签问题。基于BR的方法是由二元分类器组成的，即每个类标签有一个分类器。利用 BR 的优势，数据流学习可以获得很多意想不到的好处。为了处理数据流问题，对批次的新实例进行批次学习分类器培训是一种简单的方法，可以取代在以前批次上构建的分类器。</p>
+<h2 id="2、名词解释-14"><a href="#2、名词解释-14" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-14"><a href="#3、单词备注-14" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p> off-the-shelf ： 现成的；常备的</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/03/22/A-Survey-on-Multi-Label-Data-Stream-Classification-10/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/" rel="tag">多标签分类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E6%A0%87%E7%AD%BE%E6%95%B0%E6%8D%AE/" rel="tag">多标签数据</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" rel="tag">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98/" rel="tag">数据流挖掘</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/03/21/A-Survey-on-Multi-Label-Data-Stream-Classification-9/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">A-Survey-on-Multi-Label-Data-Stream-Classification-9</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
