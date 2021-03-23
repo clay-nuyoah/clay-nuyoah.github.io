@@ -10,7 +10,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    A-Survey-on-Multi-Label-Data-Stream-Classification-8 |  CLAY
+    A-Survey-on-Multi-Label-Data-Stream-Classification-11 |  CLAY
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -59,7 +59,7 @@ ga('send', 'pageview');
     <main class="content on">
       <section class="outer">
   <article
-  id="post-A-Survey-on-Multi-Label-Data-Stream-Classification-8"
+  id="post-A-Survey-on-Multi-Label-Data-Stream-Classification-11"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -70,22 +70,22 @@ ga('send', 'pageview');
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  A-Survey-on-Multi-Label-Data-Stream-Classification-8
+  A-Survey-on-Multi-Label-Data-Stream-Classification-11
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2021/03/20/A-Survey-on-Multi-Label-Data-Stream-Classification-8/" class="article-date">
-  <time datetime="2021-03-20T01:47:18.000Z" itemprop="datePublished">2021-03-20</time>
+      <a href="/2021/03/23/A-Survey-on-Multi-Label-Data-Stream-Classification-11/" class="article-date">
+  <time datetime="2021-03-23T06:43:12.000Z" itemprop="datePublished">2021-03-23</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.5k</span>
+            <span class="post-count">250</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">8 分钟</span>
+            <span class="post-count">1 分钟</span>
         </span>
     </span>
 </div>
@@ -109,54 +109,21 @@ ga('send', 'pageview');
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>多标签数据流分类研究第八天</p>
+  <p>多标签数据流分类研究第十天</p>
 <a id="more"></a>
 
-<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-30-c80b0c0fc999f3644543e7d28e8d345e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095011-34d32f.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-41-e094db1ae64128ebcc0f982f8c641cdd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095624-70b576.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-57-52-1bcd338b061202c6e630d9457b0de983-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095636-d6aac9.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-03-1831148d83e5b4a130002dbd6b35c3f7-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095644-d8bde7.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-11-d1b14b4bbc4691aa9e6be8d8b9ba3997-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095656-1df353.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-58-24-81e7493e865c62f1d43434008d108eba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095706-4d56f5.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/09-59-04-d4248f49488410c7655b9f8b33b53d89-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320095718-625058.png"></p>
-<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>我们主要介绍基于实例的度量和效率方面的结果。基于实例的评价指标包括汉明损失、准确度、精度、召回率、F1和子集精确度。统计评价结果见图1-8，完整的具体结果见表6-13。 从表中总结的结果，我们可以得出一些结论。首先，从召回率评估，HOMER 表现最好，而 RF-PCT 在精度方面表现最好。HOMER 的预测比较完整，而 RF-PCT 的预测比较准确。其次，关于方法在六个评价指标上的表现，我们可以看到，方法在所有指标上表现最好的是RF-PCT，其次是HOMER、BR和CC。根据汉明损失和精度，RF-PCT的表现最好，关于准确度和F1的表现第三好。HOMER方法在子集精度、准确度、召回率和F1上表现最佳，而在汉明损失和精度上表现不佳。HOMER在汉明损失方面表现不佳的原因可能是构建HOMER的层次结构的程序忽略了汉明损失的优化。同时我们可以得知，在0.05的显著性水平下，预测性能的差异是显著的。HOMER和RF-PCT往往明显优于单一的 PCT，或单一的 ML-C4.5 树。从集成学习来看，RF-PCT集成提高了单个 PCT 的性能，但对于 ECC 和 RF-MLC4.5 集成来说，情况并非如此，一些单个模型在某些指标上的平均表现甚至优于对应的合集。 最后，我们还知道，基于 SVM 的方法在较小的数据集上呈现出更好的性能，而基于树的方法更适用于具有大量特征的大数据集。</p>
-<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>specific ： 特殊的，特定的；明确的</p>
-<p>corresponding  ： 相当的，相应的</p>
-<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-28-51-2a93ee9bc79afcc062d7f4d20e91050e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102403-7008ce.png"></p>
-<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>从表12和表13得知，基于树的方法比基于SVM的方法效率高。即PCT是最有效的方法，其次是ML-C4.5和ML-kNN。PCT 比 ML-C4.5 更快地构建模型，因为它们采用的修剪策略不同。    </p>
-<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-10-4a936cf677509ebf2504e88cf84728ad-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102410-7e9bfe.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-28-53c968909b2d0f07a9082be5469a650e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102421-cdbae8.png"></p>
-<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>总而言之，无论是问题转化、算法自适应还是集成法，没有一种方法在所有的性能评价指标上都是最优的。相比之下，集成法在效果上表现较好，但在效率上的表现还有待提高。</p>
-<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-29-41-9e3e7f1e9648ed8c743ab60aa97d9c58-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102427-403bee.png"></p>
-<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类</p>
-<p>在本节中，我们首先介绍数据流和数据流分类的相关概念，然后介绍数据流分类的常见约束，并主要解决数据流分类中的概念漂移问题。最后，我们总结了数据流分类中的评估指标，开放数据和软件资源。</p>
-<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-00-61fbbdda76343ab39090acdefb1e29ab-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102436-4d06db.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-44-036aaa0f4593ce981bd346666109d9a5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102446-4f3527.png"></p>
-<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>关于数据流和数据流分类的概念</p>
-<p>数据流是由一串有序的数据序列组成的，有起始字节和结束字节。而数据流DS定义为 n(n → ∞) 个数据样本的序列，表示为：DS = {x1, x2, … …。, xi, … . , xn}，其中xi(1 ≤ i ≤ n)表示第i个可视的数据对象，xn是数据流中最后一个可视的数据对象的符号。在对数据流进行分类时，如果每个数据对象xi仅具有一份标签 yi ∈ Y = {y1, y2, . . . , yc}，则将它们命名为单标签数据流。否则，如果在对数据流进行分类时每个数据对象都与一个以上的标签（即标签集Yi⊆Y）相关联，则称为多标签数据流。因此，多标签数据流表示具有多个类标签的数据实例序列，且没有边界和一定的顺序。数据流有几个新的特点，可能是无限量、连续、数据点速度高、多标签概念漂移等等。</p>
-<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>be composed of : 由……组成</p>
-<p>sequences ： 序列</p>
-<p>velocity ： 速度</p>
-<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-30-56-256f6a82742d0108c63252c0f9623831-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102501-564f53.png"></p>
-<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>数据流分类源于传统的监督机器学习的分类任务，它涉及到预测一个未知例子的类标签的问题，而这个类标签是由一个特征向量来表示的。 与静态数据上的分类相反，流式数据分类中的分类器不容易实时访问数据实例，因为数据实例是以连续顺序数据流的形式随时间高速到达的。由于数据流具有无限长、高速度的特性，数据流的实例只能扫描一次或存储时间很短，因此，一个理想的数据流分类器必须做好充分的准备，才能实时处理大量的实例，以获得更好的分类性能。数据流分类的应用领域包括但不限于短文数据流分类、图像数据流分类、视频流数据分类等。</p>
-<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>real-time ： 实时</p>
-<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_8/2021/03/20/10-31-21-406f00a5c756fd73c415adcabe17362e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210320102510-3d885f.png"></p>
-<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在这个分类的任务中，数据流DS中的实例依次到达。给定一个实例 xi ∈ DS，它表示在时间i到达的没有标签的属性值的向量。在 Δi 个时间单位的间隔中，我们假设在实例 xi+Δi 到来之前，可以访问到 xi 的地真标签 yi，因此，我们可以先利用实例xi作为测试实例，然后将其作为训练实例。说白了，给定 χ 表示输入特征空间，Y表示可能的标签空间，Yi代表标签子集。数据流分类的目的首先是利用新到的和历史的实例来训练一个分类器，这些实例具有单个标签或多个标签。然后我们利用生成的模型对数据流中的任何一个传入的数据实例 xi∈χ 给出一个标签或一个标签集的预测，即自动预测xi的一个标签yi或一个标签集yi ∈ Y。</p>
-<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>intervals : 时间间隔</p>
-<p>ground :  地面；土地</p>
-<p>bluntly ： 直言地，单刀直入地</p>
-<h1 id="8、总结"><a href="#8、总结" class="headerlink" title="8、总结"></a>8、总结</h1><p>主要介绍基于实例的度量和效率方面的结果，基于实例的评价指标包括汉明损失、准确度、精度、召回率、F1、和子集精确度</p>
-<p>HOMER 的召回率表现最好，RF-PCT 在精度方面表现最好。这说明 HOMER 预测的更完整，RF-PCT 预测的更准确</p>
-<p>在所有的指标上表现最好的是 RF-PCT，RF-PCT 在汉明损失和精度方面表现的最好；</p>
-<p>HOMER方法在子集精度、准确度、召回率和F1上表现最佳</p>
-<p>HOMER 在汉明损失方面表现不佳的原因可能是在构建 HOMER 层次结构的程序忽略了汉明损失的优化</p>
-<p>从集成学习来看，RF-PCT集成提高了单个 PCT 的性能</p>
-<p>对于 ECC 和 RF-MLC4.5 集成，一些单个模型在某些指标上的平均表现甚至优于对应的合集</p>
-<p>基于 SVM 的方法在较小的数据集上呈现出更好的性能，而基于树的方法更适用于具有大量特征的大数据集。</p>
-<p>总而言之，无论是问题转化、算法自适应还是集成法，没有一种方法在所有的性能评价指标上都是最优的。相比之下，集成法在效果上表现较好，但在效率上的表现还有待提高。</p>
-<p>数据流是由一串有序的数据序列组成的，有起始字节和结束字节</p>
-<p>数据流DS = {x1,x2,····,xi·····,xn},其中 xi 表示第 i 个可视的数据对象，xn 表示最后一个可视的数据对象</p>
-<p>若每个对象 xi 仅有一份标签，则称为单标签数据流，若分类的每个对象都与一个以上的标签相关联，则称为多标签数据流。</p>
-<p>多标签数据流表示具有多个类标签的数据实例序列，其没有边界和顺序</p>
-<p>数据流有以下几个特点：1、无限量；2、连续；3、数据点速度高；4、多标签概念漂移</p>
-<p>与静态数据上的分类相反，流式数据分类中的分类器不容易实时访问数据实例，因为数据是以连续数据流形式随时间高速到达的。</p>
-<p>由于数据流具有无限长、高速度的特性，数据流的实例智能扫描一次或存储很短的时间，所以一个理想的数据流分类器必须做好充分准备，才能实时处理大量的实例，以获得更好的性能。</p>
-<p>数据流 DS 中的实例依次到达，给定一个实例 xi ∈ DS，表示在时间 i 到达的没有标签的属性值的向量，在 Δi 个时间单位的间隔中，我们假设在实例 xi+Δi 到来之前，可以访问到 xi 的地真标签 yi，我们可以先利用 xi 作为测试样例，在将其作为训练样例。</p>
-<p>数据流分类的目的是首先利用新到的和历史的实例来训练一个分类器，这些事例具有一个或多个标签。</p>
-<p>我们利用生成的模型给出数据流中任何一个传入的数据实例给出一个标签或者是一个标签集。</p>
- 
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-54-23-025205154e6c53468cc5df642668a474-QQ%E6%88%AA%E5%9B%BE20210323144617-f3e16a.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-54-29-81f298b3cb4e44fd0d81ef48a7f28663-QQ%E6%88%AA%E5%9B%BE20210323144854-5c6e2d.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-55-38-d4584cd55e483662a469b52063ddb385-QQ%E6%88%AA%E5%9B%BE20210323144922-b7f2d7.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-56-31-f3b1a9deef3e2f697745ad463da9daa4-QQ%E6%88%AA%E5%9B%BE20210323144929-0c6318.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-56-47-371583a19c2135a834e907c63d6a1d0e-QQ%E6%88%AA%E5%9B%BE20210323144941-96414f.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-57-31-ea3e0b213803258fd809eb76c83e909c-QQ%E6%88%AA%E5%9B%BE20210323144951-ab8cdd.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-57-55-11630eda94c8d4523e7773bf15794d42-QQ%E6%88%AA%E5%9B%BE20210323144959-f48855.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-59-18-377ae833119da13a980020be817be2a3-QQ%E6%88%AA%E5%9B%BE20210323145008-d17a73.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/14-59-46-7c67d8a2f2b69c89b24bcdca5d4d717d-QQ%E6%88%AA%E5%9B%BE20210323145014-7ed278.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/15-00-18-806a0b01768ea507d740f4cc638f3da3-QQ%E6%88%AA%E5%9B%BE20210323145029-a807ec.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="8、第八部分"><a href="#8、第八部分" class="headerlink" title="8、第八部分"></a>8、第八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/15-00-31-0f9dae6896b119e8ecaf44866d14b73f-QQ%E6%88%AA%E5%9B%BE20210323145022-d9e833.png"></p>
+<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="9、第九部分"><a href="#9、第九部分" class="headerlink" title="9、第九部分"></a>9、第九部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/15-00-47-218a1877e3778133fd924041f7ea5f01-QQ%E6%88%AA%E5%9B%BE20210323145038-8825f0.png"></p>
+<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="10、第十部分"><a href="#10、第十部分" class="headerlink" title="10、第十部分"></a>10、第十部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/15-01-06-ceeeb55bcb1df3fcf75cdda9eef41887-QQ%E6%88%AA%E5%9B%BE20210323145049-1fba13.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/15-01-52-cbc85e5536b06638864f4822d0e66db6-QQ%E6%88%AA%E5%9B%BE20210323145056-657934.png"></p>
+<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="11、第十一部分"><a href="#11、第十一部分" class="headerlink" title="11、第十一部分"></a>11、第十一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/A-Survey-on-Multi-Label-Data-Stream-Classification_11/2021/03/23/15-02-19-48fc2ed7f6d57092d43bdcfa82645417-QQ%E6%88%AA%E5%9B%BE20210323145151-bd1e77.png"></p>
+<h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-10"><a href="#2、名词解释-10" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="13、第十三部分"><a href="#13、第十三部分" class="headerlink" title="13、第十三部分"></a>13、第十三部分</h1><h2 id="1、翻译-11"><a href="#1、翻译-11" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-11"><a href="#2、名词解释-11" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-11"><a href="#3、单词备注-11" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="14、第十四部分"><a href="#14、第十四部分" class="headerlink" title="14、第十四部分"></a>14、第十四部分</h1><h2 id="1、翻译-12"><a href="#1、翻译-12" class="headerlink" title="1、翻译"></a>1、翻译</h2><h2 id="2、名词解释-12"><a href="#2、名词解释-12" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-12"><a href="#3、单词备注-12" class="headerlink" title="3、单词备注"></a>3、单词备注</h2> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -226,7 +193,7 @@ ga('send', 'pageview');
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/03/20/A-Survey-on-Multi-Label-Data-Stream-Classification-8/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/03/23/A-Survey-on-Multi-Label-Data-Stream-Classification-11/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -239,19 +206,10 @@ ga('send', 'pageview');
    
   <nav class="article-nav">
     
-      <a href="/2021/03/21/A-Survey-on-Multi-Label-Data-Stream-Classification-9/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            A-Survey-on-Multi-Label-Data-Stream-Classification-9
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/03/17/A-Survey-on-Multi-Label-Data-Stream-Classification-7/" class="article-nav-link">
+      <a href="/2021/03/22/A-Survey-on-Multi-Label-Data-Stream-Classification-10/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">A-Survey-on-Multi-Label-Data-Stream-Classification-7</div>
+        <div class="article-nav-title">A-Survey-on-Multi-Label-Data-Stream-Classification-10</div>
       </a>
     
   </nav>
