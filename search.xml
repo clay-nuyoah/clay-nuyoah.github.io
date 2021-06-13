@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>skip-gram</title>
+    <url>/2021/06/13/skip-gram/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/13/10-49-14-4326e64fe0f495f6632be2093c165e8c-006Fmjmcly1fgco3v2ca7j30pq0j7drt%20-2--0670c6.jpg"></p>
+<ol>
+<li>$w_t$ 是单词的 one-hot 编码  维度为 V * 1，V 为文本中单词的个数</li>
+<li>W 中心词向量矩阵，是需要优化的变量，开始时随机初始化，维度 d * V，V同上，d是超参数需要手动设置，一般 50 - 300</li>
+<li>$V_c$ 代表</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>方向选择</title>
     <url>/2021/03/08/fang-xiang-xuan-ze/</url>
     <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
