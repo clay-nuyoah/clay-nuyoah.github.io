@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="5fFagiALkrBFm256jMyr0Wf9ZkND0mtyCDozn1qlVxE" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Multi-Label-Learning-with-Emerging-New-Labels-01 |  CLAY
+  </title><meta name="robots" content="noindex">
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-XKPTQSV9FV', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Multi-Label-Learning-with-Emerging-New-Labels-01"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Multi-Label-Learning-with-Emerging-New-Labels-01
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/29/Multi-Label-Learning-with-Emerging-New-Labels-01/" class="article-date">
+  <time datetime="2021-03-29T06:09:02.000Z" itemprop="datePublished">2021-03-29</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">20 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>多标签数据流分类研究第十五天</p>
+<a id="more"></a>
+
+<h1 id="1、第一部分"><a href="#1、第一部分" class="headerlink" title="1、第一部分"></a>1、第一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-14-45-32a21a35f214aafbb47aa732fafa435e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329140929-a702a8.png"></p>
+<h2 id="1、翻译"><a href="#1、翻译" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>摘要：在多标签学习任务中，一个对象拥有多个概念，其中每个概念由一个类标签表示。以往关于多标签学习的研究主要集中在固定的类标签集上，即测试数据的类标签集与训练集的类标签集相同。然而，在许多应用中，环境是动态的，数据流中可能出现新的概念。 为了在这种环境下保持良好的预测性能，多标签学习方法必须有能力检测和区分新兴标签的实例。为此，我们提出了一种新方法，称为“新兴新标签的多标签学习”（MuENL）。它有三个功能：在当前已知标签上对实例进行分类，检测新标签的出现，为每个新标签构造一个新的分类器，与已知标签的分类器协同工作。此外，我们还展示了MuENL可以很容易地扩展到处理稀疏的高维数据流，只需减少原始的维度，然后在减维空间上应用MuENL。我们的实证评估显示了MuENL在几个基准数据集上的有效性，以及MuENLHD在稀疏高维微博数据集上的有效性。</p>
+<p>关键字：多标签学习；增量学习；新兴的新标签；学习软件。</p>
+<h2 id="2、名词解释"><a href="#2、名词解释" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注"><a href="#3、单词备注" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>sparse ： 稀疏的</p>
+<p>empirical ：经验主义的； 实证的</p>
+<h1 id="2、第二部分"><a href="#2、第二部分" class="headerlink" title="2、第二部分"></a>2、第二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-19-44-f5a874c5ad699644ba951d5010766c65-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329140945-886ee2.png"></p>
+<h2 id="1、翻译-1"><a href="#1、翻译-1" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在传统的监督学习中，一个实例与一个标签相关联。然而，在许多应用中，一个实例可能拥有多个标签。例如，一个场景图像通常带有几个标签；一个文档可能包含多个主题;一首音乐作品可能属于不同的流派。</p>
+<h2 id="2、名词解释-1"><a href="#2、名词解释-1" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-1"><a href="#3、单词备注-1" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>genre ： 流派；类型；种类</p>
+<h1 id="3、第三部分"><a href="#3、第三部分" class="headerlink" title="3、第三部分"></a>3、第三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-20-00-78a44a360c0b94c5e2b718a632700086-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329140953-f654d1.png"></p>
+<h2 id="1、翻译-2"><a href="#1、翻译-2" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>多标签学习是处理此类数据的学习范式，近年来备受关注。以往关于多标签学习的研究主要集中在一组固定的类标签上。也就是说，他们假设测试数据具有与训练数据相同的类标签集。然而，在许多现实世界的数据挖掘任务中，环境是动态的。我们研究的是一种动态场景，在一个观察到的数据流实例中，新的标签可能与已知标签一起出现。</p>
+<h2 id="2、名词解释-2"><a href="#2、名词解释-2" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-2"><a href="#3、单词备注-2" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>paradigm ： 范例</p>
+<p>attract ：  吸引；引起</p>
+<p>scenario ：场景；方案；情节</p>
+<h1 id="4、第四部分"><a href="#4、第四部分" class="headerlink" title="4、第四部分"></a>4、第四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-20-15-f26b7a353da6ee1c7a106f2ca7262ad4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141005-d7a329.png"></p>
+<h2 id="1、翻译-3"><a href="#1、翻译-3" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在动态环境中，一个学习系统必须能够重用以前学习的模型，以及使模型适应不断变化的环境。在多标签学习环境中，系统必须能够在观察到新的实例时修正预训练的模型。并为所有新出现的新标签建立新的分类器。这些要求是非同小可的，据我们所知，现有的文献系统都不能满足这些要求。</p>
+<h2 id="2、名词解释-3"><a href="#2、名词解释-3" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-3"><a href="#3、单词备注-3" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>revise ： 修正；复习</p>
+<p>trivial ： 不重要的，琐碎的</p>
+<h1 id="5、第五部分"><a href="#5、第五部分" class="headerlink" title="5、第五部分"></a>5、第五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-20-33-f3629ab4ed9ae12903304a55d995c067-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141014-cab853.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-20-45-bd921ffbcd197950a152f1329669a189-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141020-570485.png"></p>
+<h2 id="1、翻译-4"><a href="#1、翻译-4" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>在动态多标签学习环境中，我们假设实例到达数据流中，除了初始训练集外，数据流中任何时候都没有类标签是可用的。这可以看作是一种特殊的弱监督学习 。 因此，新标签的检测和建模是关键的挑战。具体来说，最困难的部分是检测任何新标签的实例。由于我们没有任何关于新标签的事先知识，而且它几乎总是与一些已知标签共存，因此很难将带有新标签的实例与只带有已知标签的实例分开。</p>
+<h2 id="2、名词解释-4"><a href="#2、名词解释-4" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-4"><a href="#3、单词备注-4" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>weak ： 疲软的；虚弱的</p>
+<p>co-occurs ： 共存； 一起发生</p>
+<h1 id="6、第六部分"><a href="#6、第六部分" class="headerlink" title="6、第六部分"></a>6、第六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-21-00-448de2306a2c3b994d9084156fe19440-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141028-77dcce.png"></p>
+<h2 id="1、翻译-5"><a href="#1、翻译-5" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>此外，由于检测并不完美，随着数据流中出现的新标签越来越多，误差会不断累积。因此，为了在数据流中连续保持较高的检测和预测性能，环境对鲁棒模型的要求很高，这也是一项具有挑战性的任务。</p>
+<h2 id="2、名词解释-5"><a href="#2、名词解释-5" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-5"><a href="#3、单词备注-5" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>accumulate ： 累积；积聚</p>
+<h1 id="7、第七部分"><a href="#7、第七部分" class="headerlink" title="7、第七部分"></a>7、第七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-21-12-0b6d55431c4099e4eafb91058f676543-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141043-37fd9a.png"></p>
+<h2 id="1、翻译-6"><a href="#1、翻译-6" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>为了解决上述所有挑战，我们提出了一种带有新兴新标签的新型多标签学习（MuENL）方法，以解决动态的多标签学习问题。MuENL包含三个组件：（1）建立分类器以优化配对标签排名损失和已知标签上的分类损失；（2）基于输入特征和预测标签属性特殊设计的检测器；（3）一个分类器更新过程，将检测到的新标签加入到分类器中，以产生一个能够容忍检测错误的稳健分类器，并针对每个识别出的新标签对检测器进行重新建模。</p>
+<h2 id="2、名词解释-6"><a href="#2、名词解释-6" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-6"><a href="#3、单词备注-6" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>incorporates ：包含，吸收 </p>
+<h1 id="8、第八部分"><a href="#8、第八部分" class="headerlink" title="8、第八部分"></a>8、第八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-21-56-7eef610b49b533ae5e5df1228e364078-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141052-86c321.png"></p>
+<h2 id="1、翻译-7"><a href="#1、翻译-7" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>本文的中心思想是将带有新标签的实例视为规范的异常值，即迄今为止已知标签的实例。这允许在动态多标签学习问题中使用异常值检测方法。我们证明了该想法在实践中可行。</p>
+<h2 id="2、名词解释-7"><a href="#2、名词解释-7" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-7"><a href="#3、单词备注-7" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>outliers ： 离群值；异常值</p>
+<p>norm ： 标准，规范</p>
+<h1 id="9、第九部分"><a href="#9、第九部分" class="headerlink" title="9、第九部分"></a>9、第九部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-22-17-74800b3f1eb072a77d672b73a090e055-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141103-e621ea.png"></p>
+<h2 id="1、翻译-8"><a href="#1、翻译-8" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>除了解决动态多标签学习问题中的核心挑战之外，我们还提出了一种扩展，以处理稀疏的高维数据流。在微博这样的社交网站上，用户发布的短文信息主题多样。在词袋表示中，每个维度代表成千上万个单词的词典中的一个单词。因此，每个消息都是高维空间的稀疏表示。我们表明，MuENL可以轻松扩展到MuENLHD以处理稀疏的高维数据流。</p>
+<h2 id="2、名词解释-8"><a href="#2、名词解释-8" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-8"><a href="#3、单词备注-8" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="10、第十部分"><a href="#10、第十部分" class="headerlink" title="10、第十部分"></a>10、第十部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-22-40-062ea1300debc14409208c590e08580a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141113-b6ae78.png"></p>
+<h2 id="1、翻译-9"><a href="#1、翻译-9" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>这项工作的贡献概括如下：</p>
+<p>将动态多标签学习问题形式化，它与以往的多标签学习环境不同：新的标签可能会随着到达的新实例而出现。</p>
+<h2 id="2、名词解释-9"><a href="#2、名词解释-9" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-9"><a href="#3、单词备注-9" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>formalize ： 使形式化；使正式</p>
+<h1 id="11、第十一部分"><a href="#11、第十一部分" class="headerlink" title="11、第十一部分"></a>11、第十一部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-23-00-d4d2b7728cacd6ace243f366f942bb2f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141122-89e019.png"></p>
+<h2 id="1、翻译-10"><a href="#1、翻译-10" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>提出解决动态多标签学习问题的MuENL方法。它具有用于新标签的准确检测器以及用于已知标签和新标签的强大分类器。分析每个组件的时间复杂度。我们还研究了一种使用元标签处理同时出现的多个新标签的方法。</p>
+<p>将MuENL扩展为MuENLHD以处理稀疏的高维数据流。为了验证我们的方法的有效性，我们进行了广泛的实证研究。</p>
+<h2 id="2、名词解释-10"><a href="#2、名词解释-10" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-10"><a href="#3、单词备注-10" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>meta ： 元标签</p>
+<p>empirical ：  经验主义的；实证的</p>
+<h1 id="12、第十二部分"><a href="#12、第十二部分" class="headerlink" title="12、第十二部分"></a>12、第十二部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-23-24-c1d26c0d657c48dfbf660290cfa7d9f5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141131-ffdcd2.png"></p>
+<h2 id="1、翻译-11"><a href="#1、翻译-11" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>本文其余部分安排如下：第2节介绍了多标签学习、增量学习和离群值检测的一些相关工作。第三节介绍了问题描述和MuENL方法。第4节将MuENL扩展到MuENLHD，以处理稀疏的高维数据流。第五节分析了时间的复杂性。第6节和第7节分别介绍了（密集）低/中维数据流和稀疏高维数据流的实验研究。最后一节给出了结论。</p>
+<h2 id="2、名词解释-11"><a href="#2、名词解释-11" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-11"><a href="#3、单词备注-11" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>dense ： 稠密的；浓厚的</p>
+<p>formulation ： 制订；规划</p>
+<h1 id="13、第十三部分"><a href="#13、第十三部分" class="headerlink" title="13、第十三部分"></a>13、第十三部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-23-40-fee6603a6dd68e33113935e9645ee36f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141141-13e3be.png"></p>
+<h2 id="1、翻译-12"><a href="#1、翻译-12" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>根据标签相关性的顺序，多标签学习可以分为三大类。对于一阶策略，不考虑标签的相关性。例如，BR为每个标签独立地训练分类器。对于二阶策略，考虑配对标签关系。在这种策略中，CLR将多标签学习问题转换为配对标签排名问题。对于高阶策略，假定标签受所有其他标签影响。例如，CC [20]将多标签学习问题转换为二进制分类链，其中将真实标签依次编码到特征空间中。以上所有的多标签学习方法都假定类标签集是固定的，并且不接受新标签。因此，他们无法处理我们在本文中研究的动态多标签学习问题。</p>
+<h2 id="2、名词解释-12"><a href="#2、名词解释-12" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-12"><a href="#3、单词备注-12" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>scratch ： 擦伤；抓痕</p>
+<p>start from scratch ： 从零开始 ; 从头做起 </p>
+<p>mutual ： 共同的；相互的</p>
+<p>exclusive ： 独有的；排外的</p>
+<h1 id="14、第十四部分"><a href="#14、第十四部分" class="headerlink" title="14、第十四部分"></a>14、第十四部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-23-58-ce4d00ce3ccfba10c4a1a77974e09b06-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141153-1d4fd6.png"></p>
+<h2 id="1、翻译-13"><a href="#1、翻译-13" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>增量学习对于涉及到频繁数据更新的任务或不需要从头开始重新训练模型的任务是至关重要的。根据[34] ,增量学习的环境大致有三种，即实例增量学习（E-IL）[21]，在学习系统被训练后，新的实例会到达；属性增量学习（A-IL）[27]，新的特征可能出现；和类增量学习(C-IL)[4]，[13]，[30]，其中类标签集可以放大。用新标签进行学习是C-IL的一种，它以各种名称进行研究，包括零次学习[15]，[18]和开集分类[14]，[22]。</p>
+<h2 id="2、名词解释-13"><a href="#2、名词解释-13" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-13"><a href="#3、单词备注-13" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>co-occurs ： 共存； 一起发生</p>
+<h1 id="15、第十五部分"><a href="#15、第十五部分" class="headerlink" title="15、第十五部分"></a>15、第十五部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-24-16-49add4d6782df7899f14cd4013401755-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141203-af67b0.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-24-44-c2e481cdb03a05e67e32e914301b6e4f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141214-70e408.png"></p>
+<h2 id="1、翻译-14"><a href="#1、翻译-14" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>新出现的新标签的动态多标签学习环境是E-IL和C-IL的结合，一个新实例可能与多个新标签相关联，这些新标签与已知标签共存。在我们的环境下适应C-IL的一种直接方法是通过将每个可能的标签组合转换为一个类，将多标签学习转换为多类学习[24]。</p>
+<p>不幸的是，这种方法有两个严重的局限性。首先，新类别可能不对应于新标签，而是已知标签的看不见的组合。其次，当标签集很大时，可能的类别数也很多。这就导致了一个困难的训练问题，即对于大多数类来说，正实例的数量非常少。结果，它不能在实践中应用。</p>
+<h2 id="2、名词解释-14"><a href="#2、名词解释-14" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-14"><a href="#3、单词备注-14" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>correspond : 一致；相应</p>
+<h1 id="16、第十六部分"><a href="#16、第十六部分" class="headerlink" title="16、第十六部分"></a>16、第十六部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-26-43-869c62c3e12a1379bc36059a12e785c6-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141224-eb3513.png"></p>
+<h2 id="1、翻译-15"><a href="#1、翻译-15" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>当将动态多标签学习问题的一部分转换为离群值检测问题时，可以应用许多现有方法。但不是直接的方式。例如，OC-SVM [23]为具有已知标签的实例学习边界，并将边界之外的实例确定为离群值；iForest [16]将位于稀疏区域的实例预测为离群值。但是，在多标签环境下，新标签可能与已知标签同时出现，这使得很难将仅具有新标签的实例与仅具有已知标签的实例分开。</p>
+<h2 id="2、名词解释-15"><a href="#2、名词解释-15" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-15"><a href="#3、单词备注-15" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="17、第十七部分"><a href="#17、第十七部分" class="headerlink" title="17、第十七部分"></a>17、第十七部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-27-05-3ad5db87691daacfe11eeac3071adfe5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141235-56f45d.png"></p>
+<h2 id="1、翻译-16"><a href="#1、翻译-16" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>最近，Fu[6]提出了一种转导性的多标签零次学习。 然而，在转导环境中，所有的测试实例都假设在训练期间可用，所有的新标签都假设是已知的。因此，它不能应用在我们的环境中。新的实例陆续到来，而我们不知道何时会出现一个或多个新的标签。或新标签的总数可能在一段时间内发生。</p>
+<h2 id="2、名词解释-16"><a href="#2、名词解释-16" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-16"><a href="#3、单词备注-16" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>transductive ：转换 </p>
+<h1 id="18、第十八部分"><a href="#18、第十八部分" class="headerlink" title="18、第十八部分"></a>18、第十八部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-27-33-47de31b308d426d62d2697231a38f4bf-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141244-5d23bd.png"></p>
+<h2 id="1、翻译-17"><a href="#1、翻译-17" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>另一条相关的工作是缺失标签的多标签学习。许多方法旨在通过利用低等级结构或标签相关性来恢复缺失的标签。在我们的环境中，在某些实例中缺少的标签位于观察到的类标签集内。换句话说，他们假设没有以前看不见的标签；如果训练期间从未观察到丢失的标签，则无法恢复。因此，这些方法无法在我们的环境中处理新颖的标签。</p>
+<h2 id="2、名词解释-17"><a href="#2、名词解释-17" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-17"><a href="#3、单词备注-17" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="19、第十九部分"><a href="#19、第十九部分" class="headerlink" title="19、第十九部分"></a>19、第十九部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-27-53-a46ab35632f99e539add88ccc6e0e582-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141255-f65653.png"></p>
+<h2 id="1、翻译-18"><a href="#1、翻译-18" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>MUENL方法</p>
+<p>我们在本文中研究的动态多标签学习问题面临以下挑战：（A）检测带有新出现的新标签的实例，这些新标签也与已知标签相关联；（B）为新标签和已知标签建立可靠的分类器。在本节中，我们提出一种称为MuENL的方法来处理动态多标签学习问题，以解决两个挑战。</p>
+<h2 id="2、名词解释-18"><a href="#2、名词解释-18" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-18"><a href="#3、单词备注-18" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><h1 id="20、第二十部分"><a href="#20、第二十部分" class="headerlink" title="20、第二十部分"></a>20、第二十部分</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/Multi-Label-Learning-with-Emerging-New-Labels_01/2021/03/29/14-28-01-070ba8e571c4deb9296b412c121083d9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210329141306-0f7561.png"></p>
+<h2 id="1、翻译-19"><a href="#1、翻译-19" class="headerlink" title="1、翻译"></a>1、翻译</h2><p>问题描述：</p>
+<p>在开放的动态多标签学习中，我们有一个初始的标签训练集，然后非标签数据以流式方式陆续到达。让χ表示特征空间，并定义X0 = [x（−n+1）,……, x（−1）, x（0）]^T ⊆ χ为初始标签训集中观察到 n 个标签实例。到达的数据流在时间t观察到一个未标记的实例xt。让X(t)在时间t, t ∈ {1,2,……, T}成为可访问的数据主干。</p>
+<h2 id="2、名词解释-19"><a href="#2、名词解释-19" class="headerlink" title="2、名词解释"></a>2、名词解释</h2><h2 id="3、单词备注-19"><a href="#3、单词备注-19" class="headerlink" title="3、单词备注"></a>3、单词备注</h2><p>fashion ： 时尚；方式</p>
+<p>trunk ：树干；躯干 </p>
+<p>chunk ： 块</p>
+<h1 id="21、总结"><a href="#21、总结" class="headerlink" title="21、总结"></a>21、总结</h1><p>在多标签学习任务中，一个对象拥有多个概念，其中每个概念由一个类标签表示。以往关于多标签学习的研究主要集中在固定的类标签集上，即测试数据的类标签集与训练集的类标签集相同。然而，在许多应用中，环境是动态的，数据流中可能出现新的概念。 为了在这种环境下保持良好的预测性能，多标签学习方法必须有能力检测和区分新出现的标签的实例。为此，我们提出了一种称为“新兴新标签的多标签学习”（MuENL）的新方法。它有三个功能：在当前已知标签上对实例进行分类，检测新标签的出现，为每个新标签构造一个新的分类器，与已知标签的分类器协同工作。此外，我们还展示了MuENL可以很容易地扩展到处理稀疏的高维数据流，只需减少原始的维度，然后在减维空间上应用MuENL。</p>
+<p>在传统的监督学习中，一个实例与一个标签相关联。然而，在许多应用中，一个实例可能拥有多个标签。</p>
+<p>多标签学习是处理此类数据的学习范式。以往关于多标签学习的研究主要集中在一组固定的类标签上。也就是说，他们假设测试数据具有与训练数据相同的类标签集。然而，在许多现实世界的数据挖掘任务中，环境是动态的。我们研究的是一种动态场景，在一个观察到的数据流实例中，新的标签可能与已知标签一起出现。</p>
+<p>在动态环境中，一个学习系统必须能够重用以前学习的模型，以及使模型适应不断变化的环境。在多标签学习环境中，系统必须能够在观察到新的实例时修正预训练的模型。并为所有新出现的新标签建立新的分类器。</p>
+<p>在动态多标签学习环境中，我们假设实例到达数据流中，除了初始培训集外，数据流中任何时候都没有类标签是可用的。这可以看作是一种特殊的弱监督学习 。 因此，新标签的检测和建模是关键的挑战。</p>
+<p>在动态多标签学习环境中，我们假设实例到达数据流中，除了初始培训集外，数据流中任何时候都没有类标签是可用的。这可以看作是一种特殊的弱监督学习 。 因此，新标签的检测和建模是关键的挑战。具体来说，最困难的部分是检测任何新标签的实例。由于我们没有任何关于新标签的事先知识，而且它几乎总是与一些已知标签共存，因此很难将带有新标签的实例与只带有已知标签的实例分开。</p>
+<p>此外，由于检测并不完美，随着数据流中出现的新标签越来越多，误差会不断累积。因此，为了在数据流中连续保持较高的检测和预测性能，环境对鲁棒模型的要求很高，这也是一项具有挑战性的任务。</p>
+<p>为了解决上述所有挑战，我们提出了一种带有新兴新标签的新型多标签学习（MuENL）方法，以解决动态的多标签学习问题。MuENL包含三个组件：（1）建立分类器以优化配对标签排名损失和已知标签上的分类损失；（2）基于输入特征和预测标签属性的特殊设计的检测器；（3）一个分类器更新过程，将检测到的新标签加入到分类器中，以产生一个能够容忍检测错误的稳健分类器，并针对每个识别出的新标签对检测器进行重新建模。</p>
+<p>本文的中心思想是将带有新标签的实例视为规范的异常值，即迄今为止已知标签的实例。这允许在动态多标签学习问题中使用异常值检测方法。</p>
+<p>除了解决动态多标签学习问题中的核心挑战之外，我们还提出了一种扩展，以处理稀疏的高维数据流。在词袋表示中，每个维度代表成千上万个单词的词典中的一个单词。因此，每个消息都是高维空间的稀疏表示。MuENL可以轻松扩展到MuENLHD以处理稀疏的高维数据流。</p>
+<p>将动态多标签学习问题形式化，它与以往的多标签学习环境不同：新的标签可能会随着到达的新实例而出现。</p>
+<p>提出解决动态多标签学习问题的MuENL方法。它具有用于新标签的准确检测器以及用于已知标签和新标签的强大分类器。分析每个组件的时间复杂度。我们还研究了一种使用元标签处理同时出现的多个新标签的方法。</p>
+<p>第2节介绍了多标签学习、增量学习和离群值检测的一些相关工作。第三节介绍了问题描述和MuENL方法。第4节将MuENL扩展到MuENLHD，以处理稀疏的高维数据流。第五节分析了时间的复杂性。第6节和第7节分别介绍了（密集）低/中维数据流和稀疏高维数据流的实验研究。最后一节给出了结论。</p>
+<p>根据标签相关性的顺序，多标签学习可以分为三大类。对于一阶策略，不考虑标签的相关性。例如，BR为每个标签独立地训练分类器。对于二阶策略，考虑配对标签关系。在这种策略中，CLR将多标签学习问题转换为配对标签排名问题。对于高阶策略，假定标签受所有其他标签影响。例如，CC [20]将多标签学习问题转换为二进制分类链，其中将真实标签依次编码到特征空间中。以上所有的多标签学习方法都假定类标签集是固定的，并且不接受新标签。因此，他们无法处理我们在本文中研究的动态多标签学习问题。</p>
+<p>增量学习对于涉及到频繁数据更新的任务或不需要从头开始重新训练模型的任务是至关重要的。根据[34] ,增量学习的环境大致有三种，即实例增量学习（E-IL），在学习系统被训练后，新的实例会到达；属性增量学习（A-IL），新的特征可能出现；和类增量学习(C-IL)，其中类标签集可以放大。用新标签进行学习是C-IL的一种，它以各种名称进行研究，包括零次学习和开集分类。</p>
+<p>新出现的新标签的动态多标签学习环境是E-IL和C-IL的结合，一个新实例可能与多个新标签相关联，这些新标签与已知标签共存。在我们的环境下适应C-IL的一种直接方法是通过将每个可能的标签组合转换为一个类，将多标签学习转换为多类学习。</p>
+<p>不幸的是，这种方法有两个严重的局限性。首先，新类别可能不对应于新标签，而是已知标签的看不见的组合。其次，当标签集很大时，可能的类别数也很多。这就导致了一个困难的训练问题，即对于大多数类来说，正实例的数量非常少。结果，它不能在实践中应用。</p>
+<p>当将动态多标签学习问题的一部分转换为离群值检测问题时，可以应用许多现有方法。但不是直接的方式。OC-SVM 为具有已知标签的实例学习边界，并将边界之外的实例确定为离群值；iForest 将位于稀疏区域的实例预测为离群值。但是，在多标签环境下，新标签可能与已知标签同时出现，这使得很难将仅具有新标签的实例与仅具有已知标签的实例分开。</p>
+<p>最近，Fu提出了一种转导性的多标签零次学习。 然而，在转导环境中，所有的测试实例都假设在训练期间可用，所有的新标签都假设是已知的。因此，它不能应用在我们的环境中。新的实例陆续到来，而我们不知道何时会出现一个或多个新的标签。或新标签的总数可能在一段时间内发生。</p>
+<p>另一条相关的工作是缺失标签的多标签学习。许多方法旨在通过利用低等级结构或标签相关性来恢复缺失的标签。在我们的环境中，在某些实例中缺少的标签位于观察到的类标签集内。换句话说，他们假设没有以前看不见的标签；如果训练期间从未观察到丢失的标签，则无法恢复。因此，这些方法无法在我们的环境中处理新颖的标。</p>
+<p>我们在本文中研究的动态多标签学习问题面临以下挑战：（A）检测带有新出现的新标签的实例，这些新标签也与已知标签相关联；（B）为新标签和已知标签建立可靠的分类器。在本节中，我们提出一种称为MuENL的方法来处理动态多标签学习问题，以解决两个挑战。</p>
+<p>在开放的动态多标签学习中，我们有一个初始的标签训练集，然后非标签数据以流式方式陆续到达。让χ表示特征空间，并定义X0 = [x（−n+1）,……, x（−1）, x（0）]^T ⊆ χ为初始标签训集中观察到 n 个标签实例。到达的数据流在时间t观察到一个未标记的实例xt。让X(t)在时间t, t ∈ {1,2,……, T}成为可访问的数据主干。</p>
+<!-- flag of hidden posts --> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/03/29/Multi-Label-Learning-with-Emerging-New-Labels-01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" rel="tag">数据挖掘</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
     A-Survey-on-Multi-Label-Data-Stream-Classification-13 |  CLAY
-  </title>
+  </title><meta name="robots" content="noindex">
   <meta name="generator" content="hexo-theme-ayer">
   
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -157,7 +157,7 @@ ga('send', 'pageview');
 <p>在多标签数据流分类中，现有的很多方法都是基于固定大小的分块处理数据。这些方法可以缓解无限体积和有限存储之间的矛盾，但具有固定大小的块可能会导致性能更差，如果块过大，则无法立即捕获概念漂移，如果块过小，则在稳定的时间内遭受不必要的频繁训练。最好的方法可能是，块的大小可以随算法参数的变化而及时变化。而并非集成中的所有单个分类器都具有相同的分类能力，即基础分类器的置信度为彼此不同。在一个集合中为其组件分类器分配一个最佳的权重，对于实现整体更好的性能非常重要。</p>
 <p>采用全局静态加权的方法，训练数据块的精度，但这种方法忽略了局部分块加权问题，因此，可能会削弱分类器的性能。采用了基于分类性能的局部加权机制，该机制优于全局加权。SWMEC 根据从ML-kNN中的距离获得的置信系数来调整组件分类器的权重。上述所有方法都是算法特有的属性，因此，它们不能扩展到任何其他基础分类器。GOOWE的空间模型，用来给集成中的的组件分类器分配一个最优的权重，该模型可以把任何现有的增量多标签分类算法作为其基础分类器，并取得更好的性能。</p>
 <p>现实的许多客观动机，例如现实数据中无限的容量和有限的存储之间的矛盾，使得有必要生成综合数据。有许多生成合成多标签数据的方法，但是大多数方法是为解决特定任务而提出的， 不足以用于一般用途。通过更改相关参数引入了概念漂移，但是它过于简单，仅考虑两个标签，因此仅将其视为实际数据的最佳近似是不够的。而MOA可以通过真实世界的数据来模拟不同漂移和来源的数据流。最值得注意的是，[35]、[130]可以模拟出和现实世界一样的不同标签的依赖关系，以及特征空间中任意数量和类型的属性，以及属性空间和标签空间之间的关系。更重要的是，它可以真实地模拟这些依赖关系和关系是如何随着时间的推移而演变的，同时他们也在工作中提出了一些新的关于数据流分类的评价指标。我们通常使用MOA来实现对真实世界数据模拟的近似。</p>
- 
+<!-- flag of hidden posts --> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -238,25 +238,6 @@ ga('send', 'pageview');
   </div>
 
    
-  <nav class="article-nav">
-    
-      <a href="/2021/03/26/A-Survey-on-Multi-Label-Data-Stream-Classification-14/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            A-Survey-on-Multi-Label-Data-Stream-Classification-14
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2021/03/24/A-Survey-on-Multi-Label-Data-Stream-Classification-12/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">A-Survey-on-Multi-Label-Data-Stream-Classification-12</div>
-      </a>
-    
-  </nav>
-
    
  
    

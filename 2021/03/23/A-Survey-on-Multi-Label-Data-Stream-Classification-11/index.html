@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
     A-Survey-on-Multi-Label-Data-Stream-Classification-11 |  CLAY
-  </title>
+  </title><meta name="robots" content="noindex">
   <meta name="generator" content="hexo-theme-ayer">
   
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -172,7 +172,7 @@ ga('send', 'pageview');
 <p>基于PT的多标签数据流分类方法是指在流媒体环境下，将多标签分类问题转化为许多更简单的单标签分类问题。LC 或 LP，一般将所有的标签子集(标签的组合)视为原子标签，因此，每个数据样本都与一个唯一的原子类标签(标签集)相关联，原来的多标签问题被转换为单标签问题。在训练阶段，LC方法能够根据训练数据集对标签组合进行建模，因此可以获得比较好的预测性能。</p>
 <p>MLSC 是一种基于批处理增量方法的。多标签数据流分类方法。为了对数据流进行预处理，它将流媒体数据实例分成固定大小为S和多个标签的块，然后将每个块转化为含有|L|个单标签的块。为了解决每个标签在数据分布中的标签不平衡、偏斜问题，吸收了二值相关性的重要部分，即将多标签问题转换为两个或两个以上的二进制问题，并在每个标签保留的正示例数量上增加了一些限制。提出了一种新型的多标签流数据分类方法，该方法为每个类标签利用两个大小不一的窗口，一个窗口为正样本，另一个窗口为负样本，以处理概念漂移。还提出了一种基于批处理的增量阈值干扰技术,通过实例共享进一步解决类不平衡问题。采用 EM 方法和 Apriori 算法将类标签组织成不同的子集，其中标签根据它们之间的依赖关系进行分组。然后这些标签子集被认为是新的原子单类标签，用来标记每个到达的实例。为了解决概念漂移的问题,可以利用多标签熵的方法来测量特征和新类标签的分布。然后通过两个窗口之间的多标签熵测量的差异来检测分布的变化，一个是老样本，另一个是最近的样本。加权在线序列 ELM(WOS-ELM)基于 OS-ELM 的方法，不管是逐块学习还是逐个学习,都能有效提高类不平衡数据集的分类性能。</p>
 <p>在算法适应（AA）中，现有的单标签流分类算法可以很好地适应多标签场景。 由于随机决策树的性质较好，它的效率相当高，适用于流数据环境。基于流式随机森林,提出了一种动态流式随机森林算法来处理实时多标签流数据的分类。Hoeffding 树 ，是一种著名的单标签流数据分类模型，它通过在每个叶子节点上选择大多数类标签进行预测，此外，在每棵树的叶子上增加了奈夫贝叶斯模型，以提高预测精度。</p>
- 
+<!-- flag of hidden posts --> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -253,25 +253,6 @@ ga('send', 'pageview');
   </div>
 
    
-  <nav class="article-nav">
-    
-      <a href="/2021/03/24/A-Survey-on-Multi-Label-Data-Stream-Classification-12/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            A-Survey-on-Multi-Label-Data-Stream-Classification-12
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2021/03/22/A-Survey-on-Multi-Label-Data-Stream-Classification-10/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">A-Survey-on-Multi-Label-Data-Stream-Classification-10</div>
-      </a>
-    
-  </nav>
-
    
  
    
