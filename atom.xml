@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-06-13T12:44:25.204Z</updated>
+  <updated>2021-06-13T12:46:18.054Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -21,19 +21,19 @@
     <link href="http://clay-nuyoah.github.io/2021/06/13/skip-gram/"/>
     <id>http://clay-nuyoah.github.io/2021/06/13/skip-gram/</id>
     <published>2021-06-13T03:01:18.000Z</published>
-    <updated>2021-06-13T12:44:25.204Z</updated>
+    <updated>2021-06-13T12:46:18.054Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img</summary>
-        
-      
+    <summary type="html">&lt;p&gt;skip-gram 流程图解释如下：&lt;/p&gt;</summary>
     
     
     
+    
+    <category term="skip-gram" scheme="http://clay-nuyoah.github.io/tags/skip-gram/"/>
+    
+    <category term="word2vec" scheme="http://clay-nuyoah.github.io/tags/word2vec/"/>
+    
+    <category term="NLP" scheme="http://clay-nuyoah.github.io/tags/NLP/"/>
     
   </entry>
   
