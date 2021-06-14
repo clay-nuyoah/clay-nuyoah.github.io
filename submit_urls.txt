@@ -1,3 +1,4 @@
+http://clay-nuyoah.club/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/
 http://clay-nuyoah.club/2021/06/13/skip-gram/
 http://clay-nuyoah.club/2021/01/22/0-1-bei-bao/
 http://clay-nuyoah.club/2021/03/08/fang-xiang-xuan-ze/
@@ -7,4 +8,3 @@ http://clay-nuyoah.club/2020/11/30/wan-chou-ma-leetcode/
 http://clay-nuyoah.club/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/
 http://clay-nuyoah.club/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/
 http://clay-nuyoah.club/2021/01/10/duo-shu-yuan-su-leetcode/
-http://clay-nuyoah.club/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/

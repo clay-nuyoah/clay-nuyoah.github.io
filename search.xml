@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>高级词向量表示</title>
+    <url>/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/</url>
+    <content><![CDATA[<p>词向量的 Negative Sampling 与 Hierachical Softmax</p>
+<a id="more"></a>
+
+<h1 id="为什么-word2vec-会消耗大量的时间"><a href="#为什么-word2vec-会消耗大量的时间" class="headerlink" title="为什么 word2vec 会消耗大量的时间"></a>为什么 word2vec 会消耗大量的时间</h1><pre><code>是因为 softmax 会消耗大量的时间，softmax 的分母与整个语料库有关（呈线性关系），
+而且指数运算也比较耗时，所以计算量超级大</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/14-35-33-6f9226f894a22cf472522cb2727b4d82-20200701205113938-9bacf0.png"></p>
+<h1 id="解决方法有以下几点"><a href="#解决方法有以下几点" class="headerlink" title="解决方法有以下几点"></a>解决方法有以下几点</h1><h2 id="把常见的词组作为一个单词"><a href="#把常见的词组作为一个单词" class="headerlink" title="把常见的词组作为一个单词"></a>把常见的词组作为一个单词</h2><pre><code>作者指出像“Boston Globe“（一家报社名字）这种词对，和两个单词 Boston／Globe有着完全不同语义。
+所以更合理的是把“Boston Globe“看成一个单词，有他自己的word vector。</code></pre>
+<h2 id="少采样常见的词-（比如：A-the）"><a href="#少采样常见的词-（比如：A-the）" class="headerlink" title="少采样常见的词 （比如：A the）"></a>少采样常见的词 （比如：A the）</h2><pre><code>像“the“这种常见的词，我们会遇到两个问题：
+比如（fox，the）其实没有传递我们关于 fox的信息。‘the‘出现得太多了；
+我们有太多 （‘the‘，…）的样本，多于我们真的需要的；
+所以word2vec采用了降采样的策略。对于每个我们在训练样本中遇到的词，
+我们有一个概率去删除它，称之为“采样率”这个概率与单词出现的频率相关。</code></pre>
+<h3 id="采样率"><a href="#采样率" class="headerlink" title="采样率"></a>采样率</h3><p>我们使用$w_i$来表示单词，$z(w_i)$表示它出现在词库中的概率（频率）。比如花生在1bilion的词库中出现了1,000次，那么$z(花生)=1E^{-6}$。在代码中还有一个参数叫“sample”，这个参数代表一个阈值，默认值为0.001.这个值越小意味着这个单词被保留下来的概率越小（即有越大的概率被我们删除）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/16-09-57-f621c0a36618280a1e24bb9ca0d4bf71-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614160948-7c3bc2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/16-10-20-b5040c150edb31a6ee445d4ad771a1ab-v2-b5040c150edb31a6ee445d4ad771a1ab_r-acb4f9.jpg"></p>
+<p>图中x轴代表着$Z(w_i)$，即单词$w_i$在语料中出现频率，y轴代表某个单词被保留的概率。对于一个庞大的语料来说，单个单词的出现频率不会很大，即使是常用词，也不可能特别大。从这个图中，我们可以看到，随着单词出现频率的增高，它被采样保留的概率越来越小。</p>
+<h2 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h2><pre><code>使得每个训练样本只去更新模型中一小部分的weights。</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/15-24-23-07ae3164fc39fff912ff3e44be81a3b0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614152412-935b9e.png"></p>
+<p>当我们用训练样本 ( input word: “fox”，output word: “quick”) 来训练我们的神经网络时，“ fox”和“quick”都是经过one-hot编码的。如果我们的vocabulary大小为10000时，在输出层，我们期望对应“quick”单词的那个神经元结点输出1，其余9999个都应该输出0。在这里，这9999个我们期望输出为0的神经元结点所对应的单词我们称为“negative” word。</p>
+<p>当使用负采样时，我们将随机选择一小部分的negative words（比如选5个negative words）来更新对应的权重。我们也会对我们的“positive” word进行权重更新（在我们上面的例子中，这个单词指的是”quick“）。</p>
+<p>假如我们的隐层-输出层拥有300 x 10000的权重矩阵。如果使用了负采样的方法我们仅仅去更新我们的positive word-“quick”的和我们选择的其他5个negative words的结点对应的权重，共计6个输出神经元，相当于每次只更新 300 * 6 = 1800个权重。对于3百万的权重来说，相当于只计算了0.06%的权重，这样计算效率就大幅度提高。</p>
+<h1 id="skip-gram-负采样公式推导："><a href="#skip-gram-负采样公式推导：" class="headerlink" title="skip-gram 负采样公式推导："></a>skip-gram 负采样公式推导：</h1><p>1、条件概率分布使用 sigmod 函数表示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-15-d6de486aa70b29dbfc07b2997421d2e3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614202954-3fdba7.png"></p>
+<p>2、按照一定的概率分布$P(\widetilde{w})$从样本中抽取K个负样本，其一部分表示从中心词和上下文词共同出现的概率，第二部分表示中心词和负样本词共同出现的概率。然该公式最大化目的是让中心词和上下文词和中心词和负样本词以尽可能大的概率共同出现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/21-05-06-98abe8c03f0ba32be639f7ed419e8346-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210614210455-88a16e.png"></p>
+<p>3、将 sigmod 函数带入得到下列公式，求最大化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-19-c8f1262e4eaa24ad57aefa0d7194a946-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205558-1e824d.png"></p>
+<p>4、添加符号求最小化问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-27-6dc4139cc1555cdb28e6d63af9fd09eb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205611-fbfacc.png"></p>
+<h1 id="CBOW-负采样公式推导："><a href="#CBOW-负采样公式推导：" class="headerlink" title="CBOW 负采样公式推导："></a>CBOW 负采样公式推导：</h1><p>推导过程基本与 skip-gram 类似，如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-34-08bfdd0c91f36d2ddf906e520d89a377-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205748-55bc12.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-39-2d323463050b7dd14a9c70a59209ae80-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205802-7c665c.png"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>将负采样近似训练方法和标准word2vec进行对比，可以发现负采样在标准word2vec的基础上做了两点改进：</p>
+<p>1.针对softmax运算导致的每次梯度计算开销过⼤，将softmax函数调整为sigmoid函数，当然对应的含义也由给定中心词，每个词作为背景词的概率，变成了给定中心词，每个词出现在背景窗口中的概率</p>
+<p>2.进行负采样，引入负样本，负采样的名字就是取了第二个改进点。</p>
+]]></content>
+      <tags>
+        <tag>skip-gram</tag>
+        <tag>word2vec</tag>
+        <tag>NLP</tag>
+        <tag>CBOW</tag>
+        <tag>负采样</tag>
+        <tag>negative sampling</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>skip-gram</title>
     <url>/2021/06/13/skip-gram/</url>
     <content><![CDATA[<p>skip-gram 流程图解释如下：</p>

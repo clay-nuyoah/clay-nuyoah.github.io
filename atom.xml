@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-06-13T12:46:18.054Z</updated>
+  <updated>2021-06-14T13:18:15.636Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高级词向量表示</title>
+    <link href="http://clay-nuyoah.github.io/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/"/>
+    <id>http://clay-nuyoah.github.io/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/</id>
+    <published>2021-06-14T06:30:13.000Z</published>
+    <updated>2021-06-14T13:18:15.636Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;词向量的 Negative Sampling 与 Hierachical Softmax&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="skip-gram" scheme="http://clay-nuyoah.github.io/tags/skip-gram/"/>
+    
+    <category term="word2vec" scheme="http://clay-nuyoah.github.io/tags/word2vec/"/>
+    
+    <category term="NLP" scheme="http://clay-nuyoah.github.io/tags/NLP/"/>
+    
+    <category term="CBOW" scheme="http://clay-nuyoah.github.io/tags/CBOW/"/>
+    
+    <category term="负采样" scheme="http://clay-nuyoah.github.io/tags/%E8%B4%9F%E9%87%87%E6%A0%B7/"/>
+    
+    <category term="negative sampling" scheme="http://clay-nuyoah.github.io/tags/negative-sampling/"/>
+    
+  </entry>
   
   <entry>
     <title>skip-gram</title>
