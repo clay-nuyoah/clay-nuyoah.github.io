@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-06-14T13:18:15.636Z</updated>
+  <updated>2021-06-15T13:16:04.116Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Word-Window-Classification-Neural-Networks</title>
+    <link href="http://clay-nuyoah.github.io/2021/06/15/Word-Window-Classification-Neural-Networks/"/>
+    <id>http://clay-nuyoah.github.io/2021/06/15/Word-Window-Classification-Neural-Networks/</id>
+    <published>2021-06-15T06:45:58.000Z</published>
+    <updated>2021-06-15T13:16:04.116Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-15-14-14af5e584ec2022c16b52cdbd5762f4c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201501-16d775.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>高级词向量表示</title>
