@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">405</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">3 分钟</span>
         </span>
     </span>
 </div>
@@ -131,12 +131,55 @@ ga('send', 'pageview');
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-52-29-7c200889c5f47f2e457789dbc669a0c4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205220-b6a1b8.png"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-56-06-17334a2f35d1efcbcee891eca0763eef-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205556-905402.png"></p>
 <p>可以看出，该等式于上面对数似然函数的形式一样！</p>
-<h1 id="re-training词向量"><a href="#re-training词向量" class="headerlink" title="re-training词向量"></a>re-training词向量</h1><p>比如有一个给单词做情感分析的小任务，在预训练的词向量中，这三个表示电视的单词都是在一起的：</p>
+<h1 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h1><p>一般的ML问题中，参数由权值矩阵的列组成维度不会太大。而在词向量或其他深度学习中，需要同时学习权值矩阵和词向量。参数一多，就容易过拟合：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/09-33-28-adbf6c2ff08cc32d210ada78e1227cce-006Fmjmcly1fgf164jxu1j31b00kcwgx-f2decb.jpg"></p>
+<p>下面两张图非常好的说明了，在更新参数的时候，及要跟新超平面相关参数，也会更新词向量相关参数（参数的大小为）。</p>
+<h1 id="re-training词向量"><a href="#re-training词向量" class="headerlink" title="re-training词向量"></a>re-training词向量</h1><p>一般的ML问题中，参数由权值矩阵的列组成维度不会太大。而在词向量或其他深度学习中，需要同时学习权值矩阵和词向量。参数一多，就容易过拟合：</p>
+<p>比如有一个给单词做情感分析的小任务，在预训练的词向量中，这三个表示电视的单词都是在一起的：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-02-16-7b27e7109dddc45fe43a210a7e4ce2bd-006Fmjmcly1fgf1biu3l2j30en0en3z7-2bf5e9.jpg"></p>
 <p>但由于情感分析语料中，训练集只含有TV和telly，导致re-training之后两者跑到别处去了：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-03-04-a4d1b5d4ab0d27eab210cce8126e22c0-006Fmjmcly1fgf1biu3l2j30en0en3z7-0e709b.jpg"></p>
 <p>于是在测试集上导致television被误分类。</p>
 <p>这个例子说明，如果任务的语料非常小，则不必在任务语料上重新训练词向量，否则会导致词向量过拟合。</p>
+<h1 id="Window-classification"><a href="#Window-classification" class="headerlink" title="Window classification"></a>Window classification</h1><p>这是一种根据上下文给单个单词分类的任务，可以用于消歧或命名实体分类。上下文Window的向量可以通过拼接所有窗口中的词向量得到：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-12-41-b47071cf5ef7b679398896d90031d170-v2-5f2945e81573b7cbf811a57321cf8cbe_720w-8a666e.jpg"></p>
+<p>最简单的分类器：softmax</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-25-02-3840f2e053892f56f7c916d4beb390e8-006Fmjmcly1fgf1xr22uxj31e80oowjf-191b26.jpg"></p>
+<p>J 对x求导，注意这里的x指的是窗口所有单词的词向量拼接向量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-26-24-369bb65feea4693058807a1164195a60-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102534-68f846.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-27-48-8bc44062edf1f3a027412c0dc7849048-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102733-de32fb.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-27-53-578203c7d7c9275f4fe934edf9eb16a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102738-97c4c1.png"></p>
+<p>其中 t 是第 y 个词的热编码</p>
+<p>使用神经网络</p>
+<h2 id="softmax（等价于逻辑斯谛回归）效果有限"><a href="#softmax（等价于逻辑斯谛回归）效果有限" class="headerlink" title="softmax（等价于逻辑斯谛回归）效果有限"></a>softmax（等价于逻辑斯谛回归）效果有限</h2><p>仅限于较小的数据集，能够提供一个勉强的线性分类决策边界。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-51-50-b45f360720ab393476d944dd91ac46f4-006Fmjmcly1fgf9smlwe0j30o80cdtag-a29e88.jpeg"></p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>神经网络可以提供非线性的决策边界：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/16/10-52-54-a468fd421b32f7ee12bb1d78a9e32ecb-006Fmjmcly1fgf9u1m2dzj309e09d3zf-713800.jpeg"></p>
+<p>神经网络的术语</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-55-50-09d790e1567d331a9533da2810b806d3-006Fmjmcly1fgf9w5ckvnj30dl0e1jtm-e6c03b.jpeg"></p>
+<p>每个神经元是一个二分类逻辑斯谛回归单元：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-57-37-31b42b4c00cb8580b873dd98f56c0595-006Fmjmcly1fgf9xs1tc2j30n80er76y-21db2e.jpeg"></p>
+<p>神经网络同时运行多个逻辑斯谛回归，但不需要提前指定它们具体预测什么：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/16/10-58-00-1a0656e28e3385bbf5f6bf4814ca35d8-006Fmjmcly1fgf9ynezpjj308c0b7dhr-9f588e.jpeg"></p>
+<p>我们把预测结果喂给下一级逻辑斯谛回归单元，由损失函数自动决定它们预测什么：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/16/10-59-38-84f005003e1dab179233ce181b2d57ef-006Fmjmcly1fgf9zpfaa2j30eo0botbq-edb273.jpeg"></p>
+<p>于是就得到了一个多层网络</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-59-58-416226bf8865fe79d28789bf15f55a18-006Fmjmcly1fgfa0qmyeoj30jg0bkwim-9c5982.jpeg"></p>
+<p>为什么需要非线性</p>
+<p>因为线性系统所有层等效于一层：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/11-01-03-6711e3c71c03d87eb6f21b9cfc2c353e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616110057-b89af5.png"></p>
+<p>而非线性模型可以捕捉很复杂的数据：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/11-01-45-2d93666e80685b17b46eeccec780673a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616110127-e78c28.png"></p>
+<h2 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h2><p>所谓的前向传播算法就是：将上一层的输出作为下一层的输入，并计算下一层的输出，一直到运算到输出层为止。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-21-46-ae480c045c628ea1dcad176da56daecb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210617091621-699c67.png"></p>
+<p>最后可以通过与期望值做对比，求出损失，为了使损失最小化，使用后向传播算法。</p>
+<h2 id="后向传播"><a href="#后向传播" class="headerlink" title="后向传播"></a>后向传播</h2><p>反向传播（back propagation, BP）算法是 “误差反向传播” 的简称，也称为backprop，允许来自代价函数的信息通过网络向后流动，以便计算梯度。反向传播是一种计算链式法则的算法，使用高效的特定运输顺序。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-26-15-ad4f18eadd27e8e8b87dd6cc42971b5e-f408ba03f7685c23f9daf05fccdfef07-9fdd83.png"></p>
+<p>$w_{54}$ 求梯度的过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-27-19-74bb570260d428fc7759837f765f697a-70cab29fb1769089ea951550412b84b5-5a51cc.png"></p>
+<p>$w_{31}$ 求梯度的过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-28-47-118722f5e16238a2590f9961990ac456-78406d4d609f2383b8253d16d35d48e9-8eb888.png"></p>
+<p>可以通过梯度更新权值，使得损失损失最小化</p>
  
       <!-- reward -->
       
