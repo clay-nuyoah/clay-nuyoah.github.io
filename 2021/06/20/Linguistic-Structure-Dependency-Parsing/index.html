@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="5fFagiALkrBFm256jMyr0Wf9ZkND0mtyCDozn1qlVxE" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Linguistic Structure: Dependency Parsing |  CLAY
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-XKPTQSV9FV', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Linguistic-Structure-Dependency-Parsing"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linguistic Structure: Dependency Parsing
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/06/20/Linguistic-Structure-Dependency-Parsing/" class="article-date">
+  <time datetime="2021-06-20T00:06:41.000Z" itemprop="datePublished">2021-06-20</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-07-44-6e3918ac3ccd05224052041a4d14b010-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620080712-11c8b4.png"></p>
+<a id="more"></a>
+
+<h1 id="语言学的两种观点"><a href="#语言学的两种观点" class="headerlink" title="语言学的两种观点"></a>语言学的两种观点</h1><p>依存句法树和短语结构树详细解释：<a target="_blank" rel="noopener" href="https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md" title="依存句法树和短语结构树详细解释">https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md</a></p>
+<p>如何描述语法，有两种主流观点，其中一种是上下文无关文法，英文术语是：Constituency = phrase structure grammar = context-free grammars (CFGs)。</p>
+<h2 id="短语结构树"><a href="#短语结构树" class="headerlink" title="短语结构树"></a>短语结构树</h2><p>这种短语语法用固定数量的rule分解句子为短语和单词、分解短语为更短的短语或单词，一个取自WSJ语料库的短语结构树示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-10-15-de55b626a442e75026f86a38f641d775-6cbb8645gw1fb9et7tnw3j211i0k2n0e-0564cf.jpg"></p>
+<h2 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h2><p>语言学中，上下文无关文法由如下组件构成:</p>
+<pre><code>终结符结合 Σ，比如汉语的一个词表
+非终结符集合 V，比如“名词短语”“动词短语”等短语结构组成的集合。
+V 中至少包含一个特殊的非终结符，即句子符或初始符，计作 S
+推到规则 R，即推到非终结符的一系列规则: V -&gt; V U Σ</code></pre>
+<p>基于上下文无关文法理论，我们可以从 S 出发，逐步推导非终结符。一个非终结符至少产生一个下级符号，如此一层一层地递推下去，我们就得到了一棵语法树。但在NLP中，我们称其为短语结构树。也就是说，计算机科学中的术语“上下文无关文法”在语言学中被称作“短语结构语法”。</p>
+<h2 id="依存结构"><a href="#依存结构" class="headerlink" title="依存结构"></a>依存结构</h2><p>另一种是依存结构，用单词之间的依存关系来表达语法。如果一个单词修饰另一个单词，则称该单词依赖于另一个单词。一个由HanLP输出的依存句法树如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-22-13-c4b7882ad0f2dfe85d4fb1d1345058bb-6cbb8645gw1exy8efomtkj20t505f3zj-d93fb8.jpg"></p>
+<h2 id="依存句法树"><a href="#依存句法树" class="headerlink" title="依存句法树"></a>依存句法树</h2><p>将一个句子中所有词语的依存关系以有向边的形式表示出来，就会得到一棵树，称为依存句法树( dependency parse tree)。比如句子“弱小的我也有大梦想”的依存句法树如图所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/09-39-16-31b4b99010881eed95de380289d8e1c1-2020-2-14_17-58-48-81ccea.png"></p>
+<p>现代依存语法中，语言学家 Robinson 对依存句法树提了 4 个约束性的公理。</p>
+<pre><code>有且只有一个词语(ROOT，虚拟根节点，简称虚根)不依存于其他词语。
+除此之外所有单词必须依存于其他单词。
+每个单词不能依存于多个单词。
+如果单词 A 依存于 B，那么位置处于 A 和 B 之间的单词 C 只能依存于 A、B 或 AB 之间的单词。</code></pre>
+<p>这 4 条公理分别约束了依存句法树(图的特例)的根节点唯一性、 连通、无环和投射性( projective )。这些约束对语料库的标注以及依存句法分析器的设计奠定了基础。</p>
+<h1 id="歧义"><a href="#歧义" class="headerlink" title="歧义"></a>歧义</h1><p>通过句法树可以表达歧义，一个确定的句法树对应句子的一个确定解读，比如对介词短语依附（attachment of prepositional phrases (PPs)）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/20/08-23-06-586c391ea64d9481a8491a50e420288f-006Fmjmcly1fgij616l29j311i0ps0vn-db7a81.jpeg"></p>
+<p>from space这个介词短语到底依附谁？不同的答案导致对句子不同的理解。</p>
+<h2 id="依附歧义"><a href="#依附歧义" class="headerlink" title="依附歧义"></a>依附歧义</h2><p>很难确定如何把一个短语（介词短语、状语短语、分词短语、不定式）依附到其他成分上去，比如下列句子：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/08-28-35-79c7003af3f1c7d1cf24fcaf67eadf73-006Fmjmcly1fgijfj3n2vj31ds0fwter-af195c.jpeg" alt="董事会在月度会议上批准了多伦多的皇家信托公司以每股27美元的价格收购该公司。"></p>
+<p>每个括号中都是一个短语，它们依附的对象各不相同。对于n个短语来讲，组成的树形结构有$C_n=\frac{(2n)!}{(n+1)!n!}$。这是Catalan数，指数级增长，常用于树形结构的计数问题。</p>
+<h2 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-39-58-a5badd4b4dc08755ffe6a94e7df564ac-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620083951-c8e370.png"></p>
+<h1 id="标注数据集的崛起：Universal-Dependencies-treebanks"><a href="#标注数据集的崛起：Universal-Dependencies-treebanks" class="headerlink" title="标注数据集的崛起：Universal Dependencies treebanks"></a>标注数据集的崛起：Universal Dependencies treebanks</h1><p>虽然上下文无关文法中的语法集很容易写，无非是有限数量的规则而已，但人工费时费力标注的树库却茁壮成长了起来。在 1993 年首次面世的 Universal Dependencies treebanks 如今在 Google 的赞助下发布了 2.0，其授权大多是署名-相同方式共享，覆盖了全世界绝大多数语言（不包括简体中文）。</p>
+<p>其官网是：<a target="_blank" rel="noopener" href="http://universaldependencies.org/" title="Universal Dependencies 官网">http://universaldependencies.org/</a></p>
+<p>GitHub主页是：<a target="_blank" rel="noopener" href="https://github.com/UniversalDependencies" title="Universal Dependencies github 地址">https://github.com/UniversalDependencies</a></p>
+<p>树库示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/20/08-50-15-5a4473df5335b63bba17a07f65708d65-006Fmjmcly1fgikc4szn1j30tm0howhf-764e95.jpeg"></p>
+<p>人们偏好树库多于规则的原因是显而易见的，树库虽然标注难度高，但每一份劳动都可被复用（可以用于词性标注命名实体识别等等任务）；而每个人编写的规则都不同，并且死板又丑陋。树库的多用性还是得其作为评测的标杆数据，得到了越来越多的引用。</p>
+<h2 id="依存文法与依存结构"><a href="#依存文法与依存结构" class="headerlink" title="依存文法与依存结构"></a>依存文法与依存结构</h2><p>这节课以及练习用的都是依存句法树，而不是短语结构树。这并不是随机选择，而是由于前者的优势。90年代的句法分析论文99%都是短语结构树，但后来人们发现依存句法树标注简单，parser准确率高，所以后来（特别是最近十年）基本上就是依存句法树的天下了（至少80%）。</p>
+<p>不标注依存弧label的依存句法树就是短语结构树的一种：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/20/08-55-06-bc8e46a51f9778586f8ed87e5f6d1408-006Fmjmcly1fgikxq72uqj30xy0kmacl-8229fa.jpeg"></p>
+<p>一旦标上了，两者就彻底不同了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/20/08-55-26-1d8c657640d69fe3d3d815a083cab981-006Fmjmcly1fgikyihe3lj30yi0kuwhw-601696.jpeg"></p>
+<p>这里箭头的尾部是head（被修饰的主题），箭头指向的是dependent（修饰语）。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>每个句子都有一个虚根，代表句子之外的开始，这样句子中的每个单词都有自己的依存对象了。</p>
+<h1 id="句法分析可用的特征"><a href="#句法分析可用的特征" class="headerlink" title="句法分析可用的特征"></a>句法分析可用的特征</h1><pre><code>双词汇亲和（Bilexical affinities），比如discussion与issues。
+
+词语间距，因为一般相邻的词语才具有依存关系
+
+中间词语，如果中间词语是动词或标点，则两边的词语不太可能有依存
+
+词语配价，一个词语最多有几个依赖者。</code></pre>
+<h1 id="依存句法分析"><a href="#依存句法分析" class="headerlink" title="依存句法分析"></a>依存句法分析</h1><p>有几个约束条件：</p>
+<pre><code>ROOT只能被一个词依赖
+无环</code></pre>
+<p>英语中大部分句子是 projective 的，少数是 non-projective 的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/10-06-07-80d7ec96ee803de0501963531ede4052-006Fmjmcly1fgm6p51a0oj31eg070abc-9724e5.jpeg"></p>
+<h2 id="依存句法分析方法"><a href="#依存句法分析方法" class="headerlink" title="依存句法分析方法"></a>依存句法分析方法</h2><pre><code>Dynamic programming
+    估计是找出以某head结尾的字串对应的最可能的句法树。
+Graph algorithms
+    最小生成树。
+Constraint Satisfaction
+    估计是在某个图上逐步删除不符合要求的边，直到成为一棵树。
+“Transition-based parsing” or “deterministic dependency parsing”
+    主流方法，基于贪心决策动作拼装句法树。</code></pre>
+<h2 id="Arc-standard-transition"><a href="#Arc-standard-transition" class="headerlink" title="Arc-standard transition"></a>Arc-standard transition</h2><p>arc-standard方法，通过SHIFT、LEFT-ARC和RIGHT-ARC三种动作来决定单词之间是否依赖以及依赖关系。每个单词只能被修饰（指向）一次，但是可以多次修饰（指向）其他单词。</p>
+<pre><code>SHIFT 指两个词 A 与 B 之间没有依存关系；
+LEFT-ARC 指两个词 A 与 B 之间是 A &lt;- B 的左链接关系；
+RIGHT-ARC 指两个词 A 与 B 之间是 A -&gt; B 的右链接关系。</code></pre>
+<p>动作体系的 formal 描述如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-22-52-6cbe50db9fa5c7cf910c0e9aeb1c318f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102245-099759.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-08-51-336b71240ee6b7c69720a5f9b5e94651-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620200839-ea3493.png"></p>
+<p>图片原地址：<a target="_blank" rel="noopener" href="https://www.hankcs.com/nlp/parsing/neural-network-based-dependency-parser.html" title="基于神经网络的高性能依存句法分析器">https://www.hankcs.com/nlp/parsing/neural-network-based-dependency-parser.html</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-24-25-2678aa38f038981db0bf56a15c67f431-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102357-d2c157.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-26-14-88f9311ad23beab59f60dc82e7855fba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102605-e8d752.png"></p>
+<p>截图来自：<a target="_blank" rel="noopener" href="https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md" title="依存句法树和短语结构树详细解释">https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md</a></p>
+<h2 id="MaltParser模型-没看懂"><a href="#MaltParser模型-没看懂" class="headerlink" title="MaltParser模型(没看懂)"></a>MaltParser模型(没看懂)</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-16-34-83d5e77c541057c8cda80956036adf9a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620201527-8f5eef.png"></p>
+<h2 id="传统特征表示-没看懂"><a href="#传统特征表示-没看懂" class="headerlink" title="传统特征表示(没看懂)"></a>传统特征表示(没看懂)</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img-blog.csdnimg.cn/2021/06/20/20-19-35-414accd8219e4dc41e19aa981eccf94f-20200706205434481-403b2e.png"></p>
+<p>传统的特征表示使用二元的稀疏向量，一个超长的稀疏01向量。</p>
+<pre><code>特征模板：通常由配置中的1 ~ 3个元素组成
+Indicator features</code></pre>
+<h2 id="依赖解析的评估：（标记）依赖精度-准确率评价"><a href="#依赖解析的评估：（标记）依赖精度-准确率评价" class="headerlink" title="依赖解析的评估：（标记）依赖精度/准确率评价"></a>依赖解析的评估：（标记）依赖精度/准确率评价</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-32-36-577f70203e36e31cb06613c20eae9648-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620203226-c8a4f8.png"></p>
+<p>继续化简得 $LSA = \frac{2 * |A∩B|}{|A| + |B|}$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-48-56-bb0e952947b07ef6413e1cd66ee54126-2020070620561090-073591.png"></p>
+<p>求 LAS 时，对于该图 |A∩B| = 2，比对的时两幅图得 1，2 列相同的行</p>
+<p>求 UAS 时，对于该图 |A∩B| = 4，比对的时两幅图得 1 列相同的行</p>
+<p>|A| = |B| = 5</p>
+<h2 id="其他评价指标"><a href="#其他评价指标" class="headerlink" title="其他评价指标"></a>其他评价指标</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-51-19-23d7e95d1f92ce79d38d9d62a418a928-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620205110-3b2511.png"></p>
+<h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><p>所谓投射性是指：如果词p依存于词q，那么p和q之间的任意词r就不能依存到p和q所构成的跨度之外（用白话说，就是任意构成依存的两个单词构成一个笼子，把它们之间的所有单词囚禁在这个笼子里，只可内部交配，不可与外族通婚）。比如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww2.sinaimg.cn/large/2021/06/20/20-06-01-5caaa193cae9b2ab12da13ac20f80a37-6cbb8645gw1exvojk1givj20h804sdg9-c04dda.jpeg"></p>
+<p>再比如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww3.sinaimg.cn/large/2021/06/20/20-06-20-e58b4d476bfc2923afdf4b81c87b170d-6cbb8645jw1emokwlqh42j20aw04vglr-13e739.jpeg"></p>
+<h2 id="非投射"><a href="#非投射" class="headerlink" title="非投射"></a>非投射</h2><p>非投射就没有上述限制了，这会导致依存边有交叉，怎么都理不顺：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww4.sinaimg.cn/large/2021/06/20/20-07-00-7f99265c1ddaa1857a486ca1c2e7a4eb-6cbb8645gw1exvop84e10j20iw04ywf0-beaf48.jpeg"></p>
+<h2 id="投射性"><a href="#投射性" class="headerlink" title="投射性"></a>投射性</h2><p>CFG转换得到的依存树一定是投射性的，但依存理论允许非投射性的依存句法树（一些语义需要通过非投射性表达）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/20/20-22-34-d53750cd99e1023ef1f849edd57bd461-006Fmjmcly1fgncuqs168j31co0cojud-8ea68f.jpeg"></p>
+<p>arc-standard算法只能拼装投射性的句法树，但换个体系、加上后处理、采用graph-based方法就能得到非投射的句法树。</p>
+<h1 id="为什么需要神经网络句法分析器"><a href="#为什么需要神经网络句法分析器" class="headerlink" title="为什么需要神经网络句法分析器"></a>为什么需要神经网络句法分析器</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yu5064/article/details/82186738" title="基于神经网络的依存句法分析总结及代码详解">https://blog.csdn.net/yu5064/article/details/82186738</a></p>
+<p><a target="_blank" rel="noopener" href="http://fancyerii.github.io/books/nndepparser/#dp-nn-2" title="基于神经网络的依存句法分析">http://fancyerii.github.io/books/nndepparser/#dp-nn-2</a></p>
+<p>因为：传统特征表示稀疏、不完全、计算代价大，SVM之类的线性分类器本身是很快的，但传统 parser 的95%时间都花在拼装查询特征上了。</p>
+<p>无非是传统方法拼接单词、词性、依存标签，新方法拼接它们的向量表示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/21-09-43-b12466b0814951453b3d41caa1f15f7b-006Fmjmcly1fgnda5d97hj310c0nk785-cca20e.jpeg"></p>
+<p>经过一个神经网络</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-50-21-f058a82f34e626efc9d98a52bdda1811-2018082819195541-7df6b7.png"></p>
+<p>模型的作用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-32-06-cc8d1bc45c631f2a64fcea495a840caa-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621143133-5bd1c1.png"></p>
+<p>如何找输入的词向量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-51-38-2910f2e666cd2a576705b13122208268-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621144208-e9c675.png"></p>
+<p>事实上，在“深度学习”“神经网络”与传统的graph-based方法相比较，花了这么多功夫得到的只是0.1%的LAS提升：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/21/14-34-25-1b2c659ee458ce5ffc777c25aa0e32b6-006Fmjmcly1fgnd5teln2j31aw0k0gon-432664.jpeg"></p>
+<h2 id="非线性函数"><a href="#非线性函数" class="headerlink" title="非线性函数"></a>非线性函数</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/21-07-49-1d505aa57921e51396ae4a5f10c67c21-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620210742-87a06a.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/21-08-33-86377f2b1aafcf6ddea00bc290fa1dbd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620210825-34d08d.png"></p>
+<h2 id="未来的工作"><a href="#未来的工作" class="headerlink" title="未来的工作"></a>未来的工作</h2><p>Chen&amp;Manning的工作被许多人继续往前推进，走在最前沿的是Google。趋势是：</p>
+<pre><code>更大更深调参调得更好（更昂贵）的神经网络
+Beam Search
+在决策序列全局进行类似CRF推断的方法（CRF宝刀未老，老当益壮啊）</code></pre>
+<p>Google的SyntaxNet 中的 Parsey McParseFace的效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/21-04-58-895952771c1a40eb7782f00995c002d9-006Fmjmcly1fgndqwd3yaj315e0asmz0-16e0c9.jpeg"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/06/20/Linguistic-Structure-Dependency-Parsing/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/06/15/Word-Window-Classification-Neural-Networks/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Word-Window-Classification-Neural-Networks</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
