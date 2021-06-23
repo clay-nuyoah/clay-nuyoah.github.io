@@ -1,313 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linguistic Structure: Dependency Parsing</title>
-    <url>/2021/06/20/Linguistic-Structure-Dependency-Parsing/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-07-44-6e3918ac3ccd05224052041a4d14b010-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620080712-11c8b4.png"></p>
-<a id="more"></a>
-
-<h1 id="语言学的两种观点"><a href="#语言学的两种观点" class="headerlink" title="语言学的两种观点"></a>语言学的两种观点</h1><p>依存句法树和短语结构树详细解释：<a href="https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md" title="依存句法树和短语结构树详细解释">https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md</a></p>
-<p>如何描述语法，有两种主流观点，其中一种是上下文无关文法，英文术语是：Constituency = phrase structure grammar = context-free grammars (CFGs)。</p>
-<h2 id="短语结构树"><a href="#短语结构树" class="headerlink" title="短语结构树"></a>短语结构树</h2><p>这种短语语法用固定数量的rule分解句子为短语和单词、分解短语为更短的短语或单词，一个取自WSJ语料库的短语结构树示例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-10-15-de55b626a442e75026f86a38f641d775-6cbb8645gw1fb9et7tnw3j211i0k2n0e-0564cf.jpg"></p>
-<h2 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h2><p>语言学中，上下文无关文法由如下组件构成:</p>
-<pre><code>终结符结合 Σ，比如汉语的一个词表
-非终结符集合 V，比如“名词短语”“动词短语”等短语结构组成的集合。
-V 中至少包含一个特殊的非终结符，即句子符或初始符，计作 S
-推到规则 R，即推到非终结符的一系列规则: V -&gt; V U Σ</code></pre>
-<p>基于上下文无关文法理论，我们可以从 S 出发，逐步推导非终结符。一个非终结符至少产生一个下级符号，如此一层一层地递推下去，我们就得到了一棵语法树。但在NLP中，我们称其为短语结构树。也就是说，计算机科学中的术语“上下文无关文法”在语言学中被称作“短语结构语法”。</p>
-<h2 id="依存结构"><a href="#依存结构" class="headerlink" title="依存结构"></a>依存结构</h2><p>另一种是依存结构，用单词之间的依存关系来表达语法。如果一个单词修饰另一个单词，则称该单词依赖于另一个单词。一个由HanLP输出的依存句法树如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-22-13-c4b7882ad0f2dfe85d4fb1d1345058bb-6cbb8645gw1exy8efomtkj20t505f3zj-d93fb8.jpg"></p>
-<h2 id="依存句法树"><a href="#依存句法树" class="headerlink" title="依存句法树"></a>依存句法树</h2><p>将一个句子中所有词语的依存关系以有向边的形式表示出来，就会得到一棵树，称为依存句法树( dependency parse tree)。比如句子“弱小的我也有大梦想”的依存句法树如图所示。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/09-39-16-31b4b99010881eed95de380289d8e1c1-2020-2-14_17-58-48-81ccea.png"></p>
-<p>现代依存语法中，语言学家 Robinson 对依存句法树提了 4 个约束性的公理。</p>
-<pre><code>有且只有一个词语(ROOT，虚拟根节点，简称虚根)不依存于其他词语。
-除此之外所有单词必须依存于其他单词。
-每个单词不能依存于多个单词。
-如果单词 A 依存于 B，那么位置处于 A 和 B 之间的单词 C 只能依存于 A、B 或 AB 之间的单词。</code></pre>
-<p>这 4 条公理分别约束了依存句法树(图的特例)的根节点唯一性、 连通、无环和投射性( projective )。这些约束对语料库的标注以及依存句法分析器的设计奠定了基础。</p>
-<h1 id="歧义"><a href="#歧义" class="headerlink" title="歧义"></a>歧义</h1><p>通过句法树可以表达歧义，一个确定的句法树对应句子的一个确定解读，比如对介词短语依附（attachment of prepositional phrases (PPs)）：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/20/08-23-06-586c391ea64d9481a8491a50e420288f-006Fmjmcly1fgij616l29j311i0ps0vn-db7a81.jpeg"></p>
-<p>from space这个介词短语到底依附谁？不同的答案导致对句子不同的理解。</p>
-<h2 id="依附歧义"><a href="#依附歧义" class="headerlink" title="依附歧义"></a>依附歧义</h2><p>很难确定如何把一个短语（介词短语、状语短语、分词短语、不定式）依附到其他成分上去，比如下列句子：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/08-28-35-79c7003af3f1c7d1cf24fcaf67eadf73-006Fmjmcly1fgijfj3n2vj31ds0fwter-af195c.jpeg" alt="董事会在月度会议上批准了多伦多的皇家信托公司以每股27美元的价格收购该公司。"></p>
-<p>每个括号中都是一个短语，它们依附的对象各不相同。对于n个短语来讲，组成的树形结构有$C_n=\frac{(2n)!}{(n+1)!n!}$。这是Catalan数，指数级增长，常用于树形结构的计数问题。</p>
-<h2 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-39-58-a5badd4b4dc08755ffe6a94e7df564ac-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620083951-c8e370.png"></p>
-<h1 id="标注数据集的崛起：Universal-Dependencies-treebanks"><a href="#标注数据集的崛起：Universal-Dependencies-treebanks" class="headerlink" title="标注数据集的崛起：Universal Dependencies treebanks"></a>标注数据集的崛起：Universal Dependencies treebanks</h1><p>虽然上下文无关文法中的语法集很容易写，无非是有限数量的规则而已，但人工费时费力标注的树库却茁壮成长了起来。在 1993 年首次面世的 Universal Dependencies treebanks 如今在 Google 的赞助下发布了 2.0，其授权大多是署名-相同方式共享，覆盖了全世界绝大多数语言（不包括简体中文）。</p>
-<p>其官网是：<a href="http://universaldependencies.org/" title="Universal Dependencies 官网">http://universaldependencies.org/</a></p>
-<p>GitHub主页是：<a href="https://github.com/UniversalDependencies" title="Universal Dependencies github 地址">https://github.com/UniversalDependencies</a></p>
-<p>树库示例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/20/08-50-15-5a4473df5335b63bba17a07f65708d65-006Fmjmcly1fgikc4szn1j30tm0howhf-764e95.jpeg"></p>
-<p>人们偏好树库多于规则的原因是显而易见的，树库虽然标注难度高，但每一份劳动都可被复用（可以用于词性标注命名实体识别等等任务）；而每个人编写的规则都不同，并且死板又丑陋。树库的多用性还是得其作为评测的标杆数据，得到了越来越多的引用。</p>
-<h2 id="依存文法与依存结构"><a href="#依存文法与依存结构" class="headerlink" title="依存文法与依存结构"></a>依存文法与依存结构</h2><p>这节课以及练习用的都是依存句法树，而不是短语结构树。这并不是随机选择，而是由于前者的优势。90年代的句法分析论文99%都是短语结构树，但后来人们发现依存句法树标注简单，parser准确率高，所以后来（特别是最近十年）基本上就是依存句法树的天下了（至少80%）。</p>
-<p>不标注依存弧label的依存句法树就是短语结构树的一种：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/20/08-55-06-bc8e46a51f9778586f8ed87e5f6d1408-006Fmjmcly1fgikxq72uqj30xy0kmacl-8229fa.jpeg"></p>
-<p>一旦标上了，两者就彻底不同了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/20/08-55-26-1d8c657640d69fe3d3d815a083cab981-006Fmjmcly1fgikyihe3lj30yi0kuwhw-601696.jpeg"></p>
-<p>这里箭头的尾部是head（被修饰的主题），箭头指向的是dependent（修饰语）。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>每个句子都有一个虚根，代表句子之外的开始，这样句子中的每个单词都有自己的依存对象了。</p>
-<h1 id="句法分析可用的特征"><a href="#句法分析可用的特征" class="headerlink" title="句法分析可用的特征"></a>句法分析可用的特征</h1><pre><code>双词汇亲和（Bilexical affinities），比如discussion与issues。
-
-词语间距，因为一般相邻的词语才具有依存关系
-
-中间词语，如果中间词语是动词或标点，则两边的词语不太可能有依存
-
-词语配价，一个词语最多有几个依赖者。</code></pre>
-<h1 id="依存句法分析"><a href="#依存句法分析" class="headerlink" title="依存句法分析"></a>依存句法分析</h1><p>有几个约束条件：</p>
-<pre><code>ROOT只能被一个词依赖
-无环</code></pre>
-<p>英语中大部分句子是 projective 的，少数是 non-projective 的：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/10-06-07-80d7ec96ee803de0501963531ede4052-006Fmjmcly1fgm6p51a0oj31eg070abc-9724e5.jpeg"></p>
-<h2 id="依存句法分析方法"><a href="#依存句法分析方法" class="headerlink" title="依存句法分析方法"></a>依存句法分析方法</h2><pre><code>Dynamic programming
-    估计是找出以某head结尾的字串对应的最可能的句法树。
-Graph algorithms
-    最小生成树。
-Constraint Satisfaction
-    估计是在某个图上逐步删除不符合要求的边，直到成为一棵树。
-“Transition-based parsing” or “deterministic dependency parsing”
-    主流方法，基于贪心决策动作拼装句法树。</code></pre>
-<h2 id="Arc-standard-transition"><a href="#Arc-standard-transition" class="headerlink" title="Arc-standard transition"></a>Arc-standard transition</h2><p>arc-standard方法，通过SHIFT、LEFT-ARC和RIGHT-ARC三种动作来决定单词之间是否依赖以及依赖关系。每个单词只能被修饰（指向）一次，但是可以多次修饰（指向）其他单词。</p>
-<pre><code>SHIFT 指两个词 A 与 B 之间没有依存关系；
-LEFT-ARC 指两个词 A 与 B 之间是 A &lt;- B 的左链接关系；
-RIGHT-ARC 指两个词 A 与 B 之间是 A -&gt; B 的右链接关系。</code></pre>
-<p>动作体系的 formal 描述如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-22-52-6cbe50db9fa5c7cf910c0e9aeb1c318f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102245-099759.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-08-51-336b71240ee6b7c69720a5f9b5e94651-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620200839-ea3493.png"></p>
-<p>图片原地址：<a href="https://www.hankcs.com/nlp/parsing/neural-network-based-dependency-parser.html" title="基于神经网络的高性能依存句法分析器">https://www.hankcs.com/nlp/parsing/neural-network-based-dependency-parser.html</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-24-25-2678aa38f038981db0bf56a15c67f431-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102357-d2c157.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-26-14-88f9311ad23beab59f60dc82e7855fba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102605-e8d752.png"></p>
-<p>截图来自：<a href="https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md" title="依存句法树和短语结构树详细解释">https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md</a></p>
-<h2 id="MaltParser模型-没看懂"><a href="#MaltParser模型-没看懂" class="headerlink" title="MaltParser模型(没看懂)"></a>MaltParser模型(没看懂)</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-16-34-83d5e77c541057c8cda80956036adf9a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620201527-8f5eef.png"></p>
-<h2 id="传统特征表示-没看懂"><a href="#传统特征表示-没看懂" class="headerlink" title="传统特征表示(没看懂)"></a>传统特征表示(没看懂)</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img-blog.csdnimg.cn/2021/06/20/20-19-35-414accd8219e4dc41e19aa981eccf94f-20200706205434481-403b2e.png"></p>
-<p>传统的特征表示使用二元的稀疏向量，一个超长的稀疏01向量。</p>
-<pre><code>特征模板：通常由配置中的1 ~ 3个元素组成
-Indicator features</code></pre>
-<h2 id="依赖解析的评估：（标记）依赖精度-准确率评价"><a href="#依赖解析的评估：（标记）依赖精度-准确率评价" class="headerlink" title="依赖解析的评估：（标记）依赖精度/准确率评价"></a>依赖解析的评估：（标记）依赖精度/准确率评价</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-32-36-577f70203e36e31cb06613c20eae9648-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620203226-c8a4f8.png"></p>
-<p>继续化简得 $LSA = \frac{2 * |A∩B|}{|A| + |B|}$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-48-56-bb0e952947b07ef6413e1cd66ee54126-2020070620561090-073591.png"></p>
-<p>求 LAS 时，对于该图 |A∩B| = 2，比对的时两幅图得 1，2 列相同的行</p>
-<p>求 UAS 时，对于该图 |A∩B| = 4，比对的时两幅图得 1 列相同的行</p>
-<p>|A| = |B| = 5</p>
-<h2 id="其他评价指标"><a href="#其他评价指标" class="headerlink" title="其他评价指标"></a>其他评价指标</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-51-19-23d7e95d1f92ce79d38d9d62a418a928-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620205110-3b2511.png"></p>
-<h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><p>所谓投射性是指：如果词p依存于词q，那么p和q之间的任意词r就不能依存到p和q所构成的跨度之外（用白话说，就是任意构成依存的两个单词构成一个笼子，把它们之间的所有单词囚禁在这个笼子里，只可内部交配，不可与外族通婚）。比如：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww2.sinaimg.cn/large/2021/06/20/20-06-01-5caaa193cae9b2ab12da13ac20f80a37-6cbb8645gw1exvojk1givj20h804sdg9-c04dda.jpeg"></p>
-<p>再比如：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww3.sinaimg.cn/large/2021/06/20/20-06-20-e58b4d476bfc2923afdf4b81c87b170d-6cbb8645jw1emokwlqh42j20aw04vglr-13e739.jpeg"></p>
-<h2 id="非投射"><a href="#非投射" class="headerlink" title="非投射"></a>非投射</h2><p>非投射就没有上述限制了，这会导致依存边有交叉，怎么都理不顺：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww4.sinaimg.cn/large/2021/06/20/20-07-00-7f99265c1ddaa1857a486ca1c2e7a4eb-6cbb8645gw1exvop84e10j20iw04ywf0-beaf48.jpeg"></p>
-<h2 id="投射性"><a href="#投射性" class="headerlink" title="投射性"></a>投射性</h2><p>CFG转换得到的依存树一定是投射性的，但依存理论允许非投射性的依存句法树（一些语义需要通过非投射性表达）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/20/20-22-34-d53750cd99e1023ef1f849edd57bd461-006Fmjmcly1fgncuqs168j31co0cojud-8ea68f.jpeg"></p>
-<p>arc-standard算法只能拼装投射性的句法树，但换个体系、加上后处理、采用graph-based方法就能得到非投射的句法树。</p>
-<h1 id="为什么需要神经网络句法分析器"><a href="#为什么需要神经网络句法分析器" class="headerlink" title="为什么需要神经网络句法分析器"></a>为什么需要神经网络句法分析器</h1><p><a href="https://blog.csdn.net/yu5064/article/details/82186738" title="基于神经网络的依存句法分析总结及代码详解">https://blog.csdn.net/yu5064/article/details/82186738</a></p>
-<p><a href="http://fancyerii.github.io/books/nndepparser/#dp-nn-2" title="基于神经网络的依存句法分析">http://fancyerii.github.io/books/nndepparser/#dp-nn-2</a></p>
-<p>因为：传统特征表示稀疏、不完全、计算代价大，SVM之类的线性分类器本身是很快的，但传统 parser 的95%时间都花在拼装查询特征上了。</p>
-<p>无非是传统方法拼接单词、词性、依存标签，新方法拼接它们的向量表示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/21-09-43-b12466b0814951453b3d41caa1f15f7b-006Fmjmcly1fgnda5d97hj310c0nk785-cca20e.jpeg"></p>
-<p>经过一个神经网络</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-50-21-f058a82f34e626efc9d98a52bdda1811-2018082819195541-7df6b7.png"></p>
-<p>模型的作用</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-32-06-cc8d1bc45c631f2a64fcea495a840caa-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621143133-5bd1c1.png"></p>
-<p>如何找输入的词向量</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-51-38-2910f2e666cd2a576705b13122208268-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621144208-e9c675.png"></p>
-<p>事实上，在“深度学习”“神经网络”与传统的graph-based方法相比较，花了这么多功夫得到的只是0.1%的LAS提升：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/21/14-34-25-1b2c659ee458ce5ffc777c25aa0e32b6-006Fmjmcly1fgnd5teln2j31aw0k0gon-432664.jpeg"></p>
-<h2 id="非线性函数"><a href="#非线性函数" class="headerlink" title="非线性函数"></a>非线性函数</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/21-07-49-1d505aa57921e51396ae4a5f10c67c21-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620210742-87a06a.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/21-08-33-86377f2b1aafcf6ddea00bc290fa1dbd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620210825-34d08d.png"></p>
-<h2 id="未来的工作"><a href="#未来的工作" class="headerlink" title="未来的工作"></a>未来的工作</h2><p>Chen&amp;Manning的工作被许多人继续往前推进，走在最前沿的是Google。趋势是：</p>
-<pre><code>更大更深调参调得更好（更昂贵）的神经网络
-Beam Search
-在决策序列全局进行类似CRF推断的方法（CRF宝刀未老，老当益壮啊）</code></pre>
-<p>Google的SyntaxNet 中的 Parsey McParseFace的效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/21-04-58-895952771c1a40eb7782f00995c002d9-006Fmjmcly1fgndqwd3yaj315e0asmz0-16e0c9.jpeg"></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Word-Window-Classification-Neural-Networks</title>
-    <url>/2021/06/15/Word-Window-Classification-Neural-Networks/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-15-14-14af5e584ec2022c16b52cdbd5762f4c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201501-16d775.png"></p>
-<a id="more"></a>
-
-<h1 id="交叉熵问题"><a href="#交叉熵问题" class="headerlink" title="交叉熵问题"></a>交叉熵问题</h1><h2 id="交叉熵："><a href="#交叉熵：" class="headerlink" title="交叉熵："></a>交叉熵：</h2><p><a href="https://blog.csdn.net/b1055077005/article/details/100152102" title="交叉熵问题">https://blog.csdn.net/b1055077005/article/details/100152102</a></p>
-<h2 id="相对熵（KL散度）"><a href="#相对熵（KL散度）" class="headerlink" title="相对熵（KL散度）"></a>相对熵（KL散度）</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-18-37-764c9101051994bc1c96d0732f8dfd0d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201830-ca0a06.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-10-40-e8f9d3130b950f1f3f13209ce6858bc8-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201027-fb9e7c.png"></p>
-<p>展开得</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-11-38-5219a1bdfc0571f049fab71dc707d1e0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201118-2a8722.png"></p>
-<p>前部分为信息熵，后部分为交叉熵</p>
-<p>交叉熵公式表示为：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-12-33-8e233d9fdc55ef25792d4ad09b95cc49-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201227-bef448.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-13-04-d5e69de51a69b47682e62e73697ed588-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201258-8d3293.png"></p>
-<h2 id="相对熵习题"><a href="#相对熵习题" class="headerlink" title="相对熵习题"></a>相对熵习题</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-14-04-48545639f8e21b05b07cbbe7453f7e89-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201336-a8d147.png"></p>
-<h2 id="交叉熵的性质"><a href="#交叉熵的性质" class="headerlink" title="交叉熵的性质"></a>交叉熵的性质</h2><p>交叉熵能够衡量同一个随机变量中的两个不同概率分布的差异程度，在机器学习中就表示为真实概率分布与预测概率分布之间的差异。交叉熵的值越小，模型预测效果就越好。</p>
-<p>交叉熵在分类问题中常常与softmax是标配，softmax将输出的结果进行处理，使其多个分类的预测值和为1，再通过交叉熵来计算损失。</p>
-<h2 id="交叉熵与softmax的关系"><a href="#交叉熵与softmax的关系" class="headerlink" title="交叉熵与softmax的关系"></a>交叉熵与softmax的关系</h2><p><a href="https://zhuanlan.zhihu.com/p/27223959" title="Softmax函数与交叉熵">https://zhuanlan.zhihu.com/p/27223959</a></p>
-<p>对于多分类问题，第 i 类样本出现的概率为</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-51-46-49136dc5e488583513b34b4a00f55c2b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205125-d94ea4.png"></p>
-<p>$t$是样本对应的类标签,$y_i$是第 i 类出现的概率</p>
-<p>取对数的（连乘可能导致最终结果接近0的问题）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-52-29-7c200889c5f47f2e457789dbc669a0c4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205220-b6a1b8.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-56-06-17334a2f35d1efcbcee891eca0763eef-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205556-905402.png"></p>
-<p>可以看出，该等式于上面对数似然函数的形式一样！</p>
-<h1 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h1><h2 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h2><p>一般的ML问题中，参数由权值矩阵的列组成维度不会太大。而在词向量或其他深度学习中，需要同时学习权值矩阵和词向量。参数一多，就容易过拟合：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/09-33-28-adbf6c2ff08cc32d210ada78e1227cce-006Fmjmcly1fgf164jxu1j31b00kcwgx-f2decb.jpg"></p>
-<p>下面两张图非常好的说明了，在更新参数的时候，及要跟新超平面相关参数，也会更新词向量相关参数（参数的大小为）。</p>
-<h2 id="re-training词向量"><a href="#re-training词向量" class="headerlink" title="re-training词向量"></a>re-training词向量</h2><p>一般的ML问题中，参数由权值矩阵的列组成维度不会太大。而在词向量或其他深度学习中，需要同时学习权值矩阵和词向量。参数一多，就容易过拟合：</p>
-<p>比如有一个给单词做情感分析的小任务，在预训练的词向量中，这三个表示电视的单词都是在一起的：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-02-16-7b27e7109dddc45fe43a210a7e4ce2bd-006Fmjmcly1fgf1biu3l2j30en0en3z7-2bf5e9.jpg"></p>
-<p>但由于情感分析语料中，训练集只含有TV和telly，导致re-training之后两者跑到别处去了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-03-04-a4d1b5d4ab0d27eab210cce8126e22c0-006Fmjmcly1fgf1biu3l2j30en0en3z7-0e709b.jpg"></p>
-<p>于是在测试集上导致television被误分类。</p>
-<p>这个例子说明，如果任务的语料非常小，则不必在任务语料上重新训练词向量，否则会导致词向量过拟合。</p>
-<h1 id="Window-classification"><a href="#Window-classification" class="headerlink" title="Window classification"></a>Window classification</h1><p>这是一种根据上下文给单个单词分类的任务，可以用于消歧或命名实体分类。上下文Window的向量可以通过拼接所有窗口中的词向量得到：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-12-41-b47071cf5ef7b679398896d90031d170-v2-5f2945e81573b7cbf811a57321cf8cbe_720w-8a666e.jpg"></p>
-<p>最简单的分类器：softmax</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-25-02-3840f2e053892f56f7c916d4beb390e8-006Fmjmcly1fgf1xr22uxj31e80oowjf-191b26.jpg"></p>
-<p>J 对x求导，注意这里的x指的是窗口所有单词的词向量拼接向量。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-26-24-369bb65feea4693058807a1164195a60-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102534-68f846.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-27-48-8bc44062edf1f3a027412c0dc7849048-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102733-de32fb.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-27-53-578203c7d7c9275f4fe934edf9eb16a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102738-97c4c1.png"></p>
-<p>其中 t 是第 y 个词的热编码</p>
-<p><a href="https://zhuanlan.zhihu.com/p/27223959" title="softmax函数与交叉熵的关系">https://zhuanlan.zhihu.com/p/27223959</a> 中最后得出了 $σ = [ \hat{y}- t]$ 的结论</p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="softmax（等价于逻辑斯谛回归）效果有限"><a href="#softmax（等价于逻辑斯谛回归）效果有限" class="headerlink" title="softmax（等价于逻辑斯谛回归）效果有限"></a>softmax（等价于逻辑斯谛回归）效果有限</h2><p>仅限于较小的数据集，能够提供一个勉强的线性分类决策边界。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-51-50-b45f360720ab393476d944dd91ac46f4-006Fmjmcly1fgf9smlwe0j30o80cdtag-a29e88.jpeg"></p>
-<p>神经网络可以提供非线性的决策边界：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/16/10-52-54-a468fd421b32f7ee12bb1d78a9e32ecb-006Fmjmcly1fgf9u1m2dzj309e09d3zf-713800.jpeg"></p>
-<p>神经网络的术语</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-55-50-09d790e1567d331a9533da2810b806d3-006Fmjmcly1fgf9w5ckvnj30dl0e1jtm-e6c03b.jpeg"></p>
-<p>每个神经元是一个二分类逻辑斯谛回归单元：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-57-37-31b42b4c00cb8580b873dd98f56c0595-006Fmjmcly1fgf9xs1tc2j30n80er76y-21db2e.jpeg"></p>
-<p>神经网络同时运行多个逻辑斯谛回归，但不需要提前指定它们具体预测什么：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/16/10-58-00-1a0656e28e3385bbf5f6bf4814ca35d8-006Fmjmcly1fgf9ynezpjj308c0b7dhr-9f588e.jpeg"></p>
-<p>我们把预测结果喂给下一级逻辑斯谛回归单元，由损失函数自动决定它们预测什么：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/16/10-59-38-84f005003e1dab179233ce181b2d57ef-006Fmjmcly1fgf9zpfaa2j30eo0botbq-edb273.jpeg"></p>
-<p>于是就得到了一个多层网络</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-59-58-416226bf8865fe79d28789bf15f55a18-006Fmjmcly1fgfa0qmyeoj30jg0bkwim-9c5982.jpeg"></p>
-<p>为什么需要非线性</p>
-<p>因为线性系统所有层等效于一层：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/11-01-03-6711e3c71c03d87eb6f21b9cfc2c353e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616110057-b89af5.png"></p>
-<p>而非线性模型可以捕捉很复杂的数据：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/11-01-45-2d93666e80685b17b46eeccec780673a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616110127-e78c28.png"></p>
-<h2 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h2><p>所谓的前向传播算法就是：将上一层的输出作为下一层的输入，并计算下一层的输出，一直到运算到输出层为止。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-21-46-ae480c045c628ea1dcad176da56daecb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210617091621-699c67.png"></p>
-<p>最后可以通过与期望值做对比，求出损失，为了使损失最小化，使用后向传播算法。</p>
-<h2 id="后向传播"><a href="#后向传播" class="headerlink" title="后向传播"></a>后向传播</h2><p><a href="https://blog.csdn.net/bitcarmanlee/article/details/78819025" title="后向传播过程推到">https://blog.csdn.net/bitcarmanlee/article/details/78819025</a></p>
-<p><a href="https://www.cnblogs.com/charlotte77/p/5629865.html" title="后向传播过程演算">https://www.cnblogs.com/charlotte77/p/5629865.html</a></p>
-<p>第一个链接证明了后向传播的推导过程，推导过程非常详细，推到结果也是对的，但在最后求 $w_{31},w_{32},w_{41},w_{42}$结果是错误的<br>第二个链接推导过程不是跟详细，但是演算的结果是对的</p>
-<p>反向传播（英语：Backpropagation，缩写为BP）是“误差反向传播”的简称，是一种与最优化方法（如梯度下降法）结合使用的，用来训练人工神经网络的常见方法。该方法计算对网络中所有权重计算损失函数的梯度。这个梯度会反馈给最优化方法，用来更新权值以最小化损失函数。 在神经网络上执行梯度下降法的主要算法。该算法会先按前向传播方式计算（并缓存）每个节点的输出值，然后再按反向传播遍历图的方式计算损失函数值相对于每个参数的偏导数。</p>
-<p><strong>bp算法的学习过程</strong></p>
-<p>BP算法的学习过程由正向传播过程和反向传播过程组成。在正向传播过程中，输入信息通过输入层经隐含层，逐层处理并传向输出层。如果在输出层得不到期望的输出值，则取输出与期望的误差的平方和作为目标函数，转入反向传播，逐层求出目标函数对各神经元权值的偏导数，构成目标函数对权值向量的梯量，作为修改权值的依据，网络的学习在权值修改过程中完成。误差达到所期望值时，网络学习结束。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-26-15-ad4f18eadd27e8e8b87dd6cc42971b5e-f408ba03f7685c23f9daf05fccdfef07-9fdd83.png"></p>
-<p>$w_{54}$ 求梯度的过程</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-27-19-74bb570260d428fc7759837f765f697a-70cab29fb1769089ea951550412b84b5-5a51cc.png"></p>
-<p>$w_{31}$ 求梯度的过程</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-28-47-118722f5e16238a2590f9961990ac456-78406d4d609f2383b8253d16d35d48e9-8eb888.png"></p>
-<p>可以通过梯度更新权值，使得损失损失最小化</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>高级词向量表示</title>
-    <url>/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/</url>
-    <content><![CDATA[<p>词向量的 Negative Sampling 与 Hierachical Softmax</p>
-<a id="more"></a>
-
-<h1 id="为什么-word2vec-会消耗大量的时间"><a href="#为什么-word2vec-会消耗大量的时间" class="headerlink" title="为什么 word2vec 会消耗大量的时间"></a>为什么 word2vec 会消耗大量的时间</h1><pre><code>是因为 softmax 会消耗大量的时间，softmax 的分母与整个语料库有关（呈线性关系），
-而且指数运算也比较耗时，所以计算量超级大</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/14-35-33-6f9226f894a22cf472522cb2727b4d82-20200701205113938-9bacf0.png"></p>
-<h1 id="解决方法有以下几点"><a href="#解决方法有以下几点" class="headerlink" title="解决方法有以下几点"></a>解决方法有以下几点</h1><h2 id="把常见的词组作为一个单词"><a href="#把常见的词组作为一个单词" class="headerlink" title="把常见的词组作为一个单词"></a>把常见的词组作为一个单词</h2><pre><code>作者指出像“Boston Globe“（一家报社名字）这种词对，和两个单词 Boston／Globe有着完全不同语义。
-所以更合理的是把“Boston Globe“看成一个单词，有他自己的word vector。</code></pre>
-<h2 id="少采样常见的词-（比如：A-the）"><a href="#少采样常见的词-（比如：A-the）" class="headerlink" title="少采样常见的词 （比如：A the）"></a>少采样常见的词 （比如：A the）</h2><pre><code>像“the“这种常见的词，我们会遇到两个问题：
-比如（fox，the）其实没有传递我们关于 fox的信息。‘the‘出现得太多了；
-我们有太多 （‘the‘，…）的样本，多于我们真的需要的；
-所以word2vec采用了降采样的策略。对于每个我们在训练样本中遇到的词，
-我们有一个概率去删除它，称之为“采样率”这个概率与单词出现的频率相关。</code></pre>
-<h3 id="采样率"><a href="#采样率" class="headerlink" title="采样率"></a>采样率</h3><p>我们使用$w_i$来表示单词，$z(w_i)$表示它出现在词库中的概率（频率）。比如花生在1bilion的词库中出现了1,000次，那么$z(花生)=1E^{-6}$。在代码中还有一个参数叫“sample”，这个参数代表一个阈值，默认值为0.001.这个值越小意味着这个单词被保留下来的概率越小（即有越大的概率被我们删除）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/16-09-57-f621c0a36618280a1e24bb9ca0d4bf71-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614160948-7c3bc2.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/16-10-20-b5040c150edb31a6ee445d4ad771a1ab-v2-b5040c150edb31a6ee445d4ad771a1ab_r-acb4f9.jpg"></p>
-<p>图中x轴代表着$Z(w_i)$，即单词$w_i$在语料中出现频率，y轴代表某个单词被保留的概率。对于一个庞大的语料来说，单个单词的出现频率不会很大，即使是常用词，也不可能特别大。从这个图中，我们可以看到，随着单词出现频率的增高，它被采样保留的概率越来越小。</p>
-<h2 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h2><pre><code>使得每个训练样本只去更新模型中一小部分的weights。</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/15-24-23-07ae3164fc39fff912ff3e44be81a3b0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614152412-935b9e.png"></p>
-<p>当我们用训练样本 ( input word: “fox”，output word: “quick”) 来训练我们的神经网络时，“ fox”和“quick”都是经过one-hot编码的。如果我们的vocabulary大小为10000时，在输出层，我们期望对应“quick”单词的那个神经元结点输出1，其余9999个都应该输出0。在这里，这9999个我们期望输出为0的神经元结点所对应的单词我们称为“negative” word。</p>
-<p>当使用负采样时，我们将随机选择一小部分的negative words（比如选5个negative words）来更新对应的权重。我们也会对我们的“positive” word进行权重更新（在我们上面的例子中，这个单词指的是”quick“）。</p>
-<p>假如我们的隐层-输出层拥有300 x 10000的权重矩阵。如果使用了负采样的方法我们仅仅去更新我们的positive word-“quick”的和我们选择的其他5个negative words的结点对应的权重，共计6个输出神经元，相当于每次只更新 300 * 6 = 1800个权重。对于3百万的权重来说，相当于只计算了0.06%的权重，这样计算效率就大幅度提高。</p>
-<h1 id="skip-gram-负采样公式推导："><a href="#skip-gram-负采样公式推导：" class="headerlink" title="skip-gram 负采样公式推导："></a>skip-gram 负采样公式推导：</h1><p>1、条件概率分布使用 sigmod 函数表示</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-15-d6de486aa70b29dbfc07b2997421d2e3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614202954-3fdba7.png"></p>
-<p>2、按照一定的概率分布$P(\widetilde{w})$从样本中抽取K个负样本，其一部分表示从中心词和上下文词共同出现的概率，第二部分表示中心词和负样本词共同出现的概率。然该公式最大化目的是让中心词和上下文词和中心词和负样本词以尽可能大的概率共同出现</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/21-05-06-98abe8c03f0ba32be639f7ed419e8346-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210614210455-88a16e.png"></p>
-<p>3、将 sigmod 函数带入得到下列公式，求最大化</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-19-c8f1262e4eaa24ad57aefa0d7194a946-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205558-1e824d.png"></p>
-<p>4、添加符号求最小化问题</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-27-6dc4139cc1555cdb28e6d63af9fd09eb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205611-fbfacc.png"></p>
-<h1 id="CBOW-负采样公式推导："><a href="#CBOW-负采样公式推导：" class="headerlink" title="CBOW 负采样公式推导："></a>CBOW 负采样公式推导：</h1><p>推导过程基本与 skip-gram 类似，如下</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-34-08bfdd0c91f36d2ddf906e520d89a377-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205748-55bc12.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-39-2d323463050b7dd14a9c70a59209ae80-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205802-7c665c.png"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>将负采样近似训练方法和标准word2vec进行对比，可以发现负采样在标准word2vec的基础上做了两点改进：</p>
-<p>1.针对softmax运算导致的每次梯度计算开销过⼤，将softmax函数调整为sigmoid函数，当然对应的含义也由给定中心词，每个词作为背景词的概率，变成了给定中心词，每个词出现在背景窗口中的概率</p>
-<p>2.进行负采样，引入负样本，负采样的名字就是取了第二个改进点。</p>
-]]></content>
-      <tags>
-        <tag>skip-gram</tag>
-        <tag>word2vec</tag>
-        <tag>NLP</tag>
-        <tag>CBOW</tag>
-        <tag>负采样</tag>
-        <tag>negative sampling</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>skip-gram</title>
-    <url>/2021/06/13/skip-gram/</url>
-    <content><![CDATA[<p>skip-gram 流程图解释如下：</p>
-<a id="more"></a>
-
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/13/10-49-14-4326e64fe0f495f6632be2093c165e8c-006Fmjmcly1fgco3v2ca7j30pq0j7drt%20-2--0670c6.jpg"></p>
-<ol>
-<li>$w_t$ 表示单词的 one-hot 编码  维度为 $V * 1$，$V$ 为文本中单词的个数</li>
-<li>$W$ 表示中心词向量矩阵，是需要优化的变量，开始时随机初始化，维度为 $d * V$，$V$ 同上，$d$ 是超参数需要手动设置，一般在 50 - 300</li>
-<li>$V_c$ 表示中心词向量，是由 $W$ 与 $w_t$ 做矩阵乘法的结果</li>
-<li>$W’$ 表示上下文词向量矩阵，也是需要优化的变量，开始时随机初始化，维度为$V * d$。$V，d$ 同上</li>
-<li>是 $W’$ 与 $V_c$ 做矩阵乘法得到的结果，维度为 $V * 1$，5 部分列举的 3 个向量是一样的</li>
-<li>$P(x|c)$ 表示在 c 出现的前提下，x 出现的概率，条件概率函数定义为 softmax 函数，维度为 $V * 1$。在 6 中出现的 3 个向量也是一样的，向量的第 1 个数表示，在中心词 c 出现的条件下，第一个词出现的概率。</li>
-<li>Truth 表示真实出现的词，7 中第 1 个向量表示，在中心词前面的第 3 个词，是 one-hot 编码的第 6 个词</li>
-<li>根据 6，7 求损失</li>
-<li>由梯度的的推导公式更新 $W$ 和 $W’$</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>skip-gram</tag>
-        <tag>word2vec</tag>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>方向选择</title>
-    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
-    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
-<a id="more"></a>
-
-<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
-<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
-<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
-<p>流数据：流数据是由不同来源连续生成的数据</p>
-<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
-<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
-<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
-<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
-<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
-<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
-]]></content>
-      <tags>
-        <tag>数据流挖掘</tag>
-        <tag>多标签数据</tag>
-        <tag>多标签分类</tag>
-        <tag>数据挖掘</tag>
-        <tag>敏感信息</tag>
-        <tag>条件功能依赖</tag>
-        <tag>大数据</tag>
-        <tag>数据质量</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>0-1 背包问题</title>
     <url>/2021/01/22/0-1-bei-bao/</url>
     <content><![CDATA[<p>使用动态规划解决 0-1 背包问题</p>
@@ -541,6 +234,105 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
       </tags>
   </entry>
   <entry>
+    <title>动态规划求解判断子序列问题</title>
+    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
+    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
+<a id="more"></a>
+<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
+<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
+<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说，最后两个字符相等
+    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
+    由于 s 和 t 的最后两个字符相等
+    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
+<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
+    t = &quot;aebc&quot;
+    i = 3
+    j = 4
+    此时对于字符串 s 和 t 来说,最后两个字符相等
+    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
+    即使 s 和 t 的最后两个字符相等
+    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
+<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
+<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
+    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
+<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
+    t = &quot;abdef&quot;
+    i = 3
+    j = 5
+    此时对于字符串 s 和 t 来说,最后两个字符不相等
+    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
+    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
+<p>三、</p>
+<hr>
+<p>综上所述：</p>
+<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
+            当 s 的长度为 i - 1,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
+    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
+            当 s 的长度为 i,t 的长度为 j - 1 时
+            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
+            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
+<hr>
+<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
+<p>第一步：</p>
+<p>初始化：</p>
+<pre><code>            将第一行和第一列的数据进行初始化
+            第一行表示 t 为空串时，必为 s 的子序列
+            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
+<p>第二步：</p>
+<p>由左到右，由上到下为 dp 数组赋值</p>
+<pre><code>            第二行数据：
+            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
+
+            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
+
+            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
+
+            dp[1][4],dp[1][5],dp[1][6] 同理
+
+            第三行数据：
+            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
+
+            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
+            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
+
+            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
+            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
+            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
+            dp[2][4],dp[2][5],dp[2][6] 同理
+
+            第四行也可以用一样的方法进行求解</code></pre>
+<p>五、代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>dp</tag>
+        <tag>动态规划</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用并查集查找无向图回路</title>
     <url>/2021/01/14/bing-cha-ji/</url>
     <content><![CDATA[<p> 一步步的教你使用并查集查找无向图回路</p>
@@ -701,69 +493,28 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
       </tags>
   </entry>
   <entry>
-    <title>最后一块石头的重量 leetcode</title>
-    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
-    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
-<p>使用了二分查找和插入排序的方法</p>
+    <title>连续子数组的最大和</title>
+    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
+    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
 <a id="more"></a>
 
-<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
-<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
-<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
-<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
-<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
-<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
+<p>题目描述：</p>
+<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
+<p>返回其最大和。</p>
+<p>示例:</p>
+<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
+<p>输出: 6</p>
+<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
 <p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
-<pre><code>对数组中的元素进行排序;
-
-这样做有以下两个好处：
-
-1、能从数组的末尾取出最重的两块石头
-
-2、取出两块最重的石头之后，剩余的石头仍然保持有序，
-
-可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
-<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
-<p>寻找右侧边界的二分查找都做了详细的介绍</p>
-<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
-<p><strong>二、当两块最重的石头重量相同时</strong></p>
-<p>设保存石头重量的数组名称为 stones    </p>
-<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
-
-2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
-
-3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
-<p><strong>三、当两块石头单位重量不同时</strong></p>
-<pre><code>1、在数组 stones 取出两块最重的石头
-
-2、将两块石头粉碎，并形成新的石头 newStone
-
-3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
-
-（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
-
-4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
-
-5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
-
-5、将 newStone 插入到 newStones 的 i 位置
-
-6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
-<p><strong>四、结果返回</strong></p>
-<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
-<pre><code>当数组长度为 0 时返回 0
-
-当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
-<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
+<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
 ]]></content>
       <tags>
         <tag>算法</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>插入排序</tag>
       </tags>
   </entry>
   <entry>
@@ -837,6 +588,72 @@ dp[i][j] = dp[i - 1][j]                                         j - w(i) &lt; 0<
 <p>那么将 筹码最少的点的所有筹码 移动到 筹码最多的点 的代价就是所求的最小代价</p>
 <p>算法实现是直接求偶数位置的个数和奇数位置的个数，然后返回个数少的数目就行了</p>
 <h1 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">	public int minCostToMoveChips(int[] positions) &#123;</span><br><span class="line">	        int eventCount &#x3D; 0;</span><br><span class="line">	        int addCount &#x3D; 0;</span><br><span class="line">	        for (int position : positions) &#123;</span><br><span class="line">	            if (position % 2 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	                eventCount++;</span><br><span class="line">	            &#125; else &#123;</span><br><span class="line">	                addCount++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	        return Math.min(eventCount, addCount);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>最后一块石头的重量 leetcode</title>
+    <url>/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/</url>
+    <content><![CDATA[<p>leetcode 题库 1046 最后一块石头的重量</p>
+<p>使用了二分查找和插入排序的方法</p>
+<a id="more"></a>
+
+<h1 id="一、题目描述："><a href="#一、题目描述：" class="headerlink" title="一、题目描述："></a>一、题目描述：</h1><p>有一堆石头，每块石头的重量都是正整数。</p>
+<p>每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。</p>
+<p>假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
+<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
+<p>最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/last-stone-weight">https://leetcode-cn.com/problems/last-stone-weight</a></p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h1><p><strong>一、初始化</strong></p>
+<pre><code>对数组中的元素进行排序;
+
+这样做有以下两个好处：
+
+1、能从数组的末尾取出最重的两块石头
+
+2、取出两块最重的石头之后，剩余的石头仍然保持有序，
+
+可以使用 二分查找 找到 新石头 在数组中插入的位置。</code></pre>
+<p>关于如何进行二分查找，这里有篇非常好的讲解，对二分查找，寻找左侧边界的二分查找，</p>
+<p>寻找右侧边界的二分查找都做了详细的介绍</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/</a></p>
+<p><strong>二、当两块最重的石头重量相同时</strong></p>
+<p>设保存石头重量的数组名称为 stones    </p>
+<pre><code>1、将两块石头同时粉碎，但是并不会产生新的石头
+
+2、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 2)
+
+3、将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</code></pre>
+<p><strong>三、当两块石头单位重量不同时</strong></p>
+<pre><code>1、在数组 stones 取出两块最重的石头
+
+2、将两块石头粉碎，并形成新的石头 newStone
+
+3、使用新石头 newStone 在数组 Stones 中查找新石头需要插入的的位置 i
+
+（查找插入位置时需要排除掉最后的两块石头，即返回 i 的范围为 0 &lt;= i &lt; stones.length - 2）
+
+4、创建新数组 newStones 用来保存新的数据(新数组的长度为 stones.length - 1)
+
+5、将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置
+
+5、将 newStone 插入到 newStones 的 i 位置
+
+6、将 stones i 位置和 i 之后的数据插入依次插入到 newStones i 之后的位置</code></pre>
+<p><strong>四、结果返回</strong></p>
+<p><em>当数组的长度为 0 或者是为 1 时返回结果</em></p>
+<pre><code>当数组长度为 0 时返回 0
+
+当数组的长度为 1 时，返回数组中的第一个元素</code></pre>
+<h1 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int lastStoneWeight(int[] stones) &#123;</span><br><span class="line">       &#x2F;&#x2F;用来保存新的数据</span><br><span class="line">       int[] newStones &#x3D; stones;</span><br><span class="line">       Arrays.sort(newStones);</span><br><span class="line">       for (; newStones.length &gt; 1; ) &#123;</span><br><span class="line">           int max_1 &#x3D; newStones[newStones.length - 1];</span><br><span class="line">           int max_2 &#x3D; newStones[newStones.length - 2];</span><br><span class="line">           int t &#x3D; max_1 - max_2;</span><br><span class="line">           int[] original &#x3D; newStones;</span><br><span class="line">           if (t &#x3D;&#x3D; 0) &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 2];</span><br><span class="line">               &#x2F;&#x2F;将 stones 前 stones.length - 2 的数据依次复制到新数组 newStones 中</span><br><span class="line">               copyArray(original, 0, newStones, 0, newStones.length);</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               &#x2F;&#x2F;每次都会创建一个新数组</span><br><span class="line">               newStones &#x3D; new int[newStones.length - 1];</span><br><span class="line">			&#x2F;&#x2F;排除掉最后的两块石头</span><br><span class="line">               int index &#x3D; leftBoundBinarySearch(original, t, 0, original.length - 2);</span><br><span class="line">               &#x2F;&#x2F;original 0 ~ index - 1   arr 0 ~ index - 1</span><br><span class="line">               &#x2F;&#x2F;将数组 stones i 之前的数据依次插入到 newStones 数组 i 之前的位置</span><br><span class="line">               copyArray(original, 0, newStones, 0, index);</span><br><span class="line">               &#x2F;&#x2F;arr index</span><br><span class="line">               &#x2F;&#x2F;将 newStone 插入到 newStones 的 i 位置</span><br><span class="line">               newStones[index] &#x3D; t;</span><br><span class="line">               &#x2F;&#x2F;将 stones i 之后的数据插入依次插入到 newStones i 之后的位置</span><br><span class="line">               copyArray(original, index, newStones, index + 1, newStones.length - index - 1);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return newStones.length &#x3D;&#x3D; 0 ? 0 : newStones[0];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * @param originalArr   数据来源的数组</span><br><span class="line">    * @param originalIndex 从数据来源的那个下标开始取值</span><br><span class="line">    * @param targetArr     复制的目标数组</span><br><span class="line">    * @param targetIndex   从目标数组的哪个下标开始赋值</span><br><span class="line">    * @param len           需要赋值的长度</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private void copyArray(int[] originalArr, int originalIndex, int[] targetArr, int targetIndex, int len) &#123;</span><br><span class="line">       for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">           targetArr[targetIndex + i] &#x3D; originalArr[originalIndex + i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * 寻找左侧边界的二分搜索</span><br><span class="line">    *</span><br><span class="line">    * @param nums</span><br><span class="line">    * @param target</span><br><span class="line">    * @return</span><br><span class="line">    *&#x2F;</span><br><span class="line">   int leftBoundBinarySearch(int[] nums, int target, int l, int r) &#123;</span><br><span class="line">       if (nums.length &#x3D;&#x3D; 0) return -1;</span><br><span class="line">       int left &#x3D; l;</span><br><span class="line">       int right &#x3D; r; &#x2F;&#x2F; 注意</span><br><span class="line"></span><br><span class="line">       while (left &lt; right) &#123; &#x2F;&#x2F; 注意</span><br><span class="line">           int mid &#x3D; (left + right) &#x2F; 2;</span><br><span class="line">           if (nums[mid] &#x3D;&#x3D; target) &#123;</span><br><span class="line">               right &#x3D; mid;</span><br><span class="line">           &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">               left &#x3D; mid + 1;</span><br><span class="line">           &#125; else if (nums[mid] &gt; target) &#123;</span><br><span class="line">               right &#x3D; mid; &#x2F;&#x2F; 注意</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>插入排序</tag>
+      </tags>
   </entry>
   <entry>
     <title>TSP旅行推销员问题</title>
@@ -1498,127 +1315,459 @@ dp[3][6] = ∞ 已经证明</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <url>/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</url>
-    <content><![CDATA[<p>leetcode 题库 392 判断子序列</p>
+    <title>方向选择</title>
+    <url>/2021/03/08/fang-xiang-xuan-ze/</url>
+    <content><![CDATA[<p>从几篇文章中选一下研究方向，简单看下三篇文章的摘要</p>
 <a id="more"></a>
-<p>一、<br>①<br>        <strong>s 中的前 i 个字符是   t 中前 j 个字符的子序列，则 dp[i][j] = true<br>          s 中的前 i 个字符不是 t 中前 j 个字符的子序列，则 dp[i][j] = false</strong></p>
-<p>二、<br><strong><em># 1、比较的 s 的第 i 个字符和 t 的第 j 个字符相等</em></strong></p>
-<h1 id="s-的前-i-1-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;abc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说，最后两个字符相等
-    由于 &quot;ab&quot; 是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = true
-    由于 s 和 t 的最后两个字符相等
-    所以 &quot;abc&quot; 是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = true</code></pre>
-<h1 id="s-的前-i-1-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-1-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i - 1 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;adc&quot;
-    t = &quot;aebc&quot;
-    i = 3
-    j = 4
-    此时对于字符串 s 和 t 来说,最后两个字符相等
-    由于 &quot;ad&quot; 不是 &quot;aeb&quot; 的子序列，由 ① 得 dp[2][3] = false
-    即使 s 和 t 的最后两个字符相等
-    &quot;adc&quot; 也不是 &quot;aebc&quot; 的子序列，由 ① 的 dp[3][4] = false</code></pre>
-<p><strong><em># 2、比较的 s 的第 i 个字符和 t 的第 j 个字符不相等</em></strong></p>
-<h1 id="s-的前-i-项是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ade&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ade&quot; 是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = true
-    那么为 t 添加一个不相等的字符之后，&quot;ade&quot; 也是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = true</code></pre>
-<h1 id="s-的前-i-项不是-t-的前-j-1-项的子序列"><a href="#s-的前-i-项不是-t-的前-j-1-项的子序列" class="headerlink" title="**   s 的前 i 项不是 t 的前 j - 1 项的子序列**"></a>**   s 的前 i 项不是 t 的前 j - 1 项的子序列**</h1><pre><code>    s = &quot;ace&quot;
-    t = &quot;abdef&quot;
-    i = 3
-    j = 5
-    此时对于字符串 s 和 t 来说,最后两个字符不相等
-    由于 &quot;ace&quot; 不是 &quot;abde&quot; 的子序列，由 ① 得 dp[3][4] = false
-    那么为 t 添加一个不相等的字符之后 &quot;ade&quot; 也不是 &quot;abdef&quot; 的子序列，由 ① 得 dp[3][5] = false</code></pre>
-<p>三、</p>
-<hr>
-<p>综上所述：</p>
-<pre><code>    当最后两个字符相等的时，即 dp[i][j] = dp[i - 1][j - 1]
-            当 s 的长度为 i - 1,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则当 s 的长度为 i ,t 的长度为 j 时，s 也不为 t 的子序列
-    当最后两个字符串不相等时，即 dp[i][j] = dp[i][j - 1]
-            当 s 的长度为 i,t 的长度为 j - 1 时
-            若 s 为   t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列
-            若 s 不为 t 的子序列，则为 t 则加一个字符之后，s 的长度为 i ,t 的长度为 j 时，s 也为   t 的子序列</code></pre>
-<hr>
-<p>四、<br><img src="https://raw.githubusercontent.com/clay-nuyoah/clay-nuyoah.github.io/master/post-images/2020-11-25/1607932741-roeLGk-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201214155736.png" alt="微信截图_20201214155736.png"></p>
-<p>第一步：</p>
-<p>初始化：</p>
-<pre><code>            将第一行和第一列的数据进行初始化
-            第一行表示 t 为空串时，必为 s 的子序列
-            第一列表示 s 为空串时，t 必部位 s 的子序列</code></pre>
-<p>第二步：</p>
-<p>由左到右，由上到下为 dp 数组赋值</p>
-<pre><code>            第二行数据：
-            dp[1][1] 表示,当 s = &quot;a&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;&quot; t = &quot;&quot; (dp[0][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true 所以 s = &quot;a&quot; t = &quot;a&quot; 时 s 为 t 的子序列 即 d[1][1] = true
 
-            dp[1][2] 表示,当 s = &quot;a&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;a&quot; (dp[1][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[0][0] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ah&quot; 此时s 仍为 t 的子序列 即 dp[1][2] = true
-
-            dp[1][3] 表示,当 s = &quot;a&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列，为 t 添加一个字符之后 s=&quot;a&quot; t = &quot;ahb&quot; 此时s 仍为 t 的子序列 即 dp[1][3] = true
-
-            dp[1][4],dp[1][5],dp[1][6] 同理
-
-            第三行数据：
-            dp[2][1] 表示,当 s = &quot;ab&quot; t = &quot;a&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;&quot; (dp[2][0] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][0] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;a&quot; 此时s 不为 t 的子序列 即 dp[2][1] = false
-
-            dp[2][2] 表示,当 s = &quot;ab&quot; t = &quot;ah&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符不相等，所以查看 s=&quot;ab&quot; t = &quot;a&quot; (dp[2][1] 表示)时，s 是否为 t 的子序列
-            由于 dp[2][1] = false s 不为 t 的子序列，为 t 添加一个字符之后 s=&quot;ab&quot; t = &quot;ah&quot; 此时s 不为 t 的子序列 即 dp[2][2] = false
-
-            dp[2][3] 表示 当 s = &quot;ab&quot; t = &quot;ahb&quot; 时，s 是否为 t 的子序列
-            此时两个字符串的最后两个字符相等，所以查看 s=&quot;a&quot; t = &quot;ah&quot; (dp[1][2] 表示)时，s 是否为 t 的子序列
-            由于 dp[1][2] = true s 为 t 的子序列， 当 s=&quot;ab&quot; t = &quot;ahb&quot; 此时s 为 t 的子序列 即 dp[2][3] = true
-            dp[2][4],dp[2][5],dp[2][6] 同理
-
-            第四行也可以用一样的方法进行求解</code></pre>
-<p>五、代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int sLen &#x3D; s.length(), tLen &#x3D; t.length();</span><br><span class="line">        if (sLen &gt; tLen) return false;</span><br><span class="line">        if (sLen &#x3D;&#x3D; 0) return true;</span><br><span class="line">        boolean[][] dp &#x3D; new boolean[sLen + 1][tLen + 1];</span><br><span class="line">        for (int j &#x3D; 0; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">            dp[0][j] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; sLen; i++) &#123;</span><br><span class="line">            for (int j &#x3D; 1; j &lt;&#x3D; tLen; j++) &#123;</span><br><span class="line">                if (s.charAt(i - 1) &#x3D;&#x3D; t.charAt(j - 1)) &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i - 1][j - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] &#x3D; dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[sLen][tLen];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="1、A-Survey-on-Multi-Label-Data-Stream-Classification"><a href="#1、A-Survey-on-Multi-Label-Data-Stream-Classification" class="headerlink" title="1、A Survey on Multi-Label Data Stream Classification"></a>1、A Survey on Multi-Label Data Stream Classification</h1><p>题目：多标签数据流分类研究</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-24-58-5e43a376d1da6b50629fdbc293f410c4-A%20Survey%20on%20Multi-Label%20Data%20Stream%20Classification_abstract-7cd420.png"></p>
+<p>摘要：如今，我们日常生活中的许多现实应用都产生了大量的流数据，产生数据的速度比以往任何时候都高，仅举几个例子，即 Web 点击数据流，感知网络数据和信用交易流。与使用静态数据集的传统数据挖掘相反，数据流挖掘有几个挑战，例如有限的内存，一站式及时响应。在这项调查中，我们对现有的多标签流挖掘算法进行了全面的回顾，并根据不同的角度对这些方法进行分类，主要集中在多标签数据流分类。我们首先简要概述现有的多标签和数据流分类算法，以及讨论他们的优点和缺点。其次，我们确定了多标签流数据分类的挖掘约束，并提出了对多标签数据流分类算法的全面研究。最后，讨论了多标签数据流分类中的一些挑战和未解决的问题，这些都是值得今后研究人员继续探索的。</p>
+<p>关键字：数据流挖掘;多标签数据;多标签分类</p>
+<p>流数据：流数据是由不同来源连续生成的数据</p>
+<h1 id="2、Information-Security-in-Big-Data-Privacy-and-Data-Mining"><a href="#2、Information-Security-in-Big-Data-Privacy-and-Data-Mining" class="headerlink" title="2、Information Security in Big Data: Privacy and Data Mining"></a>2、Information Security in Big Data: Privacy and Data Mining</h1><p>题目：大数据中的信息安全：隐私和数据挖掘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-27-26-921f9c899880f484ed0ca731f07be320-Information%20Security%20in%20Big%20Data%20Privacy%20and%20Data%20Mining_abstract-3715a4.png"></p>
+<p>摘要：数据挖掘技术的日益普及和发展对个人敏感信息的安全性构成了严重威胁。数据挖掘中的一个新兴研究主题，即隐私保护数据挖掘（PPDM），近年来已经得到了广泛的研究。PPDM的基本思想是修改数据，以便有效地执行数据挖掘算法，而不会损害数据中包含的敏感信息的安全性。PPDM的当前研究主要集中在如何减少数据挖掘操作带来的隐私风险上，而实际上，在数据收集，数据发布和信息（即：数据挖掘的结果）传递过程中也可能发生不希望的敏感信息泄露。在本文中，我们从更广阔的角度看待与数据挖掘相关的隐私问题，并研究可以帮助保护敏感信息的各种方法。特别是，我们确定了四种不同类型的用户，它们是数据挖掘应用程序，即数据提供者，数据收集者，数据挖掘者和决策者。对于每种类型的用户，我们讨论他的隐私问题以及可以用来保护敏感信息的方法。我们简要介绍了相关研究主题的基础知识，回顾了最先进的方法，并对未来的研究方向提出了一些初步的想法。<br>除了探讨每种类型用户的隐私保护方法外，我们还回顾了博弈论方法，该方法旨在分析数据挖掘场景中不同用户之间的交互，每个人对敏感信息都有自己的评估。通过区分不同用户关于敏感信息安全方面的职责，我们希望提供一些对于PPDM研究有用见解。</p>
+<p>关键字：数据挖掘;敏感信息;隐私保护数据挖掘;匿名化;追踪;博弈论;隐私拍卖;反追踪</p>
+<h1 id="3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data"><a href="#3、Mining-Conditional-Functional-Dependency-Rules-on-Big-Data" class="headerlink" title="3、Mining Conditional Functional Dependency Rules on Big Data"></a>3、Mining Conditional Functional Dependency Rules on Big Data</h1><p>题目：在大数据上挖掘条件功能依赖规则</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/source/post-images/fang-xiang-xuan-ze/2021/03/08/19-10-58-9f4b91438594f4fde6de1df53a3a1dac-Mining%20Conditional%20Functional%20Dependency%20Rules%20on%20Big%20Data_abstract-bff334.png"></p>
+<p>摘要：当前的条件功能依赖（CFD）发现算法始终需要准备充分的训练数据集。这种情况使它们难以应用于大型和低质量的数据集。为了处理大数据的体积问题，我们开发了采样算法来获得一个小的有代表性的训练集。我们设计了容错规则发现和冲突解决算法，以解决大数据的低质量问题。我们还提出了参数选择策略，以确保CFD发现算法的有效性。实验结果表明，我们的方法可以在合理的时间内发现数十亿元数据的有效CFD规则。</p>
+<p>关键字：数据挖掘;条件功能依赖;大数据;数据质量</p>
 ]]></content>
       <tags>
-        <tag>dp</tag>
-        <tag>动态规划</tag>
-        <tag>算法</tag>
-        <tag>字符串</tag>
+        <tag>数据流挖掘</tag>
+        <tag>多标签数据</tag>
+        <tag>多标签分类</tag>
+        <tag>数据挖掘</tag>
+        <tag>敏感信息</tag>
+        <tag>条件功能依赖</tag>
+        <tag>大数据</tag>
+        <tag>数据质量</tag>
       </tags>
   </entry>
   <entry>
-    <title>连续子数组的最大和</title>
-    <url>/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</url>
-    <content><![CDATA[<p>leetcode 题库 43 最大子序和</p>
+    <title>skip-gram</title>
+    <url>/2021/06/13/skip-gram/</url>
+    <content><![CDATA[<p>skip-gram 流程图解释如下：</p>
 <a id="more"></a>
 
-<p>题目描述：</p>
-<p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），</p>
-<p>返回其最大和。</p>
-<p>示例:</p>
-<p>输入: [-2,1,-3,4,-1,2,1,-5,4]</p>
-<p>输出: 6</p>
-<p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>链接：<a href="https://leetcode-cn.com/problems/maximum-subarray">https://leetcode-cn.com/problems/maximum-subarray</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int maxSubArray(int[] nums) &#123;</span><br><span class="line">       int sum &#x3D; 0;</span><br><span class="line">       int max &#x3D; Integer.MIN_VALUE;</span><br><span class="line">       for (int num : nums) &#123;</span><br><span class="line">           sum +&#x3D; num;</span><br><span class="line">           if (max &lt; sum) &#123;</span><br><span class="line">               max &#x3D; sum;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (sum &lt; 0) &#123;</span><br><span class="line">               sum &#x3D; 0;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>每一次相加的时候，只要是 sum 的值大于零，就相加的数来说就是把相加的数增大，</p>
-<p>而相加的数是不知道的，结果也不知道，所以有可能取到最大值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/13/10-49-14-4326e64fe0f495f6632be2093c165e8c-006Fmjmcly1fgco3v2ca7j30pq0j7drt%20-2--0670c6.jpg"></p>
+<ol>
+<li>$w_t$ 表示单词的 one-hot 编码  维度为 $V * 1$，$V$ 为文本中单词的个数</li>
+<li>$W$ 表示中心词向量矩阵，是需要优化的变量，开始时随机初始化，维度为 $d * V$，$V$ 同上，$d$ 是超参数需要手动设置，一般在 50 - 300</li>
+<li>$V_c$ 表示中心词向量，是由 $W$ 与 $w_t$ 做矩阵乘法的结果</li>
+<li>$W’$ 表示上下文词向量矩阵，也是需要优化的变量，开始时随机初始化，维度为$V * d$。$V，d$ 同上</li>
+<li>是 $W’$ 与 $V_c$ 做矩阵乘法得到的结果，维度为 $V * 1$，5 部分列举的 3 个向量是一样的</li>
+<li>$P(x|c)$ 表示在 c 出现的前提下，x 出现的概率，条件概率函数定义为 softmax 函数，维度为 $V * 1$。在 6 中出现的 3 个向量也是一样的，向量的第 1 个数表示，在中心词 c 出现的条件下，第一个词出现的概率。</li>
+<li>Truth 表示真实出现的词，7 中第 1 个向量表示，在中心词前面的第 3 个词，是 one-hot 编码的第 6 个词</li>
+<li>根据 6，7 求损失</li>
+<li>由梯度的的推导公式更新 $W$ 和 $W’$</li>
+</ol>
 ]]></content>
       <tags>
-        <tag>算法</tag>
-        <tag>数组</tag>
-        <tag>leetcode</tag>
+        <tag>skip-gram</tag>
+        <tag>word2vec</tag>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高级词向量表示</title>
+    <url>/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/</url>
+    <content><![CDATA[<p>词向量的 Negative Sampling 与 Hierachical Softmax</p>
+<a id="more"></a>
+
+<h1 id="为什么-word2vec-会消耗大量的时间"><a href="#为什么-word2vec-会消耗大量的时间" class="headerlink" title="为什么 word2vec 会消耗大量的时间"></a>为什么 word2vec 会消耗大量的时间</h1><pre><code>是因为 softmax 会消耗大量的时间，softmax 的分母与整个语料库有关（呈线性关系），
+而且指数运算也比较耗时，所以计算量超级大</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/14-35-33-6f9226f894a22cf472522cb2727b4d82-20200701205113938-9bacf0.png"></p>
+<h1 id="解决方法有以下几点"><a href="#解决方法有以下几点" class="headerlink" title="解决方法有以下几点"></a>解决方法有以下几点</h1><h2 id="把常见的词组作为一个单词"><a href="#把常见的词组作为一个单词" class="headerlink" title="把常见的词组作为一个单词"></a>把常见的词组作为一个单词</h2><pre><code>作者指出像“Boston Globe“（一家报社名字）这种词对，和两个单词 Boston／Globe有着完全不同语义。
+所以更合理的是把“Boston Globe“看成一个单词，有他自己的word vector。</code></pre>
+<h2 id="少采样常见的词-（比如：A-the）"><a href="#少采样常见的词-（比如：A-the）" class="headerlink" title="少采样常见的词 （比如：A the）"></a>少采样常见的词 （比如：A the）</h2><pre><code>像“the“这种常见的词，我们会遇到两个问题：
+比如（fox，the）其实没有传递我们关于 fox的信息。‘the‘出现得太多了；
+我们有太多 （‘the‘，…）的样本，多于我们真的需要的；
+所以word2vec采用了降采样的策略。对于每个我们在训练样本中遇到的词，
+我们有一个概率去删除它，称之为“采样率”这个概率与单词出现的频率相关。</code></pre>
+<h3 id="采样率"><a href="#采样率" class="headerlink" title="采样率"></a>采样率</h3><p>我们使用$w_i$来表示单词，$z(w_i)$表示它出现在词库中的概率（频率）。比如花生在1bilion的词库中出现了1,000次，那么$z(花生)=1E^{-6}$。在代码中还有一个参数叫“sample”，这个参数代表一个阈值，默认值为0.001.这个值越小意味着这个单词被保留下来的概率越小（即有越大的概率被我们删除）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/16-09-57-f621c0a36618280a1e24bb9ca0d4bf71-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614160948-7c3bc2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/16-10-20-b5040c150edb31a6ee445d4ad771a1ab-v2-b5040c150edb31a6ee445d4ad771a1ab_r-acb4f9.jpg"></p>
+<p>图中x轴代表着$Z(w_i)$，即单词$w_i$在语料中出现频率，y轴代表某个单词被保留的概率。对于一个庞大的语料来说，单个单词的出现频率不会很大，即使是常用词，也不可能特别大。从这个图中，我们可以看到，随着单词出现频率的增高，它被采样保留的概率越来越小。</p>
+<h2 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h2><pre><code>使得每个训练样本只去更新模型中一小部分的weights。</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/15-24-23-07ae3164fc39fff912ff3e44be81a3b0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614152412-935b9e.png"></p>
+<p>当我们用训练样本 ( input word: “fox”，output word: “quick”) 来训练我们的神经网络时，“ fox”和“quick”都是经过one-hot编码的。如果我们的vocabulary大小为10000时，在输出层，我们期望对应“quick”单词的那个神经元结点输出1，其余9999个都应该输出0。在这里，这9999个我们期望输出为0的神经元结点所对应的单词我们称为“negative” word。</p>
+<p>当使用负采样时，我们将随机选择一小部分的negative words（比如选5个negative words）来更新对应的权重。我们也会对我们的“positive” word进行权重更新（在我们上面的例子中，这个单词指的是”quick“）。</p>
+<p>假如我们的隐层-输出层拥有300 x 10000的权重矩阵。如果使用了负采样的方法我们仅仅去更新我们的positive word-“quick”的和我们选择的其他5个negative words的结点对应的权重，共计6个输出神经元，相当于每次只更新 300 * 6 = 1800个权重。对于3百万的权重来说，相当于只计算了0.06%的权重，这样计算效率就大幅度提高。</p>
+<h1 id="skip-gram-负采样公式推导："><a href="#skip-gram-负采样公式推导：" class="headerlink" title="skip-gram 负采样公式推导："></a>skip-gram 负采样公式推导：</h1><p>1、条件概率分布使用 sigmod 函数表示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-15-d6de486aa70b29dbfc07b2997421d2e3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614202954-3fdba7.png"></p>
+<p>2、按照一定的概率分布$P(\widetilde{w})$从样本中抽取K个负样本，其一部分表示从中心词和上下文词共同出现的概率，第二部分表示中心词和负样本词共同出现的概率。然该公式最大化目的是让中心词和上下文词和中心词和负样本词以尽可能大的概率共同出现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/21-05-06-98abe8c03f0ba32be639f7ed419e8346-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210614210455-88a16e.png"></p>
+<p>3、将 sigmod 函数带入得到下列公式，求最大化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-19-c8f1262e4eaa24ad57aefa0d7194a946-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205558-1e824d.png"></p>
+<p>4、添加符号求最小化问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-27-6dc4139cc1555cdb28e6d63af9fd09eb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205611-fbfacc.png"></p>
+<h1 id="CBOW-负采样公式推导："><a href="#CBOW-负采样公式推导：" class="headerlink" title="CBOW 负采样公式推导："></a>CBOW 负采样公式推导：</h1><p>推导过程基本与 skip-gram 类似，如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-34-08bfdd0c91f36d2ddf906e520d89a377-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205748-55bc12.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/14/20-58-39-2d323463050b7dd14a9c70a59209ae80-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210614205802-7c665c.png"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>将负采样近似训练方法和标准word2vec进行对比，可以发现负采样在标准word2vec的基础上做了两点改进：</p>
+<p>1.针对softmax运算导致的每次梯度计算开销过⼤，将softmax函数调整为sigmoid函数，当然对应的含义也由给定中心词，每个词作为背景词的概率，变成了给定中心词，每个词出现在背景窗口中的概率</p>
+<p>2.进行负采样，引入负样本，负采样的名字就是取了第二个改进点。</p>
+]]></content>
+      <tags>
+        <tag>skip-gram</tag>
+        <tag>word2vec</tag>
+        <tag>NLP</tag>
+        <tag>CBOW</tag>
+        <tag>负采样</tag>
+        <tag>negative sampling</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Word-Window-Classification-Neural-Networks</title>
+    <url>/2021/06/15/Word-Window-Classification-Neural-Networks/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-15-14-14af5e584ec2022c16b52cdbd5762f4c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201501-16d775.png"></p>
+<a id="more"></a>
+
+<h1 id="交叉熵问题"><a href="#交叉熵问题" class="headerlink" title="交叉熵问题"></a>交叉熵问题</h1><h2 id="交叉熵："><a href="#交叉熵：" class="headerlink" title="交叉熵："></a>交叉熵：</h2><p><a href="https://blog.csdn.net/b1055077005/article/details/100152102" title="交叉熵问题">https://blog.csdn.net/b1055077005/article/details/100152102</a></p>
+<h2 id="相对熵（KL散度）"><a href="#相对熵（KL散度）" class="headerlink" title="相对熵（KL散度）"></a>相对熵（KL散度）</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-18-37-764c9101051994bc1c96d0732f8dfd0d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201830-ca0a06.png"><br><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-10-40-e8f9d3130b950f1f3f13209ce6858bc8-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201027-fb9e7c.png"></p>
+<p>展开得</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-11-38-5219a1bdfc0571f049fab71dc707d1e0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201118-2a8722.png"></p>
+<p>前部分为信息熵，后部分为交叉熵</p>
+<p>交叉熵公式表示为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-12-33-8e233d9fdc55ef25792d4ad09b95cc49-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201227-bef448.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-13-04-d5e69de51a69b47682e62e73697ed588-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201258-8d3293.png"></p>
+<h2 id="相对熵习题"><a href="#相对熵习题" class="headerlink" title="相对熵习题"></a>相对熵习题</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-14-04-48545639f8e21b05b07cbbe7453f7e89-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201336-a8d147.png"></p>
+<h2 id="交叉熵的性质"><a href="#交叉熵的性质" class="headerlink" title="交叉熵的性质"></a>交叉熵的性质</h2><p>交叉熵能够衡量同一个随机变量中的两个不同概率分布的差异程度，在机器学习中就表示为真实概率分布与预测概率分布之间的差异。交叉熵的值越小，模型预测效果就越好。</p>
+<p>交叉熵在分类问题中常常与softmax是标配，softmax将输出的结果进行处理，使其多个分类的预测值和为1，再通过交叉熵来计算损失。</p>
+<h2 id="交叉熵与softmax的关系"><a href="#交叉熵与softmax的关系" class="headerlink" title="交叉熵与softmax的关系"></a>交叉熵与softmax的关系</h2><p><a href="https://zhuanlan.zhihu.com/p/27223959" title="Softmax函数与交叉熵">https://zhuanlan.zhihu.com/p/27223959</a></p>
+<p>对于多分类问题，第 i 类样本出现的概率为</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-51-46-49136dc5e488583513b34b4a00f55c2b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205125-d94ea4.png"></p>
+<p>$t$是样本对应的类标签,$y_i$是第 i 类出现的概率</p>
+<p>取对数的（连乘可能导致最终结果接近0的问题）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-52-29-7c200889c5f47f2e457789dbc669a0c4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205220-b6a1b8.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-56-06-17334a2f35d1efcbcee891eca0763eef-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615205556-905402.png"></p>
+<p>可以看出，该等式于上面对数似然函数的形式一样！</p>
+<h1 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h1><h2 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h2><p>一般的ML问题中，参数由权值矩阵的列组成维度不会太大。而在词向量或其他深度学习中，需要同时学习权值矩阵和词向量。参数一多，就容易过拟合：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/09-33-28-adbf6c2ff08cc32d210ada78e1227cce-006Fmjmcly1fgf164jxu1j31b00kcwgx-f2decb.jpg"></p>
+<p>下面两张图非常好的说明了，在更新参数的时候，及要跟新超平面相关参数，也会更新词向量相关参数（参数的大小为）。</p>
+<h2 id="re-training词向量"><a href="#re-training词向量" class="headerlink" title="re-training词向量"></a>re-training词向量</h2><p>一般的ML问题中，参数由权值矩阵的列组成维度不会太大。而在词向量或其他深度学习中，需要同时学习权值矩阵和词向量。参数一多，就容易过拟合：</p>
+<p>比如有一个给单词做情感分析的小任务，在预训练的词向量中，这三个表示电视的单词都是在一起的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-02-16-7b27e7109dddc45fe43a210a7e4ce2bd-006Fmjmcly1fgf1biu3l2j30en0en3z7-2bf5e9.jpg"></p>
+<p>但由于情感分析语料中，训练集只含有TV和telly，导致re-training之后两者跑到别处去了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-03-04-a4d1b5d4ab0d27eab210cce8126e22c0-006Fmjmcly1fgf1biu3l2j30en0en3z7-0e709b.jpg"></p>
+<p>于是在测试集上导致television被误分类。</p>
+<p>这个例子说明，如果任务的语料非常小，则不必在任务语料上重新训练词向量，否则会导致词向量过拟合。</p>
+<h1 id="Window-classification"><a href="#Window-classification" class="headerlink" title="Window classification"></a>Window classification</h1><p>这是一种根据上下文给单个单词分类的任务，可以用于消歧或命名实体分类。上下文Window的向量可以通过拼接所有窗口中的词向量得到：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/21-12-41-b47071cf5ef7b679398896d90031d170-v2-5f2945e81573b7cbf811a57321cf8cbe_720w-8a666e.jpg"></p>
+<p>最简单的分类器：softmax</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-25-02-3840f2e053892f56f7c916d4beb390e8-006Fmjmcly1fgf1xr22uxj31e80oowjf-191b26.jpg"></p>
+<p>J 对x求导，注意这里的x指的是窗口所有单词的词向量拼接向量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-26-24-369bb65feea4693058807a1164195a60-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102534-68f846.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-27-48-8bc44062edf1f3a027412c0dc7849048-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102733-de32fb.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/10-27-53-578203c7d7c9275f4fe934edf9eb16a3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616102738-97c4c1.png"></p>
+<p>其中 t 是第 y 个词的热编码</p>
+<p><a href="https://zhuanlan.zhihu.com/p/27223959" title="softmax函数与交叉熵的关系">https://zhuanlan.zhihu.com/p/27223959</a> 中最后得出了 $σ = [ \hat{y}- t]$ 的结论</p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="softmax（等价于逻辑斯谛回归）效果有限"><a href="#softmax（等价于逻辑斯谛回归）效果有限" class="headerlink" title="softmax（等价于逻辑斯谛回归）效果有限"></a>softmax（等价于逻辑斯谛回归）效果有限</h2><p>仅限于较小的数据集，能够提供一个勉强的线性分类决策边界。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-51-50-b45f360720ab393476d944dd91ac46f4-006Fmjmcly1fgf9smlwe0j30o80cdtag-a29e88.jpeg"></p>
+<p>神经网络可以提供非线性的决策边界：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/16/10-52-54-a468fd421b32f7ee12bb1d78a9e32ecb-006Fmjmcly1fgf9u1m2dzj309e09d3zf-713800.jpeg"></p>
+<p>神经网络的术语</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-55-50-09d790e1567d331a9533da2810b806d3-006Fmjmcly1fgf9w5ckvnj30dl0e1jtm-e6c03b.jpeg"></p>
+<p>每个神经元是一个二分类逻辑斯谛回归单元：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-57-37-31b42b4c00cb8580b873dd98f56c0595-006Fmjmcly1fgf9xs1tc2j30n80er76y-21db2e.jpeg"></p>
+<p>神经网络同时运行多个逻辑斯谛回归，但不需要提前指定它们具体预测什么：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/16/10-58-00-1a0656e28e3385bbf5f6bf4814ca35d8-006Fmjmcly1fgf9ynezpjj308c0b7dhr-9f588e.jpeg"></p>
+<p>我们把预测结果喂给下一级逻辑斯谛回归单元，由损失函数自动决定它们预测什么：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/16/10-59-38-84f005003e1dab179233ce181b2d57ef-006Fmjmcly1fgf9zpfaa2j30eo0botbq-edb273.jpeg"></p>
+<p>于是就得到了一个多层网络</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/16/10-59-58-416226bf8865fe79d28789bf15f55a18-006Fmjmcly1fgfa0qmyeoj30jg0bkwim-9c5982.jpeg"></p>
+<p>为什么需要非线性</p>
+<p>因为线性系统所有层等效于一层：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/11-01-03-6711e3c71c03d87eb6f21b9cfc2c353e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616110057-b89af5.png"></p>
+<p>而非线性模型可以捕捉很复杂的数据：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/16/11-01-45-2d93666e80685b17b46eeccec780673a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210616110127-e78c28.png"></p>
+<h2 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h2><p>所谓的前向传播算法就是：将上一层的输出作为下一层的输入，并计算下一层的输出，一直到运算到输出层为止。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-21-46-ae480c045c628ea1dcad176da56daecb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210617091621-699c67.png"></p>
+<p>最后可以通过与期望值做对比，求出损失，为了使损失最小化，使用后向传播算法。</p>
+<h2 id="后向传播"><a href="#后向传播" class="headerlink" title="后向传播"></a>后向传播</h2><p><a href="https://blog.csdn.net/bitcarmanlee/article/details/78819025" title="后向传播过程推到">https://blog.csdn.net/bitcarmanlee/article/details/78819025</a></p>
+<p><a href="https://www.cnblogs.com/charlotte77/p/5629865.html" title="后向传播过程演算">https://www.cnblogs.com/charlotte77/p/5629865.html</a></p>
+<p>第一个链接证明了后向传播的推导过程，推导过程非常详细，推到结果也是对的，但在最后求 $w_{31},w_{32},w_{41},w_{42}$结果是错误的<br>第二个链接推导过程不是跟详细，但是演算的结果是对的</p>
+<p>反向传播（英语：Backpropagation，缩写为BP）是“误差反向传播”的简称，是一种与最优化方法（如梯度下降法）结合使用的，用来训练人工神经网络的常见方法。该方法计算对网络中所有权重计算损失函数的梯度。这个梯度会反馈给最优化方法，用来更新权值以最小化损失函数。 在神经网络上执行梯度下降法的主要算法。该算法会先按前向传播方式计算（并缓存）每个节点的输出值，然后再按反向传播遍历图的方式计算损失函数值相对于每个参数的偏导数。</p>
+<p><strong>bp算法的学习过程</strong></p>
+<p>BP算法的学习过程由正向传播过程和反向传播过程组成。在正向传播过程中，输入信息通过输入层经隐含层，逐层处理并传向输出层。如果在输出层得不到期望的输出值，则取输出与期望的误差的平方和作为目标函数，转入反向传播，逐层求出目标函数对各神经元权值的偏导数，构成目标函数对权值向量的梯量，作为修改权值的依据，网络的学习在权值修改过程中完成。误差达到所期望值时，网络学习结束。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-26-15-ad4f18eadd27e8e8b87dd6cc42971b5e-f408ba03f7685c23f9daf05fccdfef07-9fdd83.png"></p>
+<p>$w_{54}$ 求梯度的过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-27-19-74bb570260d428fc7759837f765f697a-70cab29fb1769089ea951550412b84b5-5a51cc.png"></p>
+<p>$w_{31}$ 求梯度的过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/17/09-28-47-118722f5e16238a2590f9961990ac456-78406d4d609f2383b8253d16d35d48e9-8eb888.png"></p>
+<p>可以通过梯度更新权值，使得损失损失最小化</p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>正向传播</tag>
+        <tag>反向传播</tag>
+        <tag>BP</tag>
+        <tag>交叉熵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linguistic Structure: Dependency Parsing</title>
+    <url>/2021/06/20/Linguistic-Structure-Dependency-Parsing/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-07-44-6e3918ac3ccd05224052041a4d14b010-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620080712-11c8b4.png"></p>
+<a id="more"></a>
+
+<h1 id="语言学的两种观点"><a href="#语言学的两种观点" class="headerlink" title="语言学的两种观点"></a>语言学的两种观点</h1><p>依存句法树和短语结构树详细解释：<a href="https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md" title="依存句法树和短语结构树详细解释">https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md</a></p>
+<p>如何描述语法，有两种主流观点，其中一种是上下文无关文法，英文术语是：Constituency = phrase structure grammar = context-free grammars (CFGs)。</p>
+<h2 id="短语结构树"><a href="#短语结构树" class="headerlink" title="短语结构树"></a>短语结构树</h2><p>这种短语语法用固定数量的rule分解句子为短语和单词、分解短语为更短的短语或单词，一个取自WSJ语料库的短语结构树示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-10-15-de55b626a442e75026f86a38f641d775-6cbb8645gw1fb9et7tnw3j211i0k2n0e-0564cf.jpg"></p>
+<h2 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h2><p>语言学中，上下文无关文法由如下组件构成:</p>
+<pre><code>终结符结合 Σ，比如汉语的一个词表
+非终结符集合 V，比如“名词短语”“动词短语”等短语结构组成的集合。
+V 中至少包含一个特殊的非终结符，即句子符或初始符，计作 S
+推到规则 R，即推到非终结符的一系列规则: V -&gt; V U Σ</code></pre>
+<p>基于上下文无关文法理论，我们可以从 S 出发，逐步推导非终结符。一个非终结符至少产生一个下级符号，如此一层一层地递推下去，我们就得到了一棵语法树。但在NLP中，我们称其为短语结构树。也就是说，计算机科学中的术语“上下文无关文法”在语言学中被称作“短语结构语法”。</p>
+<h2 id="依存结构"><a href="#依存结构" class="headerlink" title="依存结构"></a>依存结构</h2><p>另一种是依存结构，用单词之间的依存关系来表达语法。如果一个单词修饰另一个单词，则称该单词依赖于另一个单词。一个由HanLP输出的依存句法树如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-22-13-c4b7882ad0f2dfe85d4fb1d1345058bb-6cbb8645gw1exy8efomtkj20t505f3zj-d93fb8.jpg"></p>
+<h2 id="依存句法树"><a href="#依存句法树" class="headerlink" title="依存句法树"></a>依存句法树</h2><p>将一个句子中所有词语的依存关系以有向边的形式表示出来，就会得到一棵树，称为依存句法树( dependency parse tree)。比如句子“弱小的我也有大梦想”的依存句法树如图所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/09-39-16-31b4b99010881eed95de380289d8e1c1-2020-2-14_17-58-48-81ccea.png"></p>
+<p>现代依存语法中，语言学家 Robinson 对依存句法树提了 4 个约束性的公理。</p>
+<pre><code>有且只有一个词语(ROOT，虚拟根节点，简称虚根)不依存于其他词语。
+除此之外所有单词必须依存于其他单词。
+每个单词不能依存于多个单词。
+如果单词 A 依存于 B，那么位置处于 A 和 B 之间的单词 C 只能依存于 A、B 或 AB 之间的单词。</code></pre>
+<p>这 4 条公理分别约束了依存句法树(图的特例)的根节点唯一性、 连通、无环和投射性( projective )。这些约束对语料库的标注以及依存句法分析器的设计奠定了基础。</p>
+<h1 id="歧义"><a href="#歧义" class="headerlink" title="歧义"></a>歧义</h1><p>通过句法树可以表达歧义，一个确定的句法树对应句子的一个确定解读，比如对介词短语依附（attachment of prepositional phrases (PPs)）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/20/08-23-06-586c391ea64d9481a8491a50e420288f-006Fmjmcly1fgij616l29j311i0ps0vn-db7a81.jpeg"></p>
+<p>from space这个介词短语到底依附谁？不同的答案导致对句子不同的理解。</p>
+<h2 id="依附歧义"><a href="#依附歧义" class="headerlink" title="依附歧义"></a>依附歧义</h2><p>很难确定如何把一个短语（介词短语、状语短语、分词短语、不定式）依附到其他成分上去，比如下列句子：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/08-28-35-79c7003af3f1c7d1cf24fcaf67eadf73-006Fmjmcly1fgijfj3n2vj31ds0fwter-af195c.jpeg" alt="董事会在月度会议上批准了多伦多的皇家信托公司以每股27美元的价格收购该公司。"></p>
+<p>每个括号中都是一个短语，它们依附的对象各不相同。对于n个短语来讲，组成的树形结构有$C_n=\frac{(2n)!}{(n+1)!n!}$。这是Catalan数，指数级增长，常用于树形结构的计数问题。</p>
+<h2 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-39-58-a5badd4b4dc08755ffe6a94e7df564ac-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620083951-c8e370.png"></p>
+<h1 id="标注数据集的崛起：Universal-Dependencies-treebanks"><a href="#标注数据集的崛起：Universal-Dependencies-treebanks" class="headerlink" title="标注数据集的崛起：Universal Dependencies treebanks"></a>标注数据集的崛起：Universal Dependencies treebanks</h1><p>虽然上下文无关文法中的语法集很容易写，无非是有限数量的规则而已，但人工费时费力标注的树库却茁壮成长了起来。在 1993 年首次面世的 Universal Dependencies treebanks 如今在 Google 的赞助下发布了 2.0，其授权大多是署名-相同方式共享，覆盖了全世界绝大多数语言（不包括简体中文）。</p>
+<p>其官网是：<a href="http://universaldependencies.org/" title="Universal Dependencies 官网">http://universaldependencies.org/</a></p>
+<p>GitHub主页是：<a href="https://github.com/UniversalDependencies" title="Universal Dependencies github 地址">https://github.com/UniversalDependencies</a></p>
+<p>树库示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/20/08-50-15-5a4473df5335b63bba17a07f65708d65-006Fmjmcly1fgikc4szn1j30tm0howhf-764e95.jpeg"></p>
+<p>人们偏好树库多于规则的原因是显而易见的，树库虽然标注难度高，但每一份劳动都可被复用（可以用于词性标注命名实体识别等等任务）；而每个人编写的规则都不同，并且死板又丑陋。树库的多用性还是得其作为评测的标杆数据，得到了越来越多的引用。</p>
+<h2 id="依存文法与依存结构"><a href="#依存文法与依存结构" class="headerlink" title="依存文法与依存结构"></a>依存文法与依存结构</h2><p>这节课以及练习用的都是依存句法树，而不是短语结构树。这并不是随机选择，而是由于前者的优势。90年代的句法分析论文99%都是短语结构树，但后来人们发现依存句法树标注简单，parser准确率高，所以后来（特别是最近十年）基本上就是依存句法树的天下了（至少80%）。</p>
+<p>不标注依存弧label的依存句法树就是短语结构树的一种：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/20/08-55-06-bc8e46a51f9778586f8ed87e5f6d1408-006Fmjmcly1fgikxq72uqj30xy0kmacl-8229fa.jpeg"></p>
+<p>一旦标上了，两者就彻底不同了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/20/08-55-26-1d8c657640d69fe3d3d815a083cab981-006Fmjmcly1fgikyihe3lj30yi0kuwhw-601696.jpeg"></p>
+<p>这里箭头的尾部是head（被修饰的主题），箭头指向的是dependent（修饰语）。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>每个句子都有一个虚根，代表句子之外的开始，这样句子中的每个单词都有自己的依存对象了。</p>
+<h1 id="句法分析可用的特征"><a href="#句法分析可用的特征" class="headerlink" title="句法分析可用的特征"></a>句法分析可用的特征</h1><pre><code>双词汇亲和（Bilexical affinities），比如discussion与issues。
+
+词语间距，因为一般相邻的词语才具有依存关系
+
+中间词语，如果中间词语是动词或标点，则两边的词语不太可能有依存
+
+词语配价，一个词语最多有几个依赖者。</code></pre>
+<h1 id="依存句法分析"><a href="#依存句法分析" class="headerlink" title="依存句法分析"></a>依存句法分析</h1><p>有几个约束条件：</p>
+<pre><code>ROOT只能被一个词依赖
+无环</code></pre>
+<p>英语中大部分句子是 projective 的，少数是 non-projective 的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/10-06-07-80d7ec96ee803de0501963531ede4052-006Fmjmcly1fgm6p51a0oj31eg070abc-9724e5.jpeg"></p>
+<h2 id="依存句法分析方法"><a href="#依存句法分析方法" class="headerlink" title="依存句法分析方法"></a>依存句法分析方法</h2><pre><code>Dynamic programming
+    估计是找出以某head结尾的字串对应的最可能的句法树。
+Graph algorithms
+    最小生成树。
+Constraint Satisfaction
+    估计是在某个图上逐步删除不符合要求的边，直到成为一棵树。
+“Transition-based parsing” or “deterministic dependency parsing”
+    主流方法，基于贪心决策动作拼装句法树。</code></pre>
+<h2 id="Arc-standard-transition"><a href="#Arc-standard-transition" class="headerlink" title="Arc-standard transition"></a>Arc-standard transition</h2><p>arc-standard方法，通过SHIFT、LEFT-ARC和RIGHT-ARC三种动作来决定单词之间是否依赖以及依赖关系。每个单词只能被修饰（指向）一次，但是可以多次修饰（指向）其他单词。</p>
+<pre><code>SHIFT 指两个词 A 与 B 之间没有依存关系；
+LEFT-ARC 指两个词 A 与 B 之间是 A &lt;- B 的左链接关系；
+RIGHT-ARC 指两个词 A 与 B 之间是 A -&gt; B 的右链接关系。</code></pre>
+<p>动作体系的 formal 描述如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-22-52-6cbe50db9fa5c7cf910c0e9aeb1c318f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102245-099759.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-08-51-336b71240ee6b7c69720a5f9b5e94651-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620200839-ea3493.png"></p>
+<p>图片原地址：<a href="https://www.hankcs.com/nlp/parsing/neural-network-based-dependency-parser.html" title="基于神经网络的高性能依存句法分析器">https://www.hankcs.com/nlp/parsing/neural-network-based-dependency-parser.html</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-24-25-2678aa38f038981db0bf56a15c67f431-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102357-d2c157.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/10-26-14-88f9311ad23beab59f60dc82e7855fba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620102605-e8d752.png"></p>
+<p>截图来自：<a href="https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md" title="依存句法树和短语结构树详细解释">https://github.com/NLP-LOVE/Introduction-NLP/blob/master/chapter/12.%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90.md</a></p>
+<h2 id="MaltParser模型-没看懂"><a href="#MaltParser模型-没看懂" class="headerlink" title="MaltParser模型(没看懂)"></a>MaltParser模型(没看懂)</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-16-34-83d5e77c541057c8cda80956036adf9a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620201527-8f5eef.png"></p>
+<h2 id="传统特征表示-没看懂"><a href="#传统特征表示-没看懂" class="headerlink" title="传统特征表示(没看懂)"></a>传统特征表示(没看懂)</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img-blog.csdnimg.cn/2021/06/20/20-19-35-414accd8219e4dc41e19aa981eccf94f-20200706205434481-403b2e.png"></p>
+<p>传统的特征表示使用二元的稀疏向量，一个超长的稀疏01向量。</p>
+<pre><code>特征模板：通常由配置中的1 ~ 3个元素组成
+Indicator features</code></pre>
+<h2 id="依赖解析的评估：（标记）依赖精度-准确率评价"><a href="#依赖解析的评估：（标记）依赖精度-准确率评价" class="headerlink" title="依赖解析的评估：（标记）依赖精度/准确率评价"></a>依赖解析的评估：（标记）依赖精度/准确率评价</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-32-36-577f70203e36e31cb06613c20eae9648-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620203226-c8a4f8.png"></p>
+<p>继续化简得 $LSA = \frac{2 * |A∩B|}{|A| + |B|}$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-48-56-bb0e952947b07ef6413e1cd66ee54126-2020070620561090-073591.png"></p>
+<p>求 LAS 时，对于该图 |A∩B| = 2，比对的时两幅图得 1，2 列相同的行</p>
+<p>求 UAS 时，对于该图 |A∩B| = 4，比对的时两幅图得 1 列相同的行</p>
+<p>|A| = |B| = 5</p>
+<h2 id="其他评价指标"><a href="#其他评价指标" class="headerlink" title="其他评价指标"></a>其他评价指标</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/20-51-19-23d7e95d1f92ce79d38d9d62a418a928-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620205110-3b2511.png"></p>
+<h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><p>所谓投射性是指：如果词p依存于词q，那么p和q之间的任意词r就不能依存到p和q所构成的跨度之外（用白话说，就是任意构成依存的两个单词构成一个笼子，把它们之间的所有单词囚禁在这个笼子里，只可内部交配，不可与外族通婚）。比如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww2.sinaimg.cn/large/2021/06/20/20-06-01-5caaa193cae9b2ab12da13ac20f80a37-6cbb8645gw1exvojk1givj20h804sdg9-c04dda.jpeg"></p>
+<p>再比如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww3.sinaimg.cn/large/2021/06/20/20-06-20-e58b4d476bfc2923afdf4b81c87b170d-6cbb8645jw1emokwlqh42j20aw04vglr-13e739.jpeg"></p>
+<h2 id="非投射"><a href="#非投射" class="headerlink" title="非投射"></a>非投射</h2><p>非投射就没有上述限制了，这会导致依存边有交叉，怎么都理不顺：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/ww4.sinaimg.cn/large/2021/06/20/20-07-00-7f99265c1ddaa1857a486ca1c2e7a4eb-6cbb8645gw1exvop84e10j20iw04ywf0-beaf48.jpeg"></p>
+<h2 id="投射性"><a href="#投射性" class="headerlink" title="投射性"></a>投射性</h2><p>CFG转换得到的依存树一定是投射性的，但依存理论允许非投射性的依存句法树（一些语义需要通过非投射性表达）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/20/20-22-34-d53750cd99e1023ef1f849edd57bd461-006Fmjmcly1fgncuqs168j31co0cojud-8ea68f.jpeg"></p>
+<p>arc-standard算法只能拼装投射性的句法树，但换个体系、加上后处理、采用graph-based方法就能得到非投射的句法树。</p>
+<h1 id="为什么需要神经网络句法分析器"><a href="#为什么需要神经网络句法分析器" class="headerlink" title="为什么需要神经网络句法分析器"></a>为什么需要神经网络句法分析器</h1><p><a href="https://blog.csdn.net/yu5064/article/details/82186738" title="基于神经网络的依存句法分析总结及代码详解">https://blog.csdn.net/yu5064/article/details/82186738</a></p>
+<p><a href="http://fancyerii.github.io/books/nndepparser/#dp-nn-2" title="基于神经网络的依存句法分析">http://fancyerii.github.io/books/nndepparser/#dp-nn-2</a></p>
+<p>因为：传统特征表示稀疏、不完全、计算代价大，SVM之类的线性分类器本身是很快的，但传统 parser 的95%时间都花在拼装查询特征上了。</p>
+<p>无非是传统方法拼接单词、词性、依存标签，新方法拼接它们的向量表示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/21-09-43-b12466b0814951453b3d41caa1f15f7b-006Fmjmcly1fgnda5d97hj310c0nk785-cca20e.jpeg"></p>
+<p>经过一个神经网络</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-50-21-f058a82f34e626efc9d98a52bdda1811-2018082819195541-7df6b7.png"></p>
+<p>模型的作用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-32-06-cc8d1bc45c631f2a64fcea495a840caa-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621143133-5bd1c1.png"></p>
+<p>如何找输入的词向量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/21/14-51-38-2910f2e666cd2a576705b13122208268-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621144208-e9c675.png"></p>
+<p>事实上，在“深度学习”“神经网络”与传统的graph-based方法相比较，花了这么多功夫得到的只是0.1%的LAS提升：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/21/14-34-25-1b2c659ee458ce5ffc777c25aa0e32b6-006Fmjmcly1fgnd5teln2j31aw0k0gon-432664.jpeg"></p>
+<h2 id="非线性函数"><a href="#非线性函数" class="headerlink" title="非线性函数"></a>非线性函数</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/21-07-49-1d505aa57921e51396ae4a5f10c67c21-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620210742-87a06a.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/21-08-33-86377f2b1aafcf6ddea00bc290fa1dbd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620210825-34d08d.png"></p>
+<h2 id="未来的工作"><a href="#未来的工作" class="headerlink" title="未来的工作"></a>未来的工作</h2><p>Chen&amp;Manning的工作被许多人继续往前推进，走在最前沿的是Google。趋势是：</p>
+<pre><code>更大更深调参调得更好（更昂贵）的神经网络
+Beam Search
+在决策序列全局进行类似CRF推断的方法（CRF宝刀未老，老当益壮啊）</code></pre>
+<p>Google的SyntaxNet 中的 Parsey McParseFace的效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/20/21-04-58-895952771c1a40eb7782f00995c002d9-006Fmjmcly1fgndqwd3yaj315e0asmz0-16e0c9.jpeg"></p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>短语结构树</tag>
+        <tag>依存句法树</tag>
+        <tag>句法分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Recurrent neural network</title>
+    <url>/2021/06/22/Recurrent-neural-network/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-31-57-7db7a024b0f1e7d31b44b25c5b17ddff-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622103138-81442d.png"></p>
+<a id="more"></a>
+
+<h1 id="语言模型"><a href="#语言模型" class="headerlink" title="语言模型"></a>语言模型</h1><p>语言模型就是计算一个单词序列（句子）的概率（P(w1,…,wm)）的模型。听上去很简单，做起来很难；听上去没什么用处，但用处非常多。比如在机器翻译中，判断译文序列中一种词序的自然程度高于另一种，判断一种用词选择优于另一种。</p>
+<h2 id="传统语言模型"><a href="#传统语言模型" class="headerlink" title="传统语言模型"></a>传统语言模型</h2><p>为了简化问题，必须引入马尔科夫假设，句子的概率通常是通过待预测单词之前长度为n的窗口建立条件概率来预测：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-37-53-0edc788abde54521f50d89e0edcd26bb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622103747-80603c.png"></p>
+<p>为了估计此条件概率，常用极大似然估计，比如对于BiGram和TriGram模型，有：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-38-35-e20b6b86310a9d6444608aa872e9771d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622103821-f2c2ba.png"></p>
+<p>在数据量足够的情况下，n-gram中的n越大，模型效果越好。但实际上，数据量总是不如人意，这时候一些平滑方法就不可或缺。另外，这些ngram可能会占用上G的内存，在最新的研究中，一个1260亿的语料在140G内存的单机上花了2.8天才得到结果。</p>
+<p>Bengio et al提出了第一个大规模深度学习自然语言处理模型，只不过是用前n个单词的词向量来做同样的事情（上文建模）而已，其网络结构如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/22/10-39-27-7d47b1fa585c7b6e8b8761c4b1f6eb3d-006Fmjmcly1fgttmr9ufjj30kb0i5wgm-be948a.jpeg"></p>
+<p>公式如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-40-24-e761a48e611c6d198d056fdeb58c7e09-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104016-dde895.png"></p>
+<h1 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h1><h2 id="RNN的说明及推导"><a href="#RNN的说明及推导" class="headerlink" title="RNN的说明及推导"></a>RNN的说明及推导</h2><p>完全抄录的该篇博客，并对感觉不对的地方进行修正，对难以理解的地方加以补充：<a href="https://zybuluo.com/hanbingtao/note/541458" title="零基础入门深度学习(5) - 循环神经网络">https://zybuluo.com/hanbingtao/note/541458</a></p>
+<p>在全连接神经网络和卷积神经网络中，只能单独的去处理一个个的输入，前一个输入和后一个输入是完全没有关系的。但是，某些任务需要能够更好的处理序列的信息，即前面的输入和后面的输入是有关系的。比如，当我们在理解一句话意思时，孤立的理解这句话的每个词是不够的，我们需要处理这些词连接起来的整个序列；当我们处理视频的时候，我们也不能只单独的去分析每一帧，而要分析这些帧连接起来的整个序列。这时，就需要用到深度学习领域中另一类非常重要神经网络：循环神经网络(Recurrent Neural Network)。RNN种类很多，也比较绕脑子。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-43-40-c3185fd2f8458a3653dc035a68575b84-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104334-8ce28b.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-44-19-49c94200244be9c56e4a544771ae742a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104409-90c38e.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-44-57-12567096c3fbc92a7a2199ef22743850-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104451-cdb930.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-45-21-f74b4c5c32bec7318e45e31c99f4dc06-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104516-aadcec.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-45-47-6ee325d3906f10f2793fbb01e489930a-2256672-cf18bb1f06e750a4-b9834d.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-46-34-f4855fe9a5ef4908bc4c345bb57778af-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104625-87f87e.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-47-44-89563cd6e42094746868f1972f5e932f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104738-1439bc.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-48-27-9b9d18524446bfc97892d5a6196c216a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104816-cf69ae.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-48-52-0c8d438c12bce0260b16cf270db56f0b-2256672-039a45251aa5d220-3619b7.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-49-22-e0e9240b802a20ad50579a31d6bc0c45-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104916-2e7e6f.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-49-55-28f7677c012b3092338993ab032e94e6-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622104950-0c42ab.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-50-22-672001428ca5343238451a8c8aa0ab09-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105012-c4db5d.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-50-33-09607ca6bd45d27c704efcfe84724d9f-2256672-df137de8007c3d26-7b3f7c.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-50-56-e835a43ba65aeb5506c11d83769ed08b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105050-8a7cf7.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-51-21-ea1f8b4f2eb4c42a270e4f0703cbb4f0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105115-fdc5d3.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-51-51-fd64624cac95d8a43720e5868e29e27c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105146-299f71.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-54-12-144567938bb01cd7dc6b812c3df30a1a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105408-7f447b.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-54-56-eeae052d477aa5489373c2f703459569-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105449-a86df1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-55-29-4644407605b512eafa82c4f8353f05dd-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105524-07af36.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-56-04-e867611d117d1ee0767696d53709bc79-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105559-6d2b03.png"></p>
+<p>对上述的推导过程进行解释</p>
+<p>$$\begin{bmatrix}<br>{s_1^{t-1}}\\<br>{s_2^{t-1}}\\<br>{\vdots}\\<br>{s_n^{t-1}}\\<br>\end{bmatrix} = f(<br>\begin{bmatrix}<br>{u_{11}}&amp;{u_{12}}&amp;{\cdots}&amp;{u_{1m}}\\<br>{u_{21}}&amp;{u_{22}}&amp;{\cdots}&amp;{u_{2m}}\\<br>{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\\<br>{u_{n1}}&amp;{u_{n2}}&amp;{\cdots}&amp;{u_{nm}}\\<br>\end{bmatrix}\begin{bmatrix}<br>{x_1}\\<br>{x_2}\\<br>{\vdots}\\<br>{x_m}\\<br>\end{bmatrix} + \begin{bmatrix}<br>{w_{11}}&amp;{w_{12}}&amp;{\cdots}&amp;{w_{1n}}\\<br>{w_{21}}&amp;{w_{22}}&amp;{\cdots}&amp;{w_{2n}}\\<br>{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\\<br>{w_{n1}}&amp;{w_{n2}}&amp;{\cdots}&amp;{w_{nn}}\\<br>\end{bmatrix}\begin{bmatrix}<br>{s_1^{t-2}}\\<br>{s_2^{t-3}}\\<br>{\vdots}\\<br>{s_n^{t-2}}\\<br>\end{bmatrix})$$</p>
+<p>$$=f(\begin{bmatrix}<br>{u_1}\\<br>{u_2}\\<br>{\vdots}\\<br>{u_n}\end{bmatrix}x+ \begin{bmatrix}<br>{w_1}\\<br>{w_2}\\<br>{\vdots}\\<br>{w_n}\end{bmatrix}s^{t-2})$$</p>
+<p>$$=f(\begin{bmatrix}<br>{u_1x + w_1s^{t-2}}\\<br>{u_2x + w_2s^{t-2}}\\<br>{\vdots}\\<br>{u_nx + w_ns^{t-2}}\end{bmatrix})$$<br>在这里面 $u_i 和 w_i 是待优化的参数，x 和 s^{t-2} 都是实数组成的矩阵，$</p>
+<p>$所以参数是 u_i 和 w_i,u_i组成U是输入层到隐藏层的权重矩阵，w_i组成W是上一次的s^{t-2}值作为这一次的输入的权重矩阵$</p>
+<p>$\frac{\partial{s_2^{t-1}}}{\partial{net_1^{t-1}}} = \frac{\partial{f(u_2x + w_2s^{t-2})}}{\partial{u_1x + w_1s^{t-2}}}$</p>
+<p>由于上式中的变量为 $u_2 和 w_2$,而下式的变量为 $u1 和 w_1$,所以求导为 0</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-56-39-8ad0521194e00210fd1d738f106a223a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105630-b64241.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-57-06-3e295e0b908a1b968684789e56e39c29-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105659-052f58.png"></p>
+<p>其中 $(δ_t^l)^T$ 表示 $\frac{\partial{E}}{\partial{net_t}}$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-57-36-068747cfec9e3e68ed0a346cd989ce65-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105731-d9b553.png"></p>
+<p>这里的 $a_t^{l-1}$ 表示得是第 l - 1 层神经元的输出，式（22） ，式（39） 求得偏导实际上是对深度神经网络的图进行求的偏导（即下图），式 （22） 是横向求得，式（39） 是竖向求得，本片博客的作者在标记神经元的输入时，除了最底层使用 $x$ 进行标记，其他的输入层都是用的 $a$ 进行标记的,可以查看后向传播算法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-50-33-09607ca6bd45d27c704efcfe84724d9f-2256672-df137de8007c3d26-7b3f7c.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-58-13-07b04ecd42d322c53ceb7f90d4039fa3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105806-6dce0a.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-58-52-cf48cf2343929521b6ab4259f73596a2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105848-86d2f6.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-59-24-ba6e7714af2626728f6bb0e1a9d602f9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105919-62f085.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/10-59-49-cfd002b93e38c0cd21626ab366239e8e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622105945-03383d.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-14-47-34dc2a40c03263b1387470f8622e4707-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622211438-3d088b.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-15-46-18b25fb5a1048e88ac3483ea18bc1f93-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622211540-e077d4.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-16-32-e5505655f820450ea448aa8d0bad44cf-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622211627-1bc4c7.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-17-13-5bb5309c0f617433a4a7a6fdf2f5f9f1-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622211707-bf53b9.png"></p>
+<p>感觉这里的推导过程有错误，具体的提到过程应该如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-37-07-104e2eb5d191ed1c6799cdd0a1816c5a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622213630-8aed28.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-37-28-8aadfc80eac8528bc9f4f60cd553a6c2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622213642-651341.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-37-43-20cef9f6d5b914833185a6e35c311452-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622213658-156359.png"></p>
+<p>按照乘法法则乘进去和最后的结果一样</p>
+<p><strong>注意</strong></p>
+<p><strong>第二张图、第三张图都是实数与矩阵相乘再相加</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/22/21-17-51-ee1d88b423d0902a1548d3b20d6a6bca-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210622211746-51a132.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-44-42-11b860d97481f63f36ad84c7b52f6745-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074429-222cc8.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-45-27-34c217fa27e33fbbaf9b7710ce0f226e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074520-1d574e.png"></p>
+<h2 id="梯度爆炸和梯度消失"><a href="#梯度爆炸和梯度消失" class="headerlink" title="梯度爆炸和梯度消失"></a>梯度爆炸和梯度消失</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-53-46-73ebbc68083804710a4978792edcfb89-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623075338-234acb.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-54-13-daba273fac5ff8024a81281c38f62194-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623075407-0e839d.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-54-36-c1ed66d98b47a27aa95820de559d8c6b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623075431-7a8e01.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-55-03-b49896e590e6d68a087c727aa458f5b9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623075458-155405.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-45-52-0a01da7aa6aa405eedb908ce5972b791-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074547-168d81.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-46-14-cb9007be3116e2642b89d49e2a870d7d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074609-62d733.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-46-45-f9b736fe1b4d8bf3b9932faabf88fac3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074639-106617.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-47-16-b83c92d22d15270bf04b78e6d6025452-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074711-8bfc3b.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-47-52-1e9979a82884058966600c231fda74f4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074748-601ee9.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-48-32-2492883dec122ee45445c9ce8ef5718f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074825-d8a5c5.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-49-18-b39a088514966fe9a3f42ddb0217a6da-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074914-644069.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/07-49-53-9b597589ff41f408bc46aeb905576d3a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623074947-47fdf3.png"></p>
+<h2 id="防止梯度爆炸"><a href="#防止梯度爆炸" class="headerlink" title="防止梯度爆炸"></a>防止梯度爆炸</h2><p>一种暴力的方法是，当梯度的长度大于某个阈值的时候，将其缩放到某个阈值。虽然在数学上非常丑陋，但实践效果挺好。</p>
+<p>其直观解释是，在一个只有一个隐藏节点的网络中，损失函数和权值w偏置b构成error surface，其中有一堵墙：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/23/08-18-01-ed3e949b7f1c9b18588d5960bd957ab1-006Fmjmcly1fgu80lzfw9j30pr0g70yp-89c5fa.jpeg"></p>
+<p>每次迭代梯度本来是正常的，一次一小步，但遇到这堵墙之后突然梯度爆炸到非常大，可能指向一个莫名其妙的地方（实线长箭头）。但缩放之后，能够把这种误导控制在可接受的范围内（虚线短箭头）。</p>
+<p>但这种trick无法推广到梯度消失，因为你不想设置一个最低值硬性规定之前的单词都相同重要地影响当前单词。</p>
+<h2 id="减缓梯度消失"><a href="#减缓梯度消失" class="headerlink" title="减缓梯度消失"></a>减缓梯度消失</h2><p>与其随机初始化参数矩阵，不如初始化为单位矩阵。这样初始效果就是上下文向量和词向量的平均。然后用ReLU激活函数。这样可以在step多了之后，依然使得模型可训练。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/23/08-18-38-9e3d812ea27fa3d0abbb709bc5ac0f99-006Fmjmcly1fgu8faifyuj30my0jctei-bddcfd.jpeg"></p>
+<h2 id="困惑度结果"><a href="#困惑度结果" class="headerlink" title="困惑度结果"></a>困惑度结果</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/23/08-19-40-ec416c5bd9ae7f36a2fc0445d0181d5a-006Fmjmcly1fgu8jbejq7j30y00dialo-4bfb39.jpeg"></p>
+<p>相较于NGram，RNN的困惑度要小一些。</p>
+<h2 id="最后的实现技巧"><a href="#最后的实现技巧" class="headerlink" title="最后的实现技巧"></a>最后的实现技巧</h2><p>记录每个t的误差不要丢，反向传播的时候将其累加起来。</p>
+<h1 id="序列模型的应用"><a href="#序列模型的应用" class="headerlink" title="序列模型的应用"></a>序列模型的应用</h1><p>可以把每个词分类到NER、实体级别的情感分析（饭菜味道不错，但环境不太卫生）、意见表达。</p>
+<p>其中，意见挖掘任务就是将每个词语归类为：</p>
+<p>DSE：直接主观描述（明确表达观点等）</p>
+<p>ESE：间接主观描述（间接地表达情感等）</p>
+<p>语料标注采用经典的BIO标注：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/23/08-24-39-1fdb6a3e71e51bd6f3049b60c0a712d0-006Fmjmcly1fgu8zv8hgfj31a20i8q8o-2b18f0.jpeg"></p>
+<p>实现这个任务的朴素网络结构就是一个裸的RNN：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/23/08-24-56-a8e42bf80b38660d1c49400cada32069-006Fmjmcly1fgu95qcl7tj30ww0d0t9r-179be2.jpeg"></p>
+<p>但是这个网络无法利用当前词语的下文辅助分类决策，解决方法是使用一些更复杂的RNN变种。</p>
+<h2 id="Bidirectional-RNNs"><a href="#Bidirectional-RNNs" class="headerlink" title="Bidirectional RNNs"></a>Bidirectional RNNs</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/23/08-26-19-36b8ac5021b6cdf31c8a21d6a82831cd-006Fmjmcly1fgu9838i5wj30nc0ef75m-c7ce78.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/08-26-01-7d008a1a5a2641cd0af3f1cf1f2d54bb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623082556-530ee4.png"></p>
+<h2 id="Deep-Bidirectional-RNNs"><a href="#Deep-Bidirectional-RNNs" class="headerlink" title="Deep Bidirectional RNNs"></a>Deep Bidirectional RNNs</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/23/08-27-21-09b5fb3c415d3fc571e93510315fcb06-006Fmjmcly1fgu9l36s34j30kg0jjju1-84935c.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/08-28-15-7d008a1a5a2641cd0af3f1cf1f2d54bb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623082556-31f180.png"></p>
+<h2 id="评测"><a href="#评测" class="headerlink" title="评测"></a>评测</h2><p>评测方法是标准的F1（因为标签样本不均衡），在不同规模的语料上试验不同层数的影响：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/23/08-28-47-21b05ec8e9b8b9f4274aa1227c4ce5e7-006Fmjmcly1fgu9skeeejj31a80nqtba-886ae4.jpeg"></p>
+<p>可见层数不是越多越好。</p>
+<h2 id="应用：RNN机器翻译模型"><a href="#应用：RNN机器翻译模型" class="headerlink" title="应用：RNN机器翻译模型"></a>应用：RNN机器翻译模型</h2><p>传统机器翻译模型在不同的阶段用到大量不同的机器学习算法，这里讨论用RNN统一整个流水线。</p>
+<p>比如将3个单词的德语翻译为2个单词的英语，用到如下RNN：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/23/08-29-36-ad5a8fe0f8ca4789ba2c57560aa12998-006Fmjmcly1fguacg65ahj30z20guacc-a36331.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/08-31-22-63fb9a5ab207f587eaddae3e1fa6186a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623083117-1188cd.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/08-32-28-532b231d71754ca88392189389f21bbe-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623083224-2c7031.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/23/08-32-48-60b946d4572edd207dcfe15a9cf81953-006Fmjmcly1fguakyetk3j30gf0g6q48-537786.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/23/08-33-17-a39bde91efe1c49e3d1e10b88230fc6d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623083309-e3f6c3.png"></p>
+<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><pre><code>RNN是最好的DeepNLP模型之一
+因为梯度消失和梯度爆炸，训练很难
+可以用很多技巧来训练
+下次课将介绍更强大的RNN拓展：LSTM和GRU</code></pre>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>循环神经网络</tag>
+        <tag>CNN</tag>
+        <tag>RNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LSTMs and GRUs</title>
+    <url>/2021/06/23/LSTMs-and-GRUs/</url>
+    <content><![CDATA[<h1 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h1><h1 id="传统统计机器翻译系统"><a href="#传统统计机器翻译系统" class="headerlink" title="传统统计机器翻译系统"></a>传统统计机器翻译系统</h1><h1 id="深度学习来救场"><a href="#深度学习来救场" class="headerlink" title="深度学习来救场"></a>深度学习来救场</h1><h1 id="主要改进：更好的单元-GRU"><a href="#主要改进：更好的单元-GRU" class="headerlink" title="主要改进：更好的单元 GRU#"></a>主要改进：更好的单元 GRU#</h1><h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h1 id="RNN最新改进"><a href="#RNN最新改进" class="headerlink" title="RNN最新改进"></a>RNN最新改进</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>LSTM</tag>
+        <tag>GRU</tag>
       </tags>
   </entry>
 </search>

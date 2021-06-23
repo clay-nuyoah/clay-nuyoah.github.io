@@ -1,3 +1,5 @@
+http://clay-nuyoah.club/2021/06/23/LSTMs-and-GRUs/
+http://clay-nuyoah.club/2021/06/22/Recurrent-neural-network/
 http://clay-nuyoah.club/2021/06/20/Linguistic-Structure-Dependency-Parsing/
 http://clay-nuyoah.club/2021/06/15/Word-Window-Classification-Neural-Networks/
 http://clay-nuyoah.club/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/
@@ -6,5 +8,3 @@ http://clay-nuyoah.club/2021/01/22/0-1-bei-bao/
 http://clay-nuyoah.club/2021/03/08/fang-xiang-xuan-ze/
 http://clay-nuyoah.club/2021/01/14/bing-cha-ji/
 http://clay-nuyoah.club/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/
-http://clay-nuyoah.club/2020/11/30/wan-chou-ma-leetcode/
-http://clay-nuyoah.club/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/
