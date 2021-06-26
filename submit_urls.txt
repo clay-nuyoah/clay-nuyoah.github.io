@@ -1,4 +1,5 @@
 http://clay-nuyoah.club/2021/06/23/LSTMs-and-GRUs/
+http://clay-nuyoah.club/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/
 http://clay-nuyoah.club/2021/06/22/Recurrent-neural-network/
 http://clay-nuyoah.club/2021/06/20/Linguistic-Structure-Dependency-Parsing/
 http://clay-nuyoah.club/2021/06/15/Word-Window-Classification-Neural-Networks/
@@ -7,4 +8,3 @@ http://clay-nuyoah.club/2021/06/13/skip-gram/
 http://clay-nuyoah.club/2021/01/22/0-1-bei-bao/
 http://clay-nuyoah.club/2021/03/08/fang-xiang-xuan-ze/
 http://clay-nuyoah.club/2021/01/14/bing-cha-ji/
-http://clay-nuyoah.club/2021/01/11/zui-hou-yi-kuai-shi-tou-de-zhong-liang/

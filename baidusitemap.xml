@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://clay-nuyoah.github.io/2021/06/23/LSTMs-and-GRUs/</loc>
-    <lastmod>2021-06-23</lastmod>
+    <lastmod>2021-06-26</lastmod>
+  </url>
+  <url>
+    <loc>http://clay-nuyoah.github.io/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</loc>
+    <lastmod>2021-06-25</lastmod>
   </url>
   <url>
     <loc>http://clay-nuyoah.github.io/2021/06/22/Recurrent-neural-network/</loc>
-    <lastmod>2021-06-23</lastmod>
+    <lastmod>2021-06-24</lastmod>
   </url>
   <url>
     <loc>http://clay-nuyoah.github.io/2021/06/20/Linguistic-Structure-Dependency-Parsing/</loc>
@@ -46,10 +50,6 @@
   </url>
   <url>
     <loc>http://clay-nuyoah.github.io/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/</loc>
-    <lastmod>2021-01-14</lastmod>
-  </url>
-  <url>
-    <loc>http://clay-nuyoah.github.io/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</loc>
     <lastmod>2021-01-14</lastmod>
   </url>
   <url>

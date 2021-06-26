@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">38</span>
+            <span class="post-count">1.5k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">5 分钟</span>
         </span>
     </span>
 </div>
@@ -109,7 +109,91 @@ ga('send', 'pageview');
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h1><h1 id="传统统计机器翻译系统"><a href="#传统统计机器翻译系统" class="headerlink" title="传统统计机器翻译系统"></a>传统统计机器翻译系统</h1><h1 id="深度学习来救场"><a href="#深度学习来救场" class="headerlink" title="深度学习来救场"></a>深度学习来救场</h1><h1 id="主要改进：更好的单元-GRU"><a href="#主要改进：更好的单元-GRU" class="headerlink" title="主要改进：更好的单元 GRU#"></a>主要改进：更好的单元 GRU#</h1><h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h1 id="RNN最新改进"><a href="#RNN最新改进" class="headerlink" title="RNN最新改进"></a>RNN最新改进</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1> 
+  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-07-44-5473f62de3badd7522c101358cf53525-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625150625-4b0b5c.png"></p>
+<a id="more"></a>
+
+<h1 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h1><p>对于情感分析这类还算简单的任务，你可以整理一个情感极性词典、编写一堆规则做出一个勉强能用的系统。但到了机器翻译这个高级应用，就无法完全依靠规则了。现代机器翻译手段都是基于统计的，在平行语料上学习语言知识。</p>
+<p>传统机器翻译系统非常复杂，因为不同阶段用到了不同的机器学习方法。</p>
+<h1 id="传统统计机器翻译系统"><a href="#传统统计机器翻译系统" class="headerlink" title="传统统计机器翻译系统"></a>传统统计机器翻译系统</h1><p>定义一些符号：</p>
+<p>原文$f$</p>
+<p>译文$e$</p>
+<p>机器翻译定义为找到使如下条件概率最大：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-11-58-62ae6b36dec102ec0ee54fb260fe1bb5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625151149-a173a6.png"></p>
+<p>这里利用了贝叶斯公式。翻译模型$p(f|e)$,在平行语料上训练得到，语言模型$p(e)$在未对齐的原文语料上训练（是非常廉价的）。</p>
+<p>公式描述的翻译过程如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/25/15-13-31-c0db088629033dc4009a009af6a4f335-006Fmjmcly1fgux4v9ttnj31a40ceac0-1e3d10.jpeg"></p>
+<h2 id="第一步：对齐"><a href="#第一步：对齐" class="headerlink" title="第一步：对齐"></a>第一步：对齐</h2><p>找到原文中的哪个句子或短语翻译到译文中的哪个句子或短语。</p>
+<p>对齐时，原文中可能有部分词语没有对应的译文：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-20-08-947f4035e97cf913a03649e15e5a283b-006Fmjmcly1fgux9eqlddj30w60h0tbe-3d8c91.jpeg"></p>
+<p>也可能在译文中有部分词语没有对应的原文，根据模型不同，可能有一对多的对齐方式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/25/15-20-39-83cf8117f0f534bb20b8c4efccbfb973-006Fmjmcly1fguxap5mpvj31cg0t879t-8cd0ba.jpeg"></p>
+<p>也可能有多对一的对齐方式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-21-33-7bb23176ba87ed5d38604fb81ee4c104-006Fmjmcly1fguxe8dxcaj30lw0dx0v7-f9df3e.jpeg"></p>
+<p>还可能有多对多的对齐方式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/25/15-21-56-24e84349021d66e1ff47b5266306f09e-006Fmjmcly1fguxezha4ej313u0tygpw-6eee5d.jpeg"></p>
+<p>有时候还要通过句法分析，来进行不同颗粒度的对齐：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/25/15-22-21-8320f231e2eb1a6a8e0cbf6d13ec6851-006Fmjmcly1fguxhht1r8j319o0aign2-95f1fb.jpeg"></p>
+<h2 id="对齐之后"><a href="#对齐之后" class="headerlink" title="对齐之后"></a>对齐之后</h2><p>原文中每个单词都有多个备选单词，导致了许多短语的组合方式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-23-03-200aad31e0f521c47be807379e4a06d9-006Fmjmcly1fguxkn5uz5j319s0nqq7l-5b082a.jpeg"></p>
+<h2 id="解码：在海量假设中搜索最佳选择"><a href="#解码：在海量假设中搜索最佳选择" class="headerlink" title="解码：在海量假设中搜索最佳选择"></a>解码：在海量假设中搜索最佳选择</h2><p>这是一个特别复杂的搜索问题，涉及到许多语言模型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/25/15-23-41-e1c0e155d65080df5c0f80a901318a33-006Fmjmcly1fguxn8iuxfj314q0noq5g-be8a32.jpeg"></p>
+<h2 id="传统机器翻译"><a href="#传统机器翻译" class="headerlink" title="传统机器翻译"></a>传统机器翻译</h2><p>这还只是传统机器翻译系统的冰山一角，有许多细节没有涉及到，还需要大量的人肉特征工程，总之是非常复杂的系统。其中每个环节都是独立不同的机器学习问题。这些独立的模型各自为政，并不以一个统一的优化目标为最终目标。</p>
+<p>而深度学习则提供了一个统一的模型，一个统一的最终目标函数。在优化目标函数的过程中，得到一个end to end的完整的joint模型。传统机器翻译系统与深度学习是截然相反的，对齐模型、词序模型、语言模型……一堆独立的模型无法联合训练。</p>
+<h1 id="深度学习来救场"><a href="#深度学习来救场" class="headerlink" title="深度学习来救场"></a>深度学习来救场</h1><p>也许可以直接用RNN来接受原文，预测译文“下一个单词”：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-25-55-235058e0c64ebfc20b9315806ea15715-006Fmjmcly1fguy1l3e1wj31e20oy0xx-0712ed.jpeg"></p>
+<p>红圈所示特征表示必须能捕捉整个原文短语的语义，但是RNN无法记住太久之前的事情，大概五六个单词就到极限了。所以这不是个实用的模型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-31-56-ba74addf1b83c9456daae98478b387b6-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625153148-39e822.png"></p>
+<p>softmax分类器中必须有个代表句子终止的“单词”，不然模型会无休止地输出下去。</p>
+<p>但神经网络机器翻译模型没有这么简单，必须加一些拓展。</p>
+<p>1、编码器和解码器训练不同的权值矩阵</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-33-31-49826bf18f3cb3e7485e1ee62b361e71-006Fmjmcly1fguyfoyrvfj31a00owdjs-1cf28e.jpeg"></p>
+<p>红蓝代表不同的权值。</p>
+<p>2、decoder中的隐藏层的输入来自3个方面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-34-36-ebe88dcf45df691de8fa8d164ea64064-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625153428-16ff57.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-34-58-60b946d4572edd207dcfe15a9cf81953-006Fmjmcly1fguakyetk3j30gf0g6q48-33dbab.jpeg"></p>
+<p>这可以辅助训练softmax的权值矩阵，防止模型重复生成同一个单词。</p>
+<p>上图还有一个复杂版本，表达的是同一个意思：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/25/15-35-53-11d37ea9182de7ff3c22eb3e85a7e3db-006Fmjmcly1fguysycf7kj31c60wuth0-db6410.jpeg"></p>
+<p>3、使用深度RNN</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/25/15-37-18-09b5fb3c415d3fc571e93510315fcb06-006Fmjmcly1fgu9l36s34j30kg0jjju1-7d17b6.jpeg"></p>
+<p>4、使用 bi-directional encoder</p>
+<p>5、不再用 A B C→X Y作为训练实例，而是逆转原文词序：C B A→X Y。因为A更可能翻译为X，而梯度消失导致A无法影响输出，倒过来A离输出近一些。逆转词序不会带来“语法语义上的改变”，因为模型学习的就是如何从逆序的原文翻译顺序的译文。但相应的，C就离Y更远了</p>
+<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h2 id="RNN-存在的问题"><a href="#RNN-存在的问题" class="headerlink" title="RNN 存在的问题"></a>RNN 存在的问题</h2><p>误差项沿时间反向传播的公式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-46-46-69774b6629219e29c615c8feb8afaf08-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625154641-cf2d75.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-47-10-a190dd9ea3666be9e4c566d768a05d0b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625154704-4a15b9.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-54-04-e9cf9447069d00565f5aedb5c7b09037-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625155359-74472d.png"></p>
+<h2 id="LSTM结构示意图"><a href="#LSTM结构示意图" class="headerlink" title="LSTM结构示意图"></a>LSTM结构示意图</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/06/25/15-57-30-bbc55e04db51e1dcabc6855982c05212-2256672-7ea82e4f1ac6cd75-1ef7fc.png"></p>
+<h2 id="LSTM前向计算公式"><a href="#LSTM前向计算公式" class="headerlink" title="LSTM前向计算公式"></a>LSTM前向计算公式</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-00-50-063956c2d489e0d2ae0cdef3489696cb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625155808-817b14.png"></p>
+<h2 id="误差项沿时间的反向传递（误差的横向计算）"><a href="#误差项沿时间的反向传递（误差的横向计算）" class="headerlink" title="误差项沿时间的反向传递（误差的横向计算）"></a>误差项沿时间的反向传递（误差的横向计算）</h2><p>计算 t-1 时刻的误差项$\delta^{t-1}$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-05-31-f5a6262b10ffde64de874da14fecf9dc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625160526-71940b.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-07-31-38d2a2419647b0f810ebaebef2716996-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625160722-cb6582.png"></p>
+<p>其中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-08-34-88808808004e812073a015be226d6df3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625160829-9789da.png"></p>
+<p>经过推导可以得到</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-10-00-a7308cc08d0c84b1d81123009269134b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625160955-3d820c.png"></p>
+<h2 id="将误差项传递到上一层（误差的竖向计算）"><a href="#将误差项传递到上一层（误差的竖向计算）" class="headerlink" title="将误差项传递到上一层（误差的竖向计算）"></a>将误差项传递到上一层（误差的竖向计算）</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-11-45-7e8bf0b72ba3a7d4b864bcde71ed6cc9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625161133-7d7b2a.png"></p>
+<h2 id="权重梯度的计算"><a href="#权重梯度的计算" class="headerlink" title="权重梯度的计算"></a>权重梯度的计算</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-12-54-1a58f8033f824db2e2621beba78fcbbe-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625161250-319222.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-12-54-1a58f8033f824db2e2621beba78fcbbe-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625161250-319222.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-13-26-5652d7e94ac087102cca28cb9be8ba66-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625161321-6ef92d.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-14-02-ef3ff32d36ed8071f0580d1e12a29d7a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625161357-a96091.png"></p>
+<h1 id="主要改进：更好的单元-GRU"><a href="#主要改进：更好的单元-GRU" class="headerlink" title="主要改进：更好的单元 GRU"></a>主要改进：更好的单元 GRU</h1><p>前面我们讲了一种普通的LSTM，事实上LSTM存在很多变体，许多论文中的LSTM都或多或少的不太一样。在众多的LSTM变体中，GRU (Gated Recurrent Unit)也许是最成功的一种。它对LSTM做了很多简化，同时却保持着和LSTM相同的效果。因此，GRU最近变得越来越流行。</p>
+<h2 id="GRU的示意图"><a href="#GRU的示意图" class="headerlink" title="GRU的示意图"></a>GRU的示意图</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/upload-images.jianshu.io/upload_images/2021/06/25/16-15-21-620fd71cd786900fd8c474cc70d8a242-2256672-b784d887bf693253-5d131e.png"></p>
+<h2 id="GRU的前向计算公式"><a href="#GRU的前向计算公式" class="headerlink" title="GRU的前向计算公式"></a>GRU的前向计算公式</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/16-15-53-32d97b26b151cc0dc1cff679db4ff4ea-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625161547-c2ded2.png"></p>
+<p>GRU的训练算法比LSTM简单一些，，自行推导</p>
+<h1 id="RNN最新改进"><a href="#RNN最新改进" class="headerlink" title="RNN最新改进"></a>RNN最新改进</h1><h2 id="softmax的问题：无法出新词"><a href="#softmax的问题：无法出新词" class="headerlink" title="softmax的问题：无法出新词"></a>softmax的问题：无法出新词</h2><p>对分类问题来讲，你无法指望分类模型给你分出一个训练集中不存在的类。即便是训练集中存在的类，如果样本数很少，模型也很难预测出该类。</p>
+<p>对于预测下一个单词的语言模型来讲，也是如此。比如某某女士巴拉巴拉，然后自我介绍说我叫某某。如果某某不存在于训练集中，则模型无法预测出某某。</p>
+<p>虽然可以用字符级的模型，但代价实在太大。</p>
+<h2 id="用指针来解决问题"><a href="#用指针来解决问题" class="headerlink" title="用指针来解决问题"></a>用指针来解决问题</h2><p>如果把某某替换为“向前数第10个单词”这样的指针，问题就迎刃而解了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/25/16-23-40-0b6fa2b62acba61a0153e1ebcac063c1-006Fmjmcly1fgva657a97j30z40h4ju0-d5d426.jpeg"></p>
+<p>具体做法是，以前100个时刻的隐藏层作为输入，用一个softmax去计算前100个单词是pointer的概率，与原来的词表上的分布混合。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/25/16-25-51-af53b852b6f56cb25fd02ea5aed6e040-006Fmjmcly1fgvd7psrsoj31bk0xegyr-4d4a80.jpeg"></p>
+<p>使用了pointer之后，困惑度下降了零点几个百分点：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/25/16-29-23-918da019d6f2bdc100121632a4856ec4-006Fmjmcly1fgvd9ulzzlj31aa0qithe-9bdb56.jpeg"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>RNN很强大</p>
+<p>有很多进行中的工作</p>
+<p>GRU更强大</p>
+<p>LSTM又更强大</p>
+ 
       <!-- reward -->
       
       <div id="reword-out">
