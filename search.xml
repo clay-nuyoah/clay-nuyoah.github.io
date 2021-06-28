@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NMT And Attention</title>
+    <url>/2021/06/28/NMT-And-Attention/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/17-22-59-213aec43c17a297eeb2e153f45e99dc0-QQ%E6%88%AA%E5%9B%BE20210628172251-6e8dab.png"></p>
+<a id="more"></a>
+
+
+<h1 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h1><pre><code>传统衡量机器对语言理解的测试之一
+同时涉及到语言分析与理解
+一个每年400亿美金的产业
+主要在欧洲，亚洲也在兴起</code></pre>
+<h2 id="机器翻译的需求"><a href="#机器翻译的需求" class="headerlink" title="机器翻译的需求"></a>机器翻译的需求</h2><pre><code>Google每天翻译1000亿单词
+Facebook研发了自己的翻译系统，因为通用的机器翻译系统无法适应社交领域
+eBay用机器翻译来促进跨境交易</code></pre>
+<h1 id="什么是NMT"><a href="#什么是NMT" class="headerlink" title="什么是NMT"></a>什么是NMT</h1><p>抽象的架构就是一个encoder一个decoder：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/17-26-18-ecc7dc425f0b9e35df71cf6f4213b118-006Fmjmcly1fgzs95nj6uj31dw0h4q4q-fc3f66.jpeg"></p>
+<h2 id="NMT-青铜时代"><a href="#NMT-青铜时代" class="headerlink" title="NMT:青铜时代"></a>NMT:青铜时代</h2><p>80年代神经网络是个很边缘的领域，另外计算力也很有限。当时的NMT系统只是个玩具：词表四五十，固定的50个输入（二进制编码），固定的66个输出，一到三层隐藏层，150个单元……</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/17-28-15-3b519db477d0d255529da78f386eb4b0-006Fmjmcly1fgzsp3ng38j30h40rqqa4-ce7511.jpg"></p>
+<p>90年代出现了一种类似RNN的更复杂的框架：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/17-29-02-68701e7f1051beee1637c9672d12e360-006Fmjmcly1fgzsryhke6j31ce0qman9-571767.jpeg"></p>
+<h2 id="现代NMT模型"><a href="#现代NMT模型" class="headerlink" title="现代NMT模型"></a>现代NMT模型</h2><p>之前课上也提到过，一个RNN做encoder，另一个RNN做decoder：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/17-30-29-cc0174ea27f10d2097340750ccf21a08-006Fmjmcly1fgzszvodr6j30p80bp75k-832d93.jpeg"></p>
+<p>实际使用的系统更加复杂：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/28/17-30-49-30f3a54825a31b43859de2a682ba6533-006Fmjmcly1fgzt1in82bj31ee0mathi-0008b1.jpeg"></p>
+<p>这里的RNN可视作以原文为条件的conditional语言模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/17-35-03-1d82967585b4365e4e2a029ba26ced54-006Fmjmcly1fgzt4fg1zrj30o60dn79s-0e64c9.jpeg"></p>
+<h2 id="RNN-Encoder"><a href="#RNN-Encoder" class="headerlink" title="RNN Encoder"></a>RNN Encoder</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/17-34-44-faa5192c934f75d1c6253791cfdf03a8-006Fmjmcly1fgzt7kl6x4j318y0cqgnp-8e84fc.jpeg"></p>
+<p>最后一个隐藏层的状态Y是整个原文的总结。</p>
+<h2 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h2><p>常见的做法是把encoder的最后一层（最后一个时刻）作为decoder的第一层，这样就必须用LSTM保持中期记忆。</p>
+<p>另一种做法是将encoder最后一层喂给decoder的每一层，这样就不会有记忆丢失的后顾之忧了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/17-37-50-c328e1bbf299e726567f97c0fc57a5e9-006Fmjmcly1fgztg6wu3dj310u0cgjtk-e9d2dc.jpeg"></p>
+<h2 id="MT的发展"><a href="#MT的发展" class="headerlink" title="MT的发展"></a>MT的发展</h2><p>基于短语的MT就是2016-11之前的Google翻译所采用的系统，其发展是缓慢的。神经网络兴起之后，出现了一种基于Syntax-based SMT（估计是换换词向量），发展也不快。但NMT的发展是最迅猛的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/17-39-04-304a301d7b9e3c85493abdc90529e68a-006Fmjmcly1fgztoujd7sj30ow0g0diz-5f87cf.jpeg"></p>
+<p>NMT的四大优势</p>
+<pre><code>End-to-end training
+    为优化同一个损失函数调整所有参数
+Distributed representation
+    更好地利用词语、短语之间的相似性
+Better exploitation of context
+    利用更多上下文——原文和部分译文的上下文
+生成的文本更流畅
+    可能跟上述优势有关</code></pre>
+<p>NMT也存在弱点</p>
+<pre><code>无法显式利用语义或语法结构（依存句法分析完全用不上了，有些工作正在展开）
+无法显式利用指代相消之类的结果</code></pre>
+<h1 id="统计-神经网络机器翻译"><a href="#统计-神经网络机器翻译" class="headerlink" title="统计/神经网络机器翻译"></a>统计/神经网络机器翻译</h1><p>Manning说除了英语之外，学生中第二大语种是中文，而且他亮出了简体中文的例子，真是让人激动啊。他还特意在不同年份测试了google翻译的效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/17-45-05-627c74d9183e5a152035b57ac7897afe-006Fmjmcly1fgzudxxklwj31bk0q6tjt-e9ddc2.jpeg"></p>
+<p>其中，13年有所进步，14-16年又退步了并且停滞了3年。直到2017年才有质的飞跃。</p>
+<h2 id="NMT主要由工业界促进"><a href="#NMT主要由工业界促进" class="headerlink" title="NMT主要由工业界促进"></a>NMT主要由工业界促进</h2><pre><code>2016-02 微软在Android和iOS上发布了离线NMT系统，这对境外旅游人士特别有帮助。
+2016-08 Systran发布了NMT模型
+2016-09 Google发布了NMT系统，大肆宣传了一番，并且overclaim比得上人工翻译质量。Manning真是直言不讳啊。</code></pre>
+<h1 id="介绍Attention"><a href="#介绍Attention" class="headerlink" title="介绍Attention"></a>介绍Attention</h1><p>朴素encoder-decoder的问题是，只能用固定维度的最后一刻的encoder隐藏层来表示源语言Y，必须将此状态一直传递下去，这是个很麻烦的事情。事实上，早期的NMT在稍长一点的句子上效果就骤降。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/19-45-57-54a88fd9cfc13007c9d816b21d5bd6da-006Fmjmcly1fgzwgwjmunj30te0iwjtb-50a328.jpeg"></p>
+<p>解决方法是将encoder的历史状态视作随机读取内存，这样不仅增加了源语言的维度，而且增加了记忆的持续时间（LSTM只是短时记忆）。</p>
+<p>这种机制也与人类译员的工作流程类似：不是先把长长的一个句子暗记于心再开始闭着眼睛翻译，而是草草扫一眼全文，然后一边查看原文一边翻译。这种“一边……一边……”其实类似于语料对齐的过程，即找出哪部分原文对应哪部分译文。而NMT中的attention是隐式地做对齐的。</p>
+<h2 id="词语对齐"><a href="#词语对齐" class="headerlink" title="词语对齐"></a>词语对齐</h2><p>传统的SMT中需要显式地做双语对齐：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/19-48-43-545fe7a1135ae6635e5c97932dc318ed-006Fmjmcly1fgzwnas6czj31aq0v20xx-0bb186.jpeg"></p>
+<h2 id="同时学习翻译和对齐"><a href="#同时学习翻译和对齐" class="headerlink" title="同时学习翻译和对齐"></a>同时学习翻译和对齐</h2><p>一个非常棒的可视化，显示attention model成功地对齐了法语和英语，其中一小段语序的调整也反应出来了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/19-49-30-fd6937e2a41aa9779aaa07f6e71181a6-006Fmjmcly1fgzws04dx8j318y0u4tdr-26eabe.jpeg"></p>
+<h2 id="打分"><a href="#打分" class="headerlink" title="打分"></a>打分</h2><p>在图示问号时刻，究竟应该关注哪些时刻的encoder状态呢？关注的强度是多少呢？</p>
+<p>有一种打分机制，以前一刻的decoder状态和某个encoder状态为参数，输出得分：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/20-29-28-c03de7873eae432b89512839aa4cac6e-006Fmjmcly1fgzww54hclj30pm0mcmzi-50a36d.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/20-29-55-bdaa1e44bdacb14bde23244d8179744b-006Fmjmcly1fgzwwjf5qoj30oa0li40t-78cd2f.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/20-30-15-89330c765efc778bb9322d6a46fa7ee0-006Fmjmcly1fgzwwv8cxnj30oa0lw0v2-6a3638.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/20-30-31-0ebf4df1ed9fa23b3af91f0734650866-006Fmjmcly1fgzwx6217oj30o60mkjtq-f117ea.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/28/20-30-52-b8a23db75a144806b4ffb60f1fbe8710-006Fmjmcly1fh0n92pf50j315c0o8whi-6dbc50.jpeg"></p>
+<p>这个概率也代表模型应该将多少比例的注意力放在一个历史状态上：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/28/20-31-28-a62bb822ef3468c0f8dd28981faee353-006Fmjmcly1fh0nbnn8a6j310y0n041b-b177e8.jpeg"></p>
+<p>加权和得到一个context vector，作为条件之一生成decoder的当前状态：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/28/20-32-16-70c448a00fd99c3a280be0308475b843-006Fmjmcly1fh0ndqpe6sj30oi0mkmz9-7f6389.jpeg"></p>
+<p>而分数的获得，是通过attention function进行的。attention function有多种选择，其中流行的是中间这种。$W_a$给了两个向量更复杂的interaction，而最后一种根本没有interaction。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/20-33-48-3015ec15934be4d31aaf0a43f3dfe41b-006Fmjmcly1fh0nj86k1fj30nx07m0uh-241042.jpeg"></p>
+<p>有一些观点认为模型不应该注意所有的事情，可能对长句子来讲比较有潜力：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/20-34-22-e2d219493c73238b096f4d64d2bdf920-006Fmjmcly1fh0nn6bwbgj31c60mcn1d-f2ac66.jpeg"></p>
+<p>但这些观点并没有取得更好的成绩：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/28/20-35-33-cdc5d7d1fe80ab39534d0c27a34e02e3-006Fmjmcly1fh0nr2tqe4j30of0dcdk5-4d6f0f.jpeg"></p>
+<h2 id="更多attention！覆盖范围"><a href="#更多attention！覆盖范围" class="headerlink" title="更多attention！覆盖范围"></a>更多attention！覆盖范围</h2><p>在图片标题生成研究中，模型通过对图片不同区域的attention生成了不同的词语：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/20-38-39-71b5d4f09d0439a1f651f1a50b2adbbd-006Fmjmcly1fh0o257v1jj319q0a27fj-e2e400.jpeg"></p>
+<h2 id="decoder"><a href="#decoder" class="headerlink" title="decoder"></a>decoder</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/20-42-06-29d784290bf821a37eaec371a803e2ec-QQ%E6%88%AA%E5%9B%BE20210628204159-e5e071.png"></p>
+<h2 id="Ancestral-sampling"><a href="#Ancestral-sampling" class="headerlink" title="Ancestral sampling"></a>Ancestral sampling</h2><p>在时刻$t$,根据之前的词语生成当前词语$x_t$:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/20-44-46-d2c6fa9c0bda2c5da595a4d6c02f1db7-QQ%E6%88%AA%E5%9B%BE20210628204441-b6b803.png"></p>
+<p>可以多次sample取最好的。</p>
+<p>理论上完美无缺，但实践中只会产生高方差的差效果。你也不想同一个句子每次翻译结果都不一样。</p>
+<h2 id="Greedy-Search"><a href="#Greedy-Search" class="headerlink" title="Greedy Search"></a>Greedy Search</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/28/20-45-23-9a81be0c5df7bb4ab8816bdb5b0b8a41-006Fmjmcly1fh19bsnpcuj309y0g2dh0-005a82.jpeg"></p>
+<h2 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h2><p>每个时刻记录$k$个最可能的选项（剪枝），在其中进行搜索。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/20-47-01-7c531bb811b3ea5e6fa42531a57da495-QQ%E6%88%AA%E5%9B%BE20210628204656-802286.png"></p>
+<p>然后递推 $H_{t+1}$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/20-50-02-e71e27b0412dc0b398478ef6e033b53e-QQ%E6%88%AA%E5%9B%BE20210628204957-318fe3.png"></p>
+<p>其中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/20-50-41-f2113f8926dcb9d72a5b890ffca765fa-QQ%E6%88%AA%E5%9B%BE20210628205020-0fe0b0.png"></p>
+<p>也就是说把词表中的词丢进入计算概率取前$K$个。</p>
+<h2 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/20-52-02-df022b1a7b2183ba61bda3c4053fa2cf-006Fmjmcly1fh19j0rpu6j31960fognz-28c085.jpeg"></p>
+<p>采样要采50轮才得到比贪心搜索稍好的结果，但很小的柱搜索轻松超越了它们。另外，基于短语的MT常用的柱搜索大小是100到150，可见NMT的优势。</p>
+<h1 id="Encoder-Decoder框架"><a href="#Encoder-Decoder框架" class="headerlink" title="Encoder-Decoder框架"></a>Encoder-Decoder框架</h1><p>注意力机制是一种通用的思想，本身不依赖于特定框架，但是目前主要和Encoder-Decoder框架（编码器-解码器）结合使用。下图是二者相结合的结构：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1630478/201904/2021/06/28/21-03-23-5c13469575a712116661e953346a7add-1630478-20190415162604257-952024342-ba64cd.png"></p>
+<p>类似的，Encoder-Decoder框架作为一种深度学习领域的常用框架模式，在文本处理、语言识别和图像处理等领域被广泛使用。其编码器和解码器并非是特定的某种神经网络模型，在不同的任务中会套用不同的模型，比如文本处理和语言识别中常用RNN模型，图形处理中一般采用CNN模型。</p>
+<p>以下是没有引入注意力机制的RNN Encoder-Decoder框架：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1630478/201904/2021/06/28/21-04-11-e7e66753a093ec9af54b4ac80ed337f1-1630478-20190415162651216-1322445418-eb842e.png"></p>
+<p>下面就以Seq2Seq(异步的序列到序列模型)模型为例，来对比未加入注意力机制的模型和加入了注意力机制后的模型。</p>
+<h2 id="未加入注意力机制的RNN-Encoder-Decoder"><a href="#未加入注意力机制的RNN-Encoder-Decoder" class="headerlink" title="未加入注意力机制的RNN Encoder-Decoder"></a>未加入注意力机制的RNN Encoder-Decoder</h2><p>未加入注意力机制的RNN Encoder-Decoder框架在处理序列数据时，可以做到先用编码器把长度不固定的序列X编码成长度固定的向量表示C，再用解码器把这个向量表示解码为另一个长度不固定的序列y，输入序列X和输出序列y的长度可能是不同的。</p>
+<p>《Learning phrase representations using RNN encoder-decoder for statistical machine translation》这篇论文提出了一种RNN Encoder-Decoder的结构，如下图。除外之外，这篇文章的牛逼之处在于首次提出了GRU(Gated Recurrent Unit)这个常用的LSTM变体结构。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1630478/201904/2021/06/28/21-05-34-18542d076db77434a6e9f5a1a6272698-1630478-20190415173815973-490353215-f3cce0.png"></p>
+<p>把这种结构用在文本处理中，给定输入序列$X=[x_1,x_2,…,x_T]$,也就是由单词序列构成的句子，这样的一个解码-编码过程相当于是求另一个长度可变的序列$y=[y_1, y_2, …, y_{T′}]$的条件概率分布：$p(y)=p(y_1, y_2, …, y_{T′} | x_1,x_2,…,x_T)$。经过解码后，这个条件概率分布可以转化为下面的连乘形式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-07-53-802a4f442a3ef7ba4a6daa0ab118f2e1-QQ%E6%88%AA%E5%9B%BE20210628210744-0a3960.png"></p>
+<p>所以在得到了表示向量c和之前预测的所有词 ${y_1,y_2,…, y_{t-1}}$后，这个模型是可以用来预测第$t$个词$yt$的，也就是求条件概率$p(y_t | {y_1,y_2,…, y_{t-1}}, c)$。</p>
+<p>对照上面这个图，我们分三步来计算这个条件概率：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-09-14-002cc7d641c2e2c22a3d196c6cdb5808-QQ%E6%88%AA%E5%9B%BE20210628210908-b367ca.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-09-41-8901066726df25ad916273f8be41da1d-QQ%E6%88%AA%E5%9B%BE20210628210936-71a6be.png"></p>
+<h2 id="加入注意力机制的RNN-Encoder-Decoder"><a href="#加入注意力机制的RNN-Encoder-Decoder" class="headerlink" title="加入注意力机制的RNN Encoder-Decoder"></a>加入注意力机制的RNN Encoder-Decoder</h2><p>《Neural Machine Translation by Jointly Learning to Align and Translate 》这篇论文在上面那篇论文的基础上，提出了一种新的神经网络翻译模型（NMT）结构，也就是在RNN Encoder-Decoder框架中加入了注意力机制。这篇论文中的编码器是一个双向GRU，解码器也是用RNN网络来生成句子。</p>
+<p>用这个模型来做机器翻译，那么给定一个句子$X=[x_1,x_2,…,x_T]$，通过编码-解码操作后，生成另一种语言的目标句子$y=[y_1, y_2, …, y_{T′}]$，也就是要计算每个可能单词的条件概率，用于搜索最可能的单词，公式如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-10-21-5521e737850276c820b3184501e62eb8-QQ%E6%88%AA%E5%9B%BE20210628211017-93c2f6.png"></p>
+<p>生成第$t$个单词的过程图示如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1630478/201904/2021/06/28/21-10-49-34ba0b6979c893277ad75d0729fdf0cf-1630478-20190415214603559-1644831845-c6a2f1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-11-16-e336d408944f0f84b53e44ec6fc0fb05-QQ%E6%88%AA%E5%9B%BE20210628211109-a1d779.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-11-43-e386ad2bea3b265995737907d46d05e8-QQ%E6%88%AA%E5%9B%BE20210628211137-c8a815.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-12-01-4b2f293aa6e283da576931890fa7974a-QQ%E6%88%AA%E5%9B%BE20210628211156-0d2c85.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/21-12-20-8fc0ff077ac2fb4724d20cfad8927799-QQ%E6%88%AA%E5%9B%BE20210628211215-4aa25d.png"></p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>NMT</tag>
+        <tag>MT</tag>
+        <tag>机器翻译</tag>
+        <tag>Attention</tag>
+        <tag>注意力机制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LSTMs and GRUs</title>
     <url>/2021/06/23/LSTMs-and-GRUs/</url>
     <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/25/15-07-44-5473f62de3badd7522c101358cf53525-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210625150625-4b0b5c.png"></p>
