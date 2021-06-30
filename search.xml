@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>end-to-end speech recognition</title>
+    <url>/2021/06/30/end-to-end-speech-recognition/</url>
+    <content><![CDATA[<a id="more"></a>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>端到端</tag>
+        <tag>end-to-end</tag>
+        <tag>Speech Recognition</tag>
+        <tag>语音识别</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GRU AND NMT Advance</title>
+    <url>/2021/06/29/GRU-AND-NMT-Advance/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/30/14-38-52-bd315ad1a71aff2eae980dd68acb6a81-QQ%E6%88%AA%E5%9B%BE20210630143830-6233fc.png"></p>
+<a id="more"></a>
+
+<h1 id="深入GRU"><a href="#深入GRU" class="headerlink" title="深入GRU"></a>深入GRU</h1><p>把GRU再详细讲一讲。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/29/21-32-05-f009f3034e3fd2283498fedc4d4b68c9-006Fmjmcly1fh26tkuf3mj31ay0r8qat-c17a45.jpeg"></p>
+<p>RNN的梯度消失就不赘述了，红线连乘多次下溢出。</p>
+<p>而GRU额外添加了一些“捷径”红线，允许梯度直接流过去，而不是连乘的方式递减过去。</p>
+<h2 id="Update-Gate"><a href="#Update-Gate" class="headerlink" title="Update Gate"></a>Update Gate</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/29/21-32-53-e99311e33af9dd235915798e8051a907-006Fmjmcly1fh279bre16j318m0ju0zq-c8f916.jpeg"></p>
+<p>用来自适应学习应该把多少注意力放到前一个隐藏层状态上。</p>
+<h2 id="Reset-Gate"><a href="#Reset-Gate" class="headerlink" title="Reset Gate"></a>Reset Gate</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/29/21-33-55-49de4b596be349726d0b091e32a4b3c0-006Fmjmcly1fh2ylvadzrj319u0h6agh-07cae5.jpeg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/29/21-34-57-d2420576a632bbc23fb4b4f5d1d4f90e-006Fmjmcly1fh301jbqhij31cq0jg0wn-d1b2cd.jpeg"></p>
+<p>门多了之后，就可以灵活地选择读取部分寄存器，执行运算，写入部分寄存器。</p>
+<p>Reset Gate起到决定要读哪些寄存器的目的，而Update Gate决定要写的寄存器。这里的“决定”其实是“强度”的意思，不是绝对的。</p>
+<h1 id="深入LSTM"><a href="#深入LSTM" class="headerlink" title="深入LSTM"></a>深入LSTM</h1><p>宏观上的LSTM Cell：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/29/21-36-47-9f57fbb9c5a0c41eadb2cc4e7e5a546a-006Fmjmcly1fh379ttwk0j30i40iv42d-a289a2.jpeg"></p>
+<p>将所有操作都gate起来，方便遗忘甚至忽略一些信息，而不是把所有东西都塞到一起。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/29/21-37-12-5c4ea91b8df24dc02ea6171fee5f53d1-006Fmjmcly1fh37ds6tjlj30hp0ipaeg-0f5862.jpeg"></p>
+<p>New Memory Cell的计算是一个非线性的过程：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/29/21-37-41-acbd78154c0cb380c7c77459e5ff8d17-006Fmjmcly1fh37mpm9ylj30ho0isdju-00ba1d.jpeg"></p>
+<p>最关键之处在于，Memory Cell的更新中有一个加法项直接来自上一刻的Cell，也就是说建立了ct和ct−1的直接线性连接（与ResNet类似）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/29/21-37-59-6afe95883c3c720f8a377690ea0aa6f2-006Fmjmcly1fh37r3ydazj30hv0in78c-5219c2.jpeg"></p>
+<p>类似于GRU中的加法，在反向传播的时候允许原封不动地传递残差，也允许不传递残差，总之是自适应的。</p>
+<p>有了这些改进，LSTM的记忆可以比RNN持续更长的step（大约100）：</p>
+<h1 id="MT评测"><a href="#MT评测" class="headerlink" title="MT评测"></a>MT评测</h1><p>以前人们认为交给人类译员来打分是最好的，但这太主观了，10个译员给出的翻译可能都不相同。</p>
+<h2 id="BLEU"><a href="#BLEU" class="headerlink" title="BLEU"></a>BLEU</h2><p>后来IBM发明了一种简单有效的评价策略，叫BLEU。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/29/20-39-03-e959e2f47e19de2cc496082c14328136-006Fmjmcly1fh3doomj4kj30im0ta79e-a74a75.jpeg"></p>
+<p>通过比较标准译文与机翻译文中NGram的重叠比率（0到1之间）来衡量机翻质量。</p>
+<h2 id="Brevity-Penalty（BP）"><a href="#Brevity-Penalty（BP）" class="headerlink" title="Brevity Penalty（BP）"></a>Brevity Penalty（BP）</h2><p>是否可以通过输出大量无意义的the之类来作弊？不，通过Brevity Penalty来防止机翻比译员译文短。</p>
+<p>一般取4-gram之内参与评测，最终的分值是所有ngram分值的几何平均乘上一个Brevity Penalty：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx1.sinaimg.cn/large/2021/06/29/20-40-06-8832425989bf275cfc29b8d9db846599-006Fmjmcly1fh3dppisxdj30t80oo79p-b07826.jpeg"></p>
+<h2 id="BLEU-和-BP-的计算"><a href="#BLEU-和-BP-的计算" class="headerlink" title="BLEU 和 BP 的计算"></a>BLEU 和 BP 的计算</h2><p>计算公式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/20-42-24-5f5ec3f303a7102b91b27ae7af09f913-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629204218-a4dd66.png"></p>
+<p>其中 BP 的计算公式是当$c \leq r 时，为 e^{1-\frac{r}{c}}$,后边的 r，c是一个整体</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/20-48-01-4e1ff3c259a9e12d3bd417a7df83ec78-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629204755-3491e5.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/20-59-15-e358833e774f3ac6f05a92f5332f615c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629204839-6ae3a2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/20-53-00-bc8f2c161d9eda0c658d8318d8dc959d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629205130-4fab46.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/21-01-02-18afd9801cdca88151435cdea3f4a0d4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629205958-b2d8cd.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/20-57-24-eefb09c8031f37d24d3db63a35e514ff-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629205612-d251bb.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/21-01-53-ed262d9c21b1e7f2f22fc7fe02e06c93-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629210146-b27a1c.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/29/21-02-21-1347d3bfab8f29fb7f685028d551a2cb-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210629210215-545c17.png"></p>
+<h2 id="BP代码实现"><a href="#BP代码实现" class="headerlink" title="BP代码实现"></a>BP代码实现</h2><p>求 BP 的代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def _modified_precision(candidate, references, n):</span><br><span class="line">    counts &#x3D; Counter(ngrams(candidate, n))</span><br><span class="line"></span><br><span class="line">    if not counts:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">    max_counts &#x3D; &#123;&#125;</span><br><span class="line">    for reference in references:</span><br><span class="line">        reference_counts &#x3D; Counter(ngrams(reference, n))</span><br><span class="line">        for ngram in counts:</span><br><span class="line">            max_counts[ngram] &#x3D; max(max_counts.get(ngram, 0), reference_counts[ngram])</span><br><span class="line"></span><br><span class="line">    clipped_counts &#x3D; dict((ngram, min(count, max_counts[ngram])) for ngram, count in counts.items())</span><br><span class="line"></span><br><span class="line">    return sum(clipped_counts.values()) &#x2F; sum(counts.values())</span><br></pre></td></tr></table></figure>
+<h3 id="BLEU的计算"><a href="#BLEU的计算" class="headerlink" title="BLEU的计算"></a>BLEU的计算</h3><h2 id="Multiple-Reference-Translations"><a href="#Multiple-Reference-Translations" class="headerlink" title="Multiple Reference Translations"></a>Multiple Reference Translations</h2><p>为了防止某篇机翻实际上很好，可就是跟人类译文用词行文不相似的情况，IBM的论文建议多准备几篇标准答案，这样总会撞上一个：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/29/20-41-15-fd67588f9d53939ca0e80ec068df9ab8-006Fmjmcly1fh3dvvdsv0j31a20u0dtk-f8b371.jpeg"></p>
+<h1 id="解决大词表问题"><a href="#解决大词表问题" class="headerlink" title="解决大词表问题"></a>解决大词表问题</h1><p>大词表问题指的是softmax的计算难度：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/29/21-07-48-750c28ec597a57f56f64511e7f04bc19-006Fmjmcly1fh3hecak26j30od0etwi2-78fd99.jpeg"></p>
+<p>早期的MT系统会使用较小的词表，但这并不是解决问题，而是逃避问题。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/29/21-08-07-9b4cc78572cd696123a963ce0f9404d1-006Fmjmcly1fh3hfv049aj30o60cqwh8-390bbe.jpeg"></p>
+<p>另一种思路是，hierarchical softmax，建立树形词表，但这类方法过于复杂，让模型对树形结构敏感而不是对词语本身敏感。</p>
+<h2 id="Large-vocab-NMT"><a href="#Large-vocab-NMT" class="headerlink" title="Large-vocab NMT"></a>Large-vocab NMT</h2><p>最新的方法是训练时每次只在词表的一个小子集上训练，因为40%的词语只出现一次，如果把训练数据均分为许多份，则每一份中的稀有词可能都不会在其他语料中出现。然后测试时加一些技巧。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/29/21-11-01-7143c0386ddfd057b1ea7093a079aaf1-006Fmjmcly1fh3hspe86yj30sq0csq5v-0a9e45.jpeg"></p>
+<p>如何选择小词表呢？在刚才的方法上更进一步，让用词相似的文章进入同一个子集，这样每个子集的词表就更小了。</p>
+<p>测试</p>
+<p>测试的时候先雷打不动将前K个最常使用的单词加入备选词表，然后将原文中每个单词可能的前K′个翻译加进去。最后在备选词表上softmax。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/29/21-16-33-68175d48113b4971eb189f102b156aa2-006Fmjmcly1fh3i0897abj31b80sc0wo-324545.jpeg"></p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+        <tag>LSTM</tag>
+        <tag>GRU</tag>
+        <tag>NMT</tag>
+        <tag>MT评测</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NMT And Attention</title>
     <url>/2021/06/28/NMT-And-Attention/</url>
     <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/28/17-22-59-213aec43c17a297eeb2e153f45e99dc0-QQ%E6%88%AA%E5%9B%BE20210628172251-6e8dab.png"></p>

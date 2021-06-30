@@ -1,3 +1,5 @@
+http://clay-nuyoah.club/2021/06/30/end-to-end-speech-recognition/
+http://clay-nuyoah.club/2021/06/29/GRU-AND-NMT-Advance/
 http://clay-nuyoah.club/2021/06/28/NMT-And-Attention/
 http://clay-nuyoah.club/2021/06/23/LSTMs-and-GRUs/
 http://clay-nuyoah.club/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/
@@ -6,5 +8,3 @@ http://clay-nuyoah.club/2021/06/20/Linguistic-Structure-Dependency-Parsing/
 http://clay-nuyoah.club/2021/06/15/Word-Window-Classification-Neural-Networks/
 http://clay-nuyoah.club/2021/06/14/gao-ji-ci-xiang-liang-biao-shi/
 http://clay-nuyoah.club/2021/06/13/skip-gram/
-http://clay-nuyoah.club/2021/01/22/0-1-bei-bao/
-http://clay-nuyoah.club/2021/03/08/fang-xiang-xuan-ze/
