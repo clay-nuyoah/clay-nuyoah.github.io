@@ -85,7 +85,7 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">0</span>
+            <span class="post-count">3.8k</span>
         </span>
     </span>
 
@@ -94,20 +94,256 @@ ga('send', 'pageview');
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">14 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <a id="more"></a>
+  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/06/09-17-37-7aadc7cdf5911ab44e6edd0703223145-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210706091731-ba3f68.png"></p>
+<a id="more"></a>
+
+<h1 id="Automatic-Speech-Recognition（ASR）"><a href="#Automatic-Speech-Recognition（ASR）" class="headerlink" title="Automatic Speech Recognition（ASR）"></a>Automatic Speech Recognition（ASR）</h1><p>ASR就是将声学信号转化为文本的系统</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/30/15-08-20-a1cab161816ce6211cdadbe2436ab015-006Fmjmcly1fh46pi9l5rj31em0feaee-50d65b.jpeg"></p>
+<p>语音是一种自然的用户接口</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/30/15-08-52-a5c819ff2d7dc4a3226a0538b7c84465-006Fmjmcly1fh46raonxhj30lc0563zx-573b45.jpeg"></p>
+<h2 id="传统ASR"><a href="#传统ASR" class="headerlink" title="传统ASR"></a>传统ASR</h2><p>传统做法的主体是生成式语言模型，建模声学信号与文本的发音特征的联合概率，但pipeline的不同部分掺杂了不同的机器学习模型：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx3.sinaimg.cn/large/2021/06/30/15-09-37-d60602adbbe294a758cb2d337a54a60c-006Fmjmcly1fh46ynd1l7j31b80goq9z-984b59.jpeg"></p>
+<h1 id="ASR模型"><a href="#ASR模型" class="headerlink" title="ASR模型"></a>ASR模型</h1><h2 id="0、前置知识"><a href="#0、前置知识" class="headerlink" title="0、前置知识"></a>0、前置知识</h2><h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>下面会频繁用到 token 这个单词，下面列举 4 类常用的 token。</p>
+<p><strong>Phoneme</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/21-09-58-27d1044f97418806eddb4daf8de98b87-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705210941-006674.png"></p>
+<p>Phoneme 是声学的基本单位。</p>
+<p><strong>Grapheme</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/21-10-49-b5da781bc02892ef278fb69e3fead986-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705211041-fe99da.png"></p>
+<p>对于英文就是一个英文字母，加上标点符号还有空格。对于中文就是一个汉字。</p>
+<p><strong>word</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/21-11-28-6b952c4963a6ee1a1e1a8b631029cfa9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705211119-a527a8.png"></p>
+<p>对于英文就是一个英文单词，对于中文就是一个一个词组。</p>
+<p><strong>Morpheme</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/21-12-42-ba17a4421d4a322d6a34c14023b1eb5d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705211235-c01bde.png"></p>
+<p>Morpheme 是对 word 的更细的划分。</p>
+<p>下面提到的都是 Grapheme 这个token</p>
+<h3 id="token-在论文中使用情况"><a href="#token-在论文中使用情况" class="headerlink" title="token 在论文中使用情况"></a>token 在论文中使用情况</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/21-15-47-890521842dbe69533c9ce57f00991d3f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705211351-038ba9.png"></p>
+<p>可以看出 Grapheme 在论文中所占的比例非常高。</p>
+<h3 id="将音频信息转化为声学特征"><a href="#将音频信息转化为声学特征" class="headerlink" title="将音频信息转化为声学特征"></a>将音频信息转化为声学特征</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/06/09-13-44-40a0e629602890dbfa8bb98090d3fbaf-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210706091306-1b6ced.png"></p>
+<p>音频信息可以通过上面的方法转化为声学特征。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/06/09-15-26-165358696e3cd41bc04315f5d850c11b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210706091520-fba357.png"></p>
+<p>各种提取声学特征的方法在以往论文中所占的比例。</p>
+<h2 id="1、LAS"><a href="#1、LAS" class="headerlink" title="1、LAS"></a>1、LAS</h2><h3 id="1、LAS-模型"><a href="#1、LAS-模型" class="headerlink" title="1、LAS 模型"></a>1、LAS 模型</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img-blog.csdnimg.cn/2021/07/05/19-36-50-7425c42b43d88b3d23662427741a389f-20191216220112519-86321e.png"></p>
+<p>LAS 是 Listen, Attention, and Spell 的缩写，它利用了注意力机制来进行有效对齐</p>
+<p>工作流程：</p>
+<pre><code>将语音信号的特征输入到 Encoder 中（Listen部分）
+做 Attention，在不同的时刻关注输入的不同部分（Attention部分）
+通过 Decoder 进行解码(Spell部分)</code></pre>
+<h3 id="2、Listen"><a href="#2、Listen" class="headerlink" title="2、Listen"></a>2、Listen</h3><p>Listen 部分对应的是 Encode-Decoder 模型中的 Encoder 部分，可以选择 RNN,CNN,CNN+RNN,Self-Attention</p>
+<p><strong>Encoder 使用 RNN 模型</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/15-39-03-094f470acb6a1d7d6a34d3f13d5b9841-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704153829-e7e3ab.png"></p>
+<p><strong>Encoder 使用 CNN 模型</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/06/09-23-55-e591d715829f2a8d8f17411f5c0b6e1e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210706092349-081fb9.png"></p>
+<p><strong>Encoder 使用 Self-attention 模型</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/19-40-50-d00102a16f7ae9248b1fd37e3b81eef7-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705194043-f7f176.png"></p>
+<p>如果每 10ms 对样本进行采样一次，那么 1s 就会采集到 100 个样本，这会导致两个问题，一个问题是会采集到大量的重复样本，另一个问题是如果采集数据的时间过长，会导致样本数目变的非常庞大。所以通常需要对声音进行降采样，以减少重复样本和样本数目。降采样的主要方法有 Pyramid RNN，Pooling over time，Time-delay DNN (TDNN)，Truncated Self-attention，前三种降采样一方面可以减少样本的数量，另一方面也可以合并重复的样本。</p>
+<p><strong>Pyramid RNN</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/15-48-12-4bd734f799e27d7fd25184313a403ed9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704154804-925817.png"></p>
+<p>在每一层的RNN输出后，都做一个聚合操作。把两个向量加起来，变成一个向量。</p>
+<p><strong>Pooling over time</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/15-49-15-0c6839ebf7cc4cb60fbbe5b354261060-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704154910-8ef8d2.png"></p>
+<p>两个 time step 的向量，只选其中一个，输入到下一层。</p>
+<p><strong>Time-delay DNN (TDNN)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/15-55-41-0cb3ca6d2d46fc0c66e13d000f7908e9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704155535-f62f70.png"></p>
+<p>因为相邻的编码信息差不太多，为了减少运算量，只取两端的样本。</p>
+<p><strong>Truncated Self-attention</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/15-58-00-d16f9cdb7c1980680779f7f420de3475-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704155601-824a7c.png"></p>
+<p>为了减少注意力的范围，将注意力集中在当前输入样本附近的几个样本上。</p>
+<h3 id="3、Attend"><a href="#3、Attend" class="headerlink" title="3、Attend"></a>3、Attend</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/16-05-05-1b9123a86fa2c4c3fa4f73729ddb89d0-20210704160027-f08145.png"></p>
+<p>关键字 $z^i$ 对编码器中的每一个输出 $h^i$ 做 Attention，获得 $\alpha_i^j$,其中 $i$ 表示层数，$\alpha_i^j$ 表示 $h^j$ 与 $z^i$,经过 match 之后计算得到的 Attention 得分。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/16-18-10-7ced7509f58534acbbd8c1f03651ddbe-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704161801-0a65e2.png"></p>
+<p>所有的 $\alpha_i^j$ 需要经过 softmax 得到最终的概率值 $\hat{\alpha_i^j}$，用 $\hat{\alpha_i^j}$ 和 $h^j$ 相乘做加和，得到最后的 Attention 输出 $c^i$</p>
+<p><strong>match 的结构</strong></p>
+<p>上面通过将 $h^j$ 和 $z^i$放到 match 中，来获得 Attention 得分 $\alpha_i^j$，match 结构有 Dot-product Attention 和 Additive Attention 两种结构</p>
+<p><em>Dot-product Attention</em></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/16-24-00-ea3f7eec847aa5c393b1eb0952a47651-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704162316-cd5f84.png"></p>
+<p><em>Additive Attention</em></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/16-25-32-832058a4d25c298b5f6257c4ba1b87aa-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704162339-9a774a.png"></p>
+<h3 id="4、Spell"><a href="#4、Spell" class="headerlink" title="4、Spell"></a>4、Spell</h3><p>Spell 部分对应的是 Encode-Decoder 模型中得 Decoder 部分，通过这一步可以将得到向量解码成我们想要的单词。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/16-34-32-86da15953fd0654a0005b266a581d6b3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704163009-a208df.png"></p>
+<p>根据 $z^0$ 与 $c^0$ 形成 $z^1$,通过 $z^1$ 来预测第一个输出，根据 $z^1$ 与 $c^1$ 形成 $z^2$,通过 $z^2$ 和上一次的输出来预测第二个输出，……。其中 $c^i$ 是 Attend 这一步通过 Attention 拿到的输出。对于每一个输出都是一个大小为 V 的向量，该向量中的每一个值，表示每个 token 的输出概率。由于词表较大，没有办法去搜索穷尽所有的可能性，为了非常快的找到使最后的输出概率最大的路径，可以采用下面两种搜索路径的方法。</p>
+<p><em>Greedy Search</em></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/16-56-32-46576cf5f7bf9b8a74fd1841501a4666-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704165417-d41e4b.png"></p>
+<p>每次都选择当前情况下的最优解，这种策略不能保证生成整个序列的概率是最优的。</p>
+<p>红色的路径是根据 Greedy Search 得到的结果，显然绿色的路径才是最好的路径。</p>
+<p>1处和2处求 A 的概率如下</p>
+<pre><code>P(1) = p(A|A) = 0.6
+p(2) = P(A|B) = 0.1
+所以两处的概率是不同的</code></pre>
+<p><em>Beam Search</em></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-06-27-3460259cd4d2c861dacf9597d6d13dab-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704170439-1f4cdd.png"></p>
+<p>为了解决 Greedy Search 的问题，可以使用 Beam Search 的搜索方法。</p>
+<p>Beam size = 2 使每次都保留两个概率最大的路径</p>
+<p>计算过程如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-11-25-eb0528819a554eadf11b141a4daf35ae-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704171120-cc0835.png"></p>
+<p>最终得到了两个备选选项。</p>
+<h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-16-28-5b332a61673940203d8ab1aa810133a2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704171613-3a65b5.png"></p>
+<p>将样本输入到编码器中，得到 $h^1,h^2,h^3,h^4$,通过 $z^0$ 使用 Attention，得到 Attention 的输出 $c^0$,通过 $z_1$ 得到此表中 token 的概率分布，取出概率最大的对应的 token 作为输出。在这里我门期望 c 的概率是最大的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-26-28-9d9d3e29af18622e888e0c7f068c122b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704172402-e3c805.png"></p>
+<p>在起始状态，所有输出的概率是混乱的，并不知道会输出什么词,这就有可能使输出 a 的时候发生混乱，本应该是在看到 c 的时候输出 a，但是最初的时候 ？ 有可能是 b，也有可能是 d，那就意味着在看到 b 的时候输出 a，或者是在看到 d 的时候输出 a，这与在看到 c 的时候输出 a 是矛盾的。可以通过每次都把真实的标签作为下一个 $z^i$ 的输入来纠正这个问题。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-32-26-78c4f4323473407df723e7426d66bcda-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704173057-53117b.png"></p>
+<p>这样就可以确定在输入 c 的时候输出 a 了。</p>
+<h3 id="Attention-相关"><a href="#Attention-相关" class="headerlink" title="Attention 相关"></a>Attention 相关</h3><p>关于 Attention 作用的位置，有两种模型。一种是通过 $z^i$ 生成 $c^i$ 作用于下一个隐层状态,一种是通过 $z^i$ 生成 $c^{i+ 1}$ 作用于当前的隐层状态。</p>
+<p><strong>第一种 Attention</strong></p>
+<p>把 Attention 的输出作用于下一时刻的隐层状态</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-40-23-145e2817beaeb96b1630857268366d2e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704174014-1a294f.png"></p>
+<p>把 Attention 的输出作用于当前时刻的隐层状态</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-40-51-47cde875101127fe77971fb90ac4c430-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704174044-2cd04d.png"></p>
+<p>但是在 LAS 中是全都要</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/17-41-48-5c38be82f340ccf3745c9319682e1b0c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704174123-ef6263.png"></p>
+<p>语义识别和机器翻译的的一个非常重要的不同是，在语音识别中不会像机器翻译那样出现交叉对齐的情况（即在翻译的时候原文的第一个词可能对应着翻译的最后一个词）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-19-13-abaea97a0aba4482277f5047e4b4dd5a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704191859-a53afe.png"></p>
+<p>理想情况下，做完 Attention 会出现上面的情况，即只与当前输入的附近几个样本有关。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-24-59-90d647b5521c7a9a7b2b0a93ad72eb1f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704192451-98ae4a.png"></p>
+<p>但是做完 Attention 后，可能会出现上面的情况</p>
+<p>有可能会出现与当前的输入无关，也可能出现与当前输入的附近几个样本无关</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-25-50-d81cd3601807befb77e0bb7897e4b72f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704192544-d4114e.png"></p>
+<p>针对上面的情况，LAS做了上图所示的修改</p>
+<h3 id="LAS是否有效"><a href="#LAS是否有效" class="headerlink" title="LAS是否有效"></a>LAS是否有效</h3><p><strong>在小的数据集上</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/06/09-50-49-ace792f583fab927fb59a5825c3754ad-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210706095044-8b048f.png"></p>
+<p>似乎不是非常的有效</p>
+<p><strong>在大的数据集上</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/20-15-39-40c433c9ac66740a874a6e5e83a865d2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705201531-a8cdb0.png"></p>
+<p>无论是在错误率还是内存占用上，都取得非常好的效果。</p>
+<h3 id="LAS-的限制"><a href="#LAS-的限制" class="headerlink" title="LAS 的限制"></a>LAS 的限制</h3><pre><code>LAS 的输出依赖于完整的 Encoder输出
+LAS 无法实现在线语音识别功能</code></pre>
+<h2 id="2、CTC"><a href="#2、CTC" class="headerlink" title="2、CTC"></a>2、CTC</h2><h3 id="CTC-模型"><a href="#CTC-模型" class="headerlink" title="CTC 模型"></a>CTC 模型</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-36-00-5c9c340037599702e5174c3c5b1439bf-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704193554-19c641.png"></p>
+<p>CTC 能够进行在线语音识别，编码器采用了单向 RNN（双向的RNN无法进行在线语音识别），需要注意的是 CTC 只有编码器，没有解码器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-41-45-4590c3a1b9c57855b9dca77ff20016b0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704194140-d24dea.png"></p>
+<p>如果每 10ms 取一个样本，时间非常短，所以在这一个样本中可能不会存在任何信息，所以在词组中加入了 $\phi$ 这个字符，用来表示输入对应的输出没有什么数据。</p>
+<h3 id="CTC模型的输入与输出"><a href="#CTC模型的输入与输出" class="headerlink" title="CTC模型的输入与输出"></a>CTC模型的输入与输出</h3><p>CTC 模型的输入是 T 个声学特征，输出是 T 个Token。输出包括 $\phi$,需要先合并重复的字符，然后移除掉 $\phi$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-42-44-129c638dca86bcf11b3140c0fdfe2b8a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704194234-a80803.png"></p>
+<p>对于 𝜙 𝜙 d d 𝜙 e 𝜙 e 𝜙 p p 这个输出来说，可采取下面两步得到 deep 这个单词</p>
+<pre><code>1、合并重复字符
+    𝜙 d 𝜙 e 𝜙 e 𝜙 p
+2、移除 𝜙
+    d e e p</code></pre>
+<h3 id="CTC-的损失函数"><a href="#CTC-的损失函数" class="headerlink" title="CTC 的损失函数"></a>CTC 的损失函数</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-47-57-d429eb12a73a7faffc6d353ef7722b26-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704194748-3a56a5.png"></p>
+<p>CTC 的损失函数是交叉熵，通过最小化交叉熵来获取最优解。</p>
+<h3 id="预测训练数据"><a href="#预测训练数据" class="headerlink" title="预测训练数据"></a>预测训练数据</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-49-55-c5f879875fe6fbd7060fd75d527340ba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704194949-699e95.png"></p>
+<p>对于 <em>好棒</em> 这样的一个输出来说，会有非常多的路径可以得到这样的一个结果，上图列出的几条路径通过化简都可以得到 <em>好棒</em> 这样的一个输出。</p>
+<h3 id="枚举所有可能的对齐"><a href="#枚举所有可能的对齐" class="headerlink" title="枚举所有可能的对齐"></a>枚举所有可能的对齐</h3><p>有非常多的对齐方式可以得到最后的输出，对于 CTC 来说，是全都要，将所有路径的概率全部加起来，就是最后输出的概率。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-58-34-e763591002c09b481de5747e76e92b77-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704195826-900dd4.png"></p>
+<p>Y 是所有的可能的路径</p>
+<p><strong>生成输出的规则</strong></p>
+<p>首先，我们构造一个 table，希望通过这个 table，直观的看出可以映射到真实标签序列 ‘cat’ 的可能路径。table的横坐标为输入的时间序列，纵坐标为将真实标签序列两两字母以’-‘分隔，并且在首尾各加一个’-‘。</p>
+<p>通过下面的五条规则可以得到所有正确的路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/20-23-13-2b2f51431055302084fa7f399aaeec29-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704202305-2a8c62.png"></p>
+<p>起点必须是纵坐标的前两个 token 中的任意一个。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/20-04-07-d32fac1d9c43b1ff64457312fe916604-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704200357-049467.png"></p>
+<p>当前时刻的 Token 不是 $\phi$,那么会有三种选择，如上图所示</p>
+<p>三种情况举例</p>
+<pre><code>1、cc𝜙at𝜙
+2、c𝜙at𝜙𝜙
+3、cat𝜙𝜙𝜙</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/20-08-00-24286fef4e1fc2d52754b2d59fcd3f02-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704200752-2700cb.png"></p>
+<p>当前时刻的 Token 是 $\phi$,那么会有两种选择，如上图所示</p>
+<p>两种情况举例</p>
+<pre><code>1、𝜙𝜙cat𝜙
+2、𝜙cat𝜙𝜙
+3、这种情况是不合法的，因为在产生的输出中会缺少 c 这个 token</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/20-11-03-d1d564fefdd07ce952e4ee3494de093e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704201056-cb030a.png"></p>
+<p>对于 see 这样的输出，存在着两个重复的 token，则采用上面的两条规则</p>
+<p>两种情况举例</p>
+<pre><code>1、s𝜙ee𝜙e
+2、s𝜙e𝜙𝜙e
+3、第三种情况是不合法的，这种情况会合并相邻的重复的 token</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/20-24-09-11cc413f1eaad5c1db2b4483fb0eb567-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704202404-61e964.png"></p>
+<p>结尾必须是纵坐标的后两个 token 中的任意一个。</p>
+<p><strong>生成路径总结</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/20-17-06-450d363437efd233ff14043e54583375-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704201656-2ce7cd.png"></p>
+<p>CTC 生成路径的方法，大致可以通过上图进行总结，起始点可以是 token 也可以是 $\phi$,结尾可以是 token 也可以是 $\phi$，中间可以有多个相同 token 也可以有多个 $\phi$，但是一条完整的路径必须包含正确输出的所有 token</p>
+<h3 id="计算所有对齐的和"><a href="#计算所有对齐的和" class="headerlink" title="计算所有对齐的和"></a>计算所有对齐的和</h3><p>这一部分使用到了隐马尔可夫模型中的前向-后向算法，并且使用了 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/shiyublog/p/10493348.html" title="CTC (Connectionist Temporal Classification) 算法原理">https://www.cnblogs.com/shiyublog/p/10493348.html</a> 博客中数据，讲解 CTC 中的前向和后向算法</p>
+<p><strong>前向算法</strong></p>
+<p>定义 $\alpha_t(s)$ 为前向变量，表示在 $t$ 时刻到达序列的第 s 个位置的所有可能子路径的概率和。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/14-45-40-3067e5b13e68c3fb64d536df84139c19-1453927-20190308083653176-751249777-763c22.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/14-48-41-fa53e7153acd6c623061983745cf3e93-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705144742-0ef675.png"></p>
+<p>可以通过 <em>生成输出的规则</em> 一节，生成下面所有列出的路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/14-50-54-1770e09a494ded0407d202280c63e993-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705145032-f2933d.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/14-51-06-1f9ecd79d7b6ef7a9cf5a3fdbb404c94-1453927-20190308085701438-1886927983-8a5de0.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/14-51-48-022f45a22edbb4cb6128dce2a7aa442f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705145140-9dcaef.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/14-52-02-04dfe267a5ea11dde432ab058e14bcaa-1453927-20190308091045087-4112545-17e115.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/14-52-39-410ee06e9947cbc797ebad716f1a7c4c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705145232-7b4aaa.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/14-52-54-e07a8dca885289901243ebbbe3f56e96-1453927-20190308091534188-1624942636-ab0690.png"></p>
+<p><strong>后向算法</strong></p>
+<p>定义 $\beta_t(s)$ 为后缀起始于序列末端， t 时刻到达第 s 个符号的所有可能子路径的概率和。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/14-59-11-7854ee90d6b66ed023701763b2732616-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705145903-8b1ffa.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/14-59-39-074e3110ca9b329709808d483e357acc-1453927-20190308101855990-529603551-caa21e.png"></p>
+<p>那么，将前向过程中所有箭头反向，使用同样的计算方式，即可计算出反向变量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/15-01-13-1f27cf020f00532ad0e3ffcc6483b079-1453927-20190308102237401-914286549-dcf475.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-04-26-e19d9d176e564820b602155f6782287f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705150418-4f3cb8.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/15-04-41-4e37464778369d36f66015cac5701837-1453927-20190308105558817-1310458424-90a9d4.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-06-28-3397bc107af6f7b538474c673c0b230d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705150621-4efc41.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/15-06-43-46a4356152937e0e36ce2f5bb6deb183-1453927-20190308110012287-638554946-1ba38f.png"></p>
+<p>最后，应用于1 - T的所有时刻，可以得到在任意时刻内预测出正确标签序列的概率。</p>
+<p>$p(‘apple’) = \sum_{s = 1}^{|seq|} \frac{\alpha_t(s) * \beta_t(s)}{y_{seq(s)} ^ t}$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-13-48-da22ee1fb7ea1b5a4276a6b3e2e68199-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705151342-879bd5.png"></p>
+<p>举个例子：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/img2018.cnblogs.com/blog/1453927/201903/2021/07/05/15-14-12-9f1c9ed575798370f55c6701e365eefd-1453927-20190308133939869-524172403-506758.png"></p>
+<p><strong>最后的推到步骤如下：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/i0.wp.com/xiaodu.io/wp-content/uploads/2018/07/2021/07/05/20-55-35-14d1c3ce2bd93e9755b278c832e82472-rnn_of3-3fca25.png"></p>
+<h2 id="3、RNN-T"><a href="#3、RNN-T" class="headerlink" title="3、RNN-T"></a>3、RNN-T</h2><h3 id="RNA模型"><a href="#RNA模型" class="headerlink" title="RNA模型"></a>RNA模型</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-19-04-85c9d1d4c61f67a117152ef70d029d2d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705151857-cca00a.png"></p>
+<p>由于 CTC 模型当前 token 的生成不依赖前面的 token，所以 RNA 解决了 CTC 的不足。</p>
+<h3 id="RNN-T模型"><a href="#RNN-T模型" class="headerlink" title="RNN-T模型"></a>RNN-T模型</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-21-17-49e6159fb9eab717de0fa85dad90ee66-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705152105-b2dcac.png"></p>
+<p>无论是 RNA 模型，还是 CTC 模型，他们都是吃一个输入，就输出一个 token，RNN-T 实现了吃一个输入，就输出多个 token。一个输入对应着多个 token，当没有 token 需要输出的时候，需要输出 𝜙 当作结束符。</p>
+<h3 id="RNN-T-的运行流程"><a href="#RNN-T-的运行流程" class="headerlink" title="RNN-T 的运行流程"></a>RNN-T 的运行流程</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-24-55-23a4fe4e45247b40d3656a63f1cb3233-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705152442-3a52a8.png"></p>
+<p>每个输入都至少对输出一个 𝜙 。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-31-19-d50d08f13a8e5b6e7e4fdc92924333f2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705153110-f392ef.png"></p>
+<p>注意画黄线方框的部分，𝜙 是不会影响下一个字符的生成的。这样的好处是在生成 e 这个 token 的时候，只受到 t、h 两个 token 的影响，而不会受到 𝜙 这个token的影响（因为 𝜙 生成的位置和数量都是不固定的）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-37-52-b226d530ce08c531fd6a749c494a5e9d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705153729-bbc857.png"></p>
+<p>这样可以保证，无论从哪个方向到达的 $p_{4,2}$,生成 $p_{4,2}$ 的概率都是一样的（下面会详细说明）。</p>
+<p><strong>如何生成输出</strong></p>
+<p>RNN-T 和 CTC 生成输出的方式是不一样的，有以下两条规则。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/21-00-25-473c8bbdeb3314d2fdba3e8eb35b7300-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705154614-b684f2.png"></p>
+<p>红色方框和黄色方框分别画出了 RNN-T 的起始点与结束点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-47-11-0fb142e2088135a9570bd143592401dc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705154704-c9b6b9.png"></p>
+<p>RNN-T只能往右走或者是竖着走，不能斜着走。</p>
+<p><strong>生成路径总结</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-50-36-a93e50273395655e7e3c5fa4559dc3d2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705154955-97bc85.png"></p>
+<p>将 CTC 与 RNN-T 进行对比可以发现，RNN 在每个 token 上面是没有循环的，而且 RNN-T 最后一个字母必须为 𝜙，因为 RNN-T 把 𝜙 作为每一个输入的结束。</p>
+<h3 id="计算所有对齐的和-1"><a href="#计算所有对齐的和-1" class="headerlink" title="计算所有对齐的和"></a>计算所有对齐的和</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/15-54-38-7f5762eadd203de497f21e0d18c8ddd9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705155430-f13aed.png"></p>
+<p>在 RNN-T 中计算一条完整路径的概率</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-02-17-e4c3f3525cd86761a73afc73ff593836-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705160208-8b4136.png"></p>
+<p>这里的 $h^i$是 Encoder 的输出，$l^i$是下图中黄线所标记的 RNN，可以看出这个 RNN 与前面 𝜙 出现的位置和数目没有任何关系。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-05-12-e81e82426edd8aed7c54554a77c76ca3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705160503-1b1354.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-07-39-e1780c7dd3f60e21b552b5c6a7085fd5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705160730-bc6158.png"></p>
+<p>对于 $p_{4,2}$ 这一个点的概率，无论选择走那条路径，对于下图中的 $l^2$ 来说是不变的，$h^4$ 也不会发生变化，那么 $p_{4,2}$ 也不会发生变化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-09-32-a3f15f51d9db83d5513f66ade50f259f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705160918-10b4a6.png"></p>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-15-28-bd97616c32e75e1c2702c12c0ac0b11a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705161517-63b8a2.png"></p>
+<p>需要优化的函数，其中$P(\hat{Y}|X)$是一条正确的输出路径的概率。同样是要所有对齐路径的概率和。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-35-17-748899d9d325ceb2dd7f25dfa9c4e187-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705163345-1b5a0e.png"></p>
+<p>正如黄色方框中所显示的那样，上图表格中的每一个箭头都代表一个几率，每个几率都能够影响 $P(\hat{Y}|X)$,而每一个几率都受到 $\theta$ 的影响，首先对 $\frac{\partial{P_{4,1}(a)}}{\partial{\theta}}$ 求偏导</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-45-29-0ce2fdc736a942bea0ce3a5072497b86-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705164518-9ae396.png"></p>
+<p>$P_{4,1}(a)$ 的值受到上方 RNN 生成的 $l^1$ 的影响，还受到下方 Encoder 生成的 $h^4$的影响，所以根据反向传播，更新变量参数。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/16-49-52-ed0d1f558b365643bc8f972e5bfac8dc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705164944-849dd8.png"></p>
+<p>接下来求 $\frac{\partial{P(\hat{Y}|X)}}{\partial{P_{4,1}(a)}}$,由于有些路径是经过$P_{4,1}(a)$这个箭头的，有的路径是不经过的，将两条路径分离出来，那么前一部分就与 $P_{4,1}(a)$，有关，另一部分与 $P_{4,1}(a)$ 无关，再把与 $P_{4,1}(a)$ 有关的部分把 $P_{4,1}(a)$ 提取出来，最后对 $P_{4,1}(a)$ 求偏导</p>
+<p>计算所有经过 $P_{4,1}(a)$ 路径的概率和，还是使用 HMM 的前向算法和后向算法</p>
+<p><strong>前向算法</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/17-15-18-70a7a5f4dfe1825618295f30ceb75ad2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705171511-222a28.png"></p>
+<p>$\alpha_{4,2}$ 是所有能产生 4 个声学特征，产生 2 个 token 的概率路径的总和。</p>
+<p><strong>后向算法</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/17-03-31-0464f14342730738858cb9911ff3717f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705170321-98cc6e.png"></p>
+<p>$\beta_{4,2}$ 是已经产生 4 个声学特征，已经产生 2 个 token 的概率，最后经过所有的可能路径能够到达结尾的所有路径的概率和。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/17-11-36-cc5b26aea373cb0f7bbdc745dcf2c2ca-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705171129-1bef42.png"></p>
+<p>根据前向算法产生的 $\alpha_{4,1}$ 和后向算法产生的 $\beta_{4,2}$ 来求$\frac{\partial{P(\hat{Y}|X)}}{\partial{P_{4,1}(a)}}$。</p>
+<h2 id="4、Neural-Transducer"><a href="#4、Neural-Transducer" class="headerlink" title="4、Neural Transducer"></a>4、Neural Transducer</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/17-18-34-26f9ff6b341992ad04410273a8ced425-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705171825-28f053.png"></p>
+<p>RNN-T 是根据一个输入生成多个输出，而 Neural Transducer 则是根据多个输入生成多个输出。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/05/17-20-48-1ef461134c8dea78f441f484a0fd8ef4-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210705172040-b18bc4.png"></p>
  
       <!-- reward -->
       

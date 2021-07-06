@@ -159,7 +159,7 @@ Better exploitation of context
 2016-09 Google发布了NMT系统，大肆宣传了一番，并且overclaim比得上人工翻译质量。Manning真是直言不讳啊。</code></pre>
 <h1 id="介绍Attention"><a href="#介绍Attention" class="headerlink" title="介绍Attention"></a>介绍Attention</h1><p>朴素encoder-decoder的问题是，只能用固定维度的最后一刻的encoder隐藏层来表示源语言Y，必须将此状态一直传递下去，这是个很麻烦的事情。事实上，早期的NMT在稍长一点的句子上效果就骤降。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx4.sinaimg.cn/large/2021/06/28/19-45-57-54a88fd9cfc13007c9d816b21d5bd6da-006Fmjmcly1fgzwgwjmunj30te0iwjtb-50a328.jpeg"></p>
-<p>解决方法是将encoder的历史状态视作随机读取内存，这样不仅增加了源语言的维度，而且增加了记忆的持续时间（LSTM只是短时记忆）。</p>
+<p>解决方法是将encoder的历史状态视作随机读取内存，这样不仅增加了源语言的维度，而且增加了记忆的持续时间（LSTM只是长时记忆）。</p>
 <p>这种机制也与人类译员的工作流程类似：不是先把长长的一个句子暗记于心再开始闭着眼睛翻译，而是草草扫一眼全文，然后一边查看原文一边翻译。这种“一边……一边……”其实类似于语料对齐的过程，即找出哪部分原文对应哪部分译文。而NMT中的attention是隐式地做对齐的。</p>
 <h2 id="词语对齐"><a href="#词语对齐" class="headerlink" title="词语对齐"></a>词语对齐</h2><p>传统的SMT中需要显式地做双语对齐：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/wx2.sinaimg.cn/large/2021/06/28/19-48-43-545fe7a1135ae6635e5c97932dc318ed-006Fmjmcly1fgzwnas6czj31aq0v20xx-0bb186.jpeg"></p>
