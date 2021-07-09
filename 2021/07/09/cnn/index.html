@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="5fFagiALkrBFm256jMyr0Wf9ZkND0mtyCDozn1qlVxE" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    CNN |  CLAY
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-XKPTQSV9FV', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-cnn"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  CNN
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/07/09/cnn/" class="article-date">
+  <time datetime="2021-07-09T06:05:59.000Z" itemprop="datePublished">2021-07-09</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/19-13-18-10b27b1a14748b41dc2d7eb390a95b7d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709191301-85fce7.png"></p>
+<a id="more"></a>
+
+<h1 id="0、前置知识"><a href="#0、前置知识" class="headerlink" title="0、前置知识"></a>0、前置知识</h1><h2 id="单通道图"><a href="#单通道图" class="headerlink" title="单通道图"></a>单通道图</h2><p>俗称灰度图，每个像素点只能有有一个值表示颜色，它的像素值在0到255之间，0是黑色，255是白色，中间值是一些不同等级的灰色。（也有3通道的灰度图，3通道灰度图只有一个通道有值，其他两个通道的值都是零）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/20-06-28-5bcbd4fc0769f5fe8368cb19d53fc848-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709200538-6b1804.png"></p>
+<p>上面是一张单通道图。</p>
+<h2 id="三通道图"><a href="#三通道图" class="headerlink" title="三通道图"></a>三通道图</h2><p>三通道图，每个像素点都有3个值表示 ，所以就是3通道。也有4通道的图。例如RGB图片即为三通道图片，RGB色彩模式是工业界的一种颜色标准，是通过对红(R)、绿(G)、蓝(B)三个颜色通道的变化以及它们相互之间的叠加来得到各式各样的颜色的，RGB即是代表红、绿、蓝三个通道的颜色，这个标准几乎包括了人类视力所能感知的所有颜色，是目前运用最广的颜色系统之一。总之，每一个点由三个值表示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/20-03-14-59c105758e0daa9f26bf0af2776bb2da-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709200301-023887.png"></p>
+<p>上图显示了一张图片是由 RGB 三个通道组成的。</p>
+<h1 id="1、CNN-模型结构"><a href="#1、CNN-模型结构" class="headerlink" title="1、CNN 模型结构"></a>1、CNN 模型结构</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/upload-images.jianshu.io/upload_images/2021/07/09/14-13-28-588f68dfcf7c2c618f374e027c0e1d0c-2256672-a36210f89c7164a7-17861a.png"></p>
+<p>如上图所示，一个卷积神经网络由若干卷积层、Pooling 层、全连接层组成。你可以构建各种不同的卷积神经网络，它的常用架构模式为：</p>
+<pre><code>INPUT -&gt; [[CONV] * N -&gt; POOL?] * M -&gt; [FC] * K</code></pre>
+<p>也就是 N 个卷积层叠加，然后(可选)叠加一个 Pooling 层，重复这个结构 M 次，最后叠加 K 个全连接层。</p>
+<p>对于上图所展示的卷积神经网络：</p>
+<p>INPUT -&gt; CONV -&gt; POOL -&gt; CONV -&gt; POOL -&gt; FC -&gt; FC</p>
+<p>按照上述模式可以表示为：</p>
+<p>INPUT -&gt; [[CONV]*1 -&gt; POOL]*2 -&gt; [FC]*2</p>
+<p>也就是：</p>
+<pre><code>N = 1, M = 2, K = 2。</code></pre>
+<h1 id="2、全连接网络处理图片的局限性"><a href="#2、全连接网络处理图片的局限性" class="headerlink" title="2、全连接网络处理图片的局限性"></a>2、全连接网络处理图片的局限性</h1><p><strong>参数数量太多</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/14-16-30-4546c89fc47f69e33b9bc8cb39cbbc8a-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709141622-9e3738.png"></p>
+<p>如果一张图片有三个通道，每个通道是 100 * 100 的矩阵，将这张图片每个通道中的矩阵拉平，每个通道可以获得一个 1 万维的向量，然后将三个通道拼接，获得 3 万维的向量。接下来跟隐层中的 100 个节点做全连接，会出现 3 * 100 * 100 * 100 = 3 百万个参数。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/14-27-59-3ee2fe8de8bc27ef285e61d9cf080591-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709142233-3352ca.png"></p>
+<p>在上面的图片中，红色框圈出了鸟嘴、鸟眼、鸟脚三个特征，选择其中的一个特征不太可能确定是鸟类，但是将 3 个特征结合起来，就有非常大的概率可以确定是鸟类了。这样就不需要让神经元看到整张图片的信息。</p>
+<p><strong>相同特征可能出现在不同区域</strong> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/14-46-29-6fe4f72110679f9f9dc75b600c163692-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709144621-334fdc.png"></p>
+<p>对于鸟嘴这个特征，他可能会出现在图片的左上角，也可能出现在图片的中间，但是无论出现在什么位置，它都是识别鸟类的重要特征，所以特征出现的区域不应该影响鸟类的识别。</p>
+<h1 id="3、CNN的优点"><a href="#3、CNN的优点" class="headerlink" title="3、CNN的优点"></a>3、CNN的优点</h1><p>为了解决上面提到的全连接网络的不足，CNN 提出了下面的解决方法。</p>
+<h2 id="接收视野"><a href="#接收视野" class="headerlink" title="接收视野"></a>接收视野</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/14-52-47-a8206a4426ba1b5fa4724e94282dd4b5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709145241-f6e2f9.png"></p>
+<p>为了解决 <em>参数数量太多</em> 的问题,使用了<em>接收视野</em>来将一块比较小的区域输入到神经元中。假如使用 3 * 3 * 3 的 Filter，将<em>接收视野</em>中的每个矩阵拉直，再拼接，输入到一个神经元中，会有 3 * 3 * 3 = 27 的参数数量</p>
+<h2 id="下采样"><a href="#下采样" class="headerlink" title="下采样"></a>下采样</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/15-02-00-eb7da89cacc862c9f33c74a6d4082db1-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709150153-6e63bd.png"></p>
+<p>下采样操作也是解决参数过多的手段，上图中左侧是原始图像，右侧是对左侧图片每隔一个像素点取样一次得到的图片，右图对于我们的识别是没有影响的，这样通过改变输入的数量，改变了参数的数量。</p>
+<h2 id="权值共享"><a href="#权值共享" class="headerlink" title="权值共享"></a>权值共享</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/14-58-34-a81e0bf44d8617fd0369c88ff5af3230-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709145804-8511de.png"></p>
+<p>为了解决 <em>相同特征可能出现在不同区域</em> 的问题，通过权值共享让具有相同特征的区域在输出时具有基本相同的输出。</p>
+<h1 id="4、CNN-网络架构"><a href="#4、CNN-网络架构" class="headerlink" title="4、CNN 网络架构"></a>4、CNN 网络架构</h1><p>前面的 <em>CNN 模型结构</em> 已经介绍了一个卷积神经网络由若干卷积层、Pooling层、全连接层组成。下面是对卷积层和 Pooling 层的介绍。</p>
+<h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p>所有的数据和图片来自于 <a target="_blank" rel="noopener" href="https://www.zybuluo.com/hanbingtao/note/485480" title="零基础入门深度学习(4) - 卷积神经网络">https://www.zybuluo.com/hanbingtao/note/485480</a></p>
+<h3 id="单通道单-Filter-卷积"><a href="#单通道单-Filter-卷积" class="headerlink" title="单通道单 Filter 卷积"></a>单通道单 Filter 卷积</h3><p>卷积层对应的是卷积操作。</p>
+<p>假设有一个 5 * 5 的图像，使用一个 3 * 3 的 filter 进行卷积，想得到一个3 * 3的Feature Map，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/15-15-43-1ba77d89601b81e6bd097767dc4c9f4c-2256672-548b82ccd7977294-e026b0.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/15-26-20-664724827a67debcdd4e47a6eb85c6a1-202107091522391-d865b1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/15-26-20-664724827a67debcdd4e47a6eb85c6a1-202107091522391-d865b1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/15-30-48-f2a93b6c784c7e4cc4984409b19b7fd5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709153041-dd11b7.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/16-21-40-22358e92c692ea8327e9528521853f3d-2256672-318017ad134effc5-153ec0.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/16-22-15-3569270401c65d677e41084594de59c7-2256672-318017ad134effc5-1e53e2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/16-29-32-78ad4fa09fb40412188d331f6e618bda-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709162531-b7b0e8.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/16-33-55-a51a38103e3ad616437a1e7a2f7a1765-2256672-b05427072f4c548d-aace0e.png"></p>
+<p>可以依次计算出Feature Map中所有元素的值。下面的动画显示了整个Feature Map的计算过程：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/upload-images.jianshu.io/upload_images/2021/07/09/16-37-27-6428cf505ac1e9e1cf462e1ec8fe9a68-2256672-19110dee0c54c0b2-0f0e6a.gif"></p>
+<p>上面的计算过程中，步幅(stride)为1。步幅可以设为大于1的数。例如，当步幅为2时，Feature Map计算如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/16-38-42-689c698ee4902dd3e83ceab97cdf0072-2256672-273e3d9cf9dececb-a01b68.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/http/upload-images.jianshu.io/upload_images/2021/07/09/16-39-18-ddad421687bbad2655518588d53053c2-2256672-7f362ea9350761d9-73cca3.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/16-39-53-d36160dea827df695c2aaf8328adca9a-2256672-f5fa1e904cb0287e-3c411d.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/16-40-19-8182dbf86c612e5a31968263b7a53e23-2256672-7919cabd375b4cfd-3a5a1a.png"></p>
+<h3 id="多通道单-Filter-卷积"><a href="#多通道单-Filter-卷积" class="headerlink" title="多通道单 Filter 卷积"></a>多通道单 Filter 卷积</h3><p>上面讲的都是单通道的卷积操作，也就是假设图片只有一个通道，下面列举有 3 个通道的图片。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/20-19-33-3e72ac63bcb3ae3c5dcb174ee0d24052-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709200853-260583.png"></p>
+<p>将 $X$ 分为 3 个 7 * 7 的矩阵，分别为 $X1、X2、X3$，将 Filter1 分为 3 个 3 * 3 的矩阵，分别为 $W_1$、$W_2$、$W_3$，将 $X1$ 与 $W_1$ 做卷积操作（单通道的卷积操作）得到$C1$，$X2$ 与 $W_2$ 做卷积操作得到$C2$，$X3$ 与 $W_3$ 做卷积操作得到 $C3$,然后将 $C1$、$C2$、$C3$ 的对应元素相加，最后加上偏置 $W_b = 1$,得到 $O1$。</p>
+<p>下面的代码对 O1 进行了实现，feature_map 就是 O1 所表示的矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 定义图片的 3 个通道信息</span><br><span class="line"></span><br><span class="line">X1 &#x3D; np.array([[0, 0, 0, 0, 0, 0, 0],</span><br><span class="line">               [0, 0, 1, 1, 0, 2, 0],</span><br><span class="line">               [0, 2, 2, 2, 2, 1, 0],</span><br><span class="line">               [0, 1, 0, 0, 2, 0, 0],</span><br><span class="line">               [0, 0, 1, 1, 0, 0, 0],</span><br><span class="line">               [0, 1, 2, 0, 0, 2, 0],</span><br><span class="line">               [0, 0, 0, 0, 0, 0, 0]])</span><br><span class="line"></span><br><span class="line">X2 &#x3D; np.array([[0, 0, 0, 0, 0, 0, 0],</span><br><span class="line">               [0, 1, 0, 2, 2, 0, 0],</span><br><span class="line">               [0, 0, 0, 0, 2, 0, 0],</span><br><span class="line">               [0, 1, 2, 1, 2, 1, 0],</span><br><span class="line">               [0, 1, 0, 0, 0, 0, 0],</span><br><span class="line">               [0, 1, 2, 1, 1, 1, 0],</span><br><span class="line">               [0, 0, 0, 0, 0, 0, 0]])</span><br><span class="line"></span><br><span class="line">X3 &#x3D; np.array([[0, 0, 0, 0, 0, 0, 0],</span><br><span class="line">               [0, 2, 1, 2, 0, 0, 0],</span><br><span class="line">               [0, 1, 0, 0, 1, 0, 0],</span><br><span class="line">               [0, 0, 2, 1, 0, 1, 0],</span><br><span class="line">               [0, 0, 1, 2, 2, 2, 0],</span><br><span class="line">               [0, 2, 1, 0, 0, 1, 0],</span><br><span class="line">               [0, 0, 0, 0, 0, 0, 0]])</span><br><span class="line"># 定义 3 个 filter 信息</span><br><span class="line">image_filter1 &#x3D; np.array([[-1, 1, 0],[0, 1, 0],[0, 1, 1]])</span><br><span class="line">image_filter2 &#x3D; np.array([[-1, -1, 0],[0, 0, 0],[0, -1, 0]])</span><br><span class="line">image_filter3 &#x3D; np.array([[0, 0, -1],[0, 1, 0],[1, -1, -1]])</span><br><span class="line"></span><br><span class="line">width &#x3D; X1.shape[-1]</span><br><span class="line">height &#x3D; X1.shape[0]</span><br><span class="line"></span><br><span class="line"># 步长</span><br><span class="line">stride &#x3D; 2</span><br><span class="line"># 图片信息</span><br><span class="line">Xs &#x3D; [X1,X2,X3]</span><br><span class="line"># filter 信息</span><br><span class="line">image_filters &#x3D; [image_filter1,image_filter2,image_filter3]</span><br><span class="line"># 通道大小</span><br><span class="line">channel_number &#x3D; len(Xs)</span><br><span class="line">filter_size &#x3D; len(image_filters)</span><br><span class="line"># 偏置</span><br><span class="line">b &#x3D; 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature_map_width &#x3D; (width - filter_size) &#x2F;&#x2F;  stride + 1 </span><br><span class="line">feature_map_height &#x3D; (height - filter_size) &#x2F;&#x2F;  stride + 1 </span><br><span class="line"></span><br><span class="line">feature_map &#x3D; np.zeros((feature_map_height,feature_map_width))</span><br><span class="line">for k in range(channel_number):</span><br><span class="line">    for i in range(0,width - filter_size + 1,stride):</span><br><span class="line">        for j in range(0,height - filter_size + 1,stride):</span><br><span class="line">            X &#x3D; Xs[k]</span><br><span class="line">            image_filter &#x3D; image_filters[k]</span><br><span class="line">            feature_map[i  &#x2F;&#x2F; stride][j &#x2F;&#x2F; stride] +&#x3D; (np.sum(X[i : i + filter_size, j : j + filter_size] * image_filter))</span><br><span class="line">feature_map +&#x3D;b</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="多通道多Filter卷积"><a href="#多通道多Filter卷积" class="headerlink" title="多通道多Filter卷积"></a>多通道多Filter卷积</h3><p>上面讲述的是单通道单 Filter，在单通道单 Filter 中，只能够产生一个输出，但是在多通道多 Filter 中会差生多个输出，即一个 Filter 会产生一个输出。</p>
+<p>与 单通道单 Filter 一样，可以通过 $X1、X2、X3$ 与 Filter2 中的 $W_4$、$W_5$、$W_6$ 得到 $O2$,这样就能通过 2 个 Filter 获得 2 个输出，因此存在几个 Filter 就会存在几个输出。</p>
+<p>以上就是卷积层的计算方法。这里面体现了局部连接和权值共享：每层神经元只和上一层部分神经元相连(卷积计算规则)，且 filter 的权值对于上一层所有神经元都是一样的。对于包含两个 3 * 3 * 3 的 fitler 的卷积层来说，其参数数量仅有(3 * 3 * 3 + 1) * 2 = 56 个，且参数数量与上一层神经元个数无关。与全连接神经网络相比，其参数数量大大减少了。</p>
+<h2 id="Pooling层"><a href="#Pooling层" class="headerlink" title="Pooling层"></a>Pooling层</h2><h3 id="Max-Pooling"><a href="#Max-Pooling" class="headerlink" title="Max Pooling"></a>Max Pooling</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/upload-images.jianshu.io/upload_images/2021/07/09/17-08-26-6eabc03098da799d01d575001b69fd07-2256672-03bfc7683ad2e3ad-626f59.png"></p>
+<p>Max Pooling实际上就是在n * n的样本中取最大值，上面是在一个 2 * 2 的样本中选取最大的值。分别在红色、绿色、黄色、蓝色区域选取最大的值，组成了右侧的矩阵。</p>
+<h3 id="Mean-Pooling"><a href="#Mean-Pooling" class="headerlink" title="Mean Pooling"></a>Mean Pooling</h3><p>Mean Pooling实际上就是在n * n的样本中取最平均值</p>
+<h1 id="5、卷积神经网络的训练"><a href="#5、卷积神经网络的训练" class="headerlink" title="5、卷积神经网络的训练"></a>5、卷积神经网络的训练</h1><p>卷积神经网络的训练过程与推到见 <a target="_blank" rel="noopener" href="https://www.zybuluo.com/hanbingtao/note/485480" title="零基础入门深度学习(4) - 卷积神经网络">https://www.zybuluo.com/hanbingtao/note/485480</a></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/07/09/cnn/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">卷积神经网络</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/06/30/end-to-end-speech-recognition/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">end-to-end speech recognition</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

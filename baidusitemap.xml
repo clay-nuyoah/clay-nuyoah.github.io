@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://clay-nuyoah.github.io/2021/07/09/cnn/</loc>
+    <lastmod>2021-07-09</lastmod>
+  </url>
+  <url>
     <loc>http://clay-nuyoah.github.io/2021/06/30/end-to-end-speech-recognition/</loc>
     <lastmod>2021-07-06</lastmod>
   </url>

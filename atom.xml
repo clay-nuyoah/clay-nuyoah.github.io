@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-07-06T01:54:57.441Z</updated>
+  <updated>2021-07-09T12:40:16.347Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CNN</title>
+    <link href="http://clay-nuyoah.github.io/2021/07/09/cnn/"/>
+    <id>http://clay-nuyoah.github.io/2021/07/09/cnn/</id>
+    <published>2021-07-09T06:05:59.000Z</published>
+    <updated>2021-07-09T12:40:16.347Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/09/19-13-18-10b27b1a14748b41dc2d7eb390a95b7d-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210709191301-85fce7.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="NLP" scheme="http://clay-nuyoah.github.io/tags/NLP/"/>
+    
+    <category term="CNN" scheme="http://clay-nuyoah.github.io/tags/CNN/"/>
+    
+    <category term="卷积神经网络" scheme="http://clay-nuyoah.github.io/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>end-to-end speech recognition</title>
