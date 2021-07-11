@@ -192,83 +192,11 @@ ga('send', 'pageview');
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="Self-Attention-模型"><a href="#Self-Attention-模型" class="headerlink" title="Self-Attention 模型"></a>Self-Attention 模型</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/20-41-53-bc4b4863894f89b227d543d405254f23-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210710204145-2b706e.png"></p>
-<p>Self Attention 是一种给定 n 个输入，给出 n 个输出的模型，通过全连接层进行预测和分类。Self Attention 内部的架构会在下面进行讲解。</p>
-<h1 id="全连接网络的局限性"><a href="#全连接网络的局限性" class="headerlink" title="全连接网络的局限性"></a>全连接网络的局限性</h1><h2 id="不擅长处理多个向量作为输入"><a href="#不擅长处理多个向量作为输入" class="headerlink" title="不擅长处理多个向量作为输入"></a>不擅长处理多个向量作为输入</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/20-52-42-2e0f49e09333deaa05798d3200f5378b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210710204145-99c345.png"></p>
-<p>全连接网络不擅长处理将多个向量作为输入，产生数值或者分类。但存在很多的任务需要输入多个向量，用来产生数值或者是分类。</p>
-<p><strong>多向量作为输入</strong></p>
-<p><em>文字处理</em></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/20-56-28-37c8e804ac3cc58c78201d30d75d9dfb-QQ%E6%88%AA%E5%9B%BE20210710205621-d8f85a.png"></p>
-<p>文字处理任务需要将多个向量输入到模型，输入的每个向量可以是通过 One-Hot 编码过的向量(向量之间的相关性无法体现)，也可以是通过词嵌入形成的向量(在高维空间中相关的单词会汇聚在一起)。</p>
-<p><em>语音处理</em></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/20-59-18-60e66b49cfead699087f4fb89c8c3c2c-QQ%E6%88%AA%E5%9B%BE20210710205910-a1116f.png"></p>
-<p>语音处理也是把多个向量作为输入，一般是每 25ms 对音频采样一次，但是会向右移动 10ms 位置（这就意味着会有 15ms 的音频信息会被重复采样），然后利用 400 sample points (16KHz)、39-dim MFCC 或者是 80-dim filter bank output 3 种方法提取声学特征。这样每 25ms 提取到的声学特征组成一个向量，这样的一个向量称为一个 frame。</p>
-<p><em>图</em></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-02-54-37c8e804ac3cc58c78201d30d75d9dfb-QQ%E6%88%AA%E5%9B%BE20210710205621-3ee2e2.png"></p>
-<p>图信息是把每个节点作为一个向量进行输入，一个图存在多个节点，所以是多输入问题。</p>
-<p><strong>输出的形式</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-44-58-c839da5ed69f1dea08f289537c218332-QQ%E6%88%AA%E5%9B%BE20210711094429-7b6e0a.png"></p>
-<p>输出向量的个数可以是跟输入向量的个数相同的，例如在词性标注问题上，输入 N 个单词，就要给出这 N 个单词的词性。在语音识别问题上，输入 n 个向量就要给出这 n 个向量的 Grapheme 表示。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-47-48-cc32c4f0a0fc209645bbf48d79c196dd-QQ%E6%88%AA%E5%9B%BE20210711094740-c06f5e.png"></p>
-<p>可以是输入 n 个向量，输出一个向量。例如在情感预测上，给出一个句子，判断句子的情感是消极的还是积极的。在语者识别任务中，给出一段录音，识别这断录音是谁讲的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-51-07-30f4d6e6126368c63e209cd7ee465aa9-QQ%E6%88%AA%E5%9B%BE20210711095056-188ff4.png"></p>
-<p>也可以是输入 n 个向量，输出 m 个向量，例如机器翻译任务。</p>
-<h2 id="上下文无关"><a href="#上下文无关" class="headerlink" title="上下文无关"></a>上下文无关</h2><p><strong>上下文无关</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-06-29-86dcf0b556dd19bf89d39d7b3ca77294-QQ%E6%88%AA%E5%9B%BE20210710210615-187011.png"></p>
-<p>当前的输入没有依赖上下文的输入，上图中的两个 saw 在不依赖上下文的情况下是一样的，但是在原文中，第一个 saw 是动词，而第二个 saw 是名词，所以上下的信息是重要的信息。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-11-06-15be5b20ac6e217bc84d1fafb340f0a7-QQ%E6%88%AA%E5%9B%BE20210710211059-42489a.png"></p>
-<p>在这种情况下虽然把上下文信息加入到了当前输入，但是窗口的大小是无法确定的，一方面是由于句子的大小无法确定，另一方面是因为窗口太小，上下文信息考虑的不全面，窗口太大，导致参数过多，训练困难。</p>
-<h1 id="Self-Attention-的优势"><a href="#Self-Attention-的优势" class="headerlink" title="Self Attention 的优势"></a>Self Attention 的优势</h1><h2 id="全局性"><a href="#全局性" class="headerlink" title="全局性"></a>全局性</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-14-54-46a2eaa1bde06cd4066562a72b121c2c-QQ%E6%88%AA%E5%9B%BE20210710211441-5ef35a.png"></p>
-<p>Self Attention 在产生一个输出的时候，会考虑到所有的输入。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-16-46-00e45d1afc464e33fba91261e33c5b73-QQ%E6%88%AA%E5%9B%BE20210710211635-301377.png"></p>
-<p>Self Attention 在经过全连接层之后可以再接多个 Self Attention</p>
-<h2 id="并行运算"><a href="#并行运算" class="headerlink" title="并行运算"></a>并行运算</h2><p>Self Attention 可以轻松的做到并行运算，提升效率。</p>
-<h1 id="Self-Attention-的计算"><a href="#Self-Attention-的计算" class="headerlink" title="Self Attention 的计算"></a>Self Attention 的计算</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-17-54-f4aa8d6525be14e0256e58a47f229999-QQ%E6%88%AA%E5%9B%BE20210710211746-75bb07.png"></p>
-<p>Self Attention 中的每个向量都会跟其他向量计算产生一个 $\alpha$ 值，在上图中只显示了 $a^1$ 与 $a^2$、$a^3$、$a^4$ 的计算，实际上 $a^1 与 a^1 $ 自己也会计算 $\alpha$ 值。另外 $a^2、a^3、a^4$ 都会与每个向量计算 $\alpha$ 值，图中也没有画出，下面会讲解。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-25-26-6fcaa513fcb7acad0a0d40606209b42f-QQ%E6%88%AA%E5%9B%BE20210710212519-68e876.png"></p>
-<p>$\alpha$ 值的计算主要有两种方法，但是下面的计算使用的是第一种方法。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-28-08-1bc39a07ee88b0d19d7e5f801ee93eef-QQ%E6%88%AA%E5%9B%BE20210710212652-c2f715.png"></p>
-<p>首先按照红框计算出 $q^1$,按照黄色框计算出 $k^1、k^2、k^3、k^4$，然后$q^1 和 k^1、k^2、k^3、k^4$ 分别做内积计算出 $\alpha_{1,1},\alpha_{1,2},\alpha_{1,3},\alpha_{1,4}$(上面说的步骤都是根据 <strong>Dot-product</strong> 计算出来的)，$\alpha_{1,1},\alpha_{1,2},\alpha_{1,3},\alpha_{1,4}$ 每个值都称为 Attention 得分，将 Attention 得分输入到 softmax，得到概率值$\alpha_{1,1}’、\alpha_{1,2}’、\alpha_{1,3}’、\alpha_{1,4}’$。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-38-18-9c52016803b28856590fac5d308bf011-QQ%E6%88%AA%E5%9B%BE20210710213354-917930.png"></p>
-<p>按照橙色框计算出 $v_1、v_2、v_3、v_4$，然后按照粉色框计算出 $b^1$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/10/21-41-08-be2b8e8348ebc6d08284ac4c85d3c90e-QQ%E6%88%AA%E5%9B%BE20210710214059-37fb04.png"></p>
-<p>$b^2$ 的计算与 $b^1$ 是一样的，按照同样的步骤计算出 $b^3、b^4$。</p>
-<h1 id="Self-Attention-的并行计算"><a href="#Self-Attention-的并行计算" class="headerlink" title="Self Attention 的并行计算"></a>Self Attention 的并行计算</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/08-34-30-56cb3c0841a38cb6f66f9cd8311d7094-QQ%E6%88%AA%E5%9B%BE20210711083349-bf9734.png"></p>
-<p>并行获取 $q^i、k^i、v^i$的值</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/08-34-58-e4b4adf31606dade3e5a2b61ee9ad705-QQ%E6%88%AA%E5%9B%BE20210711083448-3dd5eb.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/08-35-37-60fc6177a8c430b4576889176a448c59-QQ%E6%88%AA%E5%9B%BE20210711083528-9bfad5.png"></p>
-<p>并行获取 $\alpha_{i,j} 和 \alpha_{i,j}’$ 的值。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/08-36-02-0b71727a867583b907c9e8849916e392-QQ%E6%88%AA%E5%9B%BE20210711083554-d82922.png"></p>
-<p>并行的获取 $b^i$ 的值</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/08-36-23-3d2089643778fdd8c5de066b5d112c5e-QQ%E6%88%AA%E5%9B%BE20210711083618-d645db.png"></p>
-<p>上图的 3 个步骤对 Self Attention 做了总结,在整个运算过程中只有$W^q、W^k、W^v$ 是未知的，是需要求解的参数。</p>
-<h1 id="Multi-head-Self-attention"><a href="#Multi-head-Self-attention" class="headerlink" title="Multi-head Self-attention"></a>Multi-head Self-attention</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/08-54-50-fe0b51cead857253fa1d20abe4f20d87-QQ%E6%88%AA%E5%9B%BE20210711084059-219fd7.png"></p>
-<p>根据红框部分的公式计算产生 $q^i 和 q^j$,根据黄框部分的公式计算产生 $q^{i,1},q^{i,2},q^{j,1},q^{j,2}$,根据绿框部分的公式计算产生$v^{i,1},v^{i,2},v^{j,1},v^{j,2}$,根据粉框部分的公式计算产生$k^{i,1},k^{i,2},k^{j,1},k^{j,2}$,接下来就跟前面的一样了，使用下面公式计算 $\alpha_{i,1}，\alpha_{j,1}$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/10-11-59-406f694611015eab01b218c8d3947ed6-QQ%E6%88%AA%E5%9B%BE20210711101149-173d5d.png"></p>
-<p>让 $\alpha_{i,1}，\alpha_{j,1}$ 通过 softmax 计算 $\alpha_{i,1}’，\alpha_{j,1}’$,根据下面公式计算 $b^{i,1}$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/10-38-17-fb0845cdbdf9050804690b404d0c4656-QQ%E6%88%AA%E5%9B%BE20210711103811-82c52d.png"></p>
-<p>可以将看出在计算 $b^{i,1}$ 的时候是与 $k^{i,2},k^{j,2},v^{i,2},v^{j,2}$ 无关的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-13-58-8230e434f7390aef8c2ba70e78d2753d-QQ%E6%88%AA%E5%9B%BE20210711091329-ad4949.png"></p>
-<p>计算 $b^{i,2}$ 与计算 $b^{i,1}$ 的步骤是一样的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-15-30-b611fefd9ab9fe55a708b95daf8677b0-QQ%E6%88%AA%E5%9B%BE20210711091457-121fb9.png"></p>
-<p>最后将两个向量合并起来，通过矩阵乘法，求取 $b^i$。</p>
-<h1 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-16-41-9665a8d9eafcceda4be244f37733f065-QQ%E6%88%AA%E5%9B%BE20210711091635-f4a54e.png"></p>
-<p>上面介绍的 Self Attention 都没有包含位置信息，只包含了相似性信息，所以可以通过在输入时加入位置信息来提升 Self Attention 的表现。</p>
-<h1 id="Self-attention-v-s-CNN"><a href="#Self-attention-v-s-CNN" class="headerlink" title="Self-attention v.s. CNN"></a>Self-attention v.s. CNN</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-19-35-c074763669c756ca84eeb4158d381baa-QQ%E6%88%AA%E5%9B%BE20210711091926-cd5515.png"></p>
-<p>只用 Self Attention 是拿着一个像素信息，和整张图片的其他像素做 Self Attention，而是用了 CNN 之后相当于一个像素与接收视野内的像素做 Self Attention。</p>
-<p>所以 Self Attention 是复杂版本的 CNN，CNN 是简化版本的 Self Attention。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-23-35-e141b772eae59edcd0a32b008b9e7783-QQ%E6%88%AA%E5%9B%BE20210711092324-317c93.png"></p>
-<p>从上图可以看出 Self Attention 是包含 CNN 的，相对来说 Self Attention 模型是比 CNN 模型复杂的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-24-52-8119bd8398e67db2eb1fcdb0448170ad-QQ%E6%88%AA%E5%9B%BE20210711092445-a7ead7.png"></p>
-<p>所以在数据量较少时，Self Attention 会出现欠拟合。当数据量达到一定的数量时，Self Attention 的表现优于 CNN，这是因为 Self Attention 的模型复杂，可以更好的拟合数据。</p>
-<h1 id="Self-attention-v-s-RNN"><a href="#Self-attention-v-s-RNN" class="headerlink" title="Self-attention v.s. RNN"></a>Self-attention v.s. RNN</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/09-26-38-799ed025494169ddbe0c988dcfebe304-QQ%E6%88%AA%E5%9B%BE20210711092633-545da0.png"></p>
-<pre><code>1、单向的 RNN 网络是只能捕获上文信息，而无法捕获下文信息，而 Self Attention 能够非常容易的捕获上下文信息。
-2、虽然双向 RNN 也能够捕获到上下文信息，但是存在梯度消失和梯度爆炸问题，
-当两个信息距离非常远时，是很难捕获有用信息的，但是在 Self Attention 中，
-捕获上下文信息是通过相似程度来实现的，无论两条信息距离多远，
-只要两条信息的相似度越高，那就能越多的捕获到两者的信息。
-3、上面已经介绍过 Self Attention 是可以做并行计算的，而 RNN 无法实现并行计算。</code></pre>
- 
+  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/10-42-53-a108b67dae803d8778d8ac314a49c12b-QQ%E6%88%AA%E5%9B%BE20210711104245-c097df.png"></p> 
+      <a class="article-more-link" href="/2021/07/10/self-attention/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
