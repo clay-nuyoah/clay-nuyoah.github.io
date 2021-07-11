@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-07-10T02:00:41.784Z</updated>
+  <updated>2021-07-11T02:38:55.971Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>self attention</title>
+    <link href="http://clay-nuyoah.github.io/2021/07/10/self-attention/"/>
+    <id>http://clay-nuyoah.github.io/2021/07/10/self-attention/</id>
+    <published>2021-07-10T11:15:26.000Z</published>
+    <updated>2021-07-11T02:38:55.971Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Self-Attention-模型&quot;&gt;&lt;a href=&quot;#Self-Attention-模型&quot; class=&quot;headerlink&quot; title=&quot;Self-Attention 模型&quot;&gt;&lt;/a&gt;Self-Attention 模型&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="NLP" scheme="http://clay-nuyoah.github.io/tags/NLP/"/>
+    
+    <category term="Attention" scheme="http://clay-nuyoah.github.io/tags/Attention/"/>
+    
+    <category term="Self Attention" scheme="http://clay-nuyoah.github.io/tags/Self-Attention/"/>
+    
+  </entry>
   
   <entry>
     <title>CNN</title>
