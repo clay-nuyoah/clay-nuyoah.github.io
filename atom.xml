@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-07-11T02:43:22.455Z</updated>
+  <updated>2021-07-12T02:29:54.678Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Transformer</title>
+    <link href="http://clay-nuyoah.github.io/2021/07/11/Transformer/"/>
+    <id>http://clay-nuyoah.github.io/2021/07/11/Transformer/</id>
+    <published>2021-07-11T11:35:56.000Z</published>
+    <updated>2021-07-12T02:29:54.678Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/12/10-29-28-c9a0a3715bc67b36854c12ff8ab42c7c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210712102914-14187c.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="NLP" scheme="http://clay-nuyoah.github.io/tags/NLP/"/>
+    
+    <category term="Attention" scheme="http://clay-nuyoah.github.io/tags/Attention/"/>
+    
+    <category term="Transformer" scheme="http://clay-nuyoah.github.io/tags/Transformer/"/>
+    
+    <category term="Self-Attention" scheme="http://clay-nuyoah.github.io/tags/Self-Attention/"/>
+    
+  </entry>
   
   <entry>
     <title>self attention</title>
@@ -458,27 +481,6 @@
     <category term="算法" scheme="http://clay-nuyoah.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="字符串" scheme="http://clay-nuyoah.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>连续子数组的最大和</title>
-    <link href="http://clay-nuyoah.github.io/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/"/>
-    <id>http://clay-nuyoah.github.io/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/</id>
-    <published>2018-12-11T16:00:00.000Z</published>
-    <updated>2021-06-25T07:07:11.253Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;leetcode 题库 43 最大子序和&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="算法" scheme="http://clay-nuyoah.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数组" scheme="http://clay-nuyoah.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-    <category term="leetcode" scheme="http://clay-nuyoah.github.io/tags/leetcode/"/>
     
   </entry>
   

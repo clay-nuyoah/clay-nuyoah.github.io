@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="5fFagiALkrBFm256jMyr0Wf9ZkND0mtyCDozn1qlVxE" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Transformer |  CLAY
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-XKPTQSV9FV', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+
+<link rel="alternate" href="/atom.xml" title="CLAY" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Transformer"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Transformer
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/07/11/Transformer/" class="article-date">
+  <time datetime="2021-07-11T11:35:56.000Z" itemprop="datePublished">2021-07-11</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/12/10-29-28-c9a0a3715bc67b36854c12ff8ab42c7c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210712102914-14187c.png"></p>
+<a id="more"></a>
+
+<h1 id="0、前置知识"><a href="#0、前置知识" class="headerlink" title="0、前置知识"></a>0、前置知识</h1><h2 id="Seq2Seq"><a href="#Seq2Seq" class="headerlink" title="Seq2Seq"></a>Seq2Seq</h2><p>Seq2Seq（是 Sequence-to-sequence 的缩写），就如字面意思，输入一个序列，输出另一个序列。这种结构最重要的地方在于输入序列和输出序列的长度是可变的。Seq2Seq 也不特指具体方法，满足「输入序列、输出序列」的目的，都可以统称为 Seq2Seq 模型。</p>
+<h2 id="Encoder-Decoder"><a href="#Encoder-Decoder" class="headerlink" title="Encoder-Decoder"></a>Encoder-Decoder</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/https/pic1.zhimg.com/80/2021/07/11/19-50-00-9b69bc95acbc87b96043bd04da582459-v2-d84b05caae8a93164e92a1c3b7f998bc_1440w-fc8997.jpeg"></p>
+<p>Decoder 的通用的框架如上</p>
+<pre><code>Encoder 又称作编码器。它的作用就是「将现实问题转化为数学问题」
+Decoder 又称作解码器，他的作用是「求解数学问题，并转化为现实世界的解决方案」</code></pre>
+<p>Encoder-Decoder 这个框架很好的诠释了机器学习的核心思路</p>
+<pre><code>将现实问题转化为数学问题，通过求解数学问题，从而解决现实问题</code></pre>
+<p>其中需要注意的是：</p>
+<pre><code>1、不论输入和输出的长度是什么，中间的向量 C 长度都是固定的
+2、根据不同的任务可以选择不同的编码器和解码器，Encoder-Decoder 两部分都可以在 RNN、LSTM、GRU 模型中任意挑选。</code></pre>
+<h2 id="Encoder-Decoder-和-Seq2Seq-的区别："><a href="#Encoder-Decoder-和-Seq2Seq-的区别：" class="headerlink" title="Encoder-Decoder 和 Seq2Seq 的区别："></a>Encoder-Decoder 和 Seq2Seq 的区别：</h2><pre><code>1、Seq2seq 是应用层的概念，即序列到序列，强调应用场景。
+2、Encoder-decoder 是网络架构层面的概念，是现在主流框架，特指同时具有 encoder 模块和 decode 模块的结构。
+3、encoder-decoder 模型是一种应用于 seq2seq 问题的模型。
+4、目前，Seq2Seq 使用的具体方法基本都属于 Encoder-Decoder 模型的范畴</code></pre>
+<h1 id="1、Transformer-模型结构"><a href="#1、Transformer-模型结构" class="headerlink" title="1、Transformer 模型结构"></a>1、Transformer 模型结构</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/19-54-16-908c1dbbdbec9473e697311ffd10c9c6-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711193825-da9da9.png"></p>
+<p>Transformer 可以看作是一个 Encoder-Decoder 模型，黑框表示出了整个 Transformer 的模型结构，在红线左侧是 Encoder 部分，在红线的右侧是 Decoder 部分。</p>
+<h1 id="2、Encoder-部分"><a href="#2、Encoder-部分" class="headerlink" title="2、Encoder 部分"></a>2、Encoder 部分</h1><h2 id="Encoder-结构"><a href="#Encoder-结构" class="headerlink" title="Encoder 结构"></a>Encoder 结构</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-00-41-a068fcf4f4e46a088d1a5ad120dd2b96-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711195749-dc68f6.png"></p>
+<p>这里需要注意到两个地方，一个是红框框出来的地方，这里说明 Transformer 是由多个该结构组成的，每个该结构称为一个 block。黄框框出来的地方说明在 Transformer 中加入了位置信息。</p>
+<h2 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h2><h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self Attention"></a>Self Attention</h2><p>下面需要计算 Self Attention，Self Attention 的计算见 <a target="_blank" rel="noopener" href="https://clay-nuyoah.club/2021/07/10/self-attention/" title="Self-Attention">https://clay-nuyoah.club/2021/07/10/self-attention/</a></p>
+<h2 id="Layer-Norm"><a href="#Layer-Norm" class="headerlink" title="Layer Norm"></a>Layer Norm</h2><p>下面的计算中会用到 Layer Norm，先进行介绍。</p>
+<p>对于向量 x = [1,2,3,4] 来说，首先获取 x 的均值，获取 x 的标准差，然后用下面的公式计算新的向量 $x_i’$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-15-23-3310ad5905aaa944026d39edd2058fc2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711201516-8de4a7.png"></p>
+<p>代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.array([1,2,3,4])</span><br><span class="line">(x - x.mean()) &#x2F; x.std()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="详细过程"><a href="#详细过程" class="headerlink" title="详细过程"></a>详细过程</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-21-46-fead93e0f044be2885f7c43662589886-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711200408-31671d.png"></p>
+<p>红线部分框出了 Encoder 的输入，先执行左侧黄色框，然后执行右侧黄色框。</p>
+<pre><code>1、根据输入 b 计算 Self Attention，得到新向量 a
+2、根据 Self Attention 的输出 a 与 Encoder 的输入 b 相加得到新的向量 c
+3、向量 c 按照上面介绍的 Layer Norm 做归一化处理得到向量 d
+4、向量 d 经过全神经网络得到新的向量 e
+5、向量 e 与向量 d 向量相加得到新的向量 f
+6、向量 f 做 Layer Norm 得到新的向量 g
+7、当前的 block 计算结束，向量 g 可能作为下一个 block 的输入，或者是直接作为 Encoder 的输出
+8、通过上面的步骤依次计算每一个输入的输出</code></pre>
+<h2 id="Encoder-总结"><a href="#Encoder-总结" class="headerlink" title="Encoder 总结"></a>Encoder 总结</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-26-45-22e8ab6fe46224cc765283ceb15b750f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711202532-1c8140.png"></p>
+<p>上图是 Encoder 部分的简化图，红框部分就是步骤 4，黄框部分是 步骤 2，3 和步骤 5，6。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-29-49-4d29ba88042c9701c3f60e474cb80f05-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711202945-4eb249.png"></p>
+<p>Transformer 的 Encoder 部分有很多结构，上图中左侧是上面讲的 Encoder 结构，右侧是另外一种结构，而且还有很多其他的结构。</p>
+<h1 id="3、Decoder-部分"><a href="#3、Decoder-部分" class="headerlink" title="3、Decoder 部分"></a>3、Decoder 部分</h1><p>Decoder 部分有两种结构，分别是 Auto regressive (AT) 和 Non-auto regressive (NAT)。</p>
+<h2 id="Self-Attention-And-Masked-Self-Attention"><a href="#Self-Attention-And-Masked-Self-Attention" class="headerlink" title="Self Attention And Masked Self Attention"></a>Self Attention And Masked Self Attention</h2><p>下面的内容会用到 Self Attention 和 Masked Self Attention，先做介绍。</p>
+<h3 id="Self-Attention-1"><a href="#Self-Attention-1" class="headerlink" title="Self Attention"></a>Self Attention</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-43-33-e66373c218f6cdca86425aaee21eb2fc-QQ%E6%88%AA%E5%9B%BE20210711204325-bc9e81.png"></p>
+<p>Self Attention 是每个输入彼此之间做 Attention。</p>
+<p>Self Attention 的计算见 <a target="_blank" rel="noopener" href="https://clay-nuyoah.club/2021/07/10/self-attention/" title="Self-Attention">https://clay-nuyoah.club/2021/07/10/self-attention/</a></p>
+<h3 id="Masked-Self-Attention"><a href="#Masked-Self-Attention" class="headerlink" title="Masked Self Attention"></a>Masked Self Attention</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-37-22-c378b5c7bf650c05f3c4fedbb9a70ef4-QQ%E6%88%AA%E5%9B%BE20210711203657-063648.png"></p>
+<p>正如上图所显示的那样，Decoder 输入并不是一次性进行输入的，只有在预测完一个词，才能用这个词的信息和 Encoder 的输出信息一起输入到 Decoder 中来预测下一个词，所以在 Decoder 中只有当前输入和以前的输入信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-45-00-3eaee08234325cf81860dd743b46f318-QQ%E6%88%AA%E5%9B%BE20210711204450-99dd12.png"></p>
+<p>由于存在上面的问题，所以 Masked Self Attention 对 Self Attention 做了修改，做 Attention 的时候只有当前向量和以前的输入向量。</p>
+<h2 id="Auto-regressive"><a href="#Auto-regressive" class="headerlink" title="Auto regressive"></a>Auto regressive</h2><p>Auto regressive 是 Decoder 内部给定一个输入，然后根据 Encoder 的输出，Decoder 预测下一个输出。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-33-03-fc46738da7d5c984843d94d7724b6ae5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711203257-b9a2a8.png"></p>
+<p>Auto regressive 首先会给 Decoder 一个特殊的 token，表示开始进行预测，然后 Decoder 根据 Decoder 自己的输入和 Encoder 的输入，预测出了 <em>机</em> 这个输出。由于用到了表示预测开始的这个 token，所以在词表中需要添加这个 token。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-37-22-c378b5c7bf650c05f3c4fedbb9a70ef4-QQ%E6%88%AA%E5%9B%BE20210711203657-063648.png"></p>
+<p>每次的输出都会根据上一次的输出和 Encoder 的输出产生新的输出。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/12/09-19-34-59d48775783fe27e6bc077d24cebc1b2-QQ%E6%88%AA%E5%9B%BE20210712091921-71a792.png"></p>
+<p>直到遇到表示结束的特殊 token 来结束预测。所以在词表中也会添加表示预测结束的 token。有时也在词表中用同一个 token 来表示预测开始和预测结束。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-38-46-57cc9ab84f82433711638a3c95d9644b-QQ%E6%88%AA%E5%9B%BE20210711203840-a8b755.png"></p>
+<p>Decoder 的内部结构如上图所示，看着非常的复杂，其实在 Encoder 中已经学习了绝大部分。这里也需要注意，在 Decoder 中也是由非常多的 block 组成,而且也加入了位置信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-39-28-1e2c16322b0ee1cdc1b14a9d7a46554f-QQ%E6%88%AA%E5%9B%BE20210711203919-fc5672.png"></p>
+<p>上面的图展示了 Encoder 和 Decoder 的区别，除了灰色覆盖区域外和红框区域，其他部分和 Encoder 是一样的。其中 Masked Self Attention 也已经做了介绍。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-49-43-ed7fbb5149193547c5650459d6d68c0c-QQ%E6%88%AA%E5%9B%BE20210711204930-058769.png"></p>
+<p>红框是 Cross Attention 部分，该部分的两个蓝圈表示 Multi-Head Attention 部分会受到来自于 Encoder 的两个输入，红圈表示 Multi-Head Attention 部分会受到一个来自 Decoder 内部的输入。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-51-32-6507c33f2d083ea62975af98fa63109a-QQ%E6%88%AA%E5%9B%BE20210711205126-3ad650.png"></p>
+<p>上图中 $q$ 就是来自 Decoder 内部的输入，$k^i、v^i$是来自 Encoder 的两个输入，会把 Encoder 的输出变成两个向量 $k^i、v^i$，这两个向量会跟 Decoder 内部传过来的向量做 Self Attention,得到 $v$，<em>然后 $v$ 和 $q$ 相加，做 Layer Norm</em> (这一块图中没有给出，但是根据上上图是有这么一个操作,而且图中做的是 Self Attention，而不是 Multi-Head Attention)，最入输出到全连接网络中。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/21-01-08-4386851eaa677905698c09cb26134ec4-QQ%E6%88%AA%E5%9B%BE20210711210100-a0934d.png"></p>
+<p>生成第二个输出的过程和生成第一个输出的过程是一样的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/21-02-29-10949b499ed8a79114ddaef310a5447a-QQ%E6%88%AA%E5%9B%BE20210711210222-699d94.png"></p>
+<p>做 Cross Attention 有很多的形式，上图的上部分是上面讨论的 Cross Attention，将 Encoder 中产生的输出，输入到 Decoder 中的每一个块中。下部分也列举了各种 Cross Attention。</p>
+<h2 id="AT-v-s-NAT"><a href="#AT-v-s-NAT" class="headerlink" title="AT v.s. NAT"></a>AT v.s. NAT</h2><p>AT 是给定一个输入，会有一个输出，而 NAT，是给定 N 个输入，会有 N 个输出。NAT 给定输入的方式有 2 种。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/12/09-10-55-dbd9f29658292df90d158a76191e2bd0-QQ%E6%88%AA%E5%9B%BE20210712091001-3e41a3.png"></p>
+<p>一种是用其他的模型当预测模型，来预测输出的长度，根据输出的长度，给定输入。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/12/09-15-09-bc7fdf4cb31c0cce00a7dcd7de68f40f-QQ%E6%88%AA%E5%9B%BE20210712091459-5a1e58.png"></p>
+<p>另一种是不管三七二十一给定非常多的输入，然后根据给定的 N 个输入，产生 N 个输出。从 $W_1$ 开始，直到出现结尾符结束，第一个结尾符后面的字符全都不要。</p>
+<p>NAT 与 NT 相比 NT 能够进行并行计算，而现在 NAT 的表现还没有 NT 的表现好。</p>
+<h1 id="4、技巧"><a href="#4、技巧" class="headerlink" title="4、技巧"></a>4、技巧</h1><h2 id="添加噪声"><a href="#添加噪声" class="headerlink" title="添加噪声"></a>添加噪声</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/21-04-23-53c4143fd405c0d111ccb5fd7f3bef2d-QQ%E6%88%AA%E5%9B%BE20210711210415-031054.png"></p>
+<p>在训练时每次都给 Decoder 正确的输入，会使 Decoder 在看到哪几个关键字时，应该给出怎样的输出。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/21-06-50-d140b55ca2d7de2dafb09a0ebea86804-QQ%E6%88%AA%E5%9B%BE20210711210638-ef118f.png"></p>
+<p>但是这样也会存在一些问题，问题是在测试时，输出中的某个词有错误，因为在训练的时候，模型没有见过这种错误，导致模型在接下来可能所有的输出都是错误的。</p>
+<p>所以要给模型适当的输入少量的错误信息，能让模型拥有更强的容错性。</p>
+<h2 id="学会复制"><a href="#学会复制" class="headerlink" title="学会复制"></a>学会复制</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/21-10-40-610b5d4c41fd6afd64840e577f0c6d54-QQ%E6%88%AA%E5%9B%BE20210711211032-ac2c19.png"></p>
+<p>在对话机器人任务中，要让机器人学会复制，对于* 库洛洛* 这样的名字，模型有很大的概率是没有见过的，所以当机器人在看到 你好，我是 XXX 时，要学会复制。</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/07/11/Transformer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attention/" rel="tag">Attention</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Self-Attention/" rel="tag">Self-Attention</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transformer/" rel="tag">Transformer</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/07/10/self-attention/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">self attention</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> MGL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src=''></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="CLAY"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

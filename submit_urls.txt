@@ -1,3 +1,4 @@
+http://clay-nuyoah.club/2021/07/11/Transformer/
 http://clay-nuyoah.club/2021/07/10/self-attention/
 http://clay-nuyoah.club/2021/07/09/cnn/
 http://clay-nuyoah.club/2021/06/30/end-to-end-speech-recognition/
@@ -7,4 +8,3 @@ http://clay-nuyoah.club/2021/06/23/LSTMs-and-GRUs/
 http://clay-nuyoah.club/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/
 http://clay-nuyoah.club/2021/06/22/Recurrent-neural-network/
 http://clay-nuyoah.club/2021/06/20/Linguistic-Structure-Dependency-Parsing/
-http://clay-nuyoah.club/2021/06/15/Word-Window-Classification-Neural-Networks/
