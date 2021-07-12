@@ -33,7 +33,8 @@ Decoder 又称作解码器，他的作用是「求解数学问题，并转化为
 <h2 id="详细过程"><a href="#详细过程" class="headerlink" title="详细过程"></a>详细过程</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-21-46-fead93e0f044be2885f7c43662589886-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711200408-31671d.png"></p>
 <p>红线部分框出了 Encoder 的输入，先执行左侧黄色框，然后执行右侧黄色框。</p>
 <pre><code>1、根据输入 b 计算 Self Attention，得到新向量 a
-2、根据 Self Attention 的输出 a 与 Encoder 的输入 b 相加得到新的向量 c
+(向量 b 有两个来源，一个来源是起始时的输入，另一个来源是上一层的 block 块的输出)
+2、根据 Self Attention 的输出 a 与输入向量 b 相加得到新的向量 c
 3、向量 c 按照上面介绍的 Layer Norm 做归一化处理得到向量 d
 4、向量 d 经过全神经网络得到新的向量 e
 5、向量 e 与向量 d 向量相加得到新的向量 f
@@ -53,7 +54,7 @@ Decoder 又称作解码器，他的作用是「求解数学问题，并转化为
 <p>正如上图所显示的那样，Decoder 输入并不是一次性进行输入的，只有在预测完一个词，才能用这个词的信息和 Encoder 的输出信息一起输入到 Decoder 中来预测下一个词，所以在 Decoder 中只有当前输入和以前的输入信息。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-45-00-3eaee08234325cf81860dd743b46f318-QQ%E6%88%AA%E5%9B%BE20210711204450-99dd12.png"></p>
 <p>由于存在上面的问题，所以 Masked Self Attention 对 Self Attention 做了修改，做 Attention 的时候只有当前向量和以前的输入向量。</p>
-<h2 id="Auto-regressive"><a href="#Auto-regressive" class="headerlink" title="Auto regressive"></a>Auto regressive</h2><p>Auto regressive 是 Decoder 内部给定一个输入，然后根据 Encoder 的输出，Decoder 预测下一个输出。</p>
+<h2 id="Auto-regressive"><a href="#Auto-regressive" class="headerlink" title="Auto regressive"></a>Auto regressive</h2><p>Auto regressive 是将 Decoder 前期产生的输出信息，输入到 Decoder 中，然后根据 Encoder 的输出，使用 Decoder 预测下一个输出。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-33-03-fc46738da7d5c984843d94d7724b6ae5-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210711203257-b9a2a8.png"></p>
 <p>Auto regressive 首先会给 Decoder 一个特殊的 token，表示开始进行预测，然后 Decoder 根据 Decoder 自己的输入和 Encoder 的输入，预测出了 <em>机</em> 这个输出。由于用到了表示预测开始的这个 token，所以在词表中需要添加这个 token。 </p>
 <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/11/20-37-22-c378b5c7bf650c05f3c4fedbb9a70ef4-QQ%E6%88%AA%E5%9B%BE20210711203657-063648.png"></p>
