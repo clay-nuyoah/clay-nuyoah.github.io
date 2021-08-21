@@ -10,7 +10,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     CLAY
+    end-to-end-asr-pro |  CLAY
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -57,282 +57,236 @@ ga('send', 'pageview');
     
       
     <main class="content on">
-      
-<section class="cover">
+      <section class="outer">
+  <article
+  id="post-end-to-end-asr-pro"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-      
-      <a class="forkMe" href="https://github.com/clay-nuyoah"
-        target="_blank"><img width="149" height="149" src="/images/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">CLAY</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-        <img
-          src="/images/ayer.svg"
-          class="cover-logo"
-          alt="CLAY"
-        />
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  end-to-end-asr-pro
+</h1>
+ 
 
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/07/28/end-to-end-asr-pro/" class="article-date">
+  <time datetime="2021-07-28T00:54:07.000Z" itemprop="datePublished">2021-07-28</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1k</span>
+        </span>
+    </span>
 
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-<div id="main">
-  <section class="outer">
-  
-  
-  
-
-<div class="notice" style="margin-top:50px">
-    <i class="ri-heart-fill"></i>
-    <div class="notice-content" id="broad"></div>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3 分钟</span>
+        </span>
+    </span>
 </div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><h2 id="asr-py"><a href="#asr-py" class="headerlink" title="asr.py"></a>asr.py</h2><p>asr.py 文件的类结构如下，该文件下存在着 4 个类，每个类都继承了 nn.Module 模块</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-01-14-7742ca05938e61856798702bf3f189af-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730100103-b01ecd.png"></p>
+<h3 id="ASR"><a href="#ASR" class="headerlink" title="ASR"></a>ASR</h3><p>ASR 类为语音识别模型，里面定义了编码器、注意力机制、和解码器，以及定义了模型之间的前向传播过程。</p>
+<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p>Decoder 类是解码器的实现，解码器使用的是 LSTM，他的输入为 Attention 的输出和 LSTM 上一时刻的输出。</p>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>Attention 是注意力机制的实现，里面对注意力的机制的前半部分过程进行操作，例如获取 key 的值。注意力机制在项目中又分了 ScaleDotAttention 和 LocationAwareAttention</p>
+<h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>Encoder 类为编码器，主要是将声学特征转化为输出。编码器的实现有 4 种方式，具体结构如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-30-46-cbb22aabe227d152ec84c8c83089b7ed-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730103039-42af33.png"></p>
+<p>最下面的两层两两组合可以产生 4 种结构，一旦第二层的结构确定了，那么 3、4、5、6层的结构也会确定，他的结构和第二层的结构是一样的，比如第二层选择 LSTM，那么 3、4、5、6层也是 LSTM。</p>
+<h2 id="module-py"><a href="#module-py" class="headerlink" title="module.py"></a>module.py</h2><p>module.py 文件的类结构如下，该文件下存在着 4 个类，前 4 个类继承了 nn.Module 模块，后两个类继承了 BaseAttention 模块。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-14-49-ad2f1bbded8eb3f8cdb3e09b1713ab32-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730101443-67f29c.png"></p>
+<h3 id="VGGExtractor"><a href="#VGGExtractor" class="headerlink" title="VGGExtractor"></a>VGGExtractor</h3><p>VGGExtractor 类作为编码器的底层结构使用了多层 CNN + MaxPool 技术来实现。</p>
+<h3 id="CNNExtractor"><a href="#CNNExtractor" class="headerlink" title="CNNExtractor"></a>CNNExtractor</h3><p>CNNExtractor 和 VGGExtractor 一样也是作为编码器的底层结构，但是 CNNExtractor 使用了 2 层的一维卷积。</p>
+<h3 id="BaseAttention"><a href="#BaseAttention" class="headerlink" title="BaseAttention"></a>BaseAttention</h3><p>和上面的提到的 Attention 类做的操作正好相反，BaseAttention 做的是 Attention 类的后置操作，比如求 softmax 概率，求 Attention 的输出值。</p>
+<h3 id="ScaleDotAttention"><a href="#ScaleDotAttention" class="headerlink" title="ScaleDotAttention"></a>ScaleDotAttention</h3><p>没看</p>
+<h3 id="LocationAwareAttention"><a href="#LocationAwareAttention" class="headerlink" title="LocationAwareAttention"></a>LocationAwareAttention</h3><p>把当前输入之前的局部信息输入到 Attention 中</p>
+<h2 id="audio-py"><a href="#audio-py" class="headerlink" title="audio.py"></a>audio.py</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-51-42-0d05338ca8117de715edbaf126fa7d7e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730105134-937453.png"></p>
+<h3 id="CMVN-和-Delta"><a href="#CMVN-和-Delta" class="headerlink" title="CMVN 和 Delta"></a>CMVN 和 Delta</h3><p>是对提取到的声学特征做特征变换</p>
+<h3 id="Postprocess"><a href="#Postprocess" class="headerlink" title="Postprocess"></a>Postprocess</h3><p>对声学特征的后置处理，主要做的是维度的变换</p>
+<h3 id="ExtractAudioFeature"><a href="#ExtractAudioFeature" class="headerlink" title="ExtractAudioFeature"></a>ExtractAudioFeature</h3><p>使用 kaldi 对音频信息进行特征的提取</p>
+<h1 id="1、音频特征提取"><a href="#1、音频特征提取" class="headerlink" title="1、音频特征提取"></a>1、音频特征提取</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/08-55-44-3dcfe5d323833d618e9992faa3ef4271-QQ%E6%88%AA%E5%9B%BE20210728085513-abb2aa.png"></p>
+<p>各部分做的工作</p>
+<pre><code>ExtractAudioFeature 通过 torchaudio.compliance.kaldi 提取特征
+
+Delta + CMVM 做特征变换
+
+Postprocess维度变换</code></pre>
+<p>音频特征提取的步骤是使用 kaldi 对声学特征进行提取，然后使用 Delta + CMVM 做特征变换，最后进行维度的变换。</p>
+<p>**CMVN **</p>
+<p>对特征进行归一化，均值M做减法的归一化，方差V做归一化</p>
+<p><strong>差分模型（deltas)</strong> </p>
+<p>是识别中经常使用的方法，即将不同帧的特征之间（比如当前帧特征减去前一帧特征，以及更高阶的差分）差值也作为特征. </p>
+<p>kaldi存储的特征文件保留原始特征，而不包含CMVN变换和差分的特征，在每次需要（训练，识别或者对其）时再提取这些特征。</p>
+<p><strong>cmvn：倒谱均值方差归一化</strong></p>
+<p>提取声学特征以后，将声学特征从一个空间转变成另一个空间，使得在这个空间下特征参数更符合某种概率分布，压缩了特征参数值域的动态范围，减少了训练和测试环境的不匹配等</p>
+<p>提升模型的鲁棒性，其实就是归一化的操作。</p>
+<p><strong>梅尔倒谱系数（mfcc）</strong></p>
+<p>提取过程：连续语音–预加重–加窗分帧–FFT–MEL滤波器组–对数运算–DCT<br>为什么要这么做呢？<br>首先，语音做FFT之后就把语音转换到频域，每一帧代表语音能量，越亮代表能量越大；</p>
+<p>然后经过MEL滤波器组，是把语音变换到MEL域，MEL刻度是仿照人耳进行设计的，更符合人耳的听觉特性；</p>
+<p>再然后做对数运算，做DCT，最后的这步DCT相当于又做了一遍FFT，目的是提取每一帧的包络，因为语音的信息主要在包络上；最后提取的mfcc。</p>
+<h1 id="2、编码器"><a href="#2、编码器" class="headerlink" title="2、编码器"></a>2、编码器</h1><p>编码器使用 CNN + RNN 的实现方式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/08-56-35-7ad90ce63b1cb7b3e9cd12129d3658d0-QQ%E6%88%AA%E5%9B%BE20210728085627-f3351d.png"></p>
+<p>最下层的 VGGExtractor 是卷积层，主要内容如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/08-58-23-f0831c652ed06b1ffa662676c5e739f2-QQ%E6%88%AA%E5%9B%BE20210728085817-744582.png"></p>
+<h1 id="3、Attention"><a href="#3、Attention" class="headerlink" title="3、Attention"></a>3、Attention</h1><p>Attention 使用的是 LocationAwareAttention，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-25-50-d81cd3601807befb77e0bb7897e4b72f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704192544-d4114e.png"></p>
+<p>在项目中的具体细节为 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/20-42-10-04ae1b655930ab3364c8aa805b319a9f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210728204202-ca6bb5.png"></p>
+<h1 id="4、解码器"><a href="#4、解码器" class="headerlink" title="4、解码器"></a>4、解码器</h1> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://clay-nuyoah.github.io/2021/07/28/end-to-end-asr-pro/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/08/21/HLP-Introduction/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            HLP-Introduction
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/07/11/Transformer/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Transformer</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
 <script type="text/javascript">
-    fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("broad").innerHTML = data.hitokoto;
-        })
-        .catch(console.error)
+  var gitalk = new Gitalk({
+    clientID: 'fead254e68633e1b098e',
+    clientSecret: '9eaafea7dc4bb64a492a5f176e3078e992d2cbf9',
+    repo: 'clay-nuyoah.github.io',
+    owner: 'clay-nuyoah',
+    admin: ['clay-nuyoah'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
 </script>
 
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
-
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-</style>
-  
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-tsp-lu-xing-tui-xiao-yuan-wen-ti"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/"
-    >TSP旅行推销员问题</a> 
-</h2>
- 
-
-    </header>
      
-    <div class="article-meta">
-      <a href="/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/" class="article-date">
-  <time datetime="2020-11-25T06:38:25.000Z" itemprop="datePublished">2020-11-25</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>使用动态规划的方式求解TSP旅行推销员问题</p> 
-      <a class="article-more-link" href="/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TSP/" rel="tag">TSP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
 </article>
 
-    
-    <article
-  id="post-dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/"
-    >动态规划求解判断子序列问题</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/" class="article-date">
-  <time datetime="2020-11-24T14:06:54.000Z" itemprop="datePublished">2020-11-24</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>leetcode 题库 392 判断子序列</p> 
-      <a class="article-more-link" href="/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-lian-xu-zi-shu-zu-de-zui-da-he"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/"
-    >连续子数组的最大和</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/" class="article-date">
-  <time datetime="2018-12-11T16:00:00.000Z" itemprop="datePublished">2018-12-12</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>leetcode 题库 43 最大子序和</p> 
-      <a class="article-more-link" href="/2018/12/12/lian-xu-zi-shu-zu-de-zui-da-he/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-  
 </section>
-</div>
-
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -494,6 +448,23 @@ ga('send', 'pageview');
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">

@@ -166,6 +166,181 @@ ga('send', 'pageview');
     
     
     <article
+  id="post-HLP-Introduction"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/21/HLP-Introduction/"
+    >HLP-Introduction</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/21/HLP-Introduction/" class="article-date">
+  <time datetime="2021-08-21T00:47:25.000Z" itemprop="datePublished">2021-08-21</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="课程的内容"><a href="#课程的内容" class="headerlink" title="课程的内容"></a>课程的内容</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/08-48-18-9047d137b36dc73c1880aeee17de5dba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821084802-f1a862.png"></p>
+<p>1、让机器能听懂人说的话<br>2、让机器能看懂人写的句子<br>3、让机器能说出人听得懂的话<br>4、让机器能写出人看得懂的句子</p>
+<h1 id="课程内容设置"><a href="#课程内容设置" class="headerlink" title="课程内容设置"></a>课程内容设置</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/08-51-24-43690fd837e6aac3de96c0471a233327-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821085119-5f9c6e.png"></p>
+<p>本门课程的名字叫做人类语言处理（HLP），与经常听到的自然语言处理（NLP）的区别在于 HLP 中文本和语音所占的比例是一样的，在 NLP 中，文本和语音所占的比例为 9：1</p>
+<h1 id="复杂的人类语言"><a href="#复杂的人类语言" class="headerlink" title="复杂的人类语言"></a>复杂的人类语言</h1><h2 id="复杂的语音"><a href="#复杂的语音" class="headerlink" title="复杂的语音"></a>复杂的语音</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/08-54-51-4f9c58226058191ad4e7bf2d3340c023-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821085440-d1c614.png"></p>
+<p>人类的语言是复杂的，每秒可以产生 16K 个样本点，每个样本点可以有 256 个可能的取值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/08-56-55-8ff9f187ddfa28a9964051ef01ed1100-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821085638-61a005.png"></p>
+<p><strong>没有人可以说同一段话两次</strong></p>
+<p>当一个人重复同一段话时，虽然听起来是一样的，但是从音频信号方面来看，每次说的话是不同的。</p>
+<h2 id="复杂的文本"><a href="#复杂的文本" class="headerlink" title="复杂的文本"></a>复杂的文本</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-00-02-070ccd15cd5f7327794416ae8615c9fc-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821085955-2a87b8.png"></p>
+<p>在早期对于文本数据的统计中，一个句子最多有 1289 个单词，但是在 2014 年的统计工作中，一个句子最多有 13955 个单词，但是要想打破这个纪录是非常容易的，只需要在最长的句子前面加点修饰就可以轻松的打破这个纪录。</p>
+<h1 id="课程结构"><a href="#课程结构" class="headerlink" title="课程结构"></a>课程结构</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-03-30-9157b74bb4bdcafb47ac49deeb85f7b0-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821090324-c7d60c.png"></p>
+<p>本门课程可以使用这一张图片表示，由 6 部分组成</p>
+<pre><code>1、语音-文本
+2、语音-语音
+3、语音-类别
+4、文本-语音
+5、文本-文本
+6、文本-类别</code></pre>
+<h1 id="使用的模型"><a href="#使用的模型" class="headerlink" title="使用的模型"></a>使用的模型</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-05-52-b4d2571e201c37f8fdee618acc0c3162-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821090525-2010f0.png"></p>
+<p>课程中的所有模型都是使用深度神经网络，遇到问题就使用深度学习硬 train 一发，没有硬 train 一发无法解决的问题，如果有，那只有你的训练资料和 GPU 不够多而已。</p>
+<h1 id="课程详细介绍"><a href="#课程详细介绍" class="headerlink" title="课程详细介绍"></a>课程详细介绍</h1><h2 id="语音-文本"><a href="#语音-文本" class="headerlink" title="语音-文本"></a>语音-文本</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-20-02-d6df752d52a23773c1058b68786f507b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821091952-ea13d2.png"></p>
+<p><strong>语音-文本</strong> 应用的领域是自动语音识别，传统的自动语音识别需要用到声学模型、语言模型，需要声学知识。传统的自动语音识别系统占用的内存较大，不适合在手机端应用。基于深度学习的自动语音识别系统不需要额外的声学知识，而且所需的内存较小，适合在手机端进行应用。</p>
+<h2 id="语音-语音"><a href="#语音-语音" class="headerlink" title="语音-语音"></a>语音-语音</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-37-06-bd780c23eef889cf7b13079af2c58b05-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821093659-b5d032.png"></p>
+<p><strong>语音-语音</strong> 的应用是语音分离，两个人同时说话可以将语者一和语者二进行辨认。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-38-59-1c7d4ab45377024e4cef0d9b2407e14f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821093853-73c759.png"></p>
+<p><strong>语音-语音</strong> 的另外一个应用是语音转换，可以将语者一的声音转换成语者二的声音。就像动漫 《名侦探柯南》中，柯南在侦探案件中，使用到的技术。</p>
+<h2 id="语音-类别"><a href="#语音-类别" class="headerlink" title="语音-类别"></a>语音-类别</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/09-41-51-9a02f9c5426f30ec7dc82e87731fa92c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821094145-7ac1e3.png"></p>
+<p><strong>语音-类别</strong> 的应用是语者识别，给模型一段语音，模型能辨认出这是哪个语者说的话。</p>
+<p><strong>语音-类别</strong> 的另外一个应用是关键词识别，像现在使用的苹果手机，可以使用 “Hey Siri”来唤醒，还有小米手机，可以使用“小爱同学”来唤醒。</p>
+<h2 id="文本-语音"><a href="#文本-语音" class="headerlink" title="文本-语音"></a>文本-语音</h2><p><strong>文本-语音</strong> 的应用有语音合成。</p>
+<h2 id="文本-文本"><a href="#文本-文本" class="headerlink" title="文本-文本"></a>文本-文本</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-16-49-a14e1c3c65a44890077275fe3650090b-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821101643-d4409a.png"></p>
+<p><strong>文本-文本</strong> 有非常多的应用，如翻译、概述（给定一篇文章，简要概述文章的内容）、聊天机器人、问答系统。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-18-45-4e57cee28f187aa52b0838ef7b835fda-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821101836-311ba6.png"></p>
+<p>还有其他的应用看起来无法使用这种结构来实现，例如语法解析，语法解析会生成一棵语法解析树，这在<strong>文本-文本</strong>模式中是非常难实现的，但是通过将语法解析树进行变形，就能非常容易地实现了。</p>
+<h2 id="文本-类别"><a href="#文本-类别" class="headerlink" title="文本-类别"></a>文本-类别</h2><p>文本-类别的应用有情感分析，给定一段文本，分析文本的情感是积极的还是消极的。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-end-to-end-asr-pro"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/07/28/end-to-end-asr-pro/"
+    >end-to-end-asr-pro</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/07/28/end-to-end-asr-pro/" class="article-date">
+  <time datetime="2021-07-28T00:54:07.000Z" itemprop="datePublished">2021-07-28</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><h2 id="asr-py"><a href="#asr-py" class="headerlink" title="asr.py"></a>asr.py</h2><p>asr.py 文件的类结构如下，该文件下存在着 4 个类，每个类都继承了 nn.Module 模块</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-01-14-7742ca05938e61856798702bf3f189af-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730100103-b01ecd.png"></p>
+<h3 id="ASR"><a href="#ASR" class="headerlink" title="ASR"></a>ASR</h3><p>ASR 类为语音识别模型，里面定义了编码器、注意力机制、和解码器，以及定义了模型之间的前向传播过程。</p>
+<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p>Decoder 类是解码器的实现，解码器使用的是 LSTM，他的输入为 Attention 的输出和 LSTM 上一时刻的输出。</p>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>Attention 是注意力机制的实现，里面对注意力的机制的前半部分过程进行操作，例如获取 key 的值。注意力机制在项目中又分了 ScaleDotAttention 和 LocationAwareAttention</p>
+<h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>Encoder 类为编码器，主要是将声学特征转化为输出。编码器的实现有 4 种方式，具体结构如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-30-46-cbb22aabe227d152ec84c8c83089b7ed-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730103039-42af33.png"></p>
+<p>最下面的两层两两组合可以产生 4 种结构，一旦第二层的结构确定了，那么 3、4、5、6层的结构也会确定，他的结构和第二层的结构是一样的，比如第二层选择 LSTM，那么 3、4、5、6层也是 LSTM。</p>
+<h2 id="module-py"><a href="#module-py" class="headerlink" title="module.py"></a>module.py</h2><p>module.py 文件的类结构如下，该文件下存在着 4 个类，前 4 个类继承了 nn.Module 模块，后两个类继承了 BaseAttention 模块。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-14-49-ad2f1bbded8eb3f8cdb3e09b1713ab32-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730101443-67f29c.png"></p>
+<h3 id="VGGExtractor"><a href="#VGGExtractor" class="headerlink" title="VGGExtractor"></a>VGGExtractor</h3><p>VGGExtractor 类作为编码器的底层结构使用了多层 CNN + MaxPool 技术来实现。</p>
+<h3 id="CNNExtractor"><a href="#CNNExtractor" class="headerlink" title="CNNExtractor"></a>CNNExtractor</h3><p>CNNExtractor 和 VGGExtractor 一样也是作为编码器的底层结构，但是 CNNExtractor 使用了 2 层的一维卷积。</p>
+<h3 id="BaseAttention"><a href="#BaseAttention" class="headerlink" title="BaseAttention"></a>BaseAttention</h3><p>和上面的提到的 Attention 类做的操作正好相反，BaseAttention 做的是 Attention 类的后置操作，比如求 softmax 概率，求 Attention 的输出值。</p>
+<h3 id="ScaleDotAttention"><a href="#ScaleDotAttention" class="headerlink" title="ScaleDotAttention"></a>ScaleDotAttention</h3><p>没看</p>
+<h3 id="LocationAwareAttention"><a href="#LocationAwareAttention" class="headerlink" title="LocationAwareAttention"></a>LocationAwareAttention</h3><p>把当前输入之前的局部信息输入到 Attention 中</p>
+<h2 id="audio-py"><a href="#audio-py" class="headerlink" title="audio.py"></a>audio.py</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/30/10-51-42-0d05338ca8117de715edbaf126fa7d7e-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210730105134-937453.png"></p>
+<h3 id="CMVN-和-Delta"><a href="#CMVN-和-Delta" class="headerlink" title="CMVN 和 Delta"></a>CMVN 和 Delta</h3><p>是对提取到的声学特征做特征变换</p>
+<h3 id="Postprocess"><a href="#Postprocess" class="headerlink" title="Postprocess"></a>Postprocess</h3><p>对声学特征的后置处理，主要做的是维度的变换</p>
+<h3 id="ExtractAudioFeature"><a href="#ExtractAudioFeature" class="headerlink" title="ExtractAudioFeature"></a>ExtractAudioFeature</h3><p>使用 kaldi 对音频信息进行特征的提取</p>
+<h1 id="1、音频特征提取"><a href="#1、音频特征提取" class="headerlink" title="1、音频特征提取"></a>1、音频特征提取</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/08-55-44-3dcfe5d323833d618e9992faa3ef4271-QQ%E6%88%AA%E5%9B%BE20210728085513-abb2aa.png"></p>
+<p>各部分做的工作</p>
+<pre><code>ExtractAudioFeature 通过 torchaudio.compliance.kaldi 提取特征
+
+Delta + CMVM 做特征变换
+
+Postprocess维度变换</code></pre>
+<p>音频特征提取的步骤是使用 kaldi 对声学特征进行提取，然后使用 Delta + CMVM 做特征变换，最后进行维度的变换。</p>
+<p>**CMVN **</p>
+<p>对特征进行归一化，均值M做减法的归一化，方差V做归一化</p>
+<p><strong>差分模型（deltas)</strong> </p>
+<p>是识别中经常使用的方法，即将不同帧的特征之间（比如当前帧特征减去前一帧特征，以及更高阶的差分）差值也作为特征. </p>
+<p>kaldi存储的特征文件保留原始特征，而不包含CMVN变换和差分的特征，在每次需要（训练，识别或者对其）时再提取这些特征。</p>
+<p><strong>cmvn：倒谱均值方差归一化</strong></p>
+<p>提取声学特征以后，将声学特征从一个空间转变成另一个空间，使得在这个空间下特征参数更符合某种概率分布，压缩了特征参数值域的动态范围，减少了训练和测试环境的不匹配等</p>
+<p>提升模型的鲁棒性，其实就是归一化的操作。</p>
+<p><strong>梅尔倒谱系数（mfcc）</strong></p>
+<p>提取过程：连续语音–预加重–加窗分帧–FFT–MEL滤波器组–对数运算–DCT<br>为什么要这么做呢？<br>首先，语音做FFT之后就把语音转换到频域，每一帧代表语音能量，越亮代表能量越大；</p>
+<p>然后经过MEL滤波器组，是把语音变换到MEL域，MEL刻度是仿照人耳进行设计的，更符合人耳的听觉特性；</p>
+<p>再然后做对数运算，做DCT，最后的这步DCT相当于又做了一遍FFT，目的是提取每一帧的包络，因为语音的信息主要在包络上；最后提取的mfcc。</p>
+<h1 id="2、编码器"><a href="#2、编码器" class="headerlink" title="2、编码器"></a>2、编码器</h1><p>编码器使用 CNN + RNN 的实现方式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/08-56-35-7ad90ce63b1cb7b3e9cd12129d3658d0-QQ%E6%88%AA%E5%9B%BE20210728085627-f3351d.png"></p>
+<p>最下层的 VGGExtractor 是卷积层，主要内容如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/08-58-23-f0831c652ed06b1ffa662676c5e739f2-QQ%E6%88%AA%E5%9B%BE20210728085817-744582.png"></p>
+<h1 id="3、Attention"><a href="#3、Attention" class="headerlink" title="3、Attention"></a>3、Attention</h1><p>Attention 使用的是 LocationAwareAttention，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/04/19-25-50-d81cd3601807befb77e0bb7897e4b72f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210704192544-d4114e.png"></p>
+<p>在项目中的具体细节为 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/07/28/20-42-10-04ae1b655930ab3364c8aa805b319a9f-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210728204202-ca6bb5.png"></p>
+<h1 id="4、解码器"><a href="#4、解码器" class="headerlink" title="4、解码器"></a>4、解码器</h1> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-Transformer"
   class="article article-type-post"
   itemscope
@@ -571,110 +746,6 @@ ga('send', 'pageview');
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">循环神经网络</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Linguistic-Structure-Dependency-Parsing"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/06/20/Linguistic-Structure-Dependency-Parsing/"
-    >Linguistic Structure: Dependency Parsing</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/06/20/Linguistic-Structure-Dependency-Parsing/" class="article-date">
-  <time datetime="2021-06-20T00:06:41.000Z" itemprop="datePublished">2021-06-20</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/20/08-07-44-6e3918ac3ccd05224052041a4d14b010-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210620080712-11c8b4.png"></p> 
-      <a class="article-more-link" href="/2021/06/20/Linguistic-Structure-Dependency-Parsing/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BE%9D%E5%AD%98%E5%8F%A5%E6%B3%95%E6%A0%91/" rel="tag">依存句法树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90/" rel="tag">句法分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%AD%E8%AF%AD%E7%BB%93%E6%9E%84%E6%A0%91/" rel="tag">短语结构树</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Word-Window-Classification-Neural-Networks"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/06/15/Word-Window-Classification-Neural-Networks/"
-    >Word-Window-Classification-Neural-Networks</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/06/15/Word-Window-Classification-Neural-Networks/" class="article-date">
-  <time datetime="2021-06-15T06:45:58.000Z" itemprop="datePublished">2021-06-15</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/06/15/20-15-14-14af5e584ec2022c16b52cdbd5762f4c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210615201501-16d775.png"></p> 
-      <a class="article-more-link" href="/2021/06/15/Word-Window-Classification-Neural-Networks/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/" rel="tag">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" rel="tag">反向传播</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD/" rel="tag">正向传播</a></li></ul>
 
     </footer>
   </div>

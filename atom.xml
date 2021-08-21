@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-07-12T09:08:06.001Z</updated>
+  <updated>2021-08-21T02:34:22.263Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HLP-Introduction</title>
+    <link href="http://clay-nuyoah.github.io/2021/08/21/HLP-Introduction/"/>
+    <id>http://clay-nuyoah.github.io/2021/08/21/HLP-Introduction/</id>
+    <published>2021-08-21T00:47:25.000Z</published>
+    <updated>2021-08-21T02:34:22.263Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;课程的内容&quot;&gt;&lt;a href=&quot;#课程的内容&quot; class=&quot;headerlink&quot; title=&quot;课程的内容&quot;&gt;&lt;/a&gt;课程的内容&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>end-to-end-asr-pro</title>
+    <link href="http://clay-nuyoah.github.io/2021/07/28/end-to-end-asr-pro/"/>
+    <id>http://clay-nuyoah.github.io/2021/07/28/end-to-end-asr-pro/</id>
+    <published>2021-07-28T00:54:07.000Z</published>
+    <updated>2021-07-30T02:53:55.204Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;h2 id=&quot;asr-py&quot;&gt;&lt;a href=&quot;#asr-py&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Transformer</title>
@@ -435,52 +477,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>TSP旅行推销员问题</title>
-    <link href="http://clay-nuyoah.github.io/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/"/>
-    <id>http://clay-nuyoah.github.io/2020/11/25/tsp-lu-xing-tui-xiao-yuan-wen-ti/</id>
-    <published>2020-11-25T06:38:25.000Z</published>
-    <updated>2021-01-14T13:34:56.718Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;使用动态规划的方式求解TSP旅行推销员问题&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="dp" scheme="http://clay-nuyoah.github.io/tags/dp/"/>
-    
-    <category term="动态规划" scheme="http://clay-nuyoah.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="算法" scheme="http://clay-nuyoah.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="TSP" scheme="http://clay-nuyoah.github.io/tags/TSP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动态规划求解判断子序列问题</title>
-    <link href="http://clay-nuyoah.github.io/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/"/>
-    <id>http://clay-nuyoah.github.io/2020/11/24/dong-tai-gui-hua-qiu-jie-pan-duan-zi-xu-lie-wen-ti/</id>
-    <published>2020-11-24T14:06:54.000Z</published>
-    <updated>2021-01-14T13:28:19.086Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;leetcode 题库 392 判断子序列&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="dp" scheme="http://clay-nuyoah.github.io/tags/dp/"/>
-    
-    <category term="动态规划" scheme="http://clay-nuyoah.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="算法" scheme="http://clay-nuyoah.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="字符串" scheme="http://clay-nuyoah.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
