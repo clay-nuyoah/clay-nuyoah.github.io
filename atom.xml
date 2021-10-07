@@ -6,7 +6,7 @@
   <link href="http://clay-nuyoah.github.io/atom.xml" rel="self"/>
   
   <link href="http://clay-nuyoah.github.io/"/>
-  <updated>2021-08-21T02:34:22.263Z</updated>
+  <updated>2021-08-21T06:21:37.901Z</updated>
   <id>http://clay-nuyoah.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HLP-Speech-Recognition-1</title>
+    <link href="http://clay-nuyoah.github.io/2021/08/21/HLP-Speech-Recognition-1/"/>
+    <id>http://clay-nuyoah.github.io/2021/08/21/HLP-Speech-Recognition-1/</id>
+    <published>2021-08-21T02:40:34.000Z</published>
+    <updated>2021-08-21T06:21:37.901Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;语音识别是困难的&quot;&gt;&lt;a href=&quot;#语音识别是困难的&quot; class=&quot;headerlink&quot; title=&quot;语音识别是困难的&quot;&gt;&lt;/a&gt;语音识别是困难的&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>HLP-Introduction</title>
@@ -462,21 +483,6 @@
     <category term="摩尔投票法" scheme="http://clay-nuyoah.github.io/tags/%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E6%B3%95/"/>
     
     <category term="众数" scheme="http://clay-nuyoah.github.io/tags/%E4%BC%97%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>玩筹码 leetcode</title>
-    <link href="http://clay-nuyoah.github.io/2020/11/30/wan-chou-ma-leetcode/"/>
-    <id>http://clay-nuyoah.github.io/2020/11/30/wan-chou-ma-leetcode/</id>
-    <published>2020-11-30T03:14:47.000Z</published>
-    <updated>2021-01-14T13:35:52.055Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;leetcode 题库 1217 玩筹码&lt;/p&gt;</summary>
-    
-    
-    
     
   </entry>
   

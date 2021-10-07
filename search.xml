@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HLP-Speech-Recognition-1</title>
+    <url>/2021/08/21/HLP-Speech-Recognition-1/</url>
+    <content><![CDATA[<h1 id="语音识别是困难的"><a href="#语音识别是困难的" class="headerlink" title="语音识别是困难的"></a>语音识别是困难的</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-41-36-c3885d1e4c9aedb8331939f455c35412-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821104128-dfd4a8.png"></p>
+<p>有人曾经说过语音识别就像把水变成汽油，从海里提取黄金，治疗癌症，或者是去月球。来形容语音识别是非常困难的。</p>
+<h1 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h1><h2 id="语音识别的表示"><a href="#语音识别的表示" class="headerlink" title="语音识别的表示"></a>语音识别的表示</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-44-59-77dff20df8c6495498a36c83fc23ba80-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821104438-40d19c.png"></p>
+<pre><code>语音识别的语音部分可以通过数量为 T 维度为 d 的向量来表示
+语音识别的文本部分可以通过数量为 N 维度为 V 的向量来表示，其中 V 为token 的个数，通常 T &gt; N 的</code></pre>
+<h2 id="token"><a href="#token" class="headerlink" title="token"></a>token</h2><p>token 有非常多的种类，包括 Phoneme、Grapheme、Word、Morpheme、Bytes。</p>
+<h3 id="Phoneme"><a href="#Phoneme" class="headerlink" title="Phoneme"></a>Phoneme</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-50-03-655a14fbad966490aaaea47b8175ff2c-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821104959-75bd17.png"></p>
+<p>Phoneme 作为一个发音单元，每个单词都对应着一个Phoneme，需要构建 Phoneme 表。在构建 Phoneme 表时，需要声学专家的帮助，但是每个声学专家对于每个词的 Phoneme 标注也可能是不一样的。</p>
+<h3 id="Grapheme"><a href="#Grapheme" class="headerlink" title="Grapheme"></a>Grapheme</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-53-42-a34ab8ea7779833449f88a78205b4da9-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821105336-128c68.png"></p>
+<p>Grapheme 作为写作系统的最小单元，在英文中是 26 个英文字母 + 空白符 + 标点符号，在中文中就是每一个字，常见的字大约有 4000 多个。</p>
+<h3 id="Word"><a href="#Word" class="headerlink" title="Word"></a>Word</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-56-31-49c2524f975ab1bba3921fb2b3b14d12-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821105620-b70bb0.png"></p>
+<p>word 在英文中就是单词，常见的单词大约有 100K 个，在中文中 word 代表一个词，在中文中词的数量就无法数清了。</p>
+<h3 id="Morpheme"><a href="#Morpheme" class="headerlink" title="Morpheme"></a>Morpheme</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-59-43-e68edc5b93ab3c9695e4d9e887aac5e1-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821105935-6707b8.png"></p>
+<p>Morpheme 是一种介于 word 和 grapheme 中的一种 token，这种 token 有点类似于英文中的词根、词缀，但是 Morpheme 并不是词根、词缀，Morpheme 来自语言学和统计学。</p>
+<h3 id="Bytes"><a href="#Bytes" class="headerlink" title="Bytes"></a>Bytes</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/11-04-06-d92213e36f76d44f60dada8c45aaf017-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821110400-b51b6d.png"></p>
+<p>世界上的任何一种语言都可以使用 UTF-8 进行编码，UTF-8 编码又可以使用 2 进制进行表示，所以如果能使用 Byte 这种 token，那么就能实现语言的独立性了。这种 token 在 19 年的一篇论文中已经进行了实现。</p>
+<h3 id="token-总结"><a href="#token-总结" class="headerlink" title="token 总结"></a>token 总结</h3><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/11-06-50-b9816cea98deb5e47de4f99e2357cfa3-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821110637-123b07.png"></p>
+<p>李宏毅老师让学生阅读了 100 篇最新的论文，并统计了使用每种 token 的比例。其中 Grapheme 是最受欢迎的。</p>
+<h1 id="语音识别的应用"><a href="#语音识别的应用" class="headerlink" title="语音识别的应用"></a>语音识别的应用</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/11-09-47-6d571163b9523a917b616162fa269cd2-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821110941-6fb079.png"></p>
+<p>语音识别有很多的应用，如词嵌入，使用一串向量来表示语音信息；翻译，说出一段英文，自动翻译成中文；意图识别，识别语音中的意图；槽位填充，如识别语音中的位置和时间信息。</p>
+<h1 id="声学特征"><a href="#声学特征" class="headerlink" title="声学特征"></a>声学特征</h1><h2 id="声学特征提取"><a href="#声学特征提取" class="headerlink" title="声学特征提取"></a>声学特征提取</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/11-13-28-2432986bb3812bc4860b686af8df7460-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821111321-74415f.png"></p>
+<p>一般是每 25ms 对音频采样一次，但是会向右移动 10ms 位置（这就意味着会有 15ms 的音频信息会被重复采样），然后利用 400 sample points (16KHz)、39-dim MFCC 或者是 80-dim filter bank output 3 种方法提取声学特征。这样每 25ms 提取到的声学特征组成一个向量，这样的一个向量称为一个 frame。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/14-05-09-fc82b12dc3aef08c14434f2a5d728fad-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821140501-0e3ea8.png"></p>
+<p>特征提取的过程如上图所示，将音频信息通过 DFT 得到 spectrogram（人眼可以通过 spectrogram 识别出语音的内容，但是音频信息无法进行识别），经过多个 filter bank ，取 log ，得到 filter bank output 特征（上面 3 种特征中的一种），然后经过 DCT 得到 MFCC 特征。</p>
+<h2 id="声学特征总结"><a href="#声学特征总结" class="headerlink" title="声学特征总结"></a>声学特征总结</h2><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/14-11-52-2f80f41a25a11772d46073c53c039351-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821141146-5fe644.png"></p>
+<p>李宏毅老师让学生阅读了 100 篇最新的文献，并统计了文献中这种声学特征所占的比例，其中 filter bank output 特征使用的最多。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/14-16-40-37305d3b16d8e628a9ca2508e0dd0d06-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821141624-816bf7.png"></p>
+<p>如果把经常用到的 MNIST 和 CIFAR-10 数据集的数据量换算成音频的话，那么他们的数据量分别可以用 49min 和 2hr40min 表示，而在真正的音频数据中，最小的数据为 4hr。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/14-20-15-0fa764bff06fc452ebc5c9f003111aac-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821142006-95f302.png"></p>
+<p>语音识别存在两种观点，一种是使用 seq2seq 进行语音识别，另一种时使用 HMM（隐马尔科夫模型） 进行语音识别。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>HLP-Introduction</title>
     <url>/2021/08/21/HLP-Introduction/</url>
     <content><![CDATA[<h1 id="课程的内容"><a href="#课程的内容" class="headerlink" title="课程的内容"></a>课程的内容</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/08-48-18-9047d137b36dc73c1880aeee17de5dba-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821084802-f1a862.png"></p>
