@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>RNN、LSTM、GRU在pytorch中的使用</title>
+    <url>/2021/10/07/RNN%E3%80%81LSTM%E3%80%81GRU%E5%9C%A8pytorch%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>HLP-Speech-Recognition-1</title>
     <url>/2021/08/21/HLP-Speech-Recognition-1/</url>
     <content><![CDATA[<h1 id="语音识别是困难的"><a href="#语音识别是困难的" class="headerlink" title="语音识别是困难的"></a>语音识别是困难的</h1><p><img src="https://cdn.jsdelivr.net/gh/clay-nuyoah/ImageHosting@master/img/clay-nuyoah/Users/93497/Desktop/2021/08/21/10-41-36-c3885d1e4c9aedb8331939f455c35412-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210821104128-dfd4a8.png"></p>

@@ -1,3 +1,4 @@
+http://clay-nuyoah.club/2021/10/07/RNN%E3%80%81LSTM%E3%80%81GRU%E5%9C%A8pytorch%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/
 http://clay-nuyoah.club/2021/08/21/HLP-Speech-Recognition-1/
 http://clay-nuyoah.club/2021/08/21/HLP-Introduction/
 http://clay-nuyoah.club/2021/07/28/end-to-end-asr-pro/
@@ -7,4 +8,3 @@ http://clay-nuyoah.club/2021/07/09/cnn/
 http://clay-nuyoah.club/2021/06/30/end-to-end-speech-recognition/
 http://clay-nuyoah.club/2021/06/28/NMT-And-Attention/
 http://clay-nuyoah.club/2021/06/29/GRU-AND-NMT-Advance/
-http://clay-nuyoah.club/2021/06/23/LSTMs-and-GRUs/
